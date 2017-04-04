@@ -25,7 +25,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ArraySort.h" />
-    <ClInclude Include="ArraySorts.h" />
     <ClInclude Include="Comparable.h" />
     <ClInclude Include="CTime.h" />
     <ClInclude Include="Date.h" />

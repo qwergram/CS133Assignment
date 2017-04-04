@@ -27,22 +27,19 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ArraySort.h">
-      <Filter>Resource Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ArraySorts.h">
-      <Filter>Resource Files</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Comparable.h">
-      <Filter>Resource Files</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CTime.h">
-      <Filter>Resource Files</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Date.h">
-      <Filter>Resource Files</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="DateTime.h">
-      <Filter>Resource Files</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
