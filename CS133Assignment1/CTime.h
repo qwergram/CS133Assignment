@@ -92,9 +92,9 @@ namespace PB_DATETIME
 		short getSecond()const {return m_second;}
 
 		// Mutators
-		void setHour(short hour);
-		void setMinute(short minute);
-		void setSecond(short second);
+		void setHour(short hour) { m_hour = hour; }
+		void setMinute(short minute) { m_minute = minute; }
+		void setSecond(short second) { m_second = second; }
 
 		void setCurrentTime(void);
 		virtual ~CTime() {}
