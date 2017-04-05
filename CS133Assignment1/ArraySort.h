@@ -3,7 +3,7 @@
 #include <iostream>
 #include "DateTime.h"
 using namespace std;
-using namespace PB_DATETIME;
+using namespace NP_DATETIME;
 //----------------------------------------------------------------------------
 // One of two choices for format of these function
 // This set uses pointers in the way that the STL uses iterators
