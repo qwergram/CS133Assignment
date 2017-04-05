@@ -13,7 +13,7 @@
 #include "Comparable.h"
 using namespace std;
 
-namespace PB_DATETIME
+namespace NP_DATETIME
 {
 	
 	const short MAXHOUR = 24;
@@ -69,6 +69,9 @@ namespace PB_DATETIME
 	class CTime : virtual public Comparable
 	{
 	public:
+		static const short HOURS_IN_DAY = 24;
+		static const short SEXAGESIMAL_RATE = 60;
+
 		CTime(void);
 		CTime(int hour, int minute = 0, int second = 0);
 
@@ -87,14 +90,14 @@ namespace PB_DATETIME
 			{return !((*this) < other);}
 
 		// Accessors
-		short getHour()const {return m_hour;}
-		short getMinute()const {return m_minute;}
-		short getSecond()const {return m_second;}
+		short getHour()const { return m_hour; }
+		short getMinute()const { return m_minute; }
+		short getSecond()const { return m_second; }
 
 		// Mutators
-		void setHour(short hour) { m_hour = hour; }
-		void setMinute(short minute) { m_minute = minute; }
-		void setSecond(short second) { m_second = second; }
+		void setHour(short hour);
+		void setMinute(short minute);
+		void setSecond(short second);
 
 		void setCurrentTime(void);
 		virtual ~CTime() {}
