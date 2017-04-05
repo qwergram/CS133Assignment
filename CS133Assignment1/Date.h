@@ -81,7 +81,7 @@
 #include "Comparable.h"
 using namespace std;
 
-namespace PB_DATETIME
+namespace NP_DATETIME
 {
 	const short LOWYEAR = 1760;
 	const short DAYSINYEAR = 365;

@@ -16,7 +16,7 @@
 //-----------------------------------------------------------------------------
 #include "Date.h"
 
-namespace PB_DATETIME
+namespace NP_DATETIME
 {
 //-----------------------------------------------------------------------------
 //    method:		Date(short day, short month, short year) -- constructor
