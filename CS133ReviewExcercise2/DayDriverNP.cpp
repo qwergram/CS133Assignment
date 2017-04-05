@@ -3,6 +3,7 @@
 //-----------------------------------------------------------------------------
 
 #include <iostream>
+#include "main.h"
 #include "CDay.h"
 
 using namespace std;
