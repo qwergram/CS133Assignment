@@ -15,18 +15,18 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\CS133ReviewExcercise\CDay.h">
-      <Filter>Resource Files</Filter>
+    <ClInclude Include="CDay.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\CS133ReviewExcercise\main.h">
-      <Filter>Resource Files</Filter>
+    <ClInclude Include="main.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\CS133ReviewExcercise\DayDriverNP.cpp">
+    <ClCompile Include="CDayNP.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\CS133ReviewExcercise\CDayNP.cpp">
+    <ClCompile Include="DayDriverNP.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
