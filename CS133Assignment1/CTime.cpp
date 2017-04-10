@@ -121,6 +121,11 @@ namespace NP_DATETIME
 		sout << m_hour << ':' << m_minute << ':' << m_second;
 	}
 
+	bool CTime::operator==(const Comparable & other) const
+	{
+		
+	}
+
 	ostream & operator<<(ostream & sout, const CTime & time)
 	{
 		time.print(sout);

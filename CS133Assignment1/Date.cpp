@@ -214,7 +214,7 @@ namespace NP_DATETIME
 //-----------------------------------------------------------------------------
 	void Date::setMonth(short month)
 	{
-     
+		m_month = month;
 	}
  
 //-----------------------------------------------------------------------------
@@ -233,8 +233,8 @@ namespace NP_DATETIME
 //			 2/9/08  PB  completed version 1.0
 //-----------------------------------------------------------------------------
 	void Date::setYear(short year)
-    	{
- 
+    {
+		m_year = year;
 	}
 //-----------------------------------------------------------------------------
 	void Date:: input(istream& sin)
@@ -244,7 +244,7 @@ namespace NP_DATETIME
 //-----------------------------------------------------------------------------
 	void Date::print(ostream& sout)const
 	{
-
+		sout << m_dayOfMonth << '/' << m_month << '/' << m_year;
 	}
 
 // and so on ... 

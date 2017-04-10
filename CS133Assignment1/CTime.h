@@ -78,7 +78,7 @@ namespace NP_DATETIME
 		// pure virtuals that MUST be defined		
 		virtual void input(istream& sin);
 		virtual void print(ostream& sout)const;
-		virtual bool operator==(const Comparable &other)const;
+		virtual bool operator==(const Comparable &other) const;
 		virtual bool operator!=(const Comparable &other)const
 			{return !((*this) == other);}
 		virtual bool operator<(const Comparable &other)const;
