@@ -123,10 +123,13 @@ namespace NP_DATETIME
 
 	bool CTime::operator==(const Comparable & other) const
 	{
-		
+		// compare hour minute and second
+		// other.m_hour > this->m_hour
+		// other.m_minte > this->m_minute
+		// other.m_second > this->m_minute
 	}
 
-	ostream & operator<<(ostream & sout, const CTime & time)
+	ostream & operator << (ostream & sout, const CTime & time)
 	{
 		time.print(sout);
 		return sout;
