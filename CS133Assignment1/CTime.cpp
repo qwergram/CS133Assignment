@@ -127,6 +127,8 @@ namespace NP_DATETIME
 		// other.m_hour > this->m_hour
 		// other.m_minte > this->m_minute
 		// other.m_second > this->m_minute
+		// CTime test = CTime(other);
+		
 	}
 
 	ostream & operator << (ostream & sout, const CTime & time)
