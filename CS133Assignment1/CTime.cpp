@@ -129,12 +129,18 @@ namespace NP_DATETIME
 	// 
 	//    Parameters:	const Comparable &other  -- the other Date to compare
 	//
+	//	  Programmers:  Norton Pengra && Paul Bladek
+	//
 	//    Called By:	main, >=, <=
+	//
+	//	  Calls:		Accesors of CTime
 	// 
-	//    Returns:          true if the two objects are exactly the same;
-	//				false otherwise
+	//    Returns:      true if the two objects are exactly the same;
+	//					false otherwise
+	//
 	//    History Log:
-	//			5/8/16  PB  completed version 1.1
+	//			05/08/16  PB  completed version 1.1
+	//			04/11/17  NP  appended to version 1.1
 	//-----------------------------------------------------------------------------
 	bool CTime::operator==(const Comparable & other) const
 	{
@@ -164,12 +170,20 @@ namespace NP_DATETIME
 	// 
 	//    Parameters:	const Comparable &other  -- the other CTime to compare
 	//
+	//	  Programmers:  Norton Pengra && Paul Bladek
+	//
 	//    Called By:	main, >=, <=
 	// 
+	//	  Calls:		Accesors of CTime
+	//
 	//    Returns:      true if the the current object is less than the other.
 	//					false otherwise
+	//
+	//    Exceptions:   Throws invalid_argument if other isn't CTime object
+	//
 	//    History Log:
-	//			5/8/16  PB  completed version 1.1
+	//			05/08/16  PB  completed version 1.1
+	//			04/11/17  NP  appended to version 1.1
 	//-----------------------------------------------------------------------------
 	bool CTime::operator<(const Comparable & other) const
 	{
@@ -198,12 +212,52 @@ namespace NP_DATETIME
 		return isLT;
 	}
 
+	//-----------------------------------------------------------------------------
+	//    Class:		CTime
+	//    method:		ostream & operator << (ostream & sout, const CTime & time)
+	//
+	//    description:	print the time to the specified ostream
+	// 
+	//    Parameters:	ostream & sout -- ostream you'd like to use
+	//					const CTime & time -- time object to print
+	//
+	//	  Programmers:  Norton Pengra
+	//
+	//    Called By:	main
+	//
+	//	  Calls:		CTime::print()
+	// 
+	//    Returns:      the ostream reference initially passed in
+	//
+	//    History Log:
+	//			04/11/17  NP  appended to version 1.1
+	//-----------------------------------------------------------------------------
 	ostream & operator << (ostream & sout, const CTime & time)
 	{
 		time.print(sout);
 		return sout;
 	}
 
+	//-----------------------------------------------------------------------------
+	//    Class:		CTime
+	//    method:		ostream & operator >> (istream & sin, CTime & time)
+	//
+	//    description:	read from the specified input stream and write to time obj
+	// 
+	//    Parameters:	istream & sin -- istream you'd like to read from
+	//					CTime & time -- time object you'd like to write to
+	//
+	//	  Programmers:  Norton Pengra
+	//
+	//    Called By:	main
+	//
+	//	  Calls:		CTime::input
+	// 
+	//    Returns:      the istream reference initially passed in
+	//
+	//    History Log:
+	//			04/11/17  NP  appended to version 1.1
+	//-----------------------------------------------------------------------------
 	istream & operator >> (istream & sin, CTime & time)
 	{
 		time.input(sin);
