@@ -69,7 +69,9 @@ namespace NP_DATETIME
 				returnValue = true;
 		}
 		catch(bad_cast e)
-		{ }
+		{ 
+			// Should something happen here?
+		}
 		return returnValue;
     }
 //-----------------------------------------------------------------------------

@@ -123,12 +123,22 @@ namespace NP_DATETIME
 
 	bool CTime::operator==(const Comparable & other) const
 	{
-		// compare hour minute and second
-		// other.m_hour > this->m_hour
-		// other.m_minte > this->m_minute
-		// other.m_second > this->m_minute
-		// CTime test = CTime(other);
-		
+		bool returnValue = false;
+		try
+		{
+			const CTime otherTime = dynamic_cast<const CTime&>(other);
+			if (	
+				m_hour == otherTime.m_hour &&
+				m_minute == otherTime.m_minute &&
+				m_second == otherTime.m_second
+				)
+				returnValue = true;
+		}
+		catch (bad_cast e)
+		{
+			// Should something happen here?
+		}
+		return returnValue;
 	}
 
 	ostream & operator << (ostream & sout, const CTime & time)
