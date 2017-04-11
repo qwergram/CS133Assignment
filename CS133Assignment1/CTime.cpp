@@ -126,11 +126,11 @@ namespace NP_DATETIME
 		bool returnValue = false;
 		try
 		{
-			const CTime otherTime = dynamic_cast<const CTime&>(other);
+			CTime otherTime = dynamic_cast<const CTime&>(other);
 			if (	
-				m_hour == otherTime.m_hour &&
-				m_minute == otherTime.m_minute &&
-				m_second == otherTime.m_second
+				m_hour == otherTime.getHour() &&
+				m_minute == otherTime.getMinute() &&
+				m_second == otherTime.getSecond()
 				)
 				returnValue = true;
 		}
@@ -139,6 +139,33 @@ namespace NP_DATETIME
 			// Should something happen here?
 		}
 		return returnValue;
+	}
+
+	bool CTime::operator<(const Comparable & other) const
+	{
+		/*
+			3:12:33 9:53:01
+			3:11:33 9:53:00
+		*/
+		bool isLT = false;
+		try {
+			CTime otherTime = dynamic_cast<const CTime&>(other);
+			bool hourIsLT = m_hour < otherTime.getHour();
+			bool hourIsEq = m_hour == otherTime.getHour();
+			bool minIsLT = m_minute < otherTime.getMinute();
+			bool minIsEq = m_minute == otherTime.getMinute();
+			bool secIsLT = m_second < otherTime.getSecond();
+			if (hourIsLT)
+				isLT = true;
+			else if (hourIsEq && minIsLT)
+				isLT = true;
+			else if (hourIsEq && minIsEq && secIsLT)
+				isLT = true;
+		}
+		catch (bad_cast e) {
+			// Should something happen here?
+		}
+		return isLT;
 	}
 
 	ostream & operator << (ostream & sout, const CTime & time)
