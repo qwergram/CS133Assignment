@@ -121,6 +121,21 @@ namespace NP_DATETIME
 		sout << m_hour << ':' << m_minute << ':' << m_second;
 	}
 
+	//-----------------------------------------------------------------------------
+	//    Class:		CTime
+	//    method:		operator==(const Comparable& other) const
+	//
+	//    description:	true if the two objects are exactly the same
+	// 
+	//    Parameters:	const Comparable &other  -- the other Date to compare
+	//
+	//    Called By:	main, >=, <=
+	// 
+	//    Returns:          true if the two objects are exactly the same;
+	//				false otherwise
+	//    History Log:
+	//			5/8/16  PB  completed version 1.1
+	//-----------------------------------------------------------------------------
 	bool CTime::operator==(const Comparable & other) const
 	{
 		bool returnValue = false;
@@ -142,17 +157,17 @@ namespace NP_DATETIME
 	}
 
 	//-----------------------------------------------------------------------------
-	//    Class:		Date
+	//    Class:		CTime
 	//    method:		operator < (const Comparable& other) const
 	//
 	//    description:	true if the two objects are exactly the same
 	// 
-	//    Parameters:	const Comparable &other  -- the other Date to compare
+	//    Parameters:	const Comparable &other  -- the other CTime to compare
 	//
 	//    Called By:	main, >=, <=
 	// 
-	//    Returns:          true if the two objects are exactly the same;
-	//				false otherwise
+	//    Returns:      true if the the current object is less than the other.
+	//					false otherwise
 	//    History Log:
 	//			5/8/16  PB  completed version 1.1
 	//-----------------------------------------------------------------------------
