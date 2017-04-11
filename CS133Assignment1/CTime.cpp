@@ -141,29 +141,45 @@ namespace NP_DATETIME
 		return returnValue;
 	}
 
+	//-----------------------------------------------------------------------------
+	//    Class:		Date
+	//    method:		operator < (const Comparable& other) const
+	//
+	//    description:	true if the two objects are exactly the same
+	// 
+	//    Parameters:	const Comparable &other  -- the other Date to compare
+	//
+	//    Called By:	main, >=, <=
+	// 
+	//    Returns:          true if the two objects are exactly the same;
+	//				false otherwise
+	//    History Log:
+	//			5/8/16  PB  completed version 1.1
+	//-----------------------------------------------------------------------------
 	bool CTime::operator<(const Comparable & other) const
 	{
-		/*
-			3:12:33 9:53:01
-			3:11:33 9:53:00
-		*/
 		bool isLT = false;
 		
-		CTime otherTime = dynamic_cast<const CTime&>(other);
-		
-		bool hourIsLT = m_hour < otherTime.getHour();
-		bool hourIsEq = m_hour == otherTime.getHour();
-		bool minIsLT = m_minute < otherTime.getMinute();
-		bool minIsEq = m_minute == otherTime.getMinute();
-		bool secIsLT = m_second < otherTime.getSecond();
-		
-		if (hourIsLT)
-			isLT = true;
-		else if (hourIsEq && minIsLT)
-			isLT = true;
-		else if (hourIsEq && minIsEq && secIsLT)
-			isLT = true;
-		
+		try {
+			CTime otherTime = dynamic_cast<const CTime&>(other);
+
+			bool hourIsLT = m_hour < otherTime.getHour();
+			bool hourIsEq = m_hour == otherTime.getHour();
+			bool minIsLT = m_minute < otherTime.getMinute();
+			bool minIsEq = m_minute == otherTime.getMinute();
+			bool secIsLT = m_second < otherTime.getSecond();
+
+			if (hourIsLT)
+				isLT = true;
+			else if (hourIsEq && minIsLT)
+				isLT = true;
+			else if (hourIsEq && minIsEq && secIsLT)
+				isLT = true;
+		}
+		catch (bad_cast e) {
+			throw new invalid_argument("CTime can only be compared to CTime objects");
+		}
+
 		return isLT;
 	}
 
