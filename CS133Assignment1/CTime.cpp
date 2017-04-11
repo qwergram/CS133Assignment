@@ -148,23 +148,22 @@ namespace NP_DATETIME
 			3:11:33 9:53:00
 		*/
 		bool isLT = false;
-		try {
-			CTime otherTime = dynamic_cast<const CTime&>(other);
-			bool hourIsLT = m_hour < otherTime.getHour();
-			bool hourIsEq = m_hour == otherTime.getHour();
-			bool minIsLT = m_minute < otherTime.getMinute();
-			bool minIsEq = m_minute == otherTime.getMinute();
-			bool secIsLT = m_second < otherTime.getSecond();
-			if (hourIsLT)
-				isLT = true;
-			else if (hourIsEq && minIsLT)
-				isLT = true;
-			else if (hourIsEq && minIsEq && secIsLT)
-				isLT = true;
-		}
-		catch (bad_cast e) {
-			// Should something happen here?
-		}
+		
+		CTime otherTime = dynamic_cast<const CTime&>(other);
+		
+		bool hourIsLT = m_hour < otherTime.getHour();
+		bool hourIsEq = m_hour == otherTime.getHour();
+		bool minIsLT = m_minute < otherTime.getMinute();
+		bool minIsEq = m_minute == otherTime.getMinute();
+		bool secIsLT = m_second < otherTime.getSecond();
+		
+		if (hourIsLT)
+			isLT = true;
+		else if (hourIsEq && minIsLT)
+			isLT = true;
+		else if (hourIsEq && minIsEq && secIsLT)
+			isLT = true;
+		
 		return isLT;
 	}
 
