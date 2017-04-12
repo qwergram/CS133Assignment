@@ -132,7 +132,7 @@ namespace NP_DATETIME
 		m_minute = currentTimePtr->tm_min;
 		m_second = currentTimePtr->tm_sec;
 	}
-	
+
 	//-----------------------------------------------------------------------------
 	//    Class:		CTime
 	//    method:		constructor
@@ -246,7 +246,7 @@ namespace NP_DATETIME
 		setHour(hour);
 		setMinute(minute);
 		setSecond(second);
-			
+
 	}
 
 	//-----------------------------------------------------------------------------
@@ -304,12 +304,11 @@ namespace NP_DATETIME
 		try
 		{
 			CTime otherTime = dynamic_cast<const CTime&>(other);
-			if (	
+			returnValue = (
 				m_hour == otherTime.getHour() &&
 				m_minute == otherTime.getMinute() &&
 				m_second == otherTime.getSecond()
-				)
-				returnValue = true;
+				);
 		}
 		catch (bad_cast e)
 		{
@@ -344,7 +343,7 @@ namespace NP_DATETIME
 	bool CTime::operator<(const Comparable & other) const
 	{
 		bool isLT = false;
-		
+
 		try {
 			CTime otherTime = dynamic_cast<const CTime&>(other);
 
