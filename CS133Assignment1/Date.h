@@ -140,6 +140,7 @@ namespace NP_DATETIME
 						: (month == 1) ? 28 
 					: 30;
 			}
+
 		static const char* monthName(int monthNum);
 		static const char* weekdayName(int weekdayNum);
 		
