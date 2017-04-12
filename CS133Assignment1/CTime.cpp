@@ -74,6 +74,29 @@ namespace NP_DATETIME
 		this->setSecond(second);
 	}
 
+	//-----------------------------------------------------------------------------
+	//    Class:		CTime
+	//    method:		input(istream & sin)
+	//
+	//    description:	reads HH:MM:SS from istream and sets values in CTime object
+	// 
+	//    Parameters:	istream & sin  -- the istream to read from
+	//
+	//	  Programmers:  Norton Pengra && Paul Bladek
+	//
+	//    Called By:	istream & operator >>
+	// 
+	//	  Calls:		Mutators of CTime
+	//
+	//    Returns:      void
+	//					
+	//
+	//    Exceptions:   
+	//
+	//    History Log:
+	//			05/08/16  PB  completed version 1.1
+	//			04/11/17  NP  appended to version 1.1
+	//-----------------------------------------------------------------------------
 	void CTime::input(istream & sin)
 	{
 		bool reset = false;
@@ -96,19 +119,12 @@ namespace NP_DATETIME
 			second = 0;
 		}
 		else {
-
-			if (hour < 0 || hour >= HOURS_IN_DAY) {
+			if (hour < 0 || hour >= HOURS_IN_DAY)
 				hour = 0;
-			}
-
-			if (minute < 0 || minute >= SEXAGESIMAL_RATE) {
+			if (minute < 0 || minute >= SEXAGESIMAL_RATE)
 				minute = 0;
-			}
-
-			if (second < 0 || second >= SEXAGESIMAL_RATE) {
+			if (second < 0 || second >= SEXAGESIMAL_RATE)
 				second = 0;
-			}
-
 		}
 		setHour(hour);
 		setMinute(minute);
@@ -116,9 +132,32 @@ namespace NP_DATETIME
 			
 	}
 
+	//-----------------------------------------------------------------------------
+	//    Class:		CTime
+	//    method:		print(ostream & sout) const
+	//
+	//    description:	prints text in HH:MM:SS to specified ostream
+	// 
+	//    Parameters:	ostream & sout  -- the ostream to print to
+	//
+	//	  Programmers:  Norton Pengra && Paul Bladek
+	//
+	//    Called By:	ostream & operator <<
+	// 
+	//	  Calls:		Accesors of CTime
+	//
+	//    Returns:      void
+	//					
+	//
+	//    Exceptions:   
+	//
+	//    History Log:
+	//			05/08/16  PB  completed version 1.1
+	//			04/11/17  NP  appended to version 1.1
+	//-----------------------------------------------------------------------------
 	void CTime::print(ostream & sout) const
 	{
-		sout << m_hour << ':' << m_minute << ':' << m_second;
+		sout << getHour() << ':' << getMinute() << ':' << getSecond();
 	}
 
 	//-----------------------------------------------------------------------------
