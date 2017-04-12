@@ -10,6 +10,30 @@
 #include "CTime.h"
 namespace NP_DATETIME
 {
+
+	//-----------------------------------------------------------------------------
+	//    Class:		CTime
+	//    method:		hour mutator
+	//
+	//    description:	sets hour to valid hour or 0
+	// 
+	//    Parameters:	short hour
+	//
+	//	  Programmers:  Norton Pengra && Paul Bladek
+	//
+	//    Called By:	
+	// 
+	//	  Calls:		
+	//
+	//    Returns:      
+	//					
+	//
+	//    Exceptions:   
+	//
+	//    History Log:
+	//			05/08/16  PB  completed version 1.1
+	//			04/11/17  NP  appended to version 1.1
+	//-----------------------------------------------------------------------------
 	void CTime::setHour(short hour)
 	{
 		if (hour >= 0 && hour < HOURS_IN_DAY) {
@@ -20,6 +44,29 @@ namespace NP_DATETIME
 		}
 	}
 
+	//-----------------------------------------------------------------------------
+	//    Class:		CTime
+	//    method:		minute mutator
+	//
+	//    description:	sets minute to valid minute or 0
+	// 
+	//    Parameters:	short minute
+	//
+	//	  Programmers:  Norton Pengra && Paul Bladek
+	//
+	//    Called By:	
+	// 
+	//	  Calls:		
+	//
+	//    Returns:      
+	//					
+	//
+	//    Exceptions:   
+	//
+	//    History Log:
+	//			05/08/16  PB  completed version 1.1
+	//			04/11/17  NP  appended to version 1.1
+	//-----------------------------------------------------------------------------
 	void CTime::setMinute(short minute)
 	{
 		if (minute >= 0 && minute < SEXAGESIMAL_RATE) {
@@ -30,6 +77,29 @@ namespace NP_DATETIME
 		}
 	}
 
+	//-----------------------------------------------------------------------------
+	//    Class:		CTime
+	//    method:		second mutator
+	//
+	//    description:	sets second to valid second or 0
+	// 
+	//    Parameters:	short second
+	//
+	//	  Programmers:  Norton Pengra && Paul Bladek
+	//
+	//    Called By:	
+	// 
+	//	  Calls:		
+	//
+	//    Returns:      
+	//					
+	//
+	//    Exceptions:   
+	//
+	//    History Log:
+	//			05/08/16  PB  completed version 1.1
+	//			04/11/17  NP  appended to version 1.1
+	//-----------------------------------------------------------------------------
 	void CTime::setSecond(short second)
 	{
 		if (second >= 0 && second < SEXAGESIMAL_RATE) {
@@ -42,7 +112,7 @@ namespace NP_DATETIME
 
 	//-----------------------------------------------------------------------------
 	//    Class:		CTime
-	//			method:		setCurrentTime()
+	//	  method:		setCurrentTime()
 	//
 	//    description:	sets the time from the system clock
 	//
@@ -62,11 +132,58 @@ namespace NP_DATETIME
 		m_minute = currentTimePtr->tm_min;
 		m_second = currentTimePtr->tm_sec;
 	}
+	
+	//-----------------------------------------------------------------------------
+	//    Class:		CTime
+	//    method:		constructor
+	//
+	//    description:	builds time object from current time
+	// 
+	//    Parameters:	
+	//
+	//	  Programmers:  Norton Pengra && Paul Bladek
+	//
+	//    Called By:	
+	// 
+	//	  Calls:		Mutators of CTime
+	//
+	//    Returns:      
+	//					
+	//
+	//    Exceptions:   
+	//
+	//    History Log:
+	//			05/08/16  PB  completed version 1.1
+	//			04/11/17  NP  appended to version 1.1
+	//-----------------------------------------------------------------------------
 	CTime::CTime(void)
 	{
 		this->setCurrentTime();
 	}
 
+	//-----------------------------------------------------------------------------
+	//    Class:		CTime
+	//    method:		constructor
+	//
+	//    description:	builds time object from specified values
+	// 
+	//    Parameters:	int hour, int minute, int second
+	//
+	//	  Programmers:  Norton Pengra && Paul Bladek
+	//
+	//    Called By:	
+	// 
+	//	  Calls:		Mutators of CTime
+	//
+	//    Returns:      
+	//					
+	//
+	//    Exceptions:   
+	//
+	//    History Log:
+	//			05/08/16  PB  completed version 1.1
+	//			04/11/17  NP  appended to version 1.1
+	//-----------------------------------------------------------------------------
 	CTime::CTime(int hour, int minute, int second)
 	{
 		this->setHour(hour);
