@@ -87,6 +87,8 @@ namespace NP_DATETIME
 	//
 	//    Called By:	main, >, <=
 	//
+	//	  Calls:		getYear, getDayOfYear
+	//
 	//    Exceptions:	throws bad_cast if other is not a Date
 	// 
 	//    Returns:		true if the current object is before other;
@@ -100,7 +102,12 @@ namespace NP_DATETIME
 	
 		try {
 			Date otherDate = dynamic_cast<const Date&>(other);
+			
+			bool yearLT = otherDate.getYear() < getYear();
+			bool yearEQ = otherDate.getYear() == getYear();
+			bool dayLT = otherDate.getDayOfYear() < getDayOfYear();
 
+			returnValue = (yearLT || yearEQ && dayLT);
 		}
 		catch (bad_cast e) {
 			throw new invalid_argument("Date can only be compared to Date objects");
