@@ -131,13 +131,17 @@ namespace NP_DATETIME
 
 		//statics
 		static bool isLeapYear(short year)
-			{/* your code goes here */	return true;}
+			{ return (year % 4 == 0 && year % 100 != 0 || year % 400 == 0); }
 		static short daysInMonth(short month, short year)
-			{/* your code goes here */	return true;}
-		static const char* monthName(int monthNum)
-			{/* your code goes here */	return "";}
-		static const char* weekdayName(int weekdayNum)
-			{/* your code goes here */	return "";}
+			{
+				return
+					(month <= 6 && month % 2 == 0 || 
+	 				 month >= 7 && month % 2 == 1) ? 31 
+						: (month == 1) ? 28 
+					: 30;
+			}
+		static const char* monthName(int monthNum);
+		static const char* weekdayName(int weekdayNum);
 		
 	protected:
 		short m_year;  // full year, i.e., 2012

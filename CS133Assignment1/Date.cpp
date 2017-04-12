@@ -236,6 +236,8 @@ namespace NP_DATETIME
 	void Date::setMonth(short month)
 	{
 		m_month = month;
+		setDayOfYear();
+		setDayOfWeek();
 	}
 
 	//-----------------------------------------------------------------------------
@@ -245,8 +247,8 @@ namespace NP_DATETIME
 	//    description:	mutator for m_year
 	// 
 	//    Calls:            isLeapYear(short)
-	//			setDayOfYear()
-	//			setDayOfWeek()
+	//						setDayOfYear()
+	//						setDayOfWeek()
 	// 
 	//    Parameters:	year --  year to set
 	//
@@ -256,6 +258,8 @@ namespace NP_DATETIME
 	void Date::setYear(short year)
 	{
 		m_year = year;
+		setDayOfYear();
+		setDayOfWeek();
 	}
 	//-----------------------------------------------------------------------------
 	void Date::input(istream& sin)
@@ -267,7 +271,5 @@ namespace NP_DATETIME
 	{
 		sout << m_dayOfMonth << '/' << m_month << '/' << m_year;
 	}
-
-	// and so on ... 
 
 }
