@@ -96,6 +96,7 @@ namespace NP_DATETIME
 	//    History Log:
 	//			5/8/16  PB  completed version 1.1
 	// ----------------------------------------------------------------------------
+
 	bool Date::operator<(const Comparable &other) const
 	{
 		bool returnValue = false;

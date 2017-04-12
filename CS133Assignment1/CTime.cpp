@@ -353,12 +353,7 @@ namespace NP_DATETIME
 			bool minIsEq = m_minute == otherTime.getMinute();
 			bool secIsLT = m_second < otherTime.getSecond();
 
-			if (hourIsLT)
-				isLT = true;
-			else if (hourIsEq && minIsLT)
-				isLT = true;
-			else if (hourIsEq && minIsEq && secIsLT)
-				isLT = true;
+			isLT = (hourIsLT || hourIsEq && minIsLT || hourIsEq && minIsEq && secIsLT);
 		}
 		catch (bad_cast e) {
 			throw new invalid_argument("CTime can only be compared to CTime objects");
