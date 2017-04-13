@@ -141,21 +141,6 @@ namespace NP_DATETIME
 	}
 
 	//-----------------------------------------------------------------------------
-	//    Class:	Date
-	//    method:		setDayOfWeek(void)
-	//
-	//    description:	validates and sets the proper day of the week
-	//
-	//    History Log:
-	//                           2/9/08  PB  completed version 1.0
-	// ----------------------------------------------------------------------------
-	void Date::setDayOfWeek(void)
-	{
-
-	}
-
-
-	//-----------------------------------------------------------------------------
 	//    Class:			Date
 	//    method:			countLeaps(short year)const
 	//
@@ -175,6 +160,31 @@ namespace NP_DATETIME
 			if (isLeapYear(i))
 				leaps++;
 		return leaps;
+	}
+
+	//-----------------------------------------------------------------------------
+	//    Class:		Date
+	//    method:		getDayOfYear() const
+	//
+	//    description:	python styled property for getting index of day in year
+	// 
+	//    Calls:		getDayOfMonth(), daysInMonty(), Accessors
+	// 
+	//    Parameters:	
+	//
+	//	  Returns:		totalDays -- int of day index of day in year
+	//
+	//    History Log:
+	//					02/09/08  PB  completed version 1.0
+	//					04/13/17  NP  appeneded to version 1.0
+	//-----------------------------------------------------------------------------
+	short Date::getDayOfYear() const
+	{
+		short totalDays = getDayOfMonth();
+		for (short month = 0; month < getMonth(); month++) {
+			totalDays += daysInMonth(m_month, getYear());
+		}
+		return totalDays;
 	}
 
 	//-----------------------------------------------------------------------------

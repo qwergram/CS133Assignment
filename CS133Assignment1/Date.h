@@ -134,7 +134,7 @@ namespace NP_DATETIME
 				return
 					(month <= 6 && month % 2 == 0 || 
 	 				 month >= 7 && month % 2 == 1) ? 31 
-						: (month == 1) ? 28 
+						: (month == 1) ? (isLeapYear(year)) ? 29 : 28 
 					: 30;
 			}
 
