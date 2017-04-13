@@ -226,9 +226,7 @@ namespace NP_DATETIME
 	//
 	//    description:	mutator for m_year
 	// 
-	//    Calls:            isLeapYear(short)
-	//						setDayOfYear()
-	//						setDayOfWeek()
+	//    Calls:        isLeapYear(short)
 	// 
 	//    Parameters:	year --  year to set
 	//
@@ -237,7 +235,10 @@ namespace NP_DATETIME
 	//-----------------------------------------------------------------------------
 	void Date::setYear(short year)
 	{
-		m_year = year;
+		if (year > LOWYEAR)
+			m_year = year;
+		else
+			m_year = LOWYEAR;
 	}
 	//-----------------------------------------------------------------------------
 	void Date::input(istream& sin)
