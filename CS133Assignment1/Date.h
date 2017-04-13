@@ -138,8 +138,8 @@ namespace NP_DATETIME
 					: 30;
 			}
 
-		static const char* monthName(int monthNum);
-		static const char* weekdayName(int weekdayNum);
+		static const string monthName(int monthNum);
+		static const string weekdayName(int weekdayNum);
 		
 	protected:
 		short m_year;  // full year, i.e., 2012

@@ -187,7 +187,7 @@ namespace NP_DATETIME
 		return totalDays;
 	}
 
-	const char * Date::monthName(int monthNum)
+	const string Date::monthName(int monthNum)
 	{
 		string month;
 		switch (monthNum) {
@@ -228,7 +228,7 @@ namespace NP_DATETIME
 			month = "December";
 			break;
 		}
-		return month.c_str();
+		return month;
 	}
 
 	//-----------------------------------------------------------------------------
