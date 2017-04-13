@@ -200,14 +200,12 @@ namespace NP_DATETIME
 	}
 
 	//-----------------------------------------------------------------------------
-	//    Class:	Date
+	//    Class:		Date
 	//    method:		setMonth(short dmonth)
 	//
 	//    description:	mutator for m_month
 	// 
-	//    Calls:            daysInMonth(short, short)
-	//			setDayOfYear()
-	//			setDayOfWeek()
+	//    Calls:        daysInMonth(short, short)
 	// 
 	//    Parameters:	month --  month to set
 	//
@@ -216,7 +214,10 @@ namespace NP_DATETIME
 	//-----------------------------------------------------------------------------
 	void Date::setMonth(short month)
 	{
-		m_month = month;
+		if (month > 0 && month < MONTHSINYEAR)
+			m_month = month;
+		else
+			m_month = 0;
 	}
 
 	//-----------------------------------------------------------------------------
