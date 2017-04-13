@@ -187,6 +187,22 @@ namespace NP_DATETIME
 		return totalDays;
 	}
 
+	//-----------------------------------------------------------------------------
+	//    Class:		Date
+	//    method:		monthName() const
+	//
+	//    description:	returns string of month name
+	// 
+	//    Calls:		
+	// 
+	//    Parameters:	
+	//
+	//	  Returns:		string -- month name
+	//
+	//    History Log:
+	//					02/09/08  PB  completed version 1.0
+	//					04/13/17  NP  appeneded to version 1.0
+	//-----------------------------------------------------------------------------
 	const string Date::monthName(int monthNum)
 	{
 		string month;
@@ -229,6 +245,35 @@ namespace NP_DATETIME
 			break;
 		}
 		return month;
+	}
+
+	const string Date::weekdayName(int weekdayNum)
+	{
+		string dayOfWeek;
+		switch (getDayOfWeek()) {
+		case 0:
+			dayOfWeek = "Sunday";
+			break;
+		case 1:
+			dayOfWeek = "Monday";
+			break;
+		case 2:
+			dayOfWeek = "Tuesday";
+			break;
+		case 3:
+			dayOfWeek = "Wednesday";
+			break;
+		case 4:
+			dayOfWeek = "Thursday";
+			break;
+		case 5:
+			dayOfWeek = "Friday";
+			break;
+		case 6:
+			dayOfWeek = "Saturday";
+			break;
+		}
+		return dayOfWeek;
 	}
 
 	//-----------------------------------------------------------------------------
@@ -294,11 +339,13 @@ namespace NP_DATETIME
 		else
 			m_year = LOWYEAR;
 	}
+
 	//-----------------------------------------------------------------------------
 	void Date::input(istream& sin)
 	{
 
 	}
+
 	//-----------------------------------------------------------------------------
 	void Date::print(ostream& sout)const
 	{
