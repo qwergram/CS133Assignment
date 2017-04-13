@@ -120,11 +120,11 @@ namespace NP_DATETIME
 		short countLeaps(short year)const;
 		
 		//accessors
-		short getDayOfWeek()const {return m_dayOfWeek;}
+		short getDayOfWeek()const;
 		short getDayOfMonth()const {return m_dayOfMonth;}
 		short getMonth()const {return m_month;}
 		short getYear()const {return m_year;}
-		short getDayOfYear()const {return m_dayOfYear;}
+		short getDayOfYear()const;
 
 		Date tomorrow()const;
 		Date yesterday()const;
@@ -148,8 +148,8 @@ namespace NP_DATETIME
 		short m_year;  // full year, i.e., 2012
 		short m_month; // 0 - 11
 		short m_dayOfMonth; // 1 - days in that month
-		short m_dayOfYear;  // 1 - 365 or 366
-		short m_dayOfWeek;	// 0 - 6
+		// short m_dayOfYear;   // 1 - 365 or 366
+		// short m_dayOfWeek;	// 0 - 6
 	};
 	
 	ostream& operator<<(ostream& sout, const Date& date);

@@ -68,7 +68,7 @@ namespace NP_DATETIME
 				dynamic_cast<const Date&>(other);
 			returnValue = (
 				m_year == otherDate.m_year && 
-				m_dayOfYear == otherDate.m_dayOfYear
+				getDayOfYear() == otherDate.getDayOfYear()
 				);
 		}
 		catch (bad_cast e)
@@ -123,7 +123,7 @@ namespace NP_DATETIME
 	//
 	//    description:	sets the date from the system clock
 	// 
-	//    Called By:	constructor, mutators
+	//    Called By:	constructor
 	//
 	//    History Log:
 	//			2/9/08  PB  completed version 1.0
@@ -138,8 +138,6 @@ namespace NP_DATETIME
 		m_year = currentTimePtr->tm_year + 1900;
 		m_month = currentTimePtr->tm_mon;
 		m_dayOfMonth = currentTimePtr->tm_mday;
-		setDayOfYear();
-		setDayOfWeek();
 	}
 
 	//-----------------------------------------------------------------------------
@@ -156,19 +154,6 @@ namespace NP_DATETIME
 
 	}
 
-	//-----------------------------------------------------------------------------
-	//    Class:		Date
-	//    method:		setDayOfYear(void)
-	//
-	//    description:	validates and sets the proper day of the year
-	//
-	//    History Log:
-	//			2/9/08  PB  completed version 1.0
-	// ----------------------------------------------------------------------------
-	void Date::setDayOfYear(void)
-	{
-
-	}
 
 	//-----------------------------------------------------------------------------
 	//    Class:			Date
@@ -199,8 +184,6 @@ namespace NP_DATETIME
 	//    description:	mutator for m_dayOfMonth
 	// 
 	//    Calls:            daysInMonth(short, short)
-	//			setDayOfYear()
-	//			setDayOfWeek()
 	// 
 	//    Parameters:	dayOfMonth --  day of month to set
 	//
@@ -213,8 +196,6 @@ namespace NP_DATETIME
 			&& dayOfMonth <= daysInMonth(m_month, m_year))
 		{
 			m_dayOfMonth = dayOfMonth;
-			setDayOfYear();
-			setDayOfWeek();
 		}
 	}
 
@@ -236,8 +217,6 @@ namespace NP_DATETIME
 	void Date::setMonth(short month)
 	{
 		m_month = month;
-		setDayOfYear();
-		setDayOfWeek();
 	}
 
 	//-----------------------------------------------------------------------------
@@ -258,8 +237,6 @@ namespace NP_DATETIME
 	void Date::setYear(short year)
 	{
 		m_year = year;
-		setDayOfYear();
-		setDayOfWeek();
 	}
 	//-----------------------------------------------------------------------------
 	void Date::input(istream& sin)
