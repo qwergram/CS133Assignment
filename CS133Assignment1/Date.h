@@ -108,11 +108,8 @@ namespace NP_DATETIME
 		virtual void input(istream& sin);
 		virtual void print(ostream& sout)const;
 	
-		// mutators
-	private:
-		void setDayOfYear(void);
-		void setDayOfWeek(void);
 	public:
+		// mutators
 		void setCurrentDate(void);
 		void setDayOfMonth(short dayOfMonth);
 		void setMonth(short monthIn);
