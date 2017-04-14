@@ -40,7 +40,7 @@ namespace NP_DATETIME
 	Date::Date(short day, short month, short year)
 	{
 		setDayOfMonth(day);
-		setMonth(month);
+		setMonth(month - 1);
 		setYear(year);
 	}
 
@@ -164,6 +164,33 @@ namespace NP_DATETIME
 
 	//-----------------------------------------------------------------------------
 	//    Class:		Date
+	//    method:		getDayOfWeek() const
+	//
+	//    description:	get day of the week (0 - 6) given any date using 
+	//					sakamoto's algorithm.
+	// 
+	//    Calls:		Accessors
+	// 
+	//    Parameters:	
+	//
+	//	  Returns:		day index (0 - 6) on day of week
+	//
+	//    History Log:
+	//					02/09/08  PB  completed version 1.0
+	//					04/13/17  NP  appeneded to version 1.0
+	//-----------------------------------------------------------------------------
+	short Date::getDayOfWeek() const
+	{
+		// Sakamoto's Algorithm
+		// https://en.wikipedia.org/wiki/Determination_of_the_day_of_the_week#Sakamoto.27s_methods
+		
+		static short references[] = { 0, 3, 2, 5, 0, 3, 5, 1, 4, 6, 2, 4 };
+		short year = getYear() - (getMonth() < 3);
+		return (year + (year / 4) - (year / 100) + (year / 400) + references[getMonth()] + getDayOfMonth()) % 7;
+	}
+
+	//-----------------------------------------------------------------------------
+	//    Class:		Date
 	//    method:		getDayOfYear() const
 	//
 	//    description:	python styled property for getting index of day in year
@@ -247,10 +274,26 @@ namespace NP_DATETIME
 		return month;
 	}
 
+	//-----------------------------------------------------------------------------
+	//    Class:		Date
+	//    method:		const string Date::weekdayName()
+	//
+	//    description:	returns string of day
+	// 
+	//    Calls:		
+	// 
+	//    Parameters:	weekday index -- int
+	//
+	//	  Returns:		string -- day name
+	//
+	//    History Log:
+	//					02/09/08  PB  completed version 1.0
+	//					04/13/17  NP  appeneded to version 1.0
+	//-----------------------------------------------------------------------------
 	const string Date::weekdayName(int weekdayNum)
 	{
 		string dayOfWeek;
-		switch (getDayOfWeek()) {
+		switch (weekdayNum) {
 		case 0:
 			dayOfWeek = "Sunday";
 			break;

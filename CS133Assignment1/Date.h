@@ -123,8 +123,8 @@ namespace NP_DATETIME
 		short getYear()const {return m_year;}
 		short getDayOfYear()const;
 
-		Date tomorrow()const;
-		Date yesterday()const;
+		Date tomorrow() const;
+		Date yesterday() const;
 
 		//statics
 		static bool isLeapYear(short year)
