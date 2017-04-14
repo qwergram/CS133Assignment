@@ -6,13 +6,13 @@ using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
 namespace CSS133Assignment1Tests
 {		
-	TEST_CLASS(CTime)
+	TEST_CLASS(CTimeTests)
 	{
 	public:
 		
 		TEST_METHOD(create)
 		{
-			// TODO: Your test code here
+			//CTime();
 		}
 
 	};
