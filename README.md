@@ -4,6 +4,27 @@ CS133 assignments at EDCC/UW Student: [Norton Pengra](http://linkedin.com/in/nor
 
 Professor: Paul Bladek of EDCC
 
+## C++ Testing of Any Kind
+
+Since I always seem to forget what settings in VS2015 to change whenever creating UnitTests, I'll just quickly write a guide here.
+
+### Step 1: Create a new Testing Project
+
+![](http://imgur.com/7hudvbR.png)
+
+### Step 2: Go to Project Properties
+
+![](http://imgur.com/fJm8BvZ.png)
+
+### Step 3: Paste in Location of all `OBJ` objects
+
+Find the location of all project `.obj` files of project you're trying to test.
+
+Paste Directory of that in `Additional Dependencies` window. Save and Exit.
+
+![](http://imgur.com/ECRRZjL.png)
+
+
 ## [Project 1: DateTime Class](http://faculty.edcc.edu//paul.bladek/CS133/p1.htm)
 
 Create a `Comparable`, `Date`, `CTime` and `DateTime` class with virtual inheritance. More details on link.
