@@ -214,6 +214,23 @@ namespace NP_DATETIME
 		return totalDays;
 	}
 
+
+	//-----------------------------------------------------------------------------
+	//    Class:		Date
+	//    method:		tomorrow() const
+	//
+	//    description:	gets day after current date object
+	// 
+	//    Calls:		constructor, daysInMonth, Accessors
+	// 
+	//    Parameters:	
+	//
+	//	  Returns:		Date -- new date object of tomorrow
+	//
+	//    History Log:
+	//					02/09/08  PB  completed version 1.0
+	//					04/13/17  NP  appeneded to version 1.0
+	//-----------------------------------------------------------------------------
 	Date Date::tomorrow() const
 	{
 		short day = getDayOfMonth();
@@ -232,6 +249,23 @@ namespace NP_DATETIME
 		return Date(day, month, year);
 	}
 
+
+	//-----------------------------------------------------------------------------
+	//    Class:		Date
+	//    method:		yesterday() const
+	//
+	//    description:	gets day before current date object
+	// 
+	//    Calls:		constructor, daysInMonth, Accessors
+	// 
+	//    Parameters:	
+	//
+	//	  Returns:		Date -- new date object of yesterday
+	//
+	//    History Log:
+	//					02/09/08  PB  completed version 1.0
+	//					04/13/17  NP  appeneded to version 1.0
+	//-----------------------------------------------------------------------------
 	Date Date::yesterday() const
 	{
 		short day = getDayOfMonth();
@@ -239,14 +273,17 @@ namespace NP_DATETIME
 		short year = getYear();
 
 		if (day - 1 < 0) {
-			day = 0;
-			month++;
+			month--;
+			if (month < 0) {
+				year--;
+				if (year < LOWYEAR) {
+					throw runtime_error("Cannot grab yesterday of minimum value");
+				}
+				month = MONTHSINYEAR - 1;
+			}
+			day = daysInMonth(month, year);
 		}
-		if (month >= MONTHSINYEAR) {
-			month = 0;
-			year++;
-		}
-
+		
 		return Date(day, month, year);
 	}
 
