@@ -339,6 +339,9 @@ namespace NP_DATETIME
 		{
 			m_dayOfMonth = dayOfMonth;
 		}
+		else {
+			m_dayOfMonth = 1;
+		}
 	}
 
 	//-----------------------------------------------------------------------------
@@ -384,11 +387,82 @@ namespace NP_DATETIME
 	}
 
 	//-----------------------------------------------------------------------------
+	//    Class:		Date
+	//    method:		input(istream & sin)
+	//
+	//    description:	reads DD/MM/YYYY from istream and sets values in Date object
+	// 
+	//    Parameters:	istream & sin  -- the istream to read from
+	//
+	//	  Programmers:  Norton Pengra && Paul Bladek
+	//
+	//    Called By:	istream & operator >>
+	// 
+	//	  Calls:		Mutators of Date
+	//
+	//    Returns:      void
+	//					
+	//
+	//    Exceptions:   
+	//
+	//    History Log:
+	//			05/08/16  PB  completed version 1.1
+	//			04/11/17  NP  appended to version 1.1
+	//-----------------------------------------------------------------------------
 	void Date::input(istream& sin)
 	{
+		bool reset = false;
+		short day, month, year;
+		char c;
 
+		sin >> day;
+		sin.get(c);
+		if (c != '/') { reset = true; }
+
+		sin >> month;
+		sin.get(c);
+		if (c != '/') { reset = true; }
+
+		sin >> year;
+
+		if (reset) {
+			day = month = year = 0;
+		}
+		else {
+			if (year < LOWYEAR)
+				year = LOWYEAR;
+			if (month < 0 || month >= MONTHSINYEAR)
+				month = 0;
+			if (day < 1 || day >= daysInMonth(month, year))
+				day = 0;
+		}
+		setDayOfMonth(day);
+		setMonth(month);
+		setYear(year);
 	}
 
+	//-----------------------------------------------------------------------------
+	//    Class:		Date
+	//    method:		print(ostream & sout) const
+	//
+	//    description:	prints text in DD/MM/YYYY to specified ostream
+	// 
+	//    Parameters:	ostream & sout  -- the ostream to print to
+	//
+	//	  Programmers:  Norton Pengra && Paul Bladek
+	//
+	//    Called By:	ostream & operator <<
+	// 
+	//	  Calls:		Accesors of Date
+	//
+	//    Returns:      void
+	//					
+	//
+	//    Exceptions:   
+	//
+	//    History Log:
+	//			05/08/16  PB  completed version 1.1
+	//			04/11/17  NP  appended to version 1.1
 	//-----------------------------------------------------------------------------
 	void Date::print(ostream& sout)const
 	{

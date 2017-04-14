@@ -129,6 +129,7 @@ namespace NP_DATETIME
 		//statics
 		static bool isLeapYear(short year)
 			{ return (year % 4 == 0 && year % 100 != 0 || year % 400 == 0); }
+		
 		static short daysInMonth(short month, short year)
 			{
 				return
@@ -145,8 +146,6 @@ namespace NP_DATETIME
 		short m_year;  // full year, i.e., 2012
 		short m_month; // 0 - 11
 		short m_dayOfMonth; // 1 - days in that month
-		// short m_dayOfYear;   // 1 - 365 or 366
-		// short m_dayOfWeek;	// 0 - 6
 	};
 	
 	ostream& operator<<(ostream& sout, const Date& date);
