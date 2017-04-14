@@ -469,4 +469,56 @@ namespace NP_DATETIME
 		sout << m_dayOfMonth << '/' << m_month << '/' << m_year;
 	}
 
+	//-----------------------------------------------------------------------------
+	//    Class:		Date
+	//    method:		ostream & operator << (ostream & sout, Date & date)
+	//
+	//    description:	invoke print and pass in sout into it
+	// 
+	//    Parameters:	ostream & sout -- ostream you'd like to print to
+	//					Date & date -- date object you'd like to write to
+	//
+	//	  Programmers:  Norton Pengra
+	//
+	//    Called By:	main
+	//
+	//	  Calls:		Date::print
+	// 
+	//    Returns:      the ostream reference initially passed in
+	//
+	//    History Log:
+	//			04/11/17  NP  appended to version 1.1
+	//-----------------------------------------------------------------------------
+	ostream & operator<<(ostream & sout, const Date & date)
+	{
+		date.print(sout);
+		return sout;
+	}
+
+	//-----------------------------------------------------------------------------
+	//    Class:		Date
+	//    method:		ostream & operator >> (istream & sin, Date & date)
+	//
+	//    description:	read from the specified input stream and write to date obj
+	// 
+	//    Parameters:	istream & sin -- istream you'd like to read from
+	//					Date & date -- date object you'd like to write to
+	//
+	//	  Programmers:  Norton Pengra
+	//
+	//    Called By:	main
+	//
+	//	  Calls:		Date::input
+	// 
+	//    Returns:      the istream reference initially passed in
+	//
+	//    History Log:
+	//			04/11/17  NP  appended to version 1.1
+	//-----------------------------------------------------------------------------
+	istream & operator>>(istream & sin, Date & date)
+	{
+		sin >> date;
+		return sin;
+	}
+
 }
