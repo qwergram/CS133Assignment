@@ -186,7 +186,7 @@ namespace NP_DATETIME
 		// Sakamoto's Algorithm
 		// https://en.wikipedia.org/wiki/Determination_of_the_day_of_the_week#Sakamoto.27s_methods
 		
-		static short references[] = { 0, 3, 2, 5, 0, 3, 5, 1, 4, 6, 2, 4 };
+		const short references[] = { 0, 3, 2, 5, 0, 3, 5, 1, 4, 6, 2, 4 };
 		short year = getYear() - (getMonth() < 3);
 		return (year + (year / 4) - (year / 100) + (year / 400) + references[getMonth()] + getDayOfMonth()) % 7;
 	}
@@ -208,12 +208,11 @@ namespace NP_DATETIME
 	//					04/13/17  NP  appeneded to version 1.0
 	//-----------------------------------------------------------------------------
 	short Date::getDayOfYear() const
-	{
-		short totalDays = getDayOfMonth();
-		for (short month = 0; month < getMonth(); month++) {
-			totalDays += daysInMonth(m_month, getYear());
-		}
-		return totalDays;
+	{	
+		// Sakamoto's Algorithm (Pengra Variation :)
+		
+		const short references[] = {31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334, 365};
+		return getDayOfMonth() + references[getMonth() - 1];
 	}
 
 
