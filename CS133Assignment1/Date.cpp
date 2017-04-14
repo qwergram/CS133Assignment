@@ -54,8 +54,9 @@ namespace NP_DATETIME
 	//
 	//    Called By:	main, >=, <=
 	// 
-	//    Returns:          true if the two objects are exactly the same;
-	//				false otherwise
+	//    Returns:      true if the two objects are exactly the same;
+	//					false otherwise
+	//
 	//    History Log:
 	//			5/8/16  PB  completed version 1.1
 	//-----------------------------------------------------------------------------

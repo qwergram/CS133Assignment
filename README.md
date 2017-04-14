@@ -1,57 +1,75 @@
 
 # CSS133Assignment
-CS133 assignments at EDCC
+CS133 assignments at EDCC/UW Student: [Norton Pengra](http://linkedin.com/in/nortonpengra)
 
-## [Project 1](http://faculty.edcc.edu//paul.bladek/CS133/p1.htm)
+Professor: Paul Bladek of EDCC
+
+## [Project 1: DateTime Class](http://faculty.edcc.edu//paul.bladek/CS133/p1.htm)
 
 Create a `Comparable`, `Date`, `CTime` and `DateTime` class with virtual inheritance. More details on link.
 It is normal to want a class that contains both the date and the time. It makes sense that a class like this would inherit from both a Date class and a Time class.  These in turn should each inherit from a base class that makes sure that you can compare them with each other to order them. 
 
-In order to do this, you will need to create four related classes.  All of these should be in your own namespace (<your initials>DATETIME) . These classes should contain at least the following:
+In order to do this, you will need to create four related classes.  All of these should be in your own namespace `<your initials>_DATETIME`. These classes should contain at least the following:
 
 ## `Comparable`: an abstract base class
-`virtual bool operator==(const Comparable &other)const` -- returns true if the two objects are identical
-`virtual bool operator!=(const Comparable &other)const` -- returns false if the two objects are identical
-`virtual bool operator<(const Comparable &other)const` -- returns true if this object is less than other 
-`virtual bool operator<=(const Comparable &other)const` -- returns true if this object is less than or equal to other 
-`virtual bool operator>(const Comparable &other)const` -- returns true if this object is greater than other 
-`virtual bool operator>=(const Comparable &other)const` -- returns true if this object is greater than or equal to other
-`virtual void input(istream& sin)` -- inputs object info in proper form -- Could have a return type of istream&
-`virtual void print(ostream& sout)const`-- outputs object info in proper form -- Could have a return type of ostream&
+- `virtual bool operator==(const Comparable &other)const` -- returns `true` if the two objects are identical
+- `virtual bool operator!=(const Comparable &other)const` -- returns `false` if the two objects are identical
+- `virtual bool operator<(const Comparable &other)const` -- returns `true` if this object is less than other 
+- `virtual bool operator<=(const Comparable &other)const` -- returns `true` if this object is less than or equal to other 
+- `virtual bool operator>(const Comparable &other)const` -- returns `true` if this object is greater than other
+- `virtual bool operator>=(const Comparable &other)const` -- returns `true` if this object is greater than or equal to other
+- `virtual void input(istream& sin)` -- inputs object info in proper form -- Could have a return type of `istream&`
+- `virtual void print(ostream& sout)const`-- outputs object info in proper form -- Could have a return type of `ostream&`
 
-# `Date`: contains information about a single date.
-*inherits from Comparable*
-This will be your own class, separate from any that may be available in C++. It should contain at least the following
-public properties:
-public static constants for 
-lowest year allowed (1760 works well -- a leap year just after Gregorian calendar starts in 1752)
-starting day-of-the-week for counting (January 1 of 1760 was a Tuesday)
-months in a year (12)
-days in a week (7)
-(note: these could also be declared globally to the namespace)
-protected properties:
-short  year -- the full year (1760+)
-short month -- (0 - 11) -- You may use an enum or enum wrapper type instead of short
-short dayOfMonth -- (1 - <numberOfDaysInTheMonth>)
-short dayOfYear --  (1 - 365 or 366)
-short dayOfWeek -- (0 - 6 -- 0 is Sunday) -- You may use an enum or enum wrapper type instead of short
-public methods:
-A constructor --  taking in 3  parameters (dayOfMonth, month, year) -- all with defaults set to -1. The constructor should begin by calling setCurrentDate(). Any out-of-range parameter will cause that property to remain the same as the current date. (e.g., the arguments (9, 3, 99) would make the date be Tuesday, April 9, 2017).
-definitions for the inherited virtual methods including: 
-==, !=, <, <=, >, >= 
-void print -- takes in an ostream& and returns the day-of-week, day-of-month, month, year (as text), e.g., "Tuesday, April 9, 2014"
-void input-- takes in an istream& and inputs into *this in the form: "dd/mm/yyyy". Should be able to properly take in just day, day and month or day, month and year. Any out-of-range parameter will cause that property to remain the same as the current date.
-static boolean isLeapYear -- takes in a year. The rule is: A year is a leap year if it is divisible by 4 unless it divisible by 100 except if it is also divisible by 400.
-static short daysInMonth -- takes in a month number and a year and  sends back the proper number of days.
-static string monthNames -- takes in a month number and  returns the string equivalent (e.g., monthNames(0) returns "January") 
-static string dayNames -- takes in a day-of-week number and  returns the string equivalent (e.g., dayNames(0) returns "Sunday") 
-Accessors and Mutators (sets and gets) for the appropriate properties. Make sure that mutators change values ONLY if the values are valid and that all properties remain consistent with each other. See the descriptions for setDayOfYear and setDayOfWeek below.
-Date yesterday -- returns a Date representing the day before this day.
-Date tomorrow -- returns a Date representing the day after this day.
-void setCurrentDate()
-      (requires an #include <ctime>)
-       N.B.:The set of code given here and below in setCurrentTime are the ONLY places you are allowed to use built-in time and date utilities
-{
+
+## `Date : Comparable`: contains information about a single date
+
+This will be your own class, separate from any that may be available in C++. It should contain *at least* the following
+
+### Public Properties:
+
+- `public static const`s for:
+    - lowest year allowed *(1760 works well -- a leap year just after Gregorian calendar starts in 1752)*
+    - starting day-of-the-week for counting *(January 1 of 1760 was a Tuesday)*
+    - months in a year *(12)*
+    - days in a week *(7)*
+
+*(note: these could also be declared globally to the namespace)*
+
+
+### Protected Properties:
+
+- `short year` -- *the full year (1760+)*
+- `short month` -- *(0 - 11) -- You may use an enum or enum wrapper type instead of short*
+- `short dayOfMonth` -- *(1 - &lt;numberOfDaysInTheMonth&gt;)*
+- `short dayOfYear` --  *(1 - 365 or 366)*
+- `short dayOfWeek` -- *(0 - 6 -- 0 is Sunday) -- You may use an enum or enum wrapper type instead of short*
+
+
+### Public Methods:
+
+- A constructor --  taking in 3 parameters `(dayOfMonth, month, year)`
+    - All defaults set to `-1`. 
+    - The constructor should begin by calling `setCurrentDate()`. 
+    - Any out-of-range parameter will cause that property to remain the same as the current date. 
+        - (e.g., the arguments `(9, 3, 99)` would make the date be Tuesday, April 9, 2017).
+- Definitions for the inherited `virtual` methods including: 
+    - `==`, `!=`, `<`, `<=`, `>`, `>=`
+- `void print` -- takes in an ostream& and returns the day-of-week, day-of-month, month, year (as text), e.g., "Tuesday, April 9, 2014"
+- `void input`-- takes in an istream& and inputs into *this in the form: "dd/mm/yyyy". Should be able to properly take in just day, day and month or day, month and year. Any out-of-range parameter will cause that property to remain the same as the current date.
+- `static boolean isLeapYear` -- takes in a year. The rule is: A year is a leap year if it is divisible by 4 unless it divisible by 100 except if it is also divisible by 400.
+- `static short daysInMonth` -- takes in a month number and a year and  sends back the proper number of days.
+- `static string monthNames` -- takes in a month number and  returns the string equivalent (e.g., monthNames(0) returns "January") 
+- `static string dayNames` -- takes in a day-of-week number and  returns the string equivalent (e.g., dayNames(0) returns "Sunday") 
+- Accessors and Mutators (sets and gets) for the appropriate properties. Make sure that mutators change values ONLY if the values are valid and that all properties remain consistent with each other. See the descriptions for setDayOfYear and setDayOfWeek below.
+- `Date yesterday` -- returns a Date representing the day before this day.
+- `Date tomorrow` -- returns a Date representing the day after this day.
+
+```cpp
+void setCurrentDate() {
+      // (requires an #include <ctime>)
+      // N.B.:The set of code given here and below in setCurrentTime are the ONLY places you are allowed to use built-in time and date utilities
+
     const short BASE_YEAR = 1900;
     time_t rawtime;
     tm *currentTimePtr;
@@ -65,6 +83,8 @@ void setCurrentDate()
     // add your own additional code to properly set dayOfYear and dayOfWeek (see below)
     // DO NOT use the built-in time and date utilities to do this--do it yourself
 }
+```
+
 private methods:
 static short countLeaps -- takes in a year and returns the number of leap years from the base year to it. In general, if you take the difference a number of years, the number of leap years in that range is the number of years ÷ 4 -the number of years ÷ 100 +  the number of years ÷ 400. Be careful if you go in negative years!
 An easy algorithm is to start at 1760 (which was a leap year) and loop through all of the years to the year sent in, adding one to your count if isleapyear(yearTested).
