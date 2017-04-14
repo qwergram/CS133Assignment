@@ -1,8 +1,9 @@
 #include "stdafx.h"
 #include "CppUnitTest.h"
-#include "..\CS133Assignment1\CTime.h"
+
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
+using namespace NP_DATETIME;
 
 namespace CSS133Assignment1Tests
 {		
@@ -10,9 +11,9 @@ namespace CSS133Assignment1Tests
 	{
 	public:
 		
-		TEST_METHOD(create)
+		TEST_METHOD(ConstructorTest)
 		{
-			//CTime();
+			CTime x = CTime();
 		}
 
 	};

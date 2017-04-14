@@ -596,7 +596,7 @@ namespace NP_DATETIME
 	//-----------------------------------------------------------------------------
 	istream & operator>>(istream & sin, Date & date)
 	{
-		sin >> date;
+		date.input(sin);
 		return sin;
 	}
 
