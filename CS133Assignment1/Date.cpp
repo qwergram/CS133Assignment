@@ -39,6 +39,7 @@ namespace NP_DATETIME
 	// ----------------------------------------------------------------------------
 	Date::Date(short day, short month, short year)
 	{
+		setCurrentDate();
 		setDayOfMonth(day);
 		setMonth(month);
 		setYear(year);
@@ -414,7 +415,8 @@ namespace NP_DATETIME
 			m_dayOfMonth = dayOfMonth;
 		}
 		else {
-			m_dayOfMonth = 0;
+			// m_dayOfMonth = 0;
+			// Keep it as default constructor value
 		}
 	}
 
@@ -435,8 +437,10 @@ namespace NP_DATETIME
 	{
 		if (month >= 0 && month < MONTHSINYEAR)
 			m_month = month;
-		else
-			m_month = 0;
+		else {
+			// m_month = 0;
+			// Keep it as default constructor value
+		}
 	}
 
 	//-----------------------------------------------------------------------------
@@ -456,8 +460,10 @@ namespace NP_DATETIME
 	{
 		if (year >= LOWYEAR)
 			m_year = year;
-		else
-			m_year = LOWYEAR;
+		else {
+			// m_year = LOWYEAR;
+			// Keep it as default constructor value
+		}
 	}
 
 	//-----------------------------------------------------------------------------
