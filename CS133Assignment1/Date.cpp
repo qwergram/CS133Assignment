@@ -40,7 +40,7 @@ namespace NP_DATETIME
 	Date::Date(short day, short month, short year)
 	{
 		setDayOfMonth(day);
-		setMonth(month - 1);
+		setMonth(month);
 		setYear(year);
 	}
 
@@ -214,6 +214,24 @@ namespace NP_DATETIME
 		return totalDays;
 	}
 
+	Date Date::tomorrow() const
+	{
+		short day = getDayOfMonth();
+		short month = getMonth();
+		short year = getYear();
+
+		if (day + 1 > daysInMonth(month, year)) {
+			day = 0;
+			month++;
+		}
+		if (month >= MONTHSINYEAR) {
+			month = 0;
+			year++;
+		}
+
+		return Date(day, month, year);
+	}
+
 	//-----------------------------------------------------------------------------
 	//    Class:		Date
 	//    method:		monthName() const
@@ -335,7 +353,7 @@ namespace NP_DATETIME
 	void Date::setDayOfMonth(short dayOfMonth)
 	{
 		if (dayOfMonth > 0
-			&& dayOfMonth <= daysInMonth(m_month, m_year))
+			&& dayOfMonth < daysInMonth(m_month, m_year))
 		{
 			m_dayOfMonth = dayOfMonth;
 		}
