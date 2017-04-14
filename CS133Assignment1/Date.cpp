@@ -232,6 +232,24 @@ namespace NP_DATETIME
 		return Date(day, month, year);
 	}
 
+	Date Date::yesterday() const
+	{
+		short day = getDayOfMonth();
+		short month = getMonth();
+		short year = getYear();
+
+		if (day - 1 < 0) {
+			day = 0;
+			month++;
+		}
+		if (month >= MONTHSINYEAR) {
+			month = 0;
+			year++;
+		}
+
+		return Date(day, month, year);
+	}
+
 	//-----------------------------------------------------------------------------
 	//    Class:		Date
 	//    method:		monthName() const
@@ -352,13 +370,13 @@ namespace NP_DATETIME
 	//-----------------------------------------------------------------------------
 	void Date::setDayOfMonth(short dayOfMonth)
 	{
-		if (dayOfMonth > 0
+		if (dayOfMonth >= 0
 			&& dayOfMonth < daysInMonth(m_month, m_year))
 		{
 			m_dayOfMonth = dayOfMonth;
 		}
 		else {
-			m_dayOfMonth = 1;
+			m_dayOfMonth = 0;
 		}
 	}
 
@@ -377,7 +395,7 @@ namespace NP_DATETIME
 	//-----------------------------------------------------------------------------
 	void Date::setMonth(short month)
 	{
-		if (month > 0 && month < MONTHSINYEAR)
+		if (month >= 0 && month < MONTHSINYEAR)
 			m_month = month;
 		else
 			m_month = 0;
@@ -398,7 +416,7 @@ namespace NP_DATETIME
 	//-----------------------------------------------------------------------------
 	void Date::setYear(short year)
 	{
-		if (year > LOWYEAR)
+		if (year >= LOWYEAR)
 			m_year = year;
 		else
 			m_year = LOWYEAR;
