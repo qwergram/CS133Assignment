@@ -3,6 +3,7 @@
 *.opendb
 .vs/
 Debug/
+ipch/
 
 # Compiled Object files
 *.slo
