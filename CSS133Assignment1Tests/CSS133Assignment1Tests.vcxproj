@@ -111,7 +111,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <AdditionalLibraryDirectories>C:\Users\955323249\CSS133Assignment\CS133Assignment1\x64\Debug\;$(VCInstallDir)UnitTest\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>C:\Users\955323249\CSS133Assignment\CS133Assignment1\x64\Debug\;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>C:\Users\955323249\CSS133Assignment\CS133Assignment1\x64\Debug\ArraySort.obj;C:\Users\955323249\CSS133Assignment\CS133Assignment1\x64\Debug\CTime.obj;C:\Users\955323249\CSS133Assignment\CS133Assignment1\x64\Debug\Date.obj;C:\Users\955323249\CSS133Assignment\CS133Assignment1\x64\Debug\main.obj;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
