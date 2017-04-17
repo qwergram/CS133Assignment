@@ -1,4 +1,3 @@
-
 # CSS133Assignment
 CS133 assignments at EDCC/UW Student: [Norton Pengra](http://linkedin.com/in/nortonpengra)
 
@@ -20,7 +19,7 @@ Since I always seem to forget what settings in VS2015 to change whenever creatin
 
 Find the location of all project `.obj` files of project you're trying to test.
 
-Paste Directory of that in `Additional Dependencies` window. Save and Exit.
+Paste file path of *EACH `.OBJ` FILE* of that in `Additional Dependencies` window. Save and Exit.
 
 ![](http://imgur.com/ECRRZjL.png)
 
