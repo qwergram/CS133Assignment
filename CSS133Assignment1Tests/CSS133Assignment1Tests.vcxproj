@@ -97,6 +97,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <AdditionalLibraryDirectories>$(VCInstallDir)UnitTest\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>C:\Users\955323249\CSS133Assignment\CS133Assignment1\Debug\CTime.obj;C:\Users\955323249\CSS133Assignment\CS133Assignment1\Debug\ArraySort.obj;C:\Users\955323249\CSS133Assignment\CS133Assignment1\Debug\Date.obj;C:\Users\955323249\CSS133Assignment\CS133Assignment1\Debug\main.obj;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
