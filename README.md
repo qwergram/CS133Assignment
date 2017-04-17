@@ -105,25 +105,41 @@ void setCurrentDate() {
 }
 ```
 
-private methods:
-static short countLeaps -- takes in a year and returns the number of leap years from the base year to it. In general, if you take the difference a number of years, the number of leap years in that range is the number of years ÷ 4 -the number of years ÷ 100 +  the number of years ÷ 400. Be careful if you go in negative years!
-An easy algorithm is to start at 1760 (which was a leap year) and loop through all of the years to the year sent in, adding one to your count if isleapyear(yearTested).
-void setDayOfYear --  properly sets dayOfYear. (January 1 is day 1).
-void setDayOfWeek --  properly sets dayOfWeek.
-One algorithm is to start at January1, 1760 (which was a Tuesday) and loop through all of the years to the year sent in, adding one to your count for each year (one more if isleapyear(yearTested). Then add in dayOfTheYear and mod by DAYS_IN_A_WEEK.
+### `private`
+- `static short countLeaps`
+	- takes in a year and returns the number of leap years from the base year to it. In general, if you take the difference a number of years, the number of leap years in that range is the number of years ÷ 4 -the number of years ÷ 100 +  the number of years ÷ 400. Be careful if you go in negative years!
+	- An easy algorithm is to start at 1760 (which was a leap year) and loop through all of the years to the year sent in, adding one to your count if isleapyear(yearTested).
+- `void setDayOfYear` 
+	- properly sets `dayOfYear`. (January 1 is day 1).
+- `void setDayOfWeek`
+	- properly sets `dayOfWeek`.
+	- One algorithm is to start at January 1, 1760 (which was a Tuesday) and loop through all of the years to the year sent in, adding one to your count for each year (one more if isleapyear(yearTested). Then add in dayOfTheYear and mod by DAYS_IN_A_WEEK.
+
 You should also, outside of the class, include an operator << that calls the print method, and an operator >> which calls the input method.
-CTime: contains information about a single time. This class inherits virtually from Comparable.
-This will be your own class, separate from any that may be available in C++
-properties:
-public static constants for 
-number of hours in a day (24)
-number of minutes in an hour/seconds in a minute(60)
-protected properties:
-short hour -- (0 - 23)
-short minute -- (0 - 59)
-short second -- (0 - 59)
-public methods:
-Two constructors --  a default constructor, which sets the time to the current time, and a constructor taking in 3  parameters (hour, minute, second) -- all but the hour with defaults set to 0.  For the constructor which takes parameters, any out-of-range parameter will cause that property to be set to 0 (e.g., the arguments (10, 3, 99) would make the time be 10:03:00).
+
+## `CTime : Comparable` Class containing infomration about a single point in time
+
+### `public`
+
+- `public static const`s for 
+	- number of hours in a day (24)
+	- number of minutes in an hour/seconds in a minute(60)
+
+### `protected`
+
+- `short hour` -- (0 - 23)
+- `short minute` -- (0 - 59)
+- `short second` -- (0 - 59)
+
+### `public`
+
+- Two constructors 
+	- a default constructor	
+		- sets the time to the current time
+	- A constructor taking in 3 parameters 
+		- `(hour, minute, second)`
+		- all but the hour with defaults set to `0`.  
+		- any out-of-range parameter will cause that property to be set to 0 (e.g., the arguments (10, 3, 99) would make the time be 10:03:00).
 
    
 definitions for the inherited virtual methods including: 
