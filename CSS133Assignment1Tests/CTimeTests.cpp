@@ -11,10 +11,74 @@ namespace CSS133Assignment1Tests
 	{
 	public:
 		
-		TEST_METHOD(ConstructorTest)
+		TEST_METHOD(EmptyConstructorTest)
 		{
-			CTime x = CTime();
+			validateTime(CTime());
 		}
 
+		TEST_METHOD(MaxHourConstructorTest)
+		{
+			CTime time = CTime(23);
+			validateTime(time);
+			Assert::AreEqual(time.getHour(), (short)23);
+		}
+
+		TEST_METHOD(OverflowMaxHourConstructorTest)
+		{
+			CTime time = CTime(24);
+			validateTime(time);
+			Assert::AreNotEqual(time.getHour(), (short)24);
+		}
+
+		TEST_METHOD(MaxMinuteConstructorTest)
+		{
+			CTime time = CTime(1, 59);
+			validateTime(time);
+			Assert::AreEqual(time.getHour(), (short)1);
+			Assert::AreEqual(time.getMinute(), (short)59);
+		}
+
+		TEST_METHOD(OverflowMaxMinuteConstructorTest)
+		{
+			CTime time = CTime(1, 60);
+			validateTime(time);
+			Assert::AreEqual(time.getHour(), (short)1);
+			Assert::AreNotEqual(time.getMinute(), (short)60);
+		}
+
+		TEST_METHOD(MaxSecondConstructorTest)
+		{
+			CTime time = CTime(1, 1, 59);
+			validateTime(time);
+			Assert::AreEqual(time.getHour(), (short)1);
+			Assert::AreEqual(time.getMinute(), (short)1);
+			Assert::AreEqual(time.getSecond(), (short)59);
+		}
+
+		TEST_METHOD(OverflowMaxSecondConstructorTest)
+		{
+			CTime time = CTime(1, 1, 60);
+			validateTime(time);
+			Assert::AreEqual(time.getHour(), (short)1);
+			Assert::AreEqual(time.getMinute(), (short)1);
+			Assert::AreNotEqual(time.getSecond(), (short)60);
+		}
+
+		TEST_METHOD(SetHour)
+		{
+			CTime time = CTime();
+			validateTime(time);
+			Assert::AreEqual(time.getHour(), (short)1);
+			Assert::AreEqual(time.getMinute(), (short)1);
+			Assert::AreNotEqual(time.getSecond(), (short)60);
+		}
+
+	private:
+		void validateTime(CTime time) {
+			Assert::IsTrue(time.getHour() >= 0 && time.getHour() < 24);
+			Assert::IsTrue(time.getMinute() >= 0 && time.getMinute() < 60);
+			Assert::IsTrue(time.getSecond() >= 0 && time.getSecond() < 60);
+		}
+		
 	};
 }
