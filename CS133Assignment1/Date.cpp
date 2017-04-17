@@ -113,7 +113,7 @@ namespace NP_DATETIME
 			returnValue = (yearLT || yearEQ && dayLT);
 		}
 		catch (bad_cast e) {
-			throw new invalid_argument("Date can only be compared to Date objects");
+			throw invalid_argument("Date can only be compared to Date objects");
 		}
 
 		return returnValue;

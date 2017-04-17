@@ -356,7 +356,7 @@ namespace NP_DATETIME
 			isLT = (hourIsLT || hourIsEq && minIsLT || hourIsEq && minIsEq && secIsLT);
 		}
 		catch (bad_cast e) {
-			throw new invalid_argument("CTime can only be compared to CTime objects");
+			throw invalid_argument("CTime can only be compared to CTime objects");
 		}
 
 		return isLT;
