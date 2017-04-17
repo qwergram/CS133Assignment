@@ -64,14 +64,25 @@ namespace CSS133Assignment1Tests
 			Assert::AreNotEqual(time.getSecond(), (short)60);
 		}
 
-		TEST_METHOD(SetHour)
+		TEST_METHOD(SetHourValidValues)
 		{
-			CTime time = CTime();
-			validateTime(time);
-			Assert::AreEqual(time.getHour(), (short)1);
-			Assert::AreEqual(time.getMinute(), (short)1);
-			Assert::AreNotEqual(time.getSecond(), (short)60);
+			CTime time = CTime(0,0,0);
+			for (short hour = 0; hour < 24; hour++) {
+				time.setHour(hour);
+				validateTime(time);
+				Assert::AreEqual(time.getHour(), hour);
+			}
 		}
+
+		/*TEST_METHOD(SetHourInValidValues)
+		{
+			CTime time = CTime(0, 0, 0);
+			for (short hour = 0; hour < 24; hour++) {
+				time.setHour(hour);
+				validateTime(time);
+				Assert::AreEqual(time.getHour(), hour);
+			}
+		*/}
 
 	private:
 		void validateTime(CTime time) {
