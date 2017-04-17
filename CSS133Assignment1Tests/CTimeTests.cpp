@@ -82,7 +82,7 @@ namespace CSS133Assignment1Tests
 				validateTime(time);
 				Assert::AreEqual(time.getHour(), hour);
 			}
-		*/}
+		}*/
 
 	private:
 		void validateTime(CTime time) {
