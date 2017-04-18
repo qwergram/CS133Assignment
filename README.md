@@ -43,6 +43,13 @@ Save and close the window. Once back on the properties window again, make sure i
 
 ![](http://imgur.com/q8nW7wt.png)
 
+Close the window and build your entire project again (`CTRL+SHIFT+B`).
+When succesfully built, open up the test properties again and go to the input linking tab again that you went to in Step 1.
+
+Locate the new location of your `x86` build and paste the `.obj` file paths into your linker input settins like you did in Step 2.
+
+![](http://imgur.com/dXEFVoC.png)
+
 
 
 ## [Project 1: DateTime Class](http://faculty.edcc.edu//paul.bladek/CS133/p1.htm)
