@@ -39,7 +39,9 @@ Open up "Configuration Manager" and change to `x86`/`win32` (Just not `x64`)
 
 ![](http://imgur.com/0Fq9hYh.png)
 
+Save and close the window. Once back on the properties window again, make sure it says `Active(Win32)`.
 
+![](http://imgur.com/q8nW7wt.png)
 
 
 
