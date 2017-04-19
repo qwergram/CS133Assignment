@@ -14,6 +14,7 @@ namespace CSS133Assignment1Tests
 		// Constructor tests
 
 		TEST_METHOD(emptyConstructor) {
+			Date today();
 
 		}
 
@@ -32,6 +33,13 @@ namespace CSS133Assignment1Tests
 
 
 	private:
+		void isToday(Date date) {
+			tm rightnow = * localtime(time_t());
+			Assert::AreEqual((short)(rightnow.tm_year + 1900), date.getYear());
+			Assert::AreEqual((short)(rightnow.tm_mon + 1900), date.getMonth());
+			Assert::AreEqual((short)(rightnow.tm_mday + 1900), date.getDayOfMonth());
+		}
+
 		void validateDate(Date date) {
 		}
 
