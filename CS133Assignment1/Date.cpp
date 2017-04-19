@@ -157,7 +157,7 @@ namespace NP_DATETIME
 	//-----------------------------------------------------------------------------
 	short Date::countLeaps(short year)const
 	{
-		short leaps = 0;
+		short leaps = isLeapYear(LOWYEAR);
 		for (short i = LOWYEAR; i < year; i++)
 			if (isLeapYear(i))
 				leaps++;
