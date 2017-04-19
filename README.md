@@ -70,7 +70,7 @@ In order to do this, you will need to create four related classes.  All of thes
 - `virtual void print(ostream& sout)const`-- outputs object info in proper form -- Could have a return type of `ostream&`
 
 
-## `Date : Comparable`: contains information about a single date
+## `Date : Comparable`: A single date
 
 This will be your own class, separate from any that may be available in C++. It should contain *at least* the following
 
@@ -103,15 +103,33 @@ This will be your own class, separate from any that may be available in C++. It 
         - (e.g., the arguments `(9, 3, 99)` would make the date be Tuesday, April 9, 2017).
 - Definitions for the inherited `virtual` methods including: 
     - `==`, `!=`, `<`, `<=`, `>`, `>=`
-- `void print` -- takes in an ostream& and returns the day-of-week, day-of-month, month, year (as text), e.g., "Tuesday, April 9, 2014"
-- `void input`-- takes in an istream& and inputs into *this in the form: "dd/mm/yyyy". Should be able to properly take in just day, day and month or day, month and year. Any out-of-range parameter will cause that property to remain the same as the current date.
-- `static boolean isLeapYear` -- takes in a year. The rule is: A year is a leap year if it is divisible by 4 unless it divisible by 100 except if it is also divisible by 400.
-- `static short daysInMonth` -- takes in a month number and a year and  sends back the proper number of days.
-- `static string monthNames` -- takes in a month number and  returns the string equivalent (e.g., monthNames(0) returns "January") 
-- `static string dayNames` -- takes in a day-of-week number and  returns the string equivalent (e.g., dayNames(0) returns "Sunday") 
-- Accessors and Mutators (sets and gets) for the appropriate properties. Make sure that mutators change values ONLY if the values are valid and that all properties remain consistent with each other. See the descriptions for setDayOfYear and setDayOfWeek below.
-- `Date yesterday` -- returns a Date representing the day before this day.
-- `Date tomorrow` -- returns a Date representing the day after this day.
+- `void print`
+  - takes in an `ostream&`
+  - returns the day-of-week, day-of-month, month, year (as text), e.g., `"Tuesday, April 9, 2014"`
+- `void input`
+  - takes in an `istream&` and inputs into this in the form: `"dd/mm/yyyy"`. 
+  - **Should be able to properly take in just day, day and month or day, month and year.**
+  - Any out-of-range parameter will cause that property to remain the same as the current date.
+- `static boolean isLeapYear` 
+  - takes in a year. 
+  - A year is a leap year if it is divisible by 4 unless it divisible by 100 except if it is also divisible by 400.
+- `static short daysInMonth` 
+  - takes in a month number and a year and sends back the proper number of days.
+- `static string monthNames` 
+  - takes in a month number
+  - returns the `string` equivalent 
+  - (e.g., `monthNames(0)` returns `"January"`) 
+- `static string dayNames`
+  - takes in a day-of-week number 
+  - returns the `string` equivalent (e.g., `dayNames(0)` returns `"Sunday"`) 
+- Accessors and Mutators (sets and gets) for the appropriate properties. 
+  - Make sure that mutators change values ONLY if the values are valid 
+  - all properties remain consistent with each other. 
+  - See the descriptions for `setDayOfYear` and `setDayOfWeek` below.
+- `Date yesterday`
+  - returns a `Date` representing the day before this day.
+- `Date tomorrow`
+  - returns a `Date` representing the day after this day.
 
 ```cpp
 void setCurrentDate() {
@@ -145,7 +163,7 @@ void setCurrentDate() {
 
 You should also, outside of the class, include an operator << that calls the print method, and an operator >> which calls the input method.
 
-## `CTime : Comparable` Class containing infomration about a single point in time
+## `CTime : Comparable` Infomration about a single point in time
 
 ### `public`
 
@@ -168,29 +186,41 @@ You should also, outside of the class, include an operator << that calls the pri
 		- `(hour, minute, second)`
 		- all but the hour with defaults set to `0`.  
 		- any out-of-range parameter will cause that property to be set to 0 (e.g., the arguments (10, 3, 99) would make the time be 10:03:00).
+- definitions for the inherited virtual methods including: 
+  - `==`, `!=`, `<`, `<=`, `>`, `>=`
+- `void print`
+  - takes in an `ostream&`
+  - returns the hour, minute, second (as text), e.g., `"16:30:00"`
+- `void input`
+  - takes in an `istream&` 
+  - inputs into `*this` in the form: `"hh:mm:ss."`
+  - Should be able to properly take in just the hour, the hour and minute or the hour, minute and second.
+  - Any out-of-range parameter will cause that property to be set to 0.
+- `void setCurrentTime()`
+```cpp
+void setCurrentTime() {
+	// (requires an #include <ctime>)
+	// The set of code given here and above in setCurrentDate are the ONLY places you are allowed to use built-in time and date utilities
 
-   
-definitions for the inherited virtual methods including: 
-==, !=, <, <=, >, >= 
-void print -- takes in an ostream&  and returns the hour, minute, second (as text), e.g., "16:30:00"
-void input-- takes in an istream& and inputs into *this in the form: "hh:mm:ss." Should be able to properly take in just the hour, the hour and minute or the hour, minute and second. Any out-of-range parameter will cause that property to be set to 0.
-void setCurrentTime()
-      (requires an #include <ctime>)
-       N.B.:The set of code given here and above in setCurrentDate are the ONLY places you are allowed to use built-in time and date utilities
-{
-    time_t rawtime;
-    tm *currentTimePtr;
-    time(&rawtime);
-    currentTimePtr = localtime(&rawtime);
+	time_t rawtime;
+	tm *currentTimePtr;
+	time(&rawtime);
+	currentTimePtr = localtime(&rawtime);
 
-    m_hour = currentTimePtr->tm_hour;
-    m_minute = currentTimePtr->tm_min;
-    m_second = currentTimePtr->tm_sec;
+	m_hour = currentTimePtr->tm_hour;
+	m_minute = currentTimePtr->tm_min;
+	m_second = currentTimePtr->tm_sec;
 
-}
-Accessors and Mutators (sets and gets) for the appropriate properties. Make sure that mutators change values ONLY if the values are valid and that all properties remain consistent with each other.
-You should also, outside of the class, include an operator << that calls the print method, and an operator >> which calls the input method.
-DateTime: contains information about a single date and time. This class inherits  from Date and Time.
+} 
+```
+- Accessors and Mutators (sets and gets) for the appropriate properties. 
+  - Make sure that mutators change values ONLY if the values are valid and that all properties remain consistent with each other.
+- include an` operator <<`
+  - calls the `print` method
+- An`operator >>` which calls the `input` method.
+
+## `DateTime : Date, Time`: contains information about a single date and time. 
+
 This will be your own class, separate from any that may be available in C++
 public methods:
 Three constructors --  a default constructor, which sets the date to the current date and the time to the current time; a constructor taking in 6  parameters (dayOfMonth, month, year, hour, minute, second) -- all but the dayofmonth with defaults set to 0; and a constructor taking in a const date& and a const time&.  Any out-of-range parameter will cause that property to remain the same as the current date/time.
