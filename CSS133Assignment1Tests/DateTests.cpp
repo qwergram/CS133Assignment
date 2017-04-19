@@ -23,10 +23,17 @@ namespace CSS133Assignment1Tests
 			Assert::IsTrue(isToday(today));
 		}
 
-		// Accessor and Mutator tests
+		// Minimum tests
 
 		TEST_METHOD(minDateTest) {
 			Date date1(0, 0, LOWYEAR);
+			Assert::AreEqual(LOWYEAR, date1.getYear());
+			Assert::AreEqual((short)0, date1.getMonth());
+			Assert::AreEqual((short)0, date1.getDayOfMonth());
+		}
+
+		TEST_METHOD(minUnderflowDayDateTest) {
+			Date date1(-1, 0, LOWYEAR);
 			Assert::AreEqual(LOWYEAR, date1.getYear());
 			Assert::AreEqual((short)0, date1.getMonth());
 			Assert::AreEqual((short)0, date1.getDayOfMonth());
@@ -48,6 +55,33 @@ namespace CSS133Assignment1Tests
 
 
 	private:
+		short currentDate() {
+			time_t rawtime;
+			tm rightnow;
+			time(&rawtime);
+			rightnow = *localtime(&rawtime);
+
+			return rightnow.tm_mday;
+		}
+
+		short currentMonth() {
+			time_t rawtime;
+			tm rightnow;
+			time(&rawtime);
+			rightnow = *localtime(&rawtime);
+
+			return rightnow.tm_mon;
+		}
+
+		short currentYear() {
+			time_t rawtime;
+			tm rightnow;
+			time(&rawtime);
+			rightnow = *localtime(&rawtime);
+
+			return rightnow.tm_year + 1900;
+		}
+
 		bool isToday(Date date) {
 			time_t rawtime;
 			tm rightnow;
