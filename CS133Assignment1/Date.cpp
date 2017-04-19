@@ -403,6 +403,8 @@ namespace NP_DATETIME
 	// 
 	//    Parameters:	dayOfMonth --  day of month to set
 	//
+	//	  Throws:		invalid_argument if day is outside of domain
+	//
 	//    History Log:
 	//			2/9/08  PB  completed version 1.0
 	//-----------------------------------------------------------------------------
@@ -414,8 +416,7 @@ namespace NP_DATETIME
 			m_dayOfMonth = dayOfMonth;
 		}
 		else {
-			// m_dayOfMonth = 0;
-			// Keep it as default constructor value
+			throw invalid_argument("Invalid day");
 		}
 	}
 
