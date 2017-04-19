@@ -94,6 +94,7 @@ namespace NP_DATETIME
 	public:
 		Date(short day = -1, short month = -1 , short year = -1);
 		virtual ~Date(void) {}
+		
 		// pure virtuals that MUST be defined
 		virtual bool operator==(const Comparable &other)const;
 		virtual bool operator!=(const Comparable &other)const
@@ -108,7 +109,6 @@ namespace NP_DATETIME
 		virtual void input(istream& sin);
 		virtual void print(ostream& sout)const;
 	
-	public:
 		// mutators
 		void setCurrentDate(void);
 		void setDayOfMonth(short dayOfMonth);
