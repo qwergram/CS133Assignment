@@ -134,6 +134,27 @@ namespace CSS133Assignment1Tests
 
 		// Comparison Tests
 
+		TEST_METHOD(HourlyComparisonTests) 
+		{
+			CTime early;
+			CTime late;
+			
+			for (short earlyHour = 0; earlyHour < 24; earlyHour++) {
+				early.setHour(earlyHour);
+				late.setHour(earlyHour);
+				Assert::IsTrue(early == late);
+				Assert::IsTrue(early <= late);
+				Assert::IsTrue(late >= early);
+				for (short lateHour = earlyHour + 1; lateHour < 24; lateHour++) {
+					late.setHour(lateHour);
+					Assert::IsTrue(early < late);
+					Assert::IsTrue(late > early);
+					Assert::IsTrue(early <= late);
+					Assert::IsTrue(late >= early);
+				}
+			}
+		}
+
 	private:
 		void validateTime(CTime time) {
 			Assert::IsTrue(time.getHour() >= 0 && time.getHour() < 24);
