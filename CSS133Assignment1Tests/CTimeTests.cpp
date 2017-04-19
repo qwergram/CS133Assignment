@@ -155,6 +155,147 @@ namespace CSS133Assignment1Tests
 			}
 		}
 
+		TEST_METHOD(MinutelyComparisonTests)
+		{
+			CTime early(0, 0, 0);
+			CTime late(0, 0, 0);
+
+			for (short earlyMinute = 0; earlyMinute < 60; earlyMinute++) {
+				early.setMinute(earlyMinute);
+				late.setMinute(earlyMinute);
+				Assert::IsTrue(early == late);
+				Assert::IsTrue(early <= late);
+				Assert::IsTrue(late >= early);
+				for (short lateMinute = earlyMinute + 1; lateMinute < 60; lateMinute++) {
+					late.setMinute(lateMinute);
+					Assert::IsTrue(early < late);
+					Assert::IsTrue(late > early);
+					Assert::IsTrue(early <= late);
+					Assert::IsTrue(late >= early);
+				}
+			}
+		}
+
+		TEST_METHOD(HourlyAndMinutelyComparisonTests)
+		{
+			CTime time1(0, 0, 0);
+			CTime time2(0, 0, 0);
+
+			short defaultHour = 12;
+
+			for (short hourVariation = -1; hourVariation <= 1; hourVariation++) {
+
+				time1.setHour(defaultHour);
+				time2.setHour(hourVariation + defaultHour);
+
+				for (short earlyMinute = 0; earlyMinute < 60; earlyMinute++) {
+					time1.setMinute(earlyMinute);
+					time2.setMinute(earlyMinute);
+					if (hourVariation == -1) {
+						Assert::IsTrue(time1 > time2);
+						Assert::IsTrue(time1 >= time2);
+						Assert::IsTrue(time2 < time1);
+						Assert::IsTrue(time2 <= time1);
+					}
+					else if (hourVariation == 0) {
+						Assert::IsTrue(time1 == time2);
+						Assert::IsTrue(time1 <= time2);
+						Assert::IsTrue(time2 >= time1);
+					}
+					else {
+						Assert::IsTrue(time2 > time1);
+						Assert::IsTrue(time2 >= time1);
+						Assert::IsTrue(time1 < time2);
+						Assert::IsTrue(time1 <= time2);
+					}
+					
+					for (short lateMinute = earlyMinute + 1; lateMinute < 60; lateMinute++) {
+						time2.setMinute(lateMinute);
+
+						if (hourVariation == -1) {
+							Assert::IsTrue(time1 > time2);
+							Assert::IsTrue(time1 >= time2);
+							Assert::IsTrue(time2 < time1);
+							Assert::IsTrue(time2 <= time1);
+						}
+						else if (hourVariation == 0) {
+							Assert::IsTrue(time1 < time2);
+							Assert::IsTrue(time2 > time1);
+							Assert::IsTrue(time1 <= time2);
+							Assert::IsTrue(time2 >= time1);
+						}
+						else {
+							Assert::IsTrue(time2 > time1);
+							Assert::IsTrue(time2 >= time1);
+							Assert::IsTrue(time1 < time2);
+							Assert::IsTrue(time1 <= time2);
+						}
+					}
+				}
+
+			}
+		}
+
+		TEST_METHOD(HourlyAndSecondlyComparisonTests)
+		{
+			CTime time1(0, 0, 0);
+			CTime time2(0, 0, 0);
+
+			short defaultMinute = 30;
+
+			for (short minuteVariation = -1; minuteVariation <= 1; minuteVariation++) {
+
+				time1.setMinute(defaultMinute);
+				time2.setMinute(minuteVariation + defaultMinute);
+
+				for (short earlySecond = 0; earlySecond < 60; earlySecond++) {
+					time1.setSecond(earlySecond);
+					time2.setSecond(earlySecond);
+					if (minuteVariation == -1) {
+						Assert::IsTrue(time1 > time2);
+						Assert::IsTrue(time1 >= time2);
+						Assert::IsTrue(time2 < time1);
+						Assert::IsTrue(time2 <= time1);
+					}
+					else if (minuteVariation == 0) {
+						Assert::IsTrue(time1 == time2);
+						Assert::IsTrue(time1 <= time2);
+						Assert::IsTrue(time2 >= time1);
+					}
+					else {
+						Assert::IsTrue(time2 > time1);
+						Assert::IsTrue(time2 >= time1);
+						Assert::IsTrue(time1 < time2);
+						Assert::IsTrue(time1 <= time2);
+					}
+
+					for (short lateSecond = earlySecond + 1; lateSecond < 60; lateSecond++) {
+						time2.setSecond(lateSecond);
+
+						if (minuteVariation == -1) {
+							Assert::IsTrue(time1 > time2);
+							Assert::IsTrue(time1 >= time2);
+							Assert::IsTrue(time2 < time1);
+							Assert::IsTrue(time2 <= time1);
+						}
+						else if (minuteVariation == 0) {
+							Assert::IsTrue(time1 < time2);
+							Assert::IsTrue(time2 > time1);
+							Assert::IsTrue(time1 <= time2);
+							Assert::IsTrue(time2 >= time1);
+						}
+						else {
+							Assert::IsTrue(time2 > time1);
+							Assert::IsTrue(time2 >= time1);
+							Assert::IsTrue(time1 < time2);
+							Assert::IsTrue(time1 <= time2);
+						}
+					}
+				}
+
+			}
+		}
+
 	private:
 		void validateTime(CTime time) {
 			Assert::IsTrue(time.getHour() >= 0 && time.getHour() < 24);
