@@ -13,12 +13,26 @@ namespace CSS133Assignment1Tests
 
 		// Constructor tests
 
+		TEST_METHOD(emptyConstructor) {
+
+		}
+
+		// Static tests
+
+		TEST_METHOD(testCountLeapYears) {
+			Date date1;
+			Assert::AreEqual((short)1, date1.countLeaps(1760));
+			Assert::AreEqual((short)2, date1.countLeaps(1764));
+			Assert::AreEqual((short)3, date1.countLeaps(1768));
+			Assert::AreEqual((short)4, date1.countLeaps(1772));
+			Assert::AreEqual((short)36, date1.countLeaps(1908));
+			Assert::AreEqual((short)58, date1.countLeaps(1996));
+			Assert::AreEqual((short)59, date1.countLeaps(2000));
+		}
+
 
 	private:
-		void validateDate(Date time) {
-			Assert::IsTrue(time.getHour() >= 0 && time.getHour() < 24);
-			Assert::IsTrue(time.getMinute() >= 0 && time.getMinute() < 60);
-			Assert::IsTrue(time.getSecond() >= 0 && time.getSecond() < 60);
+		void validateDate(Date date) {
 		}
 
 	};
