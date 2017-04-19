@@ -36,6 +36,20 @@ namespace CSS133Assignment1Tests
 			Date date1(-1, 0, LOWYEAR);
 			Assert::AreEqual(LOWYEAR, date1.getYear());
 			Assert::AreEqual((short)0, date1.getMonth());
+			Assert::AreEqual(currentDate(), date1.getDayOfMonth());
+		}
+
+		TEST_METHOD(minUnderflowDayMonthTest) {
+			Date date1(0, -1, LOWYEAR);
+			Assert::AreEqual(LOWYEAR, date1.getYear());
+			Assert::AreEqual(currentMonth(), date1.getMonth());
+			Assert::AreEqual((short)0, date1.getDayOfMonth());
+		}
+
+		TEST_METHOD(minUnderflowDayYearTest) {
+			Date date1(0, 0, LOWYEAR - 1);
+			Assert::AreEqual(currentYear(), date1.getYear());
+			Assert::AreEqual((short)0, date1.getMonth());
 			Assert::AreEqual((short)0, date1.getDayOfMonth());
 		}
 
