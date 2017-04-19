@@ -1,13 +1,18 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26403.3
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CS133Assignment1", "CS133Assignment1\CS133Assignment1.vcxproj", "{8B00E651-B540-4ABC-8B19-B75C854D7060}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CSS133Assignment1Tests", "CSS133Assignment1Tests\CSS133Assignment1Tests.vcxproj", "{F4CC64AA-8D04-4874-9E56-296C962BD057}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Quiz2", "Quiz2\Quiz2.vcxproj", "{B65CADB8-11E8-4826-9756-88E7FE3B78E4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{96491133-E453-432B-8067-418E13423781}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
