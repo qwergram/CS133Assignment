@@ -3,7 +3,7 @@ CS133 assignments at EDCC/UW Student: [Norton Pengra](http://linkedin.com/in/nor
 
 Professor: Paul Bladek of EDCC
 
-## C++ Testing of Any Kind
+# C++ Testing of Any Kind
 
 Since I always seem to forget what settings in VS2015 to change whenever creating UnitTests, I'll just quickly write a guide here.
 
@@ -52,7 +52,7 @@ Locate the new location of your `x86` build and paste the `.obj` file paths into
 
 
 
-## [Project 1: DateTime Class](http://faculty.edcc.edu//paul.bladek/CS133/p1.htm)
+# [Project 1: DateTime Class](http://faculty.edcc.edu//paul.bladek/CS133/p1.htm)
 
 Create a `Comparable`, `Date`, `CTime` and `DateTime` class with virtual inheritance. More details on link.
 It is normal to want a class that contains both the date and the time. It makes sense that a class like this would inherit from both a Date class and a Time class.  These in turn should each inherit from a base class that makes sure that you can compare them with each other to order them. 
@@ -206,3 +206,134 @@ In separate .h and .cpp files, you should define quicksort, printArray, safeRead
 The program that uses these classes should ask the user the number of elements they wish to enter.  Using a variable of type Comparable**, you should dynamically allocate the array, then allow the user to enter in that many DateTime objects to the array. Using an enhanced Optimized quicksort, written by you, as described in class--including a method to choose a pivot and utilization of a secondary sort for sub-arrays smaller than four or eight (your choice)-- (useable by any array of Comparable objects), you will sort the array, and print it out in sorted order. Then, using the same array, allow the user to enter the same number of Date objects. Once again, sort and print the array.
 
 Do not forget to prevent any memory leaks.
+
+# Quiz 2
+
+Turn your answers in on a separate sheet of paper or submit to Canvas/Assignments/Quiz 2 as a .txt, .rtf, .doc, .docx or .pdf file by 9:30 a.m., Monday, April 25, 2016.
+
+Below is some C++ code. Compile and run this code, then answer the following questions:
+
+Would the results have been the same if show() were not a virtual function? Answer and Explain for both the calls directly from the object and the calls through the pointers.
+Explain exactly--in detail--what happens in the for loop in main().
+A::show() shows the value of si, which is the count of the number of A objects. Using this information, decide if there is a problem of too many A objects caused by the D( ) constructor calling the A( ) constructor, then calling both the B( ) constructor and the C( ) constructor, which each call the A( ) constructor. Explain.
+In the try block near the end of the program, the program is apparently using aptr to call the A::show() method twice.
+Are the results the same?
+Explain why or why not.
+Remove the comment marks from the line near the end in the try block, and try to recompile. Explain:
+What you think the code is trying to do
+Why it doesn't work
+Would there be any need to call it, even if it did work? Why or why not?
+
+```cpp
+#include <iostream>
+#include <cstdlib>
+const int BUFFER_SIZE = 256;
+using namespace std;
+
+//-----------------------------------------------------------------------------
+// The base Class 
+//-----------------------------------------------------------------------------
+class A
+{
+public:
+    A(int a = 0, double b = 0.0) : i(a), d(b) {si++;}
+    void fa() const {cout << "fa";}
+    virtual void show() const {cout << "{A:" << i << ":" << d << ":" << si << "A}";}
+    virtual ~A() { si--;}
+protected:
+    static int si;
+    int i;
+    double d;
+};
+
+//-----------------------------------------------------------------------------
+// virtually inherited child 
+//-----------------------------------------------------------------------------
+class B :virtual public A
+{
+public:
+    B(int a = 0, double b = 0.0) : A(a, b){}
+    void show() const {cout << "{B:"; A::show(); cout << "B}";}
+    virtual ~B() { }
+};
+
+//-----------------------------------------------------------------------------
+// virtually inherited child 
+//-----------------------------------------------------------------------------
+class C :virtual public A
+{
+public:
+    C(int a = 0, double b = 0.0) : A(a, b){}
+    void show() const {cout << "{C:"; A::show(); cout << "C}";}
+    virtual ~C() { }
+};
+
+//-----------------------------------------------------------------------------
+// multiply inherited grandchild 
+//-----------------------------------------------------------------------------
+class D :public B, public C
+{
+public:
+    D(int a = 0, double b = 0.0) : A(a, b), B(a, b), C(a, b){}
+    void show() const{cout << "{D:"; B::show(); C::show(); cout << "D}";}
+    virtual ~D() { }
+};
+
+int A::si = 0; // initialize static
+typedef void(A::*AFP)() const; // the AFP type is: a pointer to a const void method of class A that has no parameters
+
+//-----------------------------------------------------------------------------
+// test driver 
+//-----------------------------------------------------------------------------
+int main(void)
+{
+    A a(3, 4.4);
+    a.show();
+    cout << endl;
+    B b(5, 6.6);
+    b.show();
+    cout << endl;
+    C c(7, 8.8);
+    c.show();
+    cout << endl;
+    D d(9, 2.2);
+    d.show();
+    cout << endl;
+    A* aptr = &a;
+    aptr->show();
+    cout << endl;
+    aptr = &b;
+    aptr->show();
+    cout << endl;
+    aptr = &c;
+    aptr->show();
+    cout << endl;
+    aptr = &d;
+    aptr->show();
+    cout << endl;
+    AFP fp[2] = {&A::show, &A::fa};
+    aptr = &a;
+    for(int i =0; i < 2; i++)
+    {
+        cout << i << ") ";
+        (aptr->*(fp[i]))();
+        cout << endl;
+    }
+    try 
+    {
+        aptr = &d;
+        aptr->A::show();
+        cout << endl;
+        // fp[0] = reinterpret_cast<AFP>(&D::show);
+        (aptr->*(fp[0]))();
+        cout << endl;
+    } 
+    catch(bad_cast e) 
+    { 
+         cerr << "Shutting down: " << e.what() << endl;
+         cin.ignore(BUFFER_SIZE, '\n');
+         return EXIT_FAILURE;
+    }
+    cin.ignore(BUFFER_SIZE, '\n');
+    return EXIT_SUCCESS;
+}```
