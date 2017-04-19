@@ -14,9 +14,24 @@ namespace CSS133Assignment1Tests
 		// Constructor tests
 
 		TEST_METHOD(emptyConstructor) {
-			Date today();
-
+			Date today;
+			Assert::IsTrue(isToday(today));
 		}
+
+		TEST_METHOD(InvalidConstructor) {
+			Date today(99999, 236236, -236);
+			Assert::IsTrue(isToday(today));
+		}
+
+		// Accessor and Mutator tests
+
+		TEST_METHOD(minDateTest) {
+			Date date1(0, 0, LOWYEAR);
+			Assert::AreEqual(LOWYEAR, date1.getYear());
+			Assert::AreEqual((short)0, date1.getMonth());
+			Assert::AreEqual((short)0, date1.getDayOfMonth());
+		}
+
 
 		// Static tests
 
@@ -33,11 +48,16 @@ namespace CSS133Assignment1Tests
 
 
 	private:
-		void isToday(Date date) {
-			tm rightnow = * localtime(time_t());
-			Assert::AreEqual((short)(rightnow.tm_year + 1900), date.getYear());
-			Assert::AreEqual((short)(rightnow.tm_mon + 1900), date.getMonth());
-			Assert::AreEqual((short)(rightnow.tm_mday + 1900), date.getDayOfMonth());
+		bool isToday(Date date) {
+			time_t rawtime;
+			tm rightnow;
+			time(&rawtime);
+			rightnow = * localtime(&rawtime);
+
+			bool yearMatch = ((short)(rightnow.tm_year + 1900) == date.getYear());
+			bool monthMatch = ((short)(rightnow.tm_mon) == date.getMonth());
+			bool dayMatch = ((short)(rightnow.tm_mday) == date.getDayOfMonth());
+			return yearMatch && monthMatch && dayMatch;
 		}
 
 		void validateDate(Date date) {
