@@ -73,6 +73,20 @@ int main(void)
 	d.show();
 	cout << endl;
 
+	A atype = a;
+	atype.show();
+	cout << endl;
+	atype = b;
+	atype.show();
+	cout << endl;
+	atype = c;
+	atype.show();
+	cout << endl;
+	atype = d;
+	atype.show();
+	cout << endl;
+	cout << endl << endl;
+
 	A* aptr = &a;
 	aptr->show();
 	cout << endl;

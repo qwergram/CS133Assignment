@@ -19,7 +19,7 @@ namespace CSS133Assignment1Tests
 		}
 
 		TEST_METHOD(InvalidConstructor) {
-			Date today(99999, 236236, -236);
+			Date today((short)99999, (short)236236, (short)-236);
 			Assert::IsTrue(isToday(today));
 		}
 

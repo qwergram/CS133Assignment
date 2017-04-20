@@ -416,7 +416,7 @@ namespace NP_DATETIME
 			m_dayOfMonth = dayOfMonth;
 		}
 		else {
-			throw invalid_argument("Invalid day");
+			// throw invalid_argument("Invalid day");
 		}
 	}
 
