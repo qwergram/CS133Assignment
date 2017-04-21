@@ -1,5 +1,7 @@
 # [Address of functions](http://faculty.edcc.edu//paul.bladek/CS133/func_cpp.htm)
 
+## Code Snippet: (Courtesy of Bladek)
+
 ```cpp
 //-------------------------------------------------------------
 // Pointer Problems v1.0
@@ -45,3 +47,9 @@ void f1(double x)
 	cout << "f1(double)" << endl;
 } 
 ```
+
+## Explanation
+
+In the code snippet above, one fuasdfnction with two signatures are declared and defined, namely `f1(double)` and `f1(int)`.
+
+asdf
