@@ -1,4 +1,4 @@
-# CSS133Assignment
+# CSS133 - C++ III at EDCC
 CS133 assignments at EDCC/UW Student: [Norton Pengra](http://linkedin.com/in/nortonpengra)
 
 Professor: Paul Bladek of EDCC
