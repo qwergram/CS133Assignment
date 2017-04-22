@@ -15,13 +15,13 @@ All the things I've learned in the realm of C++ and whatnot.
 </tr>
 <tr>
   <td>Project 1</td>
-  <td>[Readme](https://github.com/qwergram/CS133Assignment/blob/master/Notes/Project1.md)</td>
-  <td>[Source](https://github.com/qwergram/CS133Assignment/tree/master/CS133Assignment1)</td>
+  <td><a href="https://github.com/qwergram/CS133Assignment/blob/master/Notes/Project1.md">Readme</a></td>
+  <td><a href="https://github.com/qwergram/CS133Assignment/tree/master/CS133Assignment1">Source</a></td>
 </tr>
 <tr>
   <td>Quiz 2</td>
-  <td>[Readme](https://github.com/qwergram/CS133Assignment/blob/master/Notes/quiz2.md)</td>
-  <td>[Source](https://github.com/qwergram/CS133Assignment/tree/master/Quiz2)</td>
+  <td><a href="https://github.com/qwergram/CS133Assignment/blob/master/Notes/quiz2.md">Readme</a></td>
+  <td><a href="https://github.com/qwergram/CS133Assignment/tree/master/Quiz2">Source</a></td>
 </tr>
 </table>
 
