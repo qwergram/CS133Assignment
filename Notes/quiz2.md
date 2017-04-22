@@ -4,16 +4,12 @@ Turn your answers in on a separate sheet of paper or submit to Canvas/Assignment
 
 Below is some C++ code. Compile and run this code, then answer the following questions:
 
-Would the results have been the same if show() were not a virtual function? Answer and Explain for both the calls directly from the object and the calls through the pointers.
-Explain exactly--in detail--what happens in the for loop in main().
-A::show() shows the value of si, which is the count of the number of A objects. Using this information, decide if there is a problem of too many A objects caused by the D( ) constructor calling the A( ) constructor, then calling both the B( ) constructor and the C( ) constructor, which each call the A( ) constructor. Explain.
-In the try block near the end of the program, the program is apparently using aptr to call the A::show() method twice.
-Are the results the same?
-Explain why or why not.
-Remove the comment marks from the line near the end in the try block, and try to recompile. Explain:
-What you think the code is trying to do
-Why it doesn't work
-Would there be any need to call it, even if it did work? Why or why not?
+## Would the results have been the same if show() were not a virtual function? Answer and Explain for both the calls directly from the object and the calls through the pointers.
+
+## Explain exactly--in detail--what happens in the for loop in main().
+## A::show() shows the value of si, which is the count of the number of A objects. Using this information, decide if there is a problem of too many A objects caused by the D( ) constructor calling the A( ) constructor, then calling both the B( ) constructor and the C( ) constructor, which each call the A( ) constructor. Explain.
+## In the try block near the end of the program, the program is apparently using aptr to call the A::show() method twice. Are the results the same? Explain why or why not.
+## Remove the comment marks from the line near the end in the try block, and try to recompile. Explain: What you think the code is trying to do, why it doesn't work and would there be any need to call it, even if it did work? Why or why not?
 
 ```cpp
 #include <iostream>
