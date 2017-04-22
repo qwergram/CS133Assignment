@@ -125,7 +125,8 @@ int main(void)
     }
     cin.ignore(BUFFER_SIZE, '\n');
     return EXIT_SUCCESS;
-}```
+}
+```
 
 # Outputs
 
@@ -145,7 +146,7 @@ int main(void)
 {D:{B:{A:9:2.2:4A}B}{C:{A:9:2.2:4A}C}D}
 ```
 
-## without `virtual` keyword
+## Without `virtual` keyword
 ```
 {A:3:4.4:1A}
 {B:{A:5:6.6:2A}B}
