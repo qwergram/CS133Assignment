@@ -11,6 +11,8 @@ Below is some C++ code. Compile and run this code, then answer the following que
 ## In the try block near the end of the program, the program is apparently using aptr to call the A::show() method twice. Are the results the same? Explain why or why not.
 ## Remove the comment marks from the line near the end in the try block, and try to recompile. Explain: What you think the code is trying to do, why it doesn't work and would there be any need to call it, even if it did work? Why or why not?
 
+# Source Code
+
 ```cpp
 #include <iostream>
 #include <cstdlib>
@@ -124,3 +126,37 @@ int main(void)
     cin.ignore(BUFFER_SIZE, '\n');
     return EXIT_SUCCESS;
 }```
+
+# Outputs
+
+## With `virtual` keyword
+```
+{A:3:4.4:1A}
+{B:{A:5:6.6:2A}B}
+{C:{A:7:8.8:3A}C}
+{D:{B:{A:9:2.2:4A}B}{C:{A:9:2.2:4A}C}D}
+{A:3:4.4:4A}
+{B:{A:5:6.6:4A}B}
+{C:{A:7:8.8:4A}C}
+{D:{B:{A:9:2.2:4A}B}{C:{A:9:2.2:4A}C}D}
+0) {A:3:4.4:4A}
+1) fa
+{A:9:2.2:4A}
+{D:{B:{A:9:2.2:4A}B}{C:{A:9:2.2:4A}C}D}
+```
+
+## without `virtual` keyword
+```
+{A:3:4.4:1A}
+{B:{A:5:6.6:2A}B}
+{C:{A:7:8.8:3A}C}
+{D:{B:{A:9:2.2:4A}B}{C:{A:9:2.2:4A}C}D}
+{A:3:4.4:4A}
+{A:5:6.6:4A}
+{A:7:8.8:4A}
+{A:9:2.2:4A}
+0) {A:3:4.4:4A}
+1) fa
+{A:9:2.2:4A}
+{A:9:2.2:4A}
+```
