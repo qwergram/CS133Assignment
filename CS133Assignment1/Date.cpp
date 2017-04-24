@@ -238,7 +238,7 @@ namespace NP_DATETIME
 		short month = getMonth();
 		short year = getYear();
 
-		if (day + 1 > daysInMonth(month, year)) {
+		if (++day >= daysInMonth(month, year)) {
 			day = 0;
 			month++;
 		}
@@ -273,16 +273,14 @@ namespace NP_DATETIME
 		short month = getMonth();
 		short year = getYear();
 
-		if (day - 1 < 0) {
-			month--;
-			if (month < 0) {
-				year--;
-				if (year < LOWYEAR) {
+		if (--day < 0) {
+			if (--month < 0) {
+				if (--year < LOWYEAR) {
 					throw runtime_error("Cannot grab yesterday of minimum value");
 				}
 				month = MONTHSINYEAR - 1;
 			}
-			day = daysInMonth(month, year);
+			day = daysInMonth(month, year) - 1;
 		}
 		
 		return Date(day, month, year);
