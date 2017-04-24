@@ -435,9 +435,10 @@ namespace NP_DATETIME
 	//-----------------------------------------------------------------------------
 	void Date::setMonth(short month)
 	{
-		if (month >= 0 && month < MONTHSINYEAR)
+		if (month >= 0 && month < MONTHSINYEAR) {
 			m_month = month;
-		else {
+			m_dayOfMonth = (m_dayOfMonth < daysInMonth(month, m_year) - 1) ? m_dayOfMonth : daysInMonth(month, m_year) - 1;
+		} else {
 			// m_month = 0;
 			// Keep it as default constructor value
 		}
@@ -546,7 +547,7 @@ namespace NP_DATETIME
 	//-----------------------------------------------------------------------------
 	void Date::print(ostream& sout)const
 	{
-		sout << m_dayOfMonth << '/' << m_month << '/' << m_year;
+		sout << m_dayOfMonth + 1 << '/' << m_month + 1 << '/' << m_year;
 	}
 
 	//-----------------------------------------------------------------------------
