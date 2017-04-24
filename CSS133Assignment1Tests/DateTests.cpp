@@ -60,11 +60,14 @@ namespace CSS133Assignment1Tests
 			Assert::AreEqual(LOWYEAR, date1.getYear());
 			Assert::AreEqual((short)0, date1.getMonth());
 			Assert::AreEqual((short)30, date1.getDayOfMonth());
-			date1.setMonth(1);
-			//Assert::AreEqual(LOWYEAR, date1.getYear());
-			//Assert::AreEqual((short)1, date1.getMonth());
-			//Assert::AreEqual((short)28, date1.getDayOfMonth());
 		}
+
+		/*TEST_METHOD(fromMonth) {
+			Date date1(30, 0, LOWYEAR);
+			Assert::AreEqual(LOWYEAR, date1.getYear());
+			Assert::AreEqual((short)0, date1.getMonth());
+			Assert::AreEqual((short)30, date1.getDayOfMonth());
+		}*/
 
 		// Static tests
 

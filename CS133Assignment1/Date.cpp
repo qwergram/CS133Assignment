@@ -40,9 +40,9 @@ namespace NP_DATETIME
 	Date::Date(short day, short month, short year)
 	{
 		setCurrentDate();
-		setDayOfMonth(day);
-		setMonth(month);
 		setYear(year);
+		setMonth(month);
+		setDayOfMonth(day);
 	}
 
 	//-----------------------------------------------------------------------------
