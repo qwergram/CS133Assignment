@@ -1,5 +1,7 @@
 #include "stdafx.h"
 #include "CppUnitTest.h"
+#include <string.h>
+#include <iostream>
 
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
@@ -208,6 +210,67 @@ namespace CSS133Assignment1Tests
 		}
 
 		// Static tests
+
+		TEST_METHOD(testMonthName) {
+			Assert::AreEqual(string("January"), Date::monthName(0));
+			Assert::AreEqual(string("February"), Date::monthName(1));
+			Assert::AreEqual(string("March"), Date::monthName(2));
+			Assert::AreEqual(string("April"), Date::monthName(3));
+			Assert::AreEqual(string("May"), Date::monthName(4));
+			Assert::AreEqual(string("June"), Date::monthName(5));
+			Assert::AreEqual(string("July"), Date::monthName(6));
+			Assert::AreEqual(string("August"), Date::monthName(7));
+			Assert::AreEqual(string("September"), Date::monthName(8));
+			Assert::AreEqual(string("October"), Date::monthName(9));
+			Assert::AreEqual(string("November"), Date::monthName(10));
+			Assert::AreEqual(string("December"), Date::monthName(11));
+			Assert::AreEqual(string("Invalid"), Date::monthName(12));
+			Assert::AreEqual(string("Invalid"), Date::monthName(-1));
+		}
+
+		TEST_METHOD(testWeekName) {
+			Assert::AreEqual(string("Sunday"), Date::weekdayName(0));
+			Assert::AreEqual(string("Monday"), Date::weekdayName(1));
+			Assert::AreEqual(string("Tuesday"), Date::weekdayName(2));
+			Assert::AreEqual(string("Wednesday"), Date::weekdayName(3));
+			Assert::AreEqual(string("Thursday"), Date::weekdayName(4));
+			Assert::AreEqual(string("Friday"), Date::weekdayName(5));
+			Assert::AreEqual(string("Saturday"), Date::weekdayName(6));
+			Assert::AreEqual(string("Invalid"), Date::weekdayName(7));
+			Assert::AreEqual(string("Invalid"), Date::weekdayName(-1));
+		}
+
+		TEST_METHOD(testDaysInMonth) {
+			short year = 2017;
+			Assert::AreEqual((short)31, Date::daysInMonth(0, year));
+			Assert::AreEqual((short)28, Date::daysInMonth(1, year));
+			Assert::AreEqual((short)31, Date::daysInMonth(2, year));
+			Assert::AreEqual((short)30, Date::daysInMonth(3, year));
+			Assert::AreEqual((short)31, Date::daysInMonth(4, year));
+			Assert::AreEqual((short)30, Date::daysInMonth(5, year));
+			Assert::AreEqual((short)31, Date::daysInMonth(6, year));
+			Assert::AreEqual((short)31, Date::daysInMonth(7, year));
+			Assert::AreEqual((short)30, Date::daysInMonth(8, year));
+			Assert::AreEqual((short)31, Date::daysInMonth(9, year));
+			Assert::AreEqual((short)30, Date::daysInMonth(10, year));
+			Assert::AreEqual((short)31, Date::daysInMonth(11, year));
+		}
+
+		TEST_METHOD(testDaysInMonthLeapYear) {
+			short year = 2000;
+			Assert::AreEqual((short)31, Date::daysInMonth(0, year));
+			Assert::AreEqual((short)29, Date::daysInMonth(1, year));
+			Assert::AreEqual((short)31, Date::daysInMonth(2, year));
+			Assert::AreEqual((short)30, Date::daysInMonth(3, year));
+			Assert::AreEqual((short)31, Date::daysInMonth(4, year));
+			Assert::AreEqual((short)30, Date::daysInMonth(5, year));
+			Assert::AreEqual((short)31, Date::daysInMonth(6, year));
+			Assert::AreEqual((short)31, Date::daysInMonth(7, year));
+			Assert::AreEqual((short)30, Date::daysInMonth(8, year));
+			Assert::AreEqual((short)31, Date::daysInMonth(9, year));
+			Assert::AreEqual((short)30, Date::daysInMonth(10, year));
+			Assert::AreEqual((short)31, Date::daysInMonth(11, year));
+		}
 
 		TEST_METHOD(testCountLeapYears) {
 			Date date1;
