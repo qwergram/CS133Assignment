@@ -62,12 +62,30 @@ namespace CSS133Assignment1Tests
 			Assert::AreEqual((short)30, date1.getDayOfMonth());
 		}
 
-		/*TEST_METHOD(fromMonth) {
-			Date date1(30, 0, LOWYEAR);
-			Assert::AreEqual(LOWYEAR, date1.getYear());
-			Assert::AreEqual((short)0, date1.getMonth());
+		// Set to feb 1st, then change the day to march, 31st
+		// then set to feb 1st again
+		TEST_METHOD(setLowDayMaxAndChange) {
+			Date date1(0, 1);
+			Assert::AreEqual(currentYear(), date1.getYear());
+			Assert::AreEqual((short)1, date1.getMonth());
+			Assert::AreEqual((short)0, date1.getDayOfMonth());
+
+			date1.setMonth(2);
+			date1.setDayOfMonth(30);
+			Assert::AreEqual(currentYear(), date1.getYear());
+			Assert::AreEqual((short)2, date1.getMonth());
 			Assert::AreEqual((short)30, date1.getDayOfMonth());
-		}*/
+
+			date1.setMonth(1);
+			Assert::AreEqual(currentYear(), date1.getYear());
+			Assert::AreEqual((short)1, date1.getMonth());
+			Assert::AreEqual((short)27, date1.getDayOfMonth());
+
+			date1.setDayOfMonth(30);
+			Assert::AreEqual(currentYear(), date1.getYear());
+			Assert::AreEqual((short)1, date1.getMonth());
+			Assert::AreEqual((short)27, date1.getDayOfMonth());
+		}
 
 		// Static tests
 
@@ -80,6 +98,15 @@ namespace CSS133Assignment1Tests
 			Assert::AreEqual((short)36, date1.countLeaps(1908));
 			Assert::AreEqual((short)58, date1.countLeaps(1996));
 			Assert::AreEqual((short)59, date1.countLeaps(2000));
+		}
+
+		TEST_METHOD(testLeapYears) {
+			Date date1(-1, -1, 2017);
+			Assert::IsFalse(date1.isLeapYear(2017));
+			Assert::IsTrue(date1.isLeapYear(2020));
+			Assert::IsTrue(date1.isLeapYear(2016));
+			Assert::IsFalse(date1.isLeapYear(1900));
+			Assert::IsTrue(date1.isLeapYear(1760));
 		}
 
 
