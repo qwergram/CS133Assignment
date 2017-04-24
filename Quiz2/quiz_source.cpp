@@ -98,7 +98,7 @@ int main(void)
 		aptr = &d;
 		aptr->A::show();
 		cout << endl;
-		// fp[0] = reinterpret_cast<AFP>(&D::show);
+		fp[0] = reinterpret_cast<AFP>(&D::show);
 		(aptr->*(fp[0]))();
 		cout << endl;
 	}
