@@ -304,7 +304,7 @@ namespace NP_DATETIME
 	//-----------------------------------------------------------------------------
 	const string Date::monthName(int monthNum)
 	{
-		string month;
+		string month = "Invalid";
 		switch (monthNum) {
 		case 0:
 			month = "January";
@@ -364,7 +364,7 @@ namespace NP_DATETIME
 	//-----------------------------------------------------------------------------
 	const string Date::weekdayName(int weekdayNum)
 	{
-		string dayOfWeek;
+		string dayOfWeek = "Invalid";
 		switch (weekdayNum) {
 		case 0:
 			dayOfWeek = "Sunday";
