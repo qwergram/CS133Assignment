@@ -73,9 +73,13 @@ for that action is defined in the table below:
 </tr>
 </table>
 
-## Ambiguity
-
-As shown in the [quiz](https://github.com/qwergram/CS133Assignment/blob/master/Notes/quiz2.md),
-
 
 ## Conversion and Casts
+
+You can implicitly cast the child to the parent without much child with:
+
+```cpp
+ParentType confusedFamilyMember = ChildType();
+```
+
+More on casting can be found [here](https://github.com/qwergram/CS133Assignment/blob/master/Notes/reinterpretcast.md).
