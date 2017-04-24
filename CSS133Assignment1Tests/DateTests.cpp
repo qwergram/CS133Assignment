@@ -87,6 +87,126 @@ namespace CSS133Assignment1Tests
 			Assert::AreEqual((short)27, date1.getDayOfMonth());
 		}
 
+		// tomorrow tests
+
+		TEST_METHOD(RegMonthEndTomorrowTests) {
+			Date date1(29, 0, 2017);
+			Assert::AreEqual((short)2017, date1.getYear());
+			Assert::AreEqual((short)0, date1.getMonth());
+			Assert::AreEqual((short)29, date1.getDayOfMonth());
+
+			Date date2 = date1.tomorrow();
+			Assert::AreEqual((short)2017, date2.getYear());
+			Assert::AreEqual((short)0, date2.getMonth());
+			Assert::AreEqual((short)30, date2.getDayOfMonth());
+
+			Date date3 = date2.tomorrow();
+			Assert::AreEqual((short)2017, date3.getYear());
+			Assert::AreEqual((short)1, date3.getMonth());
+			Assert::AreEqual((short)0, date3.getDayOfMonth());
+		}
+
+		TEST_METHOD(FebLeapYearEndTomorrowTests) {
+			Date date1(26, 1, 1760);
+			Assert::AreEqual((short)1760, date1.getYear());
+			Assert::AreEqual((short)1, date1.getMonth());
+			Assert::AreEqual((short)26, date1.getDayOfMonth());
+
+			Date date2 = date1.tomorrow();
+			Assert::AreEqual((short)1760, date2.getYear());
+			Assert::AreEqual((short)1, date2.getMonth());
+			Assert::AreEqual((short)27, date2.getDayOfMonth());
+
+			Date date3 = date2.tomorrow();
+			Assert::AreEqual((short)1760, date3.getYear());
+			Assert::AreEqual((short)1, date3.getMonth());
+			Assert::AreEqual((short)28, date3.getDayOfMonth());
+
+			Date date4 = date3.tomorrow();
+			Assert::AreEqual((short)1760, date4.getYear());
+			Assert::AreEqual((short)2, date4.getMonth());
+			Assert::AreEqual((short)0, date4.getDayOfMonth());
+		}
+
+		TEST_METHOD(FebEndTomorrowTests) {
+			Date date1(26, 1, 1761);
+			Assert::AreEqual((short)1761, date1.getYear());
+			Assert::AreEqual((short)1, date1.getMonth());
+			Assert::AreEqual((short)26, date1.getDayOfMonth());
+
+			Date date2 = date1.tomorrow();
+			Assert::AreEqual((short)1761, date2.getYear());
+			Assert::AreEqual((short)1, date2.getMonth());
+			Assert::AreEqual((short)27, date2.getDayOfMonth());
+
+			Date date3 = date2.tomorrow();
+			Assert::AreEqual((short)1761, date3.getYear());
+			Assert::AreEqual((short)2, date3.getMonth());
+			Assert::AreEqual((short)0, date3.getDayOfMonth());
+		}
+
+		TEST_METHOD(Dec31TomorrowTests) {
+			Date date1(30, 11, 1760);
+
+			Date date2 = date1.tomorrow();
+			Assert::AreEqual((short)1761, date2.getYear());
+			Assert::AreEqual((short)0, date2.getMonth());
+			Assert::AreEqual((short)0, date2.getDayOfMonth());
+		}
+
+		// Yesterday tests
+
+		TEST_METHOD(RegMonthYesterdayTest) {
+			Date date1(1, 0, 2017);
+			Date date2 = date1.yesterday();
+
+			Assert::AreEqual((short)2017, date2.getYear());
+			Assert::AreEqual((short)0, date2.getMonth());
+			Assert::AreEqual((short)0, date2.getDayOfMonth());
+		}
+
+		TEST_METHOD(MarchMonthYesterdayTest) {
+			Date date1(1, 2, 2017);
+			Date date2 = date1.yesterday();
+			Date date3 = date2.yesterday();
+
+			Assert::AreEqual((short)2017, date2.getYear());
+			Assert::AreEqual((short)2, date2.getMonth());
+			Assert::AreEqual((short)0, date2.getDayOfMonth());
+
+			Assert::AreEqual((short)2017, date3.getYear());
+			Assert::AreEqual((short)1, date3.getMonth());
+			Assert::AreEqual((short)27, date3.getDayOfMonth());
+		}
+
+		TEST_METHOD(MarchMonthLeapYearYesterdayTest) {
+			Date date1(1, 2, 2000);
+			Date date2 = date1.yesterday();
+			Date date3 = date2.yesterday();
+
+			Assert::AreEqual((short)2000, date2.getYear());
+			Assert::AreEqual((short)2, date2.getMonth());
+			Assert::AreEqual((short)0, date2.getDayOfMonth());
+
+			Assert::AreEqual((short)2000, date3.getYear());
+			Assert::AreEqual((short)1, date3.getMonth());
+			Assert::AreEqual((short)28, date3.getDayOfMonth());
+		}
+
+		TEST_METHOD(JanYearYesterdayTest) {
+			Date date1(0, 0, 2000);
+			Date date2 = date1.yesterday();
+			Date date3 = date2.yesterday();
+
+			Assert::AreEqual((short)1999, date2.getYear());
+			Assert::AreEqual((short)11, date2.getMonth());
+			Assert::AreEqual((short)30, date2.getDayOfMonth());
+
+			Assert::AreEqual((short)1999, date3.getYear());
+			Assert::AreEqual((short)11, date3.getMonth());
+			Assert::AreEqual((short)29, date3.getDayOfMonth());
+		}
+
 		// Static tests
 
 		TEST_METHOD(testCountLeapYears) {
