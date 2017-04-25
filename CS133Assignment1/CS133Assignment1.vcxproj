@@ -22,6 +22,7 @@
     <ClCompile Include="ArraySort.cpp" />
     <ClCompile Include="CTime.cpp" />
     <ClCompile Include="Date.cpp" />
+    <ClCompile Include="DateTime.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>

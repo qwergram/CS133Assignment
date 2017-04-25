@@ -36,8 +36,10 @@ namespace NP_DATETIME {
 		bool returnValue = false;
 		try
 		{
-			bool dateEqual = Date::operator==(other);
-			bool timeEqual = CTime::operator==(other);
+			const DateTime &otherDateTime =
+				dynamic_cast<const DateTime&>(other);
+			bool dateEqual = Date::operator==(otherDateTime);
+			bool timeEqual = CTime::operator==(otherDateTime);
 			returnValue = dateEqual && timeEqual;
 		}
 		catch (bad_cast e)
