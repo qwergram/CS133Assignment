@@ -31,5 +31,20 @@
 
 using namespace std;
 namespace NP_DATETIME {
+	
+	bool DateTime::operator==(const Comparable &other) const {
+		bool returnValue = false;
+		try
+		{
+			bool dateEqual = Date::operator==(other);
+			bool timeEqual = CTime::operator==(other);
+			returnValue = dateEqual && timeEqual;
+		}
+		catch (bad_cast e)
+		{
+			// Should something happen here?
+		}
+		return returnValue;
+	}
 
 }
