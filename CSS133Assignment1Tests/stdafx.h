@@ -9,7 +9,6 @@
 
 // Headers for CppUnitTest
 #include "CppUnitTest.h"
-#include "..\CS133Assignment1\CTime.h"
-#include "..\CS133Assignment1\Date.h"
+#include "..\CS133Assignment1\DateTime.h"
 
 // TODO: reference additional headers your program requires here
