@@ -49,4 +49,9 @@ namespace NP_DATETIME {
 		return returnValue;
 	}
 
+	bool DateTime::operator<(const Comparable & other) const
+	{
+		return false;
+	}
+
 }
