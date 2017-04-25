@@ -47,7 +47,7 @@
 
 using namespace std;
 namespace NP_DATETIME {
-	class DateTime : Date, CTime {
+	class DateTime : public Date, public CTime {
 	public:
 		// Constructors
 		DateTime()
