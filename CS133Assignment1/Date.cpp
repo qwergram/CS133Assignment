@@ -69,7 +69,7 @@ namespace NP_DATETIME
 			const Date &otherDate =
 				dynamic_cast<const Date&>(other);
 			returnValue = (
-				m_year == otherDate.m_year && 
+				m_year == otherDate.getYear() && 
 				getDayOfYear() == otherDate.getDayOfYear()
 				);
 		}
@@ -106,9 +106,10 @@ namespace NP_DATETIME
 		try {
 			Date otherDate = dynamic_cast<const Date&>(other);
 			
-			bool yearLT = otherDate.getYear() < getYear();
+			this;
+			bool yearLT = getYear() < otherDate.getYear();
 			bool yearEQ = otherDate.getYear() == getYear();
-			bool dayLT = otherDate.getDayOfYear() < getDayOfYear();
+			bool dayLT = getDayOfYear() < otherDate.getDayOfYear();
 
 			returnValue = (yearLT || yearEQ && dayLT);
 		}
@@ -211,8 +212,13 @@ namespace NP_DATETIME
 	{	
 		// Sakamoto's Algorithm (Pengra Variation :)
 		
-		const short references[] = {31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334, 365};
-		return getDayOfMonth() + references[getMonth() - 1];
+		short references[] = { 0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334 };
+		short leap_references[] = { 0, 31, 60, 91, 121, 152, 182, 213, 244, 274, 305, 335 };
+
+		if (isLeapYear(m_year))
+			return getDayOfMonth() + leap_references[getMonth()];
+		return getDayOfMonth() + references[getMonth()];
+		
 	}
 
 
@@ -238,7 +244,7 @@ namespace NP_DATETIME
 		short month = getMonth();
 		short year = getYear();
 
-		if (day + 1 > daysInMonth(month, year)) {
+		if (++day >= daysInMonth(month, year)) {
 			day = 0;
 			month++;
 		}
@@ -273,16 +279,14 @@ namespace NP_DATETIME
 		short month = getMonth();
 		short year = getYear();
 
-		if (day - 1 < 0) {
-			month--;
-			if (month < 0) {
-				year--;
-				if (year < LOWYEAR) {
+		if (--day < 0) {
+			if (--month < 0) {
+				if (--year < LOWYEAR) {
 					throw runtime_error("Cannot grab yesterday of minimum value");
 				}
 				month = MONTHSINYEAR - 1;
 			}
-			day = daysInMonth(month, year);
+			day = daysInMonth(month, year) - 1;
 		}
 		
 		return Date(day, month, year);
@@ -306,7 +310,7 @@ namespace NP_DATETIME
 	//-----------------------------------------------------------------------------
 	const string Date::monthName(int monthNum)
 	{
-		string month;
+		string month = "Invalid";
 		switch (monthNum) {
 		case 0:
 			month = "January";
@@ -366,7 +370,7 @@ namespace NP_DATETIME
 	//-----------------------------------------------------------------------------
 	const string Date::weekdayName(int weekdayNum)
 	{
-		string dayOfWeek;
+		string dayOfWeek = "Invalid";
 		switch (weekdayNum) {
 		case 0:
 			dayOfWeek = "Sunday";
