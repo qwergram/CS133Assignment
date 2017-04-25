@@ -106,9 +106,10 @@ namespace NP_DATETIME
 		try {
 			Date otherDate = dynamic_cast<const Date&>(other);
 			
-			bool yearLT = otherDate.getYear() < getYear();
+			this;
+			bool yearLT = getYear() < otherDate.getYear();
 			bool yearEQ = otherDate.getYear() == getYear();
-			bool dayLT = otherDate.getDayOfYear() < getDayOfYear();
+			bool dayLT = getDayOfYear() < otherDate.getDayOfYear();
 
 			returnValue = (yearLT || yearEQ && dayLT);
 		}
@@ -211,8 +212,13 @@ namespace NP_DATETIME
 	{	
 		// Sakamoto's Algorithm (Pengra Variation :)
 		
-		const short references[] = {31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334, 365};
-		return getDayOfMonth() + references[getMonth() - 1];
+		short references[] = { 0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334 };
+		short leap_references[] = { 0, 31, 60, 91, 121, 152, 182, 213, 244, 274, 305, 335 };
+
+		if (isLeapYear(m_year))
+			return getDayOfMonth() + leap_references[getMonth()];
+		return getDayOfMonth() + references[getMonth()];
+		
 	}
 
 
