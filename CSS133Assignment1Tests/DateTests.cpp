@@ -209,6 +209,113 @@ namespace CSS133Assignment1Tests
 			Assert::AreEqual((short)29, date3.getDayOfMonth());
 		}
 
+		TEST_METHOD(DayOfYearTests) {
+			Date date1(0, 0, 1761);
+			for (short day = 0; day < 365; day++) {
+				Assert::AreEqual(day, date1.getDayOfYear());
+				date1 = date1.tomorrow();
+			}
+			Assert::AreEqual(short(0), date1.getDayOfYear());
+		}
+
+		TEST_METHOD(DayOfLeapYearTests) {
+			Date date1(0, 0, 1760);
+			for (short day = 0; day < 366; day++) {
+				Assert::AreEqual(day, date1.getDayOfYear());
+				date1 = date1.tomorrow();
+			}
+			Assert::AreEqual(short(0), date1.getDayOfYear());
+		}
+
+		// Comparison tests
+
+		TEST_METHOD(YearComparisonTests) {
+			Date date1(0, 0, 2000);
+			Date date2(0, 0, 2000);
+			Assert::IsTrue(date1 == date2);
+			Assert::IsTrue(date1 >= date2);
+			Assert::IsTrue(date1 <= date2);
+			date2.setYear(1999);
+			Assert::IsTrue(date1 != date2);
+			Assert::IsTrue(date2 < date1);
+			Assert::IsTrue(date2 <= date1);
+			Assert::IsTrue(date1 > date2);
+			Assert::IsTrue(date1 >= date2);
+			date2.setYear(2001);
+			Assert::IsTrue(date1 != date2);
+			Assert::IsTrue(date1 < date2);
+			Assert::IsTrue(date1 <= date2);
+			Assert::IsTrue(date2 > date1);
+			Assert::IsTrue(date2 >= date1);
+		}
+
+		TEST_METHOD(ComparisonTests) {
+			for (short yearOffset = -1; yearOffset < 2; yearOffset++) {
+				for (short monthOffset = -1; monthOffset < 2; monthOffset++) {
+					for (short day1 = 0; day1 < 20; day1++) {
+						Date date1(day1, 5, 2002);
+						for (short day2 = 0; day2 < 20; day2++) {
+							Date date2(day2, 5 + monthOffset, 2002 + yearOffset);
+
+							if (yearOffset == -1) {
+								Assert::IsTrue(date2 < date1);
+								Assert::IsTrue(date2 <= date1);
+								Assert::IsTrue(date1 > date2);
+								Assert::IsTrue(date1 >= date2);
+							}
+							else if (yearOffset == 0) {
+
+								if (monthOffset == -1) {
+									Assert::IsTrue(date2 < date1);
+									Assert::IsTrue(date2 <= date1);
+									Assert::IsTrue(date1 > date2);
+									Assert::IsTrue(date1 >= date2);
+								}
+								else if (monthOffset == 0) {
+
+									if (day1 > day2) {
+										Assert::IsTrue(date2 < date1);
+										Assert::IsTrue(date2 <= date1);
+										Assert::IsTrue(date1 > date2);
+										Assert::IsTrue(date1 >= date2);
+									}
+									else if (day1 == day2) {
+										Assert::IsTrue(date1 == date2);
+										Assert::IsTrue(date1 >= date2);
+										Assert::IsTrue(date1 <= date2);
+									}
+									else {
+										Assert::IsTrue(date2 > date1);
+										Assert::IsTrue(date2 >= date1);
+										Assert::IsTrue(date1 < date2);
+										Assert::IsTrue(date1 <= date2);
+									}
+
+								}
+								else {
+									Assert::IsTrue(date2 > date1);
+									Assert::IsTrue(date2 >= date1);
+									Assert::IsTrue(date1 < date2);
+									Assert::IsTrue(date1 <= date2);
+								}
+
+							}
+							else {
+								Assert::IsTrue(date2 > date1);
+								Assert::IsTrue(date2 >= date1);
+								Assert::IsTrue(date1 < date2);
+								Assert::IsTrue(date1 <= date2);
+							}
+
+						}
+					}
+				}
+			}
+
+
+		}
+
+
 		// Static tests
 
 		TEST_METHOD(testMonthName) {
