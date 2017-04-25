@@ -69,7 +69,7 @@ namespace NP_DATETIME
 			const Date &otherDate =
 				dynamic_cast<const Date&>(other);
 			returnValue = (
-				m_year == otherDate.m_year && 
+				m_year == otherDate.getYear() && 
 				getDayOfYear() == otherDate.getDayOfYear()
 				);
 		}
