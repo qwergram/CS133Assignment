@@ -50,9 +50,12 @@ namespace NP_DATETIME {
 	class DateTime : Date, CTime {
 	public:
 		// Constructors
-		DateTime();
-		DateTime(short dayOfMonth, short month = 0, short year = 0, short hour = 0, short minute = 0, short second = 0);
-		DateTime(const Date & date, const CTime & time);
+		DateTime()
+			: CTime(), Date() { }
+		DateTime(short dayOfMonth, short month = 0, short year = 0, short hour = 0, short minute = 0, short second = 0)
+			: Date(dayOfMonth, month, year), CTime(hour, minute, second) { }
+		DateTime(const Date & date, const CTime & time)
+			: Date(date), CTime(time) { }
 
 		// pure virtuals that MUST be defined
 		virtual bool operator==(const Comparable &other)const;
@@ -69,9 +72,6 @@ namespace NP_DATETIME {
 		virtual void input(istream& sin);
 		virtual void print(ostream& sout)const;
 
-	private:
-		Date m_date;
-		CTime m_time;
 	};
 
 	ostream& operator<<(ostream& sout, const DateTime& date);

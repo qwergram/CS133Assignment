@@ -32,15 +32,4 @@
 using namespace std;
 namespace NP_DATETIME {
 
-	DateTime::DateTime() {
-		m_time = CTime();
-		m_date = Date();
-	}
-
-	DateTime::DateTime(short dayOfMonth, short month, short year, short hour, short minute, short second)
-	{
-		m_date = Date(dayOfMonth, month, year);
-		m_time = CTime(hour, minute, second);
-	}
-
 }
