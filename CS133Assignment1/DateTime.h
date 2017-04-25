@@ -69,12 +69,12 @@ namespace NP_DATETIME {
 		virtual bool operator>=(const Comparable &other)const
 			{ return !((*this) < other); }
 		
-		//virtual void input(istream& sin);
-		//virtual void print(ostream& sout)const;
+		virtual void input(istream& sin);
+		virtual void print(ostream& sout)const;
 
 	};
 
-	//ostream& operator<<(ostream& sout, const DateTime& date);
-	//istream& operator>>(istream& sin, DateTime& date);
+	ostream& operator<<(ostream& sout, const DateTime& date);
+	istream& operator>>(istream& sin, DateTime& date);
 }
 #endif

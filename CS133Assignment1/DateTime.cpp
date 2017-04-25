@@ -54,4 +54,22 @@ namespace NP_DATETIME {
 		return false;
 	}
 
+	void DateTime::input(istream & sin)
+	{
+	}
+
+	void DateTime::print(ostream & sout) const
+	{
+	}
+
+	ostream & operator<<(ostream & sout, const DateTime & date)
+	{
+		return sout;
+	}
+
+	istream & operator>>(istream & sin, DateTime & date)
+	{
+		return sin;
+	}
+
 }
