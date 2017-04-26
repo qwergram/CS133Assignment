@@ -551,7 +551,10 @@ namespace NP_DATETIME
 	//-----------------------------------------------------------------------------
 	void Date::print(ostream& sout)const
 	{
-		sout << m_dayOfMonth + 1 << '/' << m_month + 1 << '/' << m_year;
+		sout << weekdayName(getDayOfWeek()) << ", ";
+		sout << monthName(getMonth()) << ' ';
+		sout << m_dayOfMonth + 1 << ", ";
+		sout << m_year;
 	}
 
 	//-----------------------------------------------------------------------------

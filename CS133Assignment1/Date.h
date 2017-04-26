@@ -78,6 +78,7 @@
 #include <cstdlib>
 #include <ctime>
 #include <exception>
+#include <string>
 #include "Comparable.h"
 using namespace std;
 
