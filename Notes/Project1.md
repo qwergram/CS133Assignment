@@ -204,7 +204,7 @@ and other necessary or helpful functions to be used in the program.
 The program that uses these classes should ask the user the number of elements they wish to enter.  
 Using a variable of type `Comparable**`, you should dynamically allocate the array, 
 then allow the user to enter in that many `DateTime` objects to the array. 
-Using an enhanced **Optimized quicksort**, written by you, as described in class--
+Using an enhanced **Optimized quicksort**, written by you, as described in class --
 including a method to choose a pivot and utilization of a secondary sort for 
 sub-arrays smaller than four or eight (your choice)-- (useable by any array of `Comparable` objects), 
 you will sort the array, and print it out in sorted order. 
