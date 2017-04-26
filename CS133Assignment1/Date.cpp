@@ -585,7 +585,7 @@ namespace NP_DATETIME
 
 	//-----------------------------------------------------------------------------
 	//    Class:		Date
-	//    method:		ostream & operator >> (istream & sin, Date & date)
+	//    method:		istream & operator >> (istream & sin, Date & date)
 	//
 	//    description:	read from the specified input stream and write to date obj
 	// 

@@ -32,6 +32,25 @@
 using namespace std;
 namespace NP_DATETIME {
 	
+	//-----------------------------------------------------------------------------
+	//    Class:		DateTime
+	//    method:		operator==(const Comparable& other) const
+	//
+	//    description:	true if the current object equal to other
+	// 
+	//    Parameters:	const Comparable &other  -- the other DateTime to compare
+	//
+	//    Called By:	main, >, <=
+	//
+	//	  Calls:		Date::operator==, CTime::operator==
+	//
+	//    Exceptions:	throws bad_cast if other is not a DateTime
+	// 
+	//    Returns:		true if the current object is before other;
+	//				false otherwise
+	//    History Log:
+	//			4/22/17  NP  completed version 1.1
+	// ----------------------------------------------------------------------------
 	bool DateTime::operator==(const Comparable &other) const {
 		bool returnValue = false;
 		try
@@ -49,6 +68,25 @@ namespace NP_DATETIME {
 		return returnValue;
 	}
 
+	//-----------------------------------------------------------------------------
+	//    Class:		DateTime
+	//    method:		operator<(const Comparable& other) const
+	//
+	//    description:	true if the current object is before other
+	// 
+	//    Parameters:	const Comparable &other  -- the other DateTime to compare
+	//
+	//    Called By:	>, >=
+	//
+	//	  Calls:		Date::operator<, Date::operator==, CTime::operator<
+	//
+	//    Exceptions:	throws bad_cast if other is not a DateTime
+	// 
+	//    Returns:		true if the current object is before other;
+	//				false otherwise
+	//    History Log:
+	//			4/22/17  NP  completed version 1.1
+	// ----------------------------------------------------------------------------
 	bool DateTime::operator<(const Comparable & other) const
 	{
 		bool returnValue = false;
@@ -66,6 +104,30 @@ namespace NP_DATETIME {
 		return returnValue;
 	}
 
+	//-----------------------------------------------------------------------------
+	//    Class:		DateTime
+	//    method:		input(istream & sin)
+	//
+	//    description:	reads HH:MM:SS DD/MM/YYYY from istream and sets 
+	//                  values in DateTime object
+	// 
+	//    Parameters:	istream & sin  -- the istream to read from
+	//
+	//	  Programmers:  Norton Pengra && Paul Bladek
+	//
+	//    Called By:	istream & operator >>
+	// 
+	//	  Calls:		Mutators of Date and CTime
+	//
+	//    Returns:      void
+	//					
+	//
+	//    Exceptions:   
+	//
+	//    History Log:
+	//			05/08/16  PB  completed version 1.1
+	//			04/11/17  NP  appended to version 1.1
+	//-----------------------------------------------------------------------------
 	void DateTime::input(istream & sin)
 	{
 		
@@ -82,6 +144,29 @@ namespace NP_DATETIME {
 
 	}
 
+	//-----------------------------------------------------------------------------
+	//    Class:		Date
+	//    method:		print(ostream & sout) const
+	//
+	//    description:	prints pretty datetime to specified ostream
+	// 
+	//    Parameters:	ostream & sout  -- the ostream to print to
+	//
+	//	  Programmers:  Norton Pengra && Paul Bladek
+	//
+	//    Called By:	ostream & operator <<
+	// 
+	//	  Calls:		Accesors of Date
+	//
+	//    Returns:      void
+	//					
+	//
+	//    Exceptions:   
+	//
+	//    History Log:
+	//			05/08/16  PB  completed version 1.1
+	//			04/11/17  NP  appended to version 1.1
+	//-----------------------------------------------------------------------------
 	void DateTime::print(ostream & sout) const
 	{
 		Date::print(sout);
@@ -89,12 +174,52 @@ namespace NP_DATETIME {
 		CTime::print(sout);
 	}
 
+	//-----------------------------------------------------------------------------
+	//    Class:		DateTime
+	//    method:		ostream & operator << (ostream & sout, Date & date)
+	//
+	//    description:	invoke print and pass in sout into it
+	// 
+	//    Parameters:	ostream & sout -- ostream you'd like to print to
+	//					DateTime & date -- date object you'd like to write to
+	//
+	//	  Programmers:  Norton Pengra
+	//
+	//    Called By:	main
+	//
+	//	  Calls:		DateTime::print
+	// 
+	//    Returns:      the ostream reference initially passed in
+	//
+	//    History Log:
+	//			04/11/17  NP  appended to version 1.1
+	//-----------------------------------------------------------------------------
 	ostream & operator<<(ostream & sout, const DateTime & date)
 	{
 		date.print(sout);
 		return sout;
 	}
 
+	//-----------------------------------------------------------------------------
+	//    Class:		DateTime
+	//    method:		istream & operator >> (istream & sin, Date & date)
+	//
+	//    description:	read from the specified input stream and write to date obj
+	// 
+	//    Parameters:	istream & sin -- istream you'd like to read from
+	//					DateTime & date -- date object you'd like to write to
+	//
+	//	  Programmers:  Norton Pengra
+	//
+	//    Called By:	main
+	//
+	//	  Calls:		DateTime::input
+	// 
+	//    Returns:      the istream reference initially passed in
+	//
+	//    History Log:
+	//			04/11/17  NP  appended to version 1.1
+	//-----------------------------------------------------------------------------
 	istream & operator>>(istream & sin, DateTime & date)
 	{
 		date.input(sin);
