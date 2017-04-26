@@ -39,6 +39,25 @@ namespace CSS133Assignment1Tests
 			DateTime date1(0, 0, LOWYEAR, 0, 0, 0);
 			DateTime date2(0, 0, LOWYEAR, 0, 0, 0);
 			Assert::IsTrue(date1 == date2);
+			Assert::IsTrue(date1 <= date2);
+			Assert::IsTrue(date1 >= date2);
+			Assert::IsTrue(date2 <= date1);
+			Assert::IsTrue(date2 >= date1);
+		}
+
+		TEST_METHOD(DateLTComparisonTest)
+		{
+			DateTime date1(0);
+			DateTime date2(0);
+
+			for (short hour = 1; hour < 24; hour++) {
+				date2.setHour(hour);
+				Assert::IsTrue(date1 < date2);
+				Assert::IsTrue(date1 <= date2);
+				Assert::IsTrue(date2 > date1);
+				Assert::IsTrue(date2 >= date1);
+			}
+
 		}
 
 	private:
