@@ -188,12 +188,14 @@ public methods:
 You should also, outside of the class, include an `operator <<` that calls the `print` method, and an 
 `operator >>` which calls the `input` method.
 
+## Sorts
+
 In separate `.h` and `.cpp` files, you should define `quicksort`, `printArray`, `safeRead`
 and other necessary or helpful functions to be used in the program.
 
 The program that uses these classes should ask the user the number of elements they wish to enter.  
 Using a variable of type `Comparable**`, you should dynamically allocate the array, 
-then allow the user to enter in that many `DateTim`e objects to the array. 
+then allow the user to enter in that many `DateTime` objects to the array. 
 Using an enhanced Optimized quicksort, written by you, as described in class--
 including a method to choose a pivot and utilization of a secondary sort for 
 sub-arrays smaller than four or eight (your choice)-- (useable by any array of `Comparable` objects), 
