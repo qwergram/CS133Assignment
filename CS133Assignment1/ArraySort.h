@@ -8,14 +8,15 @@ using namespace NP_DATETIME;
 // One of two choices for format of these function
 // This set uses pointers in the way that the STL uses iterators
 //----------------------------------------------------------------------------
-namespace PB_ARRAYSORT
-{	
-	void quickSort(Comparable** from, Comparable** to);	
-	Comparable** partition(Comparable** from, Comparable** to);	
-	void SortFirstMiddleLast(Comparable** from,
-		Comparable** mid, Comparable** to);	
-	void insertionSort(Comparable** from, Comparable** to);
+namespace NP_ARRAYSORT
+{
+	void quickSort(Comparable** array, int fromIndex, int toIndex);
+	int partition(Comparable** array, int fromIndex, int toIndex);
+	void SortFirstMiddleLast(Comparable** array, int fromIndex,
+		int midIndex, int toIndex);
+	void swap(Comparable ** array, int index1, int index2);
+	void insertionSort(Comparable** array, int fromIndex, int toIndex);
 	void safeRead(istream& sin, Comparable* d, const char* prompt);
-	void printArray(ostream & sout, Comparable **a, int size);
+	void printArray(ostream & sout, Comparable **array, int size);
 }
 #endif

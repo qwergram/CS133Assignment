@@ -1,7 +1,31 @@
 #include "ArraySort.h"
-namespace PB_ARRAYSORT
+namespace NP_ARRAYSORT
 {
-//-----------------------------------------------------------------------------
+	void quickSort(Comparable ** array, int fromIndex, int toIndex)
+	{
+		if (fromIndex < toIndex) {
+			int position = partition(array, fromIndex, toIndex);
+			quickSort(array, fromIndex, position - 1);
+			quickSort(array, position + 1, toIndex);
+		}
+	}
+	int partition(Comparable ** array, int fromIndex, int toIndex)
+	{
+		Comparable * pivot = array[toIndex];
+		int small = fromIndex - 1;
+		for (int cursor = fromIndex; cursor < toIndex; cursor++)
+			if (array[cursor] <= pivot)
+				swap(array, small++, cursor);
+		swap(array, toIndex, ++small);
+		return small;
+	}
+	void swap(Comparable ** array, int index1, int index2)
+	{
+		Comparable * tmp = array[index1];
+		array[index1] = array[index2];
+		array[index2] = tmp;
+	}
+	//-----------------------------------------------------------------------------
 //    function:		safeRead(istream& sin, Comparable* d, const char* re)
 //    description:	safely reads in a DateTime (d) from sin.
 //				Re-prompts and re-enters if input is invalid
