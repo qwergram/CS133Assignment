@@ -1,5 +1,7 @@
 # [Project 1: DateTime Class](http://faculty.edcc.edu//paul.bladek/CS133/p1.htm)
 
+![](http://imgur.com/DMzdJ9F.png)
+
 Create a `Comparable`, `Date`, `CTime` and `DateTime` class with virtual inheritance. More details on link.
 It is normal to want a class that contains both the date and the time. It makes sense that a class like this would inherit from both a Date class and a Time class.  These in turn should each inherit from a base class that makes sure that you can compare them with each other to order them. 
 
