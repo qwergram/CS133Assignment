@@ -22,6 +22,16 @@ namespace CSS133Assignment1Tests
 			validateTime(date1);
 		}
 
+		TEST_METHOD(secondaryConstructor) {
+			DateTime date1(1);
+			Assert::AreEqual(short(1), date1.getDayOfMonth());
+			Assert::AreEqual(short(0), date1.getMonth());
+			Assert::AreEqual(LOWYEAR, date1.getYear());
+			Assert::AreEqual(short(0), date1.getHour());
+			Assert::AreEqual(short(0), date1.getMinute());
+			Assert::AreEqual(short(0), date1.getSecond());
+		}
+
 		// Comparison tests
 
 		TEST_METHOD(MinimumComparisonTest)
