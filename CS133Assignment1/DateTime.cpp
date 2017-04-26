@@ -57,7 +57,7 @@ namespace NP_DATETIME {
 			const DateTime &otherDateTime = dynamic_cast<const DateTime&>(other);
 			bool dateLT = Date::operator<(otherDateTime);
 			bool dateEQ = Date::operator==(otherDateTime);
-			bool timeLT = Date::operator<(otherDateTime);
+			bool timeLT = CTime::operator<(otherDateTime);
 			returnValue = (dateLT || dateEQ && timeLT);
 		}
 		catch (bad_cast e) {
