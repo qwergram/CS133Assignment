@@ -51,24 +51,53 @@ namespace NP_DATETIME {
 
 	bool DateTime::operator<(const Comparable & other) const
 	{
-		return false;
+		bool returnValue = false;
+		try 
+		{
+			const DateTime &otherDateTime = dynamic_cast<const DateTime&>(other);
+			bool dateLT = Date::operator<(otherDateTime);
+			bool dateEQ = Date::operator==(otherDateTime);
+			bool timeLT = Date::operator<(otherDateTime);
+			returnValue = (dateLT || dateEQ && timeLT);
+		}
+		catch (bad_cast e) {
+			// should something happen here?
+		}
+		return returnValue;
 	}
 
 	void DateTime::input(istream & sin)
 	{
+		
+		Date::input(sin);
+		char c;
+		sin.get(c);
+		if (c == ' ')
+			CTime::input(sin);
+		else {
+			setHour(0);
+			setMinute(0);
+			setSecond(0);
+		}
+
 	}
 
 	void DateTime::print(ostream & sout) const
 	{
+		Date::print(sout);
+		sout << ' ';
+		CTime::print(sout);
 	}
 
 	ostream & operator<<(ostream & sout, const DateTime & date)
 	{
+		date.print(sout);
 		return sout;
 	}
 
 	istream & operator>>(istream & sin, DateTime & date)
 	{
+		date.input(sin);
 		return sin;
 	}
 

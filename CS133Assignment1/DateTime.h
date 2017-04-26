@@ -52,7 +52,7 @@ namespace NP_DATETIME {
 		// Constructors
 		DateTime()
 			: CTime(), Date() { }
-		DateTime(short dayOfMonth, short month = 0, short year = 0, short hour = 0, short minute = 0, short second = 0)
+		DateTime(short dayOfMonth, short month = 0, short year = LOWYEAR, short hour = 0, short minute = 0, short second = 0)
 			: Date(dayOfMonth, month, year), CTime(hour, minute, second) { }
 		DateTime(const Date & date, const CTime & time)
 			: Date(date), CTime(time) { }
