@@ -9,14 +9,20 @@ int main(void)
 	// Remember Date is 0 based!
 	Date date1;
 	CTime time1;
-	
-	cout << "date: ";
+	DateTime datetime1;
+
+	/*
+	cout << "date [dd/mm/yyyy]: ";
 	cin >> date1;
 	cout << endl << date1 << endl;
-	date1;
 
-	cout << "time: ";
+	cout << "time [hh:mm:ss]: ";
 	cin >> time1;
 	cout << endl << time1 << endl;
-	time1;
+	//*/
+
+	cout << "datetime [dd/mm/yyyy hh:mm:ss]: ";
+	cin >> datetime1;
+	cout << endl << datetime1 << endl;
+	datetime1;
 }
