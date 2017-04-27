@@ -21,7 +21,9 @@ namespace NP_DATETIME
 	//-----------------------------------------------------------------------------
 	//    method:		Date(short day, short month, short year) -- constructor
 	//
-	//    description:	creates a new Date object
+	//    description:	creates a new Date object 
+	//					NOTE THAT INPUTS THROUGH HERE ARE 0 BASED.
+	//					E.G.: 17, 03, 1997 IS APRIL 18, 1997
 	// 
 	//    Calls:            setCurrentDate()
 	//			daysInMonth(month, year)
