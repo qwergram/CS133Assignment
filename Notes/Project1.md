@@ -1,6 +1,12 @@
 # [Project 1: DateTime Class](http://faculty.edcc.edu//paul.bladek/CS133/p1.htm)
 
+### "Best Code Award of all time - 2017 Winner"
+
 ![](http://imgur.com/DMzdJ9F.png)
+
+Congrats to [redacted]! You won a $1000 Amazon gift card (batteries not included).
+
+### Assignment
 
 Create a `Comparable`, `Date`, `CTime` and `DateTime` class with virtual inheritance. More details on link.
 It is normal to want a class that contains both the date and the time. It makes sense that a class like this would inherit from both a Date class and a Time class.  These in turn should each inherit from a base class that makes sure that you can compare them with each other to order them. 
@@ -198,7 +204,7 @@ and other necessary or helpful functions to be used in the program.
 The program that uses these classes should ask the user the number of elements they wish to enter.  
 Using a variable of type `Comparable**`, you should dynamically allocate the array, 
 then allow the user to enter in that many `DateTime` objects to the array. 
-Using an enhanced Optimized quicksort, written by you, as described in class--
+Using an enhanced **Optimized quicksort**, written by you, as described in class --
 including a method to choose a pivot and utilization of a secondary sort for 
 sub-arrays smaller than four or eight (your choice)-- (useable by any array of `Comparable` objects), 
 you will sort the array, and print it out in sorted order. 
