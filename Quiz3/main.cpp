@@ -1,4 +1,4 @@
-// Norton James Penrga (CS133)
+﻿// Norton James Penrga (CS133)
 // Quiz 3
 
 #include <iostream>
@@ -48,6 +48,8 @@ int main() {
 	string string1 = "Hello world";
 	string string2 = "Hello     world, \t my name is          Norton       Pengra";
 	string string3 = "Hello     world, my     name is          Norton       Pengra";
+	string string4 = "   one, two,     three";
+	string string5 = "my (我的) name (名字) is (是) norton (诺顿)";
 
 	// Use Breakpoints to look at contents of "test" each time.
 	list<string> test = split(string1);
@@ -72,5 +74,31 @@ int main() {
 	for (auto character : test)
 		cout << '"' << character << "\", ";
 	
+	cout << endl;
+
+	test = split(string4);
+	cout << "ORIGINAL: " << string3 << endl;
+	cout << "SPLIT:    ";
+	for (auto character : test)
+		cout << '"' << character << "\", ";
+
+
+	cout << endl;
+
+	test = split(string4, ',');
+	cout << "ORIGINAL: " << string3 << endl;
+	cout << "SPLIT:    ";
+	for (auto character : test)
+		cout << '"' << character << "\", ";
+
+	cout << endl;
+
+	test = split(string5);
+	cout << "ORIGINAL: " << string3 << endl;
+	cout << "SPLIT:    ";
+	for (auto character : test)
+		cout << '"' << character << "\", ";
+
+
 	cout << endl;
 }
