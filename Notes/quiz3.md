@@ -1,4 +1,7 @@
 # CS 133 Quiz 3 Spring 2017
+
+Given by [Paul Bladek]() of EDCC
+
 ## Directions:
 Using the `STL list` class and `iterator`s 
 (but not using any `string` class methods or operators <besides a constructor, =, `begin`, `end`
@@ -31,5 +34,7 @@ list<string> words = split(s, ',');
 - " two"
 - " three"
 
-Don’t forget to test your code. You may use the compiler, your browser and any written material you wish. You may not utilize other people, electronically or in-person.
-When you are done, submit the single `.cpp` file that includes your main for testing (with your name in the header) to Canvas/Quiz 3.
+Don’t forget to test your code. You may use the compiler, your browser and any 
+written material you wish. You may not utilize other people, electronically or in-person.
+When you are done, submit the single `.cpp` file that includes your main for testing 
+(with your name in the header) to Canvas/Quiz 3.
