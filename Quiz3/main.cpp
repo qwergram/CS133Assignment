@@ -20,7 +20,6 @@ list<string> split(const string & phrase, char delimiter)
 {
 	list<string> toReturn;
 	string::const_iterator cursor;
-	// list<string>::const_iterator toReturnCursor;
 	string thisWord;
 	
 	for (cursor = phrase.begin(); cursor != phrase.end(); cursor++) {
@@ -53,25 +52,25 @@ int main() {
 	// Use Breakpoints to look at contents of "test" each time.
 	list<string> test = split(string1);
 	cout << "ORIGINAL: " << string1 << endl;
-	cout << "SPLIT: ";
-	for (auto thing : test) {
-		cout << '"' << thing << "\", ";
-	}
+	cout << "SPLIT:    ";
+	for (auto character : test)
+		cout << '"' << character << "\", ";
+	
 	cout << endl;
 	
 	test = split(string2);
 	cout << "ORIGINAL: " << string2 << endl;
-	cout << "SPLIT: ";
-	for (auto thing : test) {
-		cout << '"' << thing << "\", ";
-	}
+	cout << "SPLIT:    ";
+	for (auto character : test)
+		cout << '"' << character << "\", ";
+	
 	cout << endl;
 
 	test = split(string3);
 	cout << "ORIGINAL: " << string3 << endl;
-	cout << "SPLIT: ";
-	for (auto thing : test) {
-		cout << '"' << thing << "\", ";
-	}
+	cout << "SPLIT:    ";
+	for (auto character : test)
+		cout << '"' << character << "\", ";
+	
 	cout << endl;
 }
