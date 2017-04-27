@@ -196,7 +196,7 @@ public methods:
 You should also, outside of the class, include an `operator <<` that calls the `print` method, and an 
 `operator >>` which calls the `input` method.
 
-## Sorts
+## Sorts/Main
 
 In separate `.h` and `.cpp` files, you should define `quicksort`, `printArray`, `safeRead`
 and other necessary or helpful functions to be used in the program.
