@@ -521,9 +521,11 @@ namespace NP_DATETIME
 			if (day < 1 || day >= daysInMonth(month, year))
 				day = 0;
 		}
-		setDayOfMonth(day);
-		setMonth(month);
 		setYear(year);
+		
+		// Subtract one so the user can input 1 based numbers
+		setMonth(month - 1);
+		setDayOfMonth(day - 1);
 	}
 
 	//-----------------------------------------------------------------------------
