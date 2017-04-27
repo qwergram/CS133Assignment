@@ -5,6 +5,7 @@
 #include <cstdlib>
 #include <string>
 #include <list>
+#include <iterator>
 
 using namespace std;
 
@@ -18,9 +19,12 @@ int main();
 list<string> split(const string & phrase, char delimiter)
 {
 	list<string> toReturn;
+	string::const_iterator cursor;
+	// list<string>::const_iterator toReturnCursor;
 	string thisWord;
-	for (int cursor = 0; cursor < phrase.length(); cursor++) {
-		if (phrase[cursor] == delimiter) {
+	
+	for (cursor = phrase.begin(); cursor != phrase.end(); cursor++) {
+		if (*cursor == delimiter) {
 			
 			// Check if there's something in thisWord
 			if (thisWord.length() > 0)
@@ -30,7 +34,7 @@ list<string> split(const string & phrase, char delimiter)
 			thisWord = "";
 		}
 		else
-			thisWord.push_back(phrase[cursor]);
+			thisWord.push_back(*cursor);
 	}
 
 	// Dirty solution
