@@ -274,7 +274,15 @@ namespace NP_DATETIME
 	//-----------------------------------------------------------------------------
 	void CTime::print(ostream & sout) const
 	{
-		sout << getHour() << ':' << getMinute() << ':' << getSecond();
+		string min = "";
+		string sec = "";
+		
+		if (getMinute() < 10)
+			min = "0";
+		if (getSecond() < 10)
+			sec = "0";
+		
+		sout << getHour() << ':' << min << getMinute() << ':' << sec << getSecond();
 	}
 
 	//-----------------------------------------------------------------------------
