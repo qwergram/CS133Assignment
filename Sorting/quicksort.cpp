@@ -44,35 +44,34 @@ void printArray(Comparable ** arr) {
 
 	cout << "\n";
 }
-void swap(Comparable ** arr, int index1, int index2) {
-	Comparable * temp;
-	temp = arr[index1];
-	arr[index1] = arr[index2];
-	arr[index2] = temp;
+void swap(Comparable ** array, int index1, int index2) {
+	Comparable * tmp = array[index1];
+	array[index1] = array[index2];
+	array[index2] = tmp;
 }
-int partition(Comparable ** arr, int fromIndex, int toIndex) {
-	Comparable * pivot = arr[toIndex];
+int partition(Comparable ** array, int fromIndex, int toIndex) {
+	Comparable * pivot = array[toIndex];
 	int small = fromIndex - 1;
 
 	for (int k = fromIndex; k < toIndex; k++) {
-		if (*arr[k] <= *pivot) {
+		if (*array[k] <= *pivot) {
 			small++;
-			swap(arr, k, small);
+			swap(array, k, small);
 		}
 	}
 
-	swap(arr, toIndex, small + 1);
-	cout << "Pivot = " << (*arr[small + 1]).method() << "\n";
-	printArray(arr);
+	swap(array, toIndex, small + 1);
+	cout << "Pivot = " << (*array[small + 1]).method() << "\n";
+	printArray(array);
 	return small + 1;
 }
 
 
 void quickSort(Comparable ** arr, int fromIndex, int toIndex) {
 	if (fromIndex < toIndex) {
-		int pos = partition(arr, fromIndex, toIndex);
-		quickSort(arr, fromIndex, pos - 1);
-		quickSort(arr, pos + 1, toIndex);
+		int position = partition(arr, fromIndex, toIndex);
+		quickSort(arr, fromIndex, position - 1);
+		quickSort(arr, position + 1, toIndex);
 	}
 }
 int main() {

@@ -14,42 +14,60 @@ namespace NP_ARRAYSORT
 	{
 		Comparable * pivot = array[toIndex];
 		int small = fromIndex - 1;
-		for (int cursor = fromIndex; cursor < toIndex; cursor++)
-			if (array[cursor] <= pivot)
-				swap(array, small++, cursor);
-		swap(array, toIndex, ++small);
-		return small;
+		for (int k = fromIndex; k < toIndex; k++) {
+			if (*array[k] <= *pivot) {
+				small++;
+				swap(array, k, small);
+			}
+		}
+		swap(array, toIndex, small + 1);
+		return small + 1;
 	}
 
-	void swap(Comparable ** array, int index1, int index2)
-	{
+	//-----------------------------------------------------------------------------
+	//    function:		swap
+	//    description:	swaps two items in an array
+	//    
+	//    Input:		Comparable ** array, int index1, int index2
+	// 
+	//    Called By:	all sorting algs
+	// 
+	//    Parameters:	Comparable ** array, int index1, int index2
+	// 
+	//    Returns:          void 
+	//
+	//    History Log:
+	//			4/27/17  NP  completed version 1.0
+	// ----------------------------------------------------------------------------	
+	void swap(Comparable ** array, int index1, int index2) {
 		Comparable * tmp = array[index1];
 		array[index1] = array[index2];
 		array[index2] = tmp;
 	}
+
 	//-----------------------------------------------------------------------------
-//    function:		safeRead(istream& sin, Comparable* d, const char* re)
-//    description:	safely reads in a DateTime (d) from sin.
-//				Re-prompts and re-enters if input is invalid
-//    
-//    Input:		Comparable* d from sin
-// 
-//    Called By:	main
-// 
-//    Parameters:	istream& sin  -- the input stream
-//			Comparable* d -- pointer to the object input
-//			const char* prompt  -- prompt, if necessary
-// 
-//    Returns:          void 
-//
-//    History Log:
-//			2/9/08  PB  completed version 1.0
-// ----------------------------------------------------------------------------	
+	//    function:		safeRead(istream& sin, Comparable* d, const char* re)
+	//    description:	safely reads in a DateTime (d) from sin.
+	//				Re-prompts and re-enters if input is invalid
+	//    
+	//    Input:		Comparable* d from sin
+	// 
+	//    Called By:	main
+	// 
+	//    Parameters:	istream& sin  -- the input stream
+	//			Comparable* d -- pointer to the object input
+	//			const char* prompt  -- prompt, if necessary
+	// 
+	//    Returns:          void 
+	//
+	//    History Log:
+	//			2/9/08  PB  completed version 1.0
+	// ----------------------------------------------------------------------------	
 	void safeRead(istream& sin, Comparable* d, const char* prompt)
 	{
 		const int BUFFERSIZE = 256;
 		d->input(sin);
-		while(!sin)
+		while (!sin)
 		{	// read in number--enter loop if fail
 			sin.clear();		// clear fail
 			sin.ignore(BUFFERSIZE, '\n');	// read past newline
@@ -60,26 +78,26 @@ namespace NP_ARRAYSORT
 		sin.ignore(BUFFERSIZE, '\n');
 	}
 
-//-----------------------------------------------------------------------------
-///    function:	void printArray(ostream & sout, Comparable **a, int size)
-///    description:	can print out an array of DateTime *
-// 
-//    Output:		Comparable* d sout
-//
-//    Called By:	main
-// 
-//    Parameters:	ostream& sout  -- the output stream
-//			Comparable** a -- array of pointers to the objects
-//			int size  -- number of elements in the array
-// 
-//    Returns:          void 
-//
-//    History Log:
-//			2/9/08  PB  completed version 1.0
-// ----------------------------------------------------------------------------	
+	//-----------------------------------------------------------------------------
+	///    function:	void printArray(ostream & sout, Comparable **a, int size)
+	///    description:	can print out an array of DateTime *
+	// 
+	//    Output:		Comparable* d sout
+	//
+	//    Called By:	main
+	// 
+	//    Parameters:	ostream& sout  -- the output stream
+	//			Comparable** a -- array of pointers to the objects
+	//			int size  -- number of elements in the array
+	// 
+	//    Returns:          void 
+	//
+	//    History Log:
+	//			2/9/08  PB  completed version 1.0
+	// ----------------------------------------------------------------------------	
 	void printArray(ostream & sout, Comparable **array, int len)
 	{
-		for(int i = 0; i < len; i++)
+		for (int i = 0; i < len; i++)
 		{
 			array[i]->print(sout);
 			if (i + 1 < len)

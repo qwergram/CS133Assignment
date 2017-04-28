@@ -51,18 +51,16 @@ void sortCTimesShow() {
 
 	cout << "Awesome! Now that we have " << items << " different CTimes, let me present them in the order you entered..." << endl;
 	
-	for (short tIndex = 0; tIndex < items; tIndex++) {
-		timesToSort[tIndex]->print(cout);
-		cout << ", ";
-	}
+	printArray(cout, timesToSort, items);
 	
 	cout << endl << " ... and that's all of them! Now abracadraba, quicksort away! Here's the sorted list!" << endl;
-	quickSort(timesToSort, 0, items);
+	quickSort(timesToSort, 0, items - 1);
 	
-	for (short tIndex = 0; tIndex < items; tIndex++) {
+	/*for (short tIndex = 0; tIndex < items; tIndex++) {
 		timesToSort[tIndex]->print(cout);
 		cout << ", ";
-	}
+	}*/
+	printArray(cout, timesToSort, items);
 
 	char ignoreme;
 	cin >> ignoreme;
