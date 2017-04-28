@@ -276,13 +276,16 @@ namespace NP_DATETIME
 	{
 		string min = "";
 		string sec = "";
-		
+		string hour = "";
+
 		if (getMinute() < 10)
 			min = "0";
 		if (getSecond() < 10)
 			sec = "0";
+		if (getHour() < 10)
+			hour = "0";
 		
-		sout << getHour() << ':' << min << getMinute() << ':' << sec << getSecond();
+		sout << hour << getHour() << ':' << min << getMinute() << ':' << sec << getSecond();
 	}
 
 	//-----------------------------------------------------------------------------
