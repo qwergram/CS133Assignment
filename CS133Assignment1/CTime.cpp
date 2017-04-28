@@ -231,16 +231,16 @@ namespace NP_DATETIME
 		sin >> hour;
 
 		// Grab the next character, it should be a ':'
-		sin.get(c);
+		c = sin.peek();
 		// But if it's not a ':', set the reset flag to true
-		if (c == ':') { proceed = true; }
+		if (c == ':') { proceed = true; sin.get(); }
 
 		// Do the same thing for minute
 		if (proceed) {
 			proceed = false;
 			sin >> minute;
-			sin.get(c);
-			if (c == ':') { proceed = true; }
+			c = sin.peek();
+			if (c == ':') { proceed = true; sin.get(); }
 		}
 		
 
