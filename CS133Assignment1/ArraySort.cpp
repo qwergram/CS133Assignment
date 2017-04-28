@@ -3,10 +3,12 @@ namespace NP_ARRAYSORT
 {
 	void quickSort(Comparable ** array, int fromIndex, int toIndex)
 	{
-		if (fromIndex < toIndex) {
+		if (fromIndex + 4 < toIndex) {
 			int position = partition(array, fromIndex, toIndex);
 			quickSort(array, fromIndex, position - 1);
 			quickSort(array, position + 1, toIndex);
+		} else if (fromIndex < toIndex) {
+			insertionSort(array, fromIndex, toIndex);
 		}
 	}
 
@@ -14,10 +16,10 @@ namespace NP_ARRAYSORT
 	{
 		Comparable * pivot = array[toIndex];
 		int small = fromIndex - 1;
-		for (int k = fromIndex; k < toIndex; k++) {
-			if (*array[k] <= *pivot) {
+		for (int index = fromIndex; index < toIndex; index++) {
+			if (*array[index] <= *pivot) {
 				small++;
-				swap(array, k, small);
+				swap(array, index, small);
 			}
 		}
 		swap(array, toIndex, small + 1);
@@ -42,7 +44,7 @@ namespace NP_ARRAYSORT
 		Comparable * low = array[loIndex];
 		Comparable * mid = array[midIndex];
 		Comparable * hi = array[hiIndex];
-		while (!((low < mid) && (mid < hi))) {
+		while ((low > mid) || (mid > hi)) {
 			if (low > mid) 
 				swap(array, loIndex, midIndex);
 			if (mid > hi)
