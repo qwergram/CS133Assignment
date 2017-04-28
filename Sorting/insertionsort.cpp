@@ -1,45 +1,17 @@
 //Insertion sort
-#include <iostream>
-#include <string>
-#include <vector>
+#include "util.h"
 using namespace std;
-namespace NP_ISORT {
-	class A {
-	public:
-		A(int num) {};
-		virtual int method() = 0;
-		virtual bool operator>(A & lhs) = 0;
-		virtual bool operator<(A & lhs) = 0;
-		virtual bool operator==(A & lhs) = 0;
-		virtual bool operator>=(A & lhs) = 0;
-		virtual bool operator<=(A & lhs) = 0;
-		virtual bool operator!=(A & lhs) = 0;
-		virtual void print() = 0;
-	};
 
-	class B : virtual public A {
-	public:
-		B(int num) : A(num) { this->number = num; }
-		virtual int method() { return this->number; }
-		virtual bool operator>(A & lhs) { return this->number < dynamic_cast<B&>(lhs).method(); };
-		virtual bool operator<(A & lhs) { return this->number > dynamic_cast<B&>(lhs).method(); };
-		virtual bool operator==(A & lhs) { return this->number == dynamic_cast<B&>(lhs).method(); };
-		virtual bool operator>=(A & lhs) { return this->number >= dynamic_cast<B&>(lhs).method(); };
-		virtual bool operator<=(A & lhs) { return this->number <= dynamic_cast<B&>(lhs).method(); };
-		virtual bool operator!=(A & lhs) { return this->number != dynamic_cast<B&>(lhs).method(); };
-		virtual void print() { cout << this->number << ' '; };
+namespace NP_INSERTIONSORT {
 
-	private:
-		int number;
-	};
-
-	//Sorting in non decreasing order
 	void printArray(A ** array, int size) {
-		for (int index = 0; index < size; index++)
+		for (int index = 0; index < size; index++) {
 			array[index]->print();
+		}
 
 		cout << "\n";
 	}
+
 	void insertionsort(A ** array, int fromIndex, int toIndex) {
 		if (fromIndex < 1)
 			fromIndex = 1;

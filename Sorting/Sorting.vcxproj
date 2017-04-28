@@ -139,8 +139,25 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="blocksort.cpp" />
+    <ClCompile Include="bubblesort.cpp" />
+    <ClCompile Include="bucketsort.cpp" />
+    <ClCompile Include="combsort.cpp" />
+    <ClCompile Include="counting.cpp" />
+    <ClCompile Include="cubesort.cpp" />
+    <ClCompile Include="gnomesort.cpp" />
+    <ClCompile Include="heapsort.cpp" />
+    <ClCompile Include="introsort.cpp" />
+    <ClCompile Include="mergesort.cpp" />
+    <ClCompile Include="radixsort.cpp" />
+    <ClCompile Include="selectionsort.cpp" />
     <ClCompile Include="insertionsort.cpp" />
     <ClCompile Include="quicksort.cpp" />
+    <ClCompile Include="shellsort.cpp" />
+    <ClCompile Include="smoothsort.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="util.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
