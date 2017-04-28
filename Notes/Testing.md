@@ -1,5 +1,7 @@
 # C++ Testing of Any Kind
 
+![](https://github.com/qwergram/CS133Assignment/raw/master/Notes/testing.jpg)
+
 Since I always seem to forget what settings in VS2015 to change whenever creating UnitTests, I'll just quickly write a guide here.
 
 ## Step 0: Create a new Testing Project
