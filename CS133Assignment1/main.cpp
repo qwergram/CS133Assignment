@@ -60,6 +60,10 @@ void sortDateTimesShow() {
 	
 	printArray(cout, timesToSort, items);
 	cout << endl << endl;
+
+	// clean up memory
+	delete[] timesToSort;
+	timesToSort = nullptr;
 }
 
 int main()
