@@ -15,6 +15,35 @@ namespace NP_ARRAYSORT
 
 	int partition(Comparable ** array, int fromIndex, int toIndex)
 	{
+		int pivotIndex = (fromIndex + toIndex) / 2;
+		SortFirstMiddleLast(array, fromIndex, pivotIndex, toIndex);
+
+		Comparable * pivot = array[pivotIndex];
+		swap(array, pivotIndex, toIndex - 1);
+
+		int frontIndex = fromIndex + 1;
+		int backIndex = pivotIndex - 1;
+
+
+		while (frontIndex < backIndex) {
+			while (frontIndex < backIndex && *pivot >= *array[frontIndex]) {
+				frontIndex++;
+			}
+
+			while (frontIndex < backIndex && *array[backIndex] >= *pivot) {
+				backIndex--;
+			}
+			swap(array, frontIndex, pivotIndex);
+			// ?
+			frontIndex++;
+			backIndex--;
+
+		}
+		swap(array, fromIndex, frontIndex);
+		return frontIndex;
+		
+		// Perfectly good quick sort
+		/*
 		Comparable * mid = array[toIndex];
 		int small = fromIndex - 1;
 		for (int index = fromIndex; index < toIndex; index++) {
@@ -25,6 +54,7 @@ namespace NP_ARRAYSORT
 		}
 		swap(array, toIndex, small + 1);
 		return small + 1;
+		*/
 	}
 
 	//-----------------------------------------------------------------------------
