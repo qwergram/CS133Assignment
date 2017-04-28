@@ -34,34 +34,34 @@ private:
 };
 
 //Sorting in non decreasing order
-void printArray(A ** arr, int len) {
-	for (int i = 0; i < len; i++)
-		arr[i]->print();
+void printArray(A ** array, int size) {
+	for (int index = 0; index < size; index++)
+		array[index]->print();
 
 	cout << "\n";
 }
-void insertionsort(A ** arr, int len) {
-	for (int i = 1; i < len; i++) {
-		int j = i - 1;
-		A * temp = arr[i];
+void insertionsort(A ** array, int size) {
+	for (int outerIndex = 1; outerIndex < size; outerIndex++) {
+		int innerIndex = outerIndex - 1;
+		A * temp = array[outerIndex];
 
-		while (j >= 0 && *temp < *arr[j]) {
-			arr[j + 1] = arr[j];
-			j--;;
+		while (innerIndex >= 0 && *temp < *array[innerIndex]) {
+			array[innerIndex + 1] = array[innerIndex];
+			innerIndex--;
 		}
 
-		arr[j + 1] = temp;
-		cout << "After pass " << i << "  : ";
+		array[innerIndex + 1] = temp;
+		cout << "After pass " << outerIndex << "  : ";
 		//Printing array after pass
-		printArray(arr, len);
+		printArray(array, size);
 	}
 }
 int main() {
-	int len = 9;
-	A ** arr = nullptr;
-	arr = new A*[len] { &B(1), &B(7), &B(3), &B(0), &B(3), &B(1), &B(9), &B(9), &B(7) };
+	int size = 9;
+	A ** array = nullptr;
+	array = new A*[size] { &B(1), &B(7), &B(3), &B(0), &B(3), &B(1), &B(9), &B(9), &B(7) };
 	cout << "Initial Array : ";
-	printArray(arr, len);
-	insertionsort(arr, len);
+	printArray(array, size);
+	insertionsort(array, size);
 	return 0;
 }
