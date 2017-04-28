@@ -498,31 +498,32 @@ namespace NP_DATETIME
 	//-----------------------------------------------------------------------------
 	void Date::input(istream& sin)
 	{
-		bool reset = false;
-		short day, month, year;
+		bool proceed = true;
+		short day = 0, month = 0, year = LOWYEAR;
 		char c;
 
 		sin >> day;
-		sin.get(c);
-		if (c != '/') { reset = true; }
+		c = sin.peek();
+		if (c != '/') { proceed = false; }
+		else { sin.get(); }
 
-		sin >> month;
-		sin.get(c);
-		if (c != '/') { reset = true; }
-
-		sin >> year;
-
-		if (reset) {
-			day = month = year = 0;
+		if (proceed) {
+			sin >> month;
+			c = sin.peek();
+			if (c != '/') { proceed = false; }
+			else { sin.get(); }
 		}
-		else {
-			if (year < LOWYEAR)
-				year = LOWYEAR;
-			if (month < 0 || month >= MONTHSINYEAR)
-				month = 0;
-			if (day < 1 || day >= daysInMonth(month, year))
-				day = 0;
+		if (proceed) {
+			sin >> year;
 		}
+
+		if (year < LOWYEAR)
+			year = LOWYEAR;
+		if (month < 1 || month >= MONTHSINYEAR)
+			month = 1;
+		if (day < 1 || day >= daysInMonth(month, year))
+			day = 1;
+		
 		setYear(year);
 		
 		// Subtract one so the user can input 1 based numbers
