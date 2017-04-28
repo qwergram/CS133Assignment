@@ -10,15 +10,15 @@ using namespace NP_ARRAYSORT;
 // .h
 
 int main();
-void sortCTimesShow();
+void sortDateTimesShow();
 void sortDatesShow();
 void sortDateTimesShow();
 
 // .cpp
 
-void sortCTimesShow() {
-	cout << "For our first act, we're going to sort some times in our very own CTime class!" << endl;
-	cout << "How many CTimes would you like to sort? ";
+void sortDateTimesShow() {
+	cout << "For our first act, we're going to sort some times in our very own DateTime class!" << endl;
+	cout << "How many DateTimes would you like to sort? ";
 	
 	short items;
 	
@@ -29,7 +29,7 @@ void sortCTimesShow() {
 		items = 2;
 	}
 	else {
-		cout << items << " CTimes it is!" << endl;
+		cout << items << " DateTimes it is!" << endl;
 	}
 
 	cout << "Now if you could type these times in yourself..." << endl;
@@ -41,31 +41,25 @@ void sortCTimesShow() {
 		timesToSort[index] = nullptr;
 
 	for (short tIndex = 0; tIndex < items; tIndex++) {
-		cout << "CTime " << tIndex + 1 << " [hh:mm:ss]: ";
-		CTime thisTime;
+		cout << "DateTime " << tIndex + 1 << " [dd/mm/yyyy hh:mm:ss]: ";
+		DateTime thisTime;
 		Comparable * thisTimeComparable = &thisTime;
 		cin >> thisTime;
 		cout << "You entered: " << thisTime << endl;
-		timesToSort[tIndex] = new CTime(dynamic_cast<CTime&>(*thisTimeComparable));
+		timesToSort[tIndex] = new DateTime(dynamic_cast<DateTime&>(*thisTimeComparable));
 	}
 
-	cout << "Awesome! Now that we have " << items << " different CTimes, let me present them in the order you entered..." << endl;
+	cout << "Awesome! Now that we have " << items << " different DateTimes, let me present them in the order you entered..." << endl << endl;
 	
 	printArray(cout, timesToSort, items);
 	
-	cout << endl << " ... and that's all of them! Now abracadraba, quicksort away! Here's the sorted list!" << endl;
+	cout << endl << endl << " ... and that's all of them! Now abracadraba, quicksort away! Here's the sorted list!" << endl << endl;
 	
 	quickSort(timesToSort, 0, items - 1);
 	// insertionSort(timesToSort, 0, items - 1);
 	
-	/*for (short tIndex = 0; tIndex < items; tIndex++) {
-		timesToSort[tIndex]->print(cout);
-		cout << ", ";
-	}*/
 	printArray(cout, timesToSort, items);
-
-	char ignoreme;
-	cin >> ignoreme;
+	cout << endl << endl;
 }
 
 int main()
@@ -84,24 +78,11 @@ int main()
 
 	cout << "We have quite a treat for you today! We're going to sort things for you in C++!" << endl;
 
-	sortCTimesShow();
+	sortDateTimesShow();
 	
-	Date date1;
-	CTime time1;
-	DateTime datetime1;
-
-	/*
-	cout << "date [dd/mm/yyyy]: ";
-	cin >> date1;
-	cout << endl << date1 << endl;
-
-	cout << "time [hh:mm:ss]: ";
-	cin >> time1;
-	cout << endl << time1 << endl;
-	//*/
-
-	cout << "datetime [dd/mm/yyyy hh:mm:ss]: ";
-	cin >> datetime1;
-	cout << endl << datetime1 << endl;
-	datetime1;
+	cout << "Thank you Seattle, you have been an amazing audience!" << endl;
+	cout << "I have been your host, Norton Pengra and I will see you later!" << endl;
+	
+	char tmp;
+	cin >> tmp;
 }
