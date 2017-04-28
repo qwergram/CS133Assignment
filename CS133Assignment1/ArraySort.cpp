@@ -9,6 +9,7 @@ namespace NP_ARRAYSORT
 			quickSort(array, position + 1, toIndex);
 		}
 	}
+
 	int partition(Comparable ** array, int fromIndex, int toIndex)
 	{
 		Comparable * pivot = array[toIndex];
@@ -19,6 +20,7 @@ namespace NP_ARRAYSORT
 		swap(array, toIndex, ++small);
 		return small;
 	}
+
 	void swap(Comparable ** array, int index1, int index2)
 	{
 		Comparable * tmp = array[index1];
