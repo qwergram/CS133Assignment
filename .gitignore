@@ -35,3 +35,9 @@ ipch/
 *.exe
 *.out
 *.app
+
+# Assignment clutter
+*.zip
+*.tmp
+*.docx
+*.xlsx
