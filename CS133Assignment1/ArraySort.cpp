@@ -77,11 +77,11 @@ namespace NP_ARRAYSORT
 //    History Log:
 //			2/9/08  PB  completed version 1.0
 // ----------------------------------------------------------------------------	
-	void printArray(ostream & sout, Comparable **a, int size)
+	void printArray(ostream & sout, Comparable **array, int size)
 	{
 		for(int i = 0; i < size; i++)
 		{
-			a[i]->print(sout);
+			array[i]->print(sout);
 			sout << endl;
 		}
 		sout << endl;

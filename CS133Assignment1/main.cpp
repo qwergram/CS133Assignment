@@ -35,20 +35,21 @@ void sortCTimesShow() {
 	cout << "Now if you could type these times in yourself..." << endl;
 
 	Comparable ** timesToSort = nullptr;
-	* timesToSort = new CTime[items];
+	timesToSort = new Comparable * [items];
 
 	for (short tIndex = 0; tIndex < items; tIndex++) {
 		cout << "CTime " << tIndex + 1 << " [hh:mm:ss]: ";
 		CTime thisTime;
+		Comparable * thisTimeComparable = &thisTime;
 		cin >> thisTime;
 		cout << "You entered: " << thisTime << endl;
-		timesToSort[tIndex] = &thisTime;
+		timesToSort[tIndex] = thisTimeComparable;
 	}
 
 	cout << "Awesome! Now that we have " << items << " different CTimes, let me present them in the order you entered..." << endl;
-	for (short tIndex = 0; tIndex < items; tIndex++) {
-		cout << dynamic_cast<CTime&>(*timesToSort[tIndex]) << ", ";
-	}
+	/*for (short tIndex = 0; tIndex < items; tIndex++) {
+		timesToSort[tIndex]->print(cout);
+	}*/
 	cout << " ... and that's all of them! Now abracadraba, quicksort away! Here's the sorted list!" << endl;
 
 	quickSort(timesToSort, 0, items);
