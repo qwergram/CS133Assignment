@@ -1,7 +1,22 @@
 #include "ArraySort.h"
 namespace NP_ARRAYSORT
 {
-
+	//-----------------------------------------------------------------------------
+	//    function:		strangeSort(Comparable ** array, int fromIndex, int toIndex)
+	//    description:	Uses quicksort if it's more than 4 items and insertion sort
+	//					otherwise.
+	//    
+	//    Input:		
+	// 
+	//    Called By:	strangesort
+	// 
+	//    Parameters:	Comparable ** array, int fromIndex, int toIndex
+	//    Returns:      int
+	//
+	//    History Log:
+	//			2/9/08  PB  completed version 1.0
+	//			4/28/17	NP	Appended to version 1.0
+	// ----------------------------------------------------------------------------	
 	void strangeSort(Comparable ** array, int fromIndex, int toIndex)
 	{
 		if (fromIndex + 4 < toIndex) {
@@ -13,6 +28,21 @@ namespace NP_ARRAYSORT
 		}
 	}
 
+	//-----------------------------------------------------------------------------
+	//    function:		partition(Comparable ** array, int fromIndex, int toIndex)
+	//    description:	partitions and partially sorts things for quicksort.
+	//    
+	//    Input:		
+	// 
+	//    Called By:	strangesort
+	// 
+	//    Parameters:	Comparable ** array, int fromIndex, int toIndex
+	//    Returns:      int
+	//
+	//    History Log:
+	//			2/9/08  PB  completed version 1.0
+	//			4/28/17	NP	Appended to version 1.0
+	// ----------------------------------------------------------------------------	
 	int partition(Comparable ** array, int fromIndex, int toIndex)
 	{
 		int pivotIndex = (fromIndex + toIndex) / 2;
@@ -24,20 +54,14 @@ namespace NP_ARRAYSORT
 		int frontIndex = fromIndex + 1;
 		int backIndex = pivotIndex - 1;
 
-
 		while (frontIndex < backIndex) {
-			while (frontIndex < backIndex && *pivot >= *array[frontIndex]) {
+			while (frontIndex < backIndex && *pivot >= *array[frontIndex])
 				frontIndex++;
-			}
-
-			while (frontIndex < backIndex && *array[backIndex] >= *pivot) {
+			
+			while (frontIndex < backIndex && *array[backIndex] >= *pivot)
 				backIndex--;
-			}
-			swap(array, frontIndex, pivotIndex);
-			// ?
-			frontIndex++;
-			backIndex--;
-
+			
+			swap(array, frontIndex++, pivotIndex--);
 		}
 		swap(array, fromIndex, frontIndex);
 		return frontIndex;
@@ -109,6 +133,21 @@ namespace NP_ARRAYSORT
 		array[index2] = tmp;
 	}
 
+	//-----------------------------------------------------------------------------
+	//    function:		insertionSort(Comparable ** array, int fromIndex, int toIndex)
+	//    description:	sorts a list of comparables using insertion sort algorithm
+	//    
+	//    Input:		
+	// 
+	//    Called By:	strangesort
+	// 
+	//    Parameters:	Comparable ** array, int fromIndex, int toInde
+	//    Returns:      void 
+	//
+	//    History Log:
+	//			2/9/08  PB  completed version 1.0
+	//			4/28/17	NP	Appended to version 1.0
+	// ----------------------------------------------------------------------------	
 	void insertionSort(Comparable ** array, int fromIndex, int toIndex)
 	{
 		if (fromIndex < 1)
@@ -183,7 +222,7 @@ namespace NP_ARRAYSORT
 		{
 			array[i]->print(sout);
 			if (i + 1 < len)
-				sout << ", ";
+				sout << ",\n";
 		}
 
 		sout << endl;

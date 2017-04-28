@@ -42,7 +42,7 @@ void sortDateTimesShow() {
 		cout << "DateTime " << tIndex + 1 << " [dd/mm/yyyy hh:mm:ss]: ";
 		DateTime thisTime;
 		Comparable * thisTimeComparable = &thisTime;
-		cin >> thisTime;
+		safeRead(cin, &thisTime, "");
 		cout << "You entered: " << thisTime << endl;
 		timesToSort[tIndex] = new DateTime(dynamic_cast<DateTime&>(*thisTimeComparable));
 	}
@@ -54,7 +54,6 @@ void sortDateTimesShow() {
 	cout << endl << endl << " ... and that's all of them! Now abracadraba, quicksort away! Here's the sorted list!" << endl << endl;
 	
 	strangeSort(timesToSort, 0, items - 1);
-	// insertionSort(timesToSort, 0, items - 1);
 	
 	printArray(cout, timesToSort, items);
 	cout << endl << endl;
