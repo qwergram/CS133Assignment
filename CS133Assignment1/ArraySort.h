@@ -10,7 +10,7 @@ using namespace NP_DATETIME;
 //----------------------------------------------------------------------------
 namespace NP_ARRAYSORT
 {
-	void quickSort(Comparable** array, int fromIndex, int toIndex);
+	void strangeSort(Comparable** array, int fromIndex, int toIndex);
 	int partition(Comparable** array, int fromIndex, int toIndex);
 	void SortFirstMiddleLast(Comparable** array, int fromIndex,
 		int midIndex, int toIndex);

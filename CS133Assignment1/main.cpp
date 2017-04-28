@@ -11,8 +11,6 @@ using namespace NP_ARRAYSORT;
 
 int main();
 void sortDateTimesShow();
-void sortDatesShow();
-void sortDateTimesShow();
 
 // .cpp
 
@@ -55,7 +53,7 @@ void sortDateTimesShow() {
 	
 	cout << endl << endl << " ... and that's all of them! Now abracadraba, quicksort away! Here's the sorted list!" << endl << endl;
 	
-	quickSort(timesToSort, 0, items - 1);
+	strangeSort(timesToSort, 0, items - 1);
 	// insertionSort(timesToSort, 0, items - 1);
 	
 	printArray(cout, timesToSort, items);
@@ -68,6 +66,11 @@ void sortDateTimesShow() {
 
 int main()
 {
+	CTime one;
+	cin >> one;
+	cout << one;
+
+
 	string name;
 	cout << "Hello! Welcome the magic sorting show! Please enter your name: ";
 	cin >> name;

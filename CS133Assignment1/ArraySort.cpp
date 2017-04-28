@@ -1,12 +1,13 @@
 #include "ArraySort.h"
 namespace NP_ARRAYSORT
 {
-	void quickSort(Comparable ** array, int fromIndex, int toIndex)
+
+	void strangeSort(Comparable ** array, int fromIndex, int toIndex)
 	{
 		if (fromIndex + 4 < toIndex) {
 			int position = partition(array, fromIndex, toIndex);
-			quickSort(array, fromIndex, position - 1);
-			quickSort(array, position + 1, toIndex);
+			strangeSort(array, fromIndex, position - 1);
+			strangeSort(array, position + 1, toIndex);
 		} else if (fromIndex < toIndex) {
 			insertionSort(array, fromIndex, toIndex);
 		}
@@ -14,10 +15,10 @@ namespace NP_ARRAYSORT
 
 	int partition(Comparable ** array, int fromIndex, int toIndex)
 	{
-		Comparable * pivot = array[toIndex];
+		Comparable * mid = array[toIndex];
 		int small = fromIndex - 1;
 		for (int index = fromIndex; index < toIndex; index++) {
-			if (*array[index] <= *pivot) {
+			if (*array[index] <= *mid) {
 				small++;
 				swap(array, index, small);
 			}
