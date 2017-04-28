@@ -66,11 +66,6 @@ void sortDateTimesShow() {
 
 int main()
 {
-	CTime one;
-	cin >> one;
-	cout << one;
-
-
 	string name;
 	cout << "Hello! Welcome the magic sorting show! Please enter your name: ";
 	cin >> name;
