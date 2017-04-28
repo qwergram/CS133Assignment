@@ -216,26 +216,42 @@ namespace NP_DATETIME
 	//-----------------------------------------------------------------------------
 	void CTime::input(istream & sin)
 	{
+		// Assume best scenario: we don't have reset everything to 0.
 		bool reset = false;
+
+		// Store our hour, minute and second as a short.
 		short hour, minute, second;
+
+		// this is the character we'll read to.
 		char c;
 
+		// Format is number:number:number, so let's read in the first
+		// hour to hour. It will automatically stop once it finds a non
+		// integer. 
 		sin >> hour;
+
+		// Grab the next character, it should be a ':'
 		sin.get(c);
+		// But if it's not a ':', set the reset flag to true
 		if (c != ':') { reset = true; }
 
+		// Do the same thing for minute
 		sin >> minute;
 		sin.get(c);
 		if (c != ':') { reset = true; }
 
+		// Lastly, grab the second
 		sin >> second;
 
+		// If a reset was called (e.g. user typed something wrong)
+		// set everything to 0
 		if (reset) {
 			hour = 0;
 			minute = 0;
 			second = 0;
 		}
 		else {
+			// Now make sure the user typed in something valid
 			if (hour < 0 || hour >= HOURS_IN_DAY)
 				hour = 0;
 			if (minute < 0 || minute >= SEXAGESIMAL_RATE)
@@ -243,6 +259,7 @@ namespace NP_DATETIME
 			if (second < 0 || second >= SEXAGESIMAL_RATE)
 				second = 0;
 		}
+		// the values with the mutators
 		setHour(hour);
 		setMinute(minute);
 		setSecond(second);
