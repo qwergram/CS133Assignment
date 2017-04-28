@@ -25,6 +25,37 @@ namespace NP_ARRAYSORT
 	}
 
 	//-----------------------------------------------------------------------------
+	//    function:		SortFirstMiddleLast
+	//    description:	Sort the three items
+	//    
+	//    Called By:	all sorting algs
+	// 
+	//    Parameters:	Comparable ** array, int loIndex, int midIndex, int hiIndex
+	// 
+	//    Returns:          void 
+	//
+	//    History Log:
+	//			4/27/17  NP  completed version 1.0
+	// ----------------------------------------------------------------------------	
+	void SortFirstMiddleLast(Comparable ** array, int loIndex, int midIndex, int hiIndex)
+	{
+		Comparable * low = array[loIndex];
+		Comparable * mid = array[midIndex];
+		Comparable * hi = array[hiIndex];
+		while (!((low < mid) && (mid < hi))) {
+			if (low > mid) 
+				swap(array, loIndex, midIndex);
+			if (mid > hi)
+				swap(array, midIndex, hiIndex);
+			if (low > hi)
+				swap(array, loIndex, hiIndex);
+			low = array[loIndex];
+			mid = array[midIndex];
+			hi = array[hiIndex];
+		}
+	}
+
+	//-----------------------------------------------------------------------------
 	//    function:		swap
 	//    description:	swaps two items in an array
 	//    
@@ -43,6 +74,11 @@ namespace NP_ARRAYSORT
 		Comparable * tmp = array[index1];
 		array[index1] = array[index2];
 		array[index2] = tmp;
+	}
+
+	void insertionSort(Comparable ** array, int fromIndex, int toIndex)
+	{
+
 	}
 
 	//-----------------------------------------------------------------------------
