@@ -1,5 +1,9 @@
 # [Project 1: DateTime Class](http://faculty.edcc.edu//paul.bladek/CS133/p1.htm)
 
+### Sample Output
+
+![](https://github.com/qwergram/CS133Assignment/raw/master/Notes/output.png)
+
 ### "Best Code Award of all time - 2017 Winner"
 
 ![](http://imgur.com/DMzdJ9F.png)
