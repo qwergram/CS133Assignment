@@ -84,6 +84,7 @@ namespace NP_ARRAYSORT
 			array[i]->print(sout);
 			sout << endl;
 		}
+
 		sout << endl;
 	}
 }
