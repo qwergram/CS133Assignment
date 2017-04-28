@@ -79,7 +79,7 @@ void showSortFunction() {
 
 	printArray(cout, timesToSort, items);
 	cout << endl << endl;
-	cout << " For our last trick, we will dynamically clean your memory! " << endl << endl;
+	cout << " ... For our last trick, we will dynamically clean your memory! " << endl << endl;
 	
 	// clean up memory
 	delete[] timesToSort;
