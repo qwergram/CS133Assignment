@@ -78,7 +78,20 @@ namespace NP_ARRAYSORT
 
 	void insertionSort(Comparable ** array, int fromIndex, int toIndex)
 	{
+		if (fromIndex < 1)
+			fromIndex = 1;
 
+		for (int outerIndex = fromIndex; outerIndex < toIndex; outerIndex++) {
+			int innerIndex = outerIndex - 1;
+			Comparable * temp = array[outerIndex];
+
+			while (innerIndex >= 0 && *temp < *array[innerIndex]) {
+				array[innerIndex + 1] = array[innerIndex];
+				innerIndex--;
+			}
+
+			array[innerIndex + 1] = temp;
+		}
 	}
 
 	//-----------------------------------------------------------------------------
