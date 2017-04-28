@@ -19,36 +19,32 @@ namespace NP_MERGESORT {
 		int cursor = leftCursor;
 
 		while (leftCursor <= mid && bookmark <= rightCursor) {
-			if (*array[leftCursor] <= *array[bookmark]) {
+			if (*array[leftCursor] <= *array[bookmark])
 				temp[cursor++] = array[leftCursor++];
-			}
-			else {
+			else
 				temp[cursor++] = array[bookmark++];
-			}
 		}
 
 		while (leftCursor <= mid)
 			temp[cursor++] = array[leftCursor++];
-
-		while (bookmark <= rightCursor) {
+		
+		while (bookmark <= rightCursor)
 			temp[cursor++] = array[bookmark++];
-		}
+		
 
-		for (int index = startIndex; index <= endIndex; index++) {
+		for (int index = startIndex; index <= endIndex; index++)
 			array[index] = temp[index];
-		}
+		
 
 		cout << "After pass: ";
 		printArray(array, len);
 	}
-	void mergesort(A ** array, int i, int j, int len) {
-		int mid = 0;
-
-		if (i < j) {
-			mid = (i + j) / 2;
-			mergesort(array, i, mid, len);
-			mergesort(array, mid + 1, j, len);
-			merge(array, i, mid, j, len);
+	void mergesort(A ** array, int start, int end, int len) {
+		if (start < end) {
+			int mid = (start + end) / 2;
+			mergesort(array, start, mid, len);
+			mergesort(array, mid + 1, end, len);
+			merge(array, start, mid, end, len);
 		}
 	}
 	
