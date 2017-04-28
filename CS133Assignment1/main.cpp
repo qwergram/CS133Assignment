@@ -54,7 +54,9 @@ void sortCTimesShow() {
 	printArray(cout, timesToSort, items);
 	
 	cout << endl << " ... and that's all of them! Now abracadraba, quicksort away! Here's the sorted list!" << endl;
+	
 	quickSort(timesToSort, 0, items - 1);
+	// insertionSort(timesToSort, 0, items - 1);
 	
 	/*for (short tIndex = 0; tIndex < items; tIndex++) {
 		timesToSort[tIndex]->print(cout);
