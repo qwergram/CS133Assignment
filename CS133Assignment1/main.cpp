@@ -33,7 +33,15 @@ void showSortFunction() {
 	cout << "Now if you could type these times in yourself..." << endl;
 
 	Comparable ** timesToSort = nullptr;
-	timesToSort = new Comparable * [items];
+
+	try {
+		timesToSort = new Comparable *[items];
+	}
+	catch (bad_alloc e) {
+		cout << "Oh no! something went wrong :(" << endl;
+		cout << "Couldn't allocate the memory" << endl;
+		return;
+	}
 
 	for (short index = 0; index < items; index++)
 		timesToSort[index] = nullptr;
@@ -82,6 +90,9 @@ void showSortFunction() {
 	cout << " ... For our last trick, we will dynamically clean your memory! " << endl << endl;
 	
 	// clean up memory
+	for (int index = 0; index < items; index++) {
+		delete timesToSort[index];
+	}
 	delete[] timesToSort;
 	timesToSort = nullptr;
 }
