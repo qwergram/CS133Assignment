@@ -26,7 +26,7 @@ list<string> split(const string & phrase, char delimiter)
 		if (*cursor == delimiter) {
 			
 			// Check if there's something in thisWord
-			if (thisWord.length() > 0)
+			if (thisWord.begin() != thisWord.end())
 				toReturn.push_back(thisWord);
 			
 			// reset thisWord
@@ -37,7 +37,7 @@ list<string> split(const string & phrase, char delimiter)
 	}
 
 	// Dirty solution
-	if (thisWord.length() > 0)
+	if (thisWord.begin() != thisWord.end())
 		toReturn.push_back(thisWord);
 
 	return toReturn;
