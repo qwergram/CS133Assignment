@@ -87,7 +87,6 @@ namespace NP_ADT
 	}
 
 	//-----------------------------------------------------------------------------
-
 	// returns a copy of rlist
 	//-----------------------------------------------------------------------------
 	template<class datatype> DLCL DLCL<datatype>::operator=(const DLCL & rlist)
@@ -105,7 +104,8 @@ namespace NP_ADT
 	//-----------------------------------------------------------------------------
 	// pre-increment
 	//-----------------------------------------------------------------------------
-	template<class datatype> DLCL::iterator DLCL<datatype>::iterator::operator++()
+	template<class datatype>
+	typename iterator<datatype> DLCL<datatype>::iterator::operator++()
 	{
 		if (ptr == nullptr)
 			throw runtime_error("nullptr pointer");
@@ -116,7 +116,8 @@ namespace NP_ADT
 	//-----------------------------------------------------------------------------
 	// post-increment
 	//-----------------------------------------------------------------------------
-	template<class datatype> DLCL::iterator DLCL<datatype>::iterator::operator++(int)
+	template<class datatype>
+	typename iterator<datatype> DLCL<datatype>::iterator::operator++(int)
 	{
 		if (ptr == nullptr)
 			throw runtime_error("nullptr pointer");
@@ -125,12 +126,11 @@ namespace NP_ADT
 		return temp;
 	}
 
-	
-
 	//-----------------------------------------------------------------------------
 	// pre-decrement
 	//-----------------------------------------------------------------------------
-	template<class datatype> DLCL::iterator DLCL<datatype>::iterator::operator--()
+	template<class datatype>
+	typename iterator<datatype> DLCL<datatype>::iterator::operator--()
 	{
 		// REPLACE THE DUMMY CODE BELOW WITH YOUR OWN
 		iterator temp = nullptr;
@@ -141,7 +141,9 @@ namespace NP_ADT
 	//-----------------------------------------------------------------------------
 	// post-decrement
 	//-----------------------------------------------------------------------------
-	template<class datatype> iterator DLCL<datatype>::iterator::operator--(int)
+
+	template<class datatype>
+	typename iterator<datatype> DLCL<datatype>::iterator::operator--(int)
 	{
 		// REPLACE THE DUMMY CODE BELOW WITH YOUR OWN
 		iterator temp = nullptr;
