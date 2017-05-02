@@ -13,7 +13,7 @@ namespace NP_ADT
 	//-----------------------------------------------------------------------------
 	// constructor
 	//-----------------------------------------------------------------------------
-	DLCL::DLCL(size_t n_elements, datatype datum)
+	template<class datatype> DLCL<datatype>::DLCL(size_t n_elements, datatype datum)
 		:m_size(0), head(nullptr), tail(nullptr)
 	{
 		if (n_elements <= 0)
@@ -25,7 +25,7 @@ namespace NP_ADT
 	//-----------------------------------------------------------------------------
 	// copy constructor
 	//-----------------------------------------------------------------------------
-	DLCL::DLCL(const DLCL& x)
+	template<class datatype> DLCL<datatype>::DLCL(const DLCL & x)
 		: m_size(0), head(nullptr), tail(nullptr)
 	{
 		DLCL::iterator r_it = x.begin();
@@ -36,7 +36,7 @@ namespace NP_ADT
 	//-----------------------------------------------------------------------------
 	// constructor using iterators, copies from b to one before e
 	//-----------------------------------------------------------------------------
-	DLCL::DLCL(iterator b, iterator e)
+	template<class datatype> DLCL<datatype>::DLCL(iterator b, iterator e)
 		:m_size(0), head(nullptr), tail(nullptr)
 	{
 		while (b != e)
@@ -46,7 +46,7 @@ namespace NP_ADT
 	//-----------------------------------------------------------------------------
 	// empties the list
 	//-----------------------------------------------------------------------------
-	void DLCL::release()
+	template<class datatype> void DLCL<datatype>::release()
 	{
 		while (head != nullptr)
 			pop_front();
@@ -55,7 +55,7 @@ namespace NP_ADT
 	//-----------------------------------------------------------------------------
 	// prints out a list
 	//-----------------------------------------------------------------------------
-	ostream& operator<<(ostream& sout, const DLCL& x)
+	template<class datatype> ostream & operator << (ostream& sout, const DLCL<datatype> & x)
 	{
 		DLCL::iterator p = x.begin(); // gets x.h
 		sout << "(";
@@ -73,7 +73,7 @@ namespace NP_ADT
 	//-----------------------------------------------------------------------------
 	// insert element at front of list
 	//-----------------------------------------------------------------------------
-	void DLCL::push_front(datatype datum)
+	template<class datatype> void DLCL<datatype>::push_front(datatype datum)
 	{
 		listelem* temp = new listelem(datum, nullptr, head);
 		m_size++;
@@ -90,7 +90,7 @@ namespace NP_ADT
 
 	// returns a copy of rlist
 	//-----------------------------------------------------------------------------
-	DLCL DLCL::operator=(const DLCL & rlist)
+	template<class datatype> DLCL DLCL<datatype>::operator=(const DLCL & rlist)
 	{
 		if (&rlist != this)
 		{
@@ -105,7 +105,7 @@ namespace NP_ADT
 	//-----------------------------------------------------------------------------
 	// pre-increment
 	//-----------------------------------------------------------------------------
-	DLCL::iterator DLCL::iterator::operator++()
+	template<class datatype> DLCL::iterator DLCL<datatype>::iterator::operator++()
 	{
 		if (ptr == nullptr)
 			throw runtime_error("nullptr pointer");
@@ -116,7 +116,7 @@ namespace NP_ADT
 	//-----------------------------------------------------------------------------
 	// post-increment
 	//-----------------------------------------------------------------------------
-	DLCL::iterator DLCL::iterator::operator++(int)
+	template<class datatype> DLCL::iterator DLCL<datatype>::iterator::operator++(int)
 	{
 		if (ptr == nullptr)
 			throw runtime_error("nullptr pointer");
@@ -125,10 +125,12 @@ namespace NP_ADT
 		return temp;
 	}
 
+	
+
 	//-----------------------------------------------------------------------------
 	// pre-decrement
 	//-----------------------------------------------------------------------------
-	DLCL::iterator DLCL::iterator::operator--()
+	template<class datatype> DLCL::iterator DLCL<datatype>::iterator::operator--()
 	{
 		// REPLACE THE DUMMY CODE BELOW WITH YOUR OWN
 		iterator temp = nullptr;
@@ -139,7 +141,7 @@ namespace NP_ADT
 	//-----------------------------------------------------------------------------
 	// post-decrement
 	//-----------------------------------------------------------------------------
-	DLCL::iterator DLCL::iterator::operator--(int)
+	template<class datatype> iterator DLCL<datatype>::iterator::operator--(int)
 	{
 		// REPLACE THE DUMMY CODE BELOW WITH YOUR OWN
 		iterator temp = nullptr;
@@ -149,7 +151,7 @@ namespace NP_ADT
 	//-----------------------------------------------------------------------------
 	// removes front element and returns the data from that element
 	//-----------------------------------------------------------------------------
-	datatype DLCL::pop_front()
+	template<class datatype> datatype DLCL<datatype>::pop_front()
 	{
 		if (head == nullptr)
 			throw runtime_error("Empty list");
@@ -169,7 +171,7 @@ namespace NP_ADT
 	//-----------------------------------------------------------------------------
 	// [] operator -- l-value
 	//-----------------------------------------------------------------------------
-	datatype& DLCL::operator[](int index)
+	template<class datatype> datatype & DLCL<datatype>::operator[](int index)
 	{
 		iterator it;
 		if (index >= 0)
@@ -193,7 +195,7 @@ namespace NP_ADT
 	//-----------------------------------------------------------------------------
 	// [] operator -- r-value
 	//-----------------------------------------------------------------------------
-	const datatype& DLCL::operator[](int index)const
+	template<class datatype> const datatype & DLCL<datatype>::operator[](int index)const
 	{
 		iterator it;
 		if (index >= 0)
@@ -225,10 +227,10 @@ int main(void)
 	using NP_ADT::DLCL; // not the same as std::list<class T>
 	try
 	{
-		DLCL mylist(3, 'X');
-		DLCL mylist2;
-		DLCL mylist3(mylist);
-		DLCL mylist4(mylist.begin(), mylist.end());
+		DLCL<char> mylist(3, 'X');
+		DLCL<char> mylist2;
+		DLCL<char> mylist3(mylist);
+		DLCL<char> mylist4(mylist.begin(), mylist.end());
 		cout << "mylist: " << mylist << endl;
 		cout << "mylist2: " << mylist2 << endl;
 		cout << "mylist3: " << mylist3 << endl;
@@ -239,7 +241,7 @@ int main(void)
 		mylist2 = mylist; // a copy
 		cout << "mylist: " << mylist << endl;
 		// create a new iterator pointing to the beginning of mylist
-		DLCL::iterator listit(mylist.begin());
+		DLCL<char>::iterator listit(mylist.begin());
 		cout << listit++->data << " ";
 		cout << listit->data << endl;
 		cout << "mylist: ";
