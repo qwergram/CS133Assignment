@@ -102,31 +102,8 @@ namespace NP_ADT {
 	class CircularDoublyLinkedList
 	{
 	public:
-		
-		// template <typename datatype>
-		struct node
-		{
-			datatype data;
-			node * next;
-			node * prev;
-			node(datatype datum, node * p, node * n) : data(datum), prev(p), next(n) {} // struct constructor
-		};
-		
-		// template <typename datatype>
-		class iterator
-		{
-		public:
-			iterator(node * p = nullptr) : ptr(p) {}
-			iterator operator++();
-			iterator operator--();
-			iterator operator++(int);
-			iterator operator--(int);
-			node * operator->() const { return ptr; }
-			datatype & operator*() const { return ptr->data; }
-			operator node*() const { return ptr; }
-		private:
-			node * ptr;
-		};
+		struct node;
+		class iterator;
 		
 		// Constructors
 		CircularDoublyLinkedList() : head(nullptr), tail(nullptr), m_size(0) {}
@@ -158,6 +135,30 @@ namespace NP_ADT {
 		node *head;
 		node *tail;
 		unsigned m_size; // number of elements in the list 
+
+	public:
+		struct node
+		{
+			datatype data;
+			node * next;
+			node * prev;
+			node(datatype datum, node * p, node * n) : data(datum), prev(p), next(n) {} // struct constructor
+		};
+
+		class iterator
+		{
+		public:
+			iterator(node * p = nullptr) : ptr(p) {}
+			iterator operator++();
+			iterator operator--();
+			iterator operator++(int);
+			iterator operator--(int);
+			node * operator->() const { return ptr; }
+			datatype & operator*() const { return ptr->data; }
+			operator node*() const { return ptr; }
+		private:
+			node * ptr;
+		};
 	};
 
 }
