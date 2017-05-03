@@ -95,21 +95,21 @@ using namespace std;
 
 namespace NP_ADT {
 
-	template<class datatype> 
-	class DLCL
+
+	typedef char datatype;
+
+	class list
 	{
 	public:
-		// forward declarations
-		struct listelem; 
+		struct listelem; // forward declarations
 		class iterator;
-		
 		// constructors
-		DLCL() : head(nullptr), tail(nullptr), m_size(0) {}
-		DLCL(size_t n_elements, datatype datum);
-		DLCL(const DLCL& x);
-		DLCL(iterator b, iterator e);
+		list() : head(nullptr), tail(nullptr), m_size(0) {}
+		list(size_t n_elements, datatype datum);
+		list(const list& x);
+		list(iterator b, iterator e);
 
-		~DLCL() { release(); }
+		~list() { release(); }
 		unsigned getSize() const { return m_size; }
 		iterator begin() const { return head; }
 		iterator end() const { return tail; }
@@ -121,7 +121,7 @@ namespace NP_ADT {
 		datatype& back() const { return tail->data; }
 		bool empty()const { return head == nullptr || tail == nullptr; }
 		void release();
-		DLCL operator=(const DLCL & rlist);
+		list operator=(const list & rlist);
 		datatype& operator[](int index);
 		const datatype& operator[](int index) const;
 	private:
@@ -132,9 +132,9 @@ namespace NP_ADT {
 		struct listelem // list cell
 		{
 			datatype data;
-			listelem * next;
-			listelem * prev;
-			listelem(datatype datum, listelem * p, listelem * n) : data(datum), prev(p), next(n) {} // struct constructor
+			listelem *next;
+			listelem *prev;
+			listelem(datatype datum, listelem* p, listelem* n) : data(datum), prev(p), next(n) {} // struct constructor
 		};
 		// scoped within class list !
 		class iterator
@@ -145,15 +145,14 @@ namespace NP_ADT {
 			iterator operator--();
 			iterator operator++(int);
 			iterator operator--(int);
-			listelem * operator->() const { return ptr; }
-			datatype & operator*() const { return ptr->data; }
+			listelem* operator->() const { return ptr; }
+			datatype& operator*() const { return ptr->data; }
 			operator listelem*() const { return ptr; }
 		private:
-			listelem * ptr; //current listelem or nullptr
+			listelem* ptr; //current listelem or nullptr
 		};
 	};
 
-	template<class datatype>
-	ostream & operator << (ostream & sout, const DLCL<datatype> & x);
+	ostream& operator<<(ostream& sout, const list& x);
 
 }
