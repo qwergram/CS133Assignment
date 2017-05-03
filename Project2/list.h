@@ -122,7 +122,7 @@ namespace NP_ADT {
 			datatype & operator*() const { return ptr->data; }
 			operator node *() const { return ptr; }
 		private:
-			node* ptr; //current listelem or nullptr
+			node * ptr; //current listelem or nullptr
 		};
 		
 		CircularDoublyLinkedList() : head(nullptr), tail(nullptr), m_size(0) {}
