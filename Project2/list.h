@@ -106,7 +106,7 @@ namespace NP_ADT {
 		class iterator;
 		
 		// Constructors
-		CDLL() : head(nullptr), tail(nullptr), m_size(0) {}
+		CDLL() : handle(nullptr), m_size(0) {}
 		CDLL(size_t n_elements, datatype datum);
 		CDLL(const CDLL& cdll);
 		CDLL(iterator begin, iterator end);
@@ -115,25 +115,27 @@ namespace NP_ADT {
 		~CDLL() { release(); }
 
 		unsigned getSize() const { return m_size; }
-		iterator begin() const { return head; }
-		iterator end() const { return tail; }
+		iterator begin() const { return head(); }
+		iterator end() const { return tail(); }
 		void push_front(datatype datum);
 		datatype pop_front();
 		// void push_back(datatype datum);
 		// datatype pop_back();
-		datatype& front() const { return head->data; }
-		datatype& back() const { return tail->data; }
-		bool empty()const { return head == nullptr || tail == nullptr; }
+		datatype& front() const { return head()->data; }
+		datatype& back() const { return tail()->data; }
+		bool empty()const { return handle == nullptr; }
 		void release();
 		CDLL operator=(const CDLL & rlist);
 		datatype& operator[](int index);
 		const datatype& operator[](int index) const;
 
-		
+		node * head(void) const { return handle; }
+		node * tail(void) const { return handle->prev; }
 
 	private:
-		node *head;
-		node *tail;
+		// remove head and tail as property
+		// and only keep track of one handle
+		node * handle;
 		unsigned m_size; // number of elements in the list 
 
 	public:

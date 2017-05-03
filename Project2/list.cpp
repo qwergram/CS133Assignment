@@ -15,7 +15,7 @@ namespace NP_ADT
 	//-------------------------------------------------------------------------
 	template<typename datatype>
 	CDLL<datatype>::CDLL(size_t n_elements, datatype datum)
-		:m_size(0), head(nullptr), tail(nullptr)
+		:m_size(0), handle(nullptr)
 	{
 		if (n_elements <= 0)
 			throw out_of_range("Empty list");
@@ -28,7 +28,7 @@ namespace NP_ADT
 	//-------------------------------------------------------------------------
 	template<typename datatype>
 	NP_ADT::CDLL<datatype>::CDLL(const CDLL & cdll)
-		: m_size(0), head(nullptr), tail(nullptr)
+		: m_size(0), handle(nullptr)
 	{
 		CDLL::iterator r_it = cdll.begin();
 		while (r_it != nullptr)
@@ -40,7 +40,7 @@ namespace NP_ADT
 	//-------------------------------------------------------------------------
 	template<typename datatype>
 	NP_ADT::CDLL<datatype>::CDLL(iterator begin, iterator end)
-		:m_size(0), head(nullptr), tail(nullptr)
+		:m_size(0), handle(nullptr)
 	{
 		while (begin != end)
 			push_front(*begin++);
@@ -52,7 +52,7 @@ namespace NP_ADT
 	template<typename datatype>
 	inline void NP_ADT::CDLL<datatype>::release()
 	{
-		while (head != nullptr)
+		while (head() != nullptr)
 			pop_front();
 	}
 
@@ -81,15 +81,15 @@ namespace NP_ADT
 	template<typename datatype>
 	void NP_ADT::CDLL<datatype>::push_front(datatype datum)
 	{
-		node* temp = new node(datum, nullptr, head);
+		node* temp = new node(datum, nullptr, head());
 		m_size++;
 		if (!empty())
 		{ // was a nonempty list
-			head->prev = temp;
-			head = temp;
+			handle->prev = temp;
+			handle = temp;
 		}
 		else
-			head = tail = temp;
+			handle = temp;
 	}
 
 	//-------------------------------------------------------------------------
@@ -139,7 +139,10 @@ namespace NP_ADT
 	template<typename datatype>
 	inline typename CDLL<datatype>::iterator NP_ADT::CDLL<datatype>::iterator::operator--()
 	{
-		return iterator();
+		if (ptr == nullptr)
+			throw runtime_error("nullptr pointer");
+		ptr = ptr->prev;
+		return *this;
 	}
 
 	//-------------------------------------------------------------------------
@@ -148,7 +151,11 @@ namespace NP_ADT
 	template<typename datatype>
 	inline typename CDLL<datatype>::iterator NP_ADT::CDLL<datatype>::iterator::operator--(int)
 	{
-		return iterator();
+		if (ptr == nullptr)
+			throw runtime_error("nullptr pointer");
+		iterator temp = *this;
+		ptr = ptr->prev;
+		return temp;
 	}
 
 	//-------------------------------------------------------------------------
@@ -157,19 +164,17 @@ namespace NP_ADT
 	template<typename datatype>
 	datatype NP_ADT::CDLL<datatype>::pop_front()
 	{
-		if (head == nullptr)
+		if (handle == nullptr)
 			throw runtime_error("Empty list");
 		m_size--;
-		datatype data = head->data;
-		iterator temp = begin();
-		temp++;
-		delete head;
-		head = temp;
-		if (!empty())
-			head->prev = nullptr;
-		else
-			tail = nullptr; // empty at both ends
-		return data;
+
+		datatype poppedData = head()->data;
+		node * newHead = head()->next;
+		if (newHead != nullptr)
+			newHead->prev = handle->prev;
+		
+		handle = newHead;
+		return poppedData;
 	}
 
 	//-------------------------------------------------------------------------
