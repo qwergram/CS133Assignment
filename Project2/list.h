@@ -96,12 +96,14 @@ using namespace std;
 namespace NP_ADT {
 
 
-	typedef char datatype;
+	// typedef char datatype;
 
+	template <typename datatype>
 	class CircularDoublyLinkedList
 	{
 	public:
 		
+		// template <typename datatype>
 		struct node
 		{
 			datatype data;
@@ -110,6 +112,7 @@ namespace NP_ADT {
 			node(datatype datum, node * p, node * n) : data(datum), prev(p), next(n) {} // struct constructor
 		};
 		
+		// template <typename datatype>
 		class iterator
 		{
 		public:
@@ -120,17 +123,20 @@ namespace NP_ADT {
 			iterator operator--(int);
 			node * operator->() const { return ptr; }
 			datatype & operator*() const { return ptr->data; }
-			operator node *() const { return ptr; }
+			operator node*() const { return ptr; }
 		private:
-			node * ptr; //current listelem or nullptr
+			node * ptr;
 		};
 		
+		// Constructors
 		CircularDoublyLinkedList() : head(nullptr), tail(nullptr), m_size(0) {}
 		CircularDoublyLinkedList(size_t n_elements, datatype datum);
 		CircularDoublyLinkedList(const CircularDoublyLinkedList& x);
 		CircularDoublyLinkedList(iterator b, iterator e);
-
+		
+		// Destructor
 		~CircularDoublyLinkedList() { release(); }
+
 		unsigned getSize() const { return m_size; }
 		iterator begin() const { return head; }
 		iterator end() const { return tail; }
@@ -145,12 +151,13 @@ namespace NP_ADT {
 		CircularDoublyLinkedList operator=(const CircularDoublyLinkedList & rlist);
 		datatype& operator[](int index);
 		const datatype& operator[](int index) const;
+
+		friend ostream & operator<<(ostream& sout, const CircularDoublyLinkedList<datatype> & cdll);
+
 	private:
 		node *head;
 		node *tail;
 		unsigned m_size; // number of elements in the list 
 	};
-
-	ostream& operator<<(ostream& sout, const CircularDoublyLinkedList& x);
 
 }
