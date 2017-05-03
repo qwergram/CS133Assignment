@@ -129,7 +129,7 @@ namespace NP_ADT {
 		datatype& operator[](int index);
 		const datatype& operator[](int index) const;
 
-		friend ostream & operator<<(ostream& sout, const CircularDoublyLinkedList<datatype> & cdll);
+		
 
 	private:
 		node *head;
@@ -160,5 +160,8 @@ namespace NP_ADT {
 			node * ptr;
 		};
 	};
+
+	template <typename datatype>
+	ostream & operator<<(ostream& sout, const CircularDoublyLinkedList<datatype> & cdll);
 
 }

@@ -201,10 +201,12 @@ namespace NP_ADT
 	//-------------------------------------------------------------------------
 	// ostream << overload
 	//-------------------------------------------------------------------------
-	template<typename datatype>
-	ostream & NP_ADT::operator << (ostream & sout, const CircularDoublyLinkedList<datatype>& cdll)
+	//template<typename datatype>
+	
+	template <typename datatype>
+	ostream & operator << (ostream& sout, const CircularDoublyLinkedList<datatype> & cdll)
 	{
-		// TODO: add code here
+		
 		return sout;
 	}
 
