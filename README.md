@@ -14,7 +14,7 @@ All the things I've learned in the realm of C++ and whatnot.
   <td><b>Source</b></td>
 </tr>
 <tr>
-  <td>Project 1</td>
+  <td>DateTime Inheritance</td>
   <td><a href="https://github.com/qwergram/CS133Assignment/blob/master/Notes/Project1.md">Readme</a></td>
   <td><a href="https://github.com/qwergram/CS133Assignment/tree/master/CS133Assignment1">Source</a></td>
 </tr>
@@ -27,6 +27,11 @@ All the things I've learned in the realm of C++ and whatnot.
   <td>Quiz 3</td>
   <td><a href="https://github.com/qwergram/CS133Assignment/blob/master/Notes/quiz3.md">Readme</a></td>
   <td><a href="https://github.com/qwergram/CS133Assignment/blob/master/Quiz3/main.cpp">Source</a></td>
+</tr>
+<tr>
+  <td>Circularly Doubly Linked List</td>
+  <td><a href="https://github.com/qwergram/CS133Assignment/blob/master/Notes/project2.md">Readme</a></td>
+  <td><a href="https://github.com/qwergram/CS133Assignment/tree/master/Project2">Source</a></td>
 </tr>
 </table>
 
