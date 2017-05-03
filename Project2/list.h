@@ -131,8 +131,8 @@ namespace NP_ADT {
 		// Constructors
 		CircularDoublyLinkedList() : head(nullptr), tail(nullptr), m_size(0) {}
 		CircularDoublyLinkedList(size_t n_elements, datatype datum);
-		CircularDoublyLinkedList(const CircularDoublyLinkedList& x);
-		CircularDoublyLinkedList(iterator b, iterator e);
+		CircularDoublyLinkedList(const CircularDoublyLinkedList& cdll);
+		CircularDoublyLinkedList(iterator begin, iterator end);
 		
 		// Destructor
 		~CircularDoublyLinkedList() { release(); }
@@ -142,8 +142,8 @@ namespace NP_ADT {
 		iterator end() const { return tail; }
 		void push_front(datatype datum);
 		datatype pop_front();
-		void push_back(datatype datum);
-		datatype pop_back();
+		// void push_back(datatype datum);
+		// datatype pop_back();
 		datatype& front() const { return head->data; }
 		datatype& back() const { return tail->data; }
 		bool empty()const { return head == nullptr || tail == nullptr; }

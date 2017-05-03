@@ -13,15 +13,6 @@ namespace NP_ADT
 	//-------------------------------------------------------------------------
 	// constructor
 	//-------------------------------------------------------------------------
-	/*CircularDoublyLinkedList::CircularDoublyLinkedList(size_t n_elements, datatype datum)
-		:m_size(0), head(nullptr), tail(nullptr)
-	{
-		if (n_elements <= 0)
-			throw out_of_range("Empty list");
-		for (size_t i = 0; i < n_elements; ++i)
-			push_front(datum);
-	}*/
-
 	template<typename datatype>
 	CircularDoublyLinkedList<datatype>::CircularDoublyLinkedList(size_t n_elements, datatype datum)
 		:m_size(0), head(nullptr), tail(nullptr)
@@ -35,37 +26,41 @@ namespace NP_ADT
 	//-------------------------------------------------------------------------
 	// copy constructor
 	//-------------------------------------------------------------------------
-	/*CircularDoublyLinkedList::CircularDoublyLinkedList(const CircularDoublyLinkedList& x)
+	template<typename datatype>
+	NP_ADT::CircularDoublyLinkedList<datatype>::CircularDoublyLinkedList(const CircularDoublyLinkedList & cdll)
 		: m_size(0), head(nullptr), tail(nullptr)
 	{
-		CircularDoublyLinkedList::iterator r_it = x.begin();
+		CircularDoublyLinkedList::iterator r_it = cdll.begin();
 		while (r_it != nullptr)
 			push_front(*r_it++);
-	}*/
+	}
 
 	//-------------------------------------------------------------------------
-	// constructor using iterators, copies from b to one before e
+	// constructor using iterators, copies from begin to one before end
 	//-------------------------------------------------------------------------
-	/*CircularDoublyLinkedList::CircularDoublyLinkedList(iterator b, iterator e)
+	template<typename datatype>
+	NP_ADT::CircularDoublyLinkedList<datatype>::CircularDoublyLinkedList(iterator begin, iterator end)
 		:m_size(0), head(nullptr), tail(nullptr)
 	{
-		while (b != e)
-			push_front(*b++);
-	}*/
+		while (begin != end)
+			push_front(*begin++);
+	}
 
 	//-----------------------------------------------------------------------------
 	// empties the list
 	//-----------------------------------------------------------------------------
-	/*void CircularDoublyLinkedList::release()
+	template<typename datatype>
+	inline void NP_ADT::CircularDoublyLinkedList<datatype>::release()
 	{
 		while (head != nullptr)
 			pop_front();
-	}*/
+	}
 
 	//-------------------------------------------------------------------------
 	// prints out a list
 	//-------------------------------------------------------------------------
-	/*ostream& operator<<(ostream& sout, const CircularDoublyLinkedList& x)
+	template<typename datatype>
+	const datatype & NP_ADT::CircularDoublyLinkedList<datatype>::operator[](int index) const
 	{
 		CircularDoublyLinkedList::iterator p = x.begin(); // gets x.h
 		sout << "(";
@@ -78,12 +73,13 @@ namespace NP_ADT
 		}
 		sout << ")\n";
 		return sout;
-	}*/
+	}
 
 	//-------------------------------------------------------------------------
 	// insert element at front of list
 	//-------------------------------------------------------------------------
-	/*void CircularDoublyLinkedList::push_front(datatype datum)
+	template<typename datatype>
+	void NP_ADT::CircularDoublyLinkedList<datatype>::push_front(datatype datum)
 	{
 		node* temp = new node(datum, nullptr, head);
 		m_size++;
@@ -94,72 +90,72 @@ namespace NP_ADT
 		}
 		else
 			head = tail = temp;
-	}*/
+	}
 
 	//-------------------------------------------------------------------------
-
 	// returns a copy of rlist
 	//-------------------------------------------------------------------------
-	/*CircularDoublyLinkedList CircularDoublyLinkedList::operator=(const CircularDoublyLinkedList & rlist)
+	template<typename datatype>
+	CircularDoublyLinkedList<datatype> NP_ADT::CircularDoublyLinkedList<datatype>::operator=(const CircularDoublyLinkedList & rlist)
 	{
 		if (&rlist != this)
 		{
-			CircularDoublyLinkedList::iterator r_it = rlist.begin();
+			CircularDoublyLinkedList<datatype>::iterator r_it = rlist.begin();
 			release();
 			while (r_it != 0)
 				push_front(*r_it++);
 		}
 		return *this;
-	}*/
+	}
 
 	//-------------------------------------------------------------------------
 	// pre-increment
 	//-------------------------------------------------------------------------
-	/*CircularDoublyLinkedList::iterator CircularDoublyLinkedList::iterator::operator++()
+	template<typename datatype>
+	inline typename CircularDoublyLinkedList<datatype>::iterator NP_ADT::CircularDoublyLinkedList<datatype>::iterator::operator++()
 	{
 		if (ptr == nullptr)
 			throw runtime_error("nullptr pointer");
 		ptr = ptr->next;
 		return *this;
-	}*/
+	}
 
 	//-------------------------------------------------------------------------
 	// post-increment
 	//-------------------------------------------------------------------------
-	/*CircularDoublyLinkedList::iterator CircularDoublyLinkedList::iterator::operator++(int)
+	template<typename datatype>
+	inline typename CircularDoublyLinkedList<datatype>::iterator NP_ADT::CircularDoublyLinkedList<datatype>::iterator::operator++(int)
 	{
 		if (ptr == nullptr)
 			throw runtime_error("nullptr pointer");
 		iterator temp = *this;
 		ptr = ptr->next;
 		return temp;
-	}*/
+	}
 
 	//-------------------------------------------------------------------------
 	// pre-decrement
 	//-------------------------------------------------------------------------
-	/*CircularDoublyLinkedList::iterator CircularDoublyLinkedList::iterator::operator--()
+	template<typename datatype>
+	inline typename CircularDoublyLinkedList<datatype>::iterator NP_ADT::CircularDoublyLinkedList<datatype>::iterator::operator--()
 	{
-		// REPLACE THE DUMMY CODE BELOW WITH YOUR OWN
-		iterator temp = nullptr;
-		return temp;
-
-	}*/
+		return iterator();
+	}
 
 	//-------------------------------------------------------------------------
 	// post-decrement
 	//-------------------------------------------------------------------------
-	/*CircularDoublyLinkedList::iterator CircularDoublyLinkedList::iterator::operator--(int)
+	template<typename datatype>
+	inline typename CircularDoublyLinkedList<datatype>::iterator NP_ADT::CircularDoublyLinkedList<datatype>::iterator::operator--(int)
 	{
-		// REPLACE THE DUMMY CODE BELOW WITH YOUR OWN
-		iterator temp = nullptr;
-		return temp;
-	}*/
+		return iterator();
+	}
 
 	//-------------------------------------------------------------------------
 	// removes front element and returns the data from that element
 	//-------------------------------------------------------------------------
-	/*datatype CircularDoublyLinkedList::pop_front()
+	template<typename datatype>
+	datatype NP_ADT::CircularDoublyLinkedList<datatype>::pop_front()
 	{
 		if (head == nullptr)
 			throw runtime_error("Empty list");
@@ -174,12 +170,13 @@ namespace NP_ADT
 		else
 			tail = nullptr; // empty at both ends
 		return data;
-	}*/
+	}
 
 	//-------------------------------------------------------------------------
 	// [] operator -- l-value
 	//-------------------------------------------------------------------------
-	/*datatype& CircularDoublyLinkedList::operator[](int index)
+	template<typename datatype>
+	datatype & NP_ADT::CircularDoublyLinkedList<datatype>::operator[](int index)
 	{
 		iterator it;
 		if (index >= 0)
@@ -199,47 +196,32 @@ namespace NP_ADT
 				it--;
 		}
 		return *it;
-	}*/
+	}
 
 	//-------------------------------------------------------------------------
-	// [] operator -- r-value
+	// ostream << overload
 	//-------------------------------------------------------------------------
-	/*const datatype& CircularDoublyLinkedList::operator[](int index)const
+	template<typename datatype>
+	ostream & NP_ADT::operator << (ostream & sout, const CircularDoublyLinkedList<datatype>& cdll)
 	{
-		iterator it;
-		if (index >= 0)
-		{
-			if (index >= static_cast<int>(getSize()))
-				throw out_of_range("index out-of-range");
-			it = begin();
-			for (int i = 0; i < index; i++)
-				it++;
-		}
-		else
-		{
-			if (index < -(static_cast<int>(getSize())))
-				throw out_of_range("index out-of-range");
-			it = end();
-			for (int i = -1; i > index; i--)
-				it--;
-		}
-		return *it;
-	}*/
+		// TODO: add code here
+		return sout;
+	}
 
-} // end namespace PB_ADT
+} // end namespace NP_ADT
 
   //---------------------------------------------------------------------------
   // driver to test list
   //---------------------------------------------------------------------------
 int main(void)
 {
-	/*using NP_ADT::CircularDoublyLinkedList; // not the same as std::list<class T>
+	using NP_ADT::CircularDoublyLinkedList; // not the same as std::list<class T>
 	try
 	{
-		CircularDoublyLinkedList mylist(3, 'X');
-		CircularDoublyLinkedList mylist2;
-		CircularDoublyLinkedList mylist3(mylist);
-		CircularDoublyLinkedList mylist4(mylist.begin(), mylist.end());
+		CircularDoublyLinkedList<char> mylist(3, 'X');
+		CircularDoublyLinkedList<char> mylist2;
+		CircularDoublyLinkedList<char> mylist3(mylist);
+		CircularDoublyLinkedList<char> mylist4(mylist.begin(), mylist.end());
 		cout << "mylist: " << mylist << endl;
 		cout << "mylist2: " << mylist2 << endl;
 		cout << "mylist3: " << mylist3 << endl;
@@ -250,7 +232,7 @@ int main(void)
 		mylist2 = mylist; // a copy
 		cout << "mylist: " << mylist << endl;
 		// create a new iterator pointing to the beginning of mylist
-		CircularDoublyLinkedList::iterator listit(mylist.begin());
+		CircularDoublyLinkedList<char>::iterator listit(mylist.begin());
 		cout << listit++->data << " ";
 		cout << listit->data << endl;
 		cout << "mylist: ";
@@ -267,6 +249,6 @@ int main(void)
 		cin.get();
 		return EXIT_FAILURE;
 	}
-	cin.get();  // keep window open*/
+	cin.get();  // keep window open
 	return EXIT_SUCCESS;
 }
