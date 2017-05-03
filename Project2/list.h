@@ -99,20 +99,20 @@ namespace NP_ADT {
 	// typedef char datatype;
 
 	template <typename datatype>
-	class CircularDoublyLinkedList
+	class CDLL
 	{
 	public:
 		struct node;
 		class iterator;
 		
 		// Constructors
-		CircularDoublyLinkedList() : head(nullptr), tail(nullptr), m_size(0) {}
-		CircularDoublyLinkedList(size_t n_elements, datatype datum);
-		CircularDoublyLinkedList(const CircularDoublyLinkedList& cdll);
-		CircularDoublyLinkedList(iterator begin, iterator end);
+		CDLL() : head(nullptr), tail(nullptr), m_size(0) {}
+		CDLL(size_t n_elements, datatype datum);
+		CDLL(const CDLL& cdll);
+		CDLL(iterator begin, iterator end);
 		
 		// Destructor
-		~CircularDoublyLinkedList() { release(); }
+		~CDLL() { release(); }
 
 		unsigned getSize() const { return m_size; }
 		iterator begin() const { return head; }
@@ -125,7 +125,7 @@ namespace NP_ADT {
 		datatype& back() const { return tail->data; }
 		bool empty()const { return head == nullptr || tail == nullptr; }
 		void release();
-		CircularDoublyLinkedList operator=(const CircularDoublyLinkedList & rlist);
+		CDLL operator=(const CDLL & rlist);
 		datatype& operator[](int index);
 		const datatype& operator[](int index) const;
 
@@ -162,6 +162,6 @@ namespace NP_ADT {
 	};
 
 	template <typename datatype>
-	ostream & operator<<(ostream& sout, const CircularDoublyLinkedList<datatype> & cdll);
+	ostream & operator<<(ostream& sout, const CDLL<datatype> & cdll);
 
 }

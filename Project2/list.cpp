@@ -14,7 +14,7 @@ namespace NP_ADT
 	// constructor
 	//-------------------------------------------------------------------------
 	template<typename datatype>
-	CircularDoublyLinkedList<datatype>::CircularDoublyLinkedList(size_t n_elements, datatype datum)
+	CDLL<datatype>::CDLL(size_t n_elements, datatype datum)
 		:m_size(0), head(nullptr), tail(nullptr)
 	{
 		if (n_elements <= 0)
@@ -27,10 +27,10 @@ namespace NP_ADT
 	// copy constructor
 	//-------------------------------------------------------------------------
 	template<typename datatype>
-	NP_ADT::CircularDoublyLinkedList<datatype>::CircularDoublyLinkedList(const CircularDoublyLinkedList & cdll)
+	NP_ADT::CDLL<datatype>::CDLL(const CDLL & cdll)
 		: m_size(0), head(nullptr), tail(nullptr)
 	{
-		CircularDoublyLinkedList::iterator r_it = cdll.begin();
+		CDLL::iterator r_it = cdll.begin();
 		while (r_it != nullptr)
 			push_front(*r_it++);
 	}
@@ -39,7 +39,7 @@ namespace NP_ADT
 	// constructor using iterators, copies from begin to one before end
 	//-------------------------------------------------------------------------
 	template<typename datatype>
-	NP_ADT::CircularDoublyLinkedList<datatype>::CircularDoublyLinkedList(iterator begin, iterator end)
+	NP_ADT::CDLL<datatype>::CDLL(iterator begin, iterator end)
 		:m_size(0), head(nullptr), tail(nullptr)
 	{
 		while (begin != end)
@@ -50,7 +50,7 @@ namespace NP_ADT
 	// empties the list
 	//-----------------------------------------------------------------------------
 	template<typename datatype>
-	inline void NP_ADT::CircularDoublyLinkedList<datatype>::release()
+	inline void NP_ADT::CDLL<datatype>::release()
 	{
 		while (head != nullptr)
 			pop_front();
@@ -60,9 +60,9 @@ namespace NP_ADT
 	// prints out a list
 	//-------------------------------------------------------------------------
 	template<typename datatype>
-	const datatype & NP_ADT::CircularDoublyLinkedList<datatype>::operator[](int index) const
+	const datatype & NP_ADT::CDLL<datatype>::operator[](int index) const
 	{
-		CircularDoublyLinkedList::iterator p = x.begin(); // gets x.h
+		CDLL::iterator p = x.begin(); // gets x.h
 		sout << "(";
 		while (p != nullptr)
 		{
@@ -79,7 +79,7 @@ namespace NP_ADT
 	// insert element at front of list
 	//-------------------------------------------------------------------------
 	template<typename datatype>
-	void NP_ADT::CircularDoublyLinkedList<datatype>::push_front(datatype datum)
+	void NP_ADT::CDLL<datatype>::push_front(datatype datum)
 	{
 		node* temp = new node(datum, nullptr, head);
 		m_size++;
@@ -96,11 +96,11 @@ namespace NP_ADT
 	// returns a copy of rlist
 	//-------------------------------------------------------------------------
 	template<typename datatype>
-	CircularDoublyLinkedList<datatype> NP_ADT::CircularDoublyLinkedList<datatype>::operator=(const CircularDoublyLinkedList & rlist)
+	CDLL<datatype> NP_ADT::CDLL<datatype>::operator=(const CDLL & rlist)
 	{
 		if (&rlist != this)
 		{
-			CircularDoublyLinkedList<datatype>::iterator r_it = rlist.begin();
+			CDLL<datatype>::iterator r_it = rlist.begin();
 			release();
 			while (r_it != 0)
 				push_front(*r_it++);
@@ -112,7 +112,7 @@ namespace NP_ADT
 	// pre-increment
 	//-------------------------------------------------------------------------
 	template<typename datatype>
-	inline typename CircularDoublyLinkedList<datatype>::iterator NP_ADT::CircularDoublyLinkedList<datatype>::iterator::operator++()
+	inline typename CDLL<datatype>::iterator NP_ADT::CDLL<datatype>::iterator::operator++()
 	{
 		if (ptr == nullptr)
 			throw runtime_error("nullptr pointer");
@@ -124,7 +124,7 @@ namespace NP_ADT
 	// post-increment
 	//-------------------------------------------------------------------------
 	template<typename datatype>
-	inline typename CircularDoublyLinkedList<datatype>::iterator NP_ADT::CircularDoublyLinkedList<datatype>::iterator::operator++(int)
+	inline typename CDLL<datatype>::iterator NP_ADT::CDLL<datatype>::iterator::operator++(int)
 	{
 		if (ptr == nullptr)
 			throw runtime_error("nullptr pointer");
@@ -137,7 +137,7 @@ namespace NP_ADT
 	// pre-decrement
 	//-------------------------------------------------------------------------
 	template<typename datatype>
-	inline typename CircularDoublyLinkedList<datatype>::iterator NP_ADT::CircularDoublyLinkedList<datatype>::iterator::operator--()
+	inline typename CDLL<datatype>::iterator NP_ADT::CDLL<datatype>::iterator::operator--()
 	{
 		return iterator();
 	}
@@ -146,7 +146,7 @@ namespace NP_ADT
 	// post-decrement
 	//-------------------------------------------------------------------------
 	template<typename datatype>
-	inline typename CircularDoublyLinkedList<datatype>::iterator NP_ADT::CircularDoublyLinkedList<datatype>::iterator::operator--(int)
+	inline typename CDLL<datatype>::iterator NP_ADT::CDLL<datatype>::iterator::operator--(int)
 	{
 		return iterator();
 	}
@@ -155,7 +155,7 @@ namespace NP_ADT
 	// removes front element and returns the data from that element
 	//-------------------------------------------------------------------------
 	template<typename datatype>
-	datatype NP_ADT::CircularDoublyLinkedList<datatype>::pop_front()
+	datatype NP_ADT::CDLL<datatype>::pop_front()
 	{
 		if (head == nullptr)
 			throw runtime_error("Empty list");
@@ -176,7 +176,7 @@ namespace NP_ADT
 	// [] operator -- l-value
 	//-------------------------------------------------------------------------
 	template<typename datatype>
-	datatype & NP_ADT::CircularDoublyLinkedList<datatype>::operator[](int index)
+	datatype & NP_ADT::CDLL<datatype>::operator[](int index)
 	{
 		iterator it;
 		if (index >= 0)
@@ -204,7 +204,7 @@ namespace NP_ADT
 	//template<typename datatype>
 	
 	template <typename datatype>
-	ostream & operator << (ostream& sout, const CircularDoublyLinkedList<datatype> & cdll)
+	ostream & operator << (ostream& sout, const CDLL<datatype> & cdll)
 	{
 		
 		return sout;
@@ -217,13 +217,13 @@ namespace NP_ADT
   //---------------------------------------------------------------------------
 int main(void)
 {
-	using NP_ADT::CircularDoublyLinkedList; // not the same as std::list<class T>
+	using NP_ADT::CDLL; // not the same as std::list<class T>
 	try
 	{
-		CircularDoublyLinkedList<char> mylist(3, 'X');
-		CircularDoublyLinkedList<char> mylist2;
-		CircularDoublyLinkedList<char> mylist3(mylist);
-		CircularDoublyLinkedList<char> mylist4(mylist.begin(), mylist.end());
+		CDLL<char> mylist(3, 'X');
+		CDLL<char> mylist2;
+		CDLL<char> mylist3(mylist);
+		CDLL<char> mylist4(mylist.begin(), mylist.end());
 		cout << "mylist: " << mylist << endl;
 		cout << "mylist2: " << mylist2 << endl;
 		cout << "mylist3: " << mylist3 << endl;
@@ -234,7 +234,7 @@ int main(void)
 		mylist2 = mylist; // a copy
 		cout << "mylist: " << mylist << endl;
 		// create a new iterator pointing to the beginning of mylist
-		CircularDoublyLinkedList<char>::iterator listit(mylist.begin());
+		CDLL<char>::iterator listit(mylist.begin());
 		cout << listit++->data << " ";
 		cout << listit->data << endl;
 		cout << "mylist: ";
