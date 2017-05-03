@@ -75,7 +75,7 @@ namespace NP_ADT
 	//-----------------------------------------------------------------------------
 	void CircularDoublyLinkedList::push_front(datatype datum)
 	{
-		listelem* temp = new listelem(datum, nullptr, head);
+		node* temp = new node(datum, nullptr, head);
 		m_size++;
 		if (!empty())
 		{ // was a nonempty list

@@ -101,9 +101,30 @@ namespace NP_ADT {
 	class CircularDoublyLinkedList
 	{
 	public:
-		struct listelem; // forward declarations
-		class iterator;
-		// constructors
+		
+		struct node
+		{
+			datatype data;
+			node * next;
+			node * prev;
+			node(datatype datum, node * p, node * n) : data(datum), prev(p), next(n) {} // struct constructor
+		};
+		
+		class iterator
+		{
+		public:
+			iterator(node * p = nullptr) : ptr(p) {}
+			iterator operator++();
+			iterator operator--();
+			iterator operator++(int);
+			iterator operator--(int);
+			node * operator->() const { return ptr; }
+			datatype & operator*() const { return ptr->data; }
+			operator node *() const { return ptr; }
+		private:
+			node* ptr; //current listelem or nullptr
+		};
+		
 		CircularDoublyLinkedList() : head(nullptr), tail(nullptr), m_size(0) {}
 		CircularDoublyLinkedList(size_t n_elements, datatype datum);
 		CircularDoublyLinkedList(const CircularDoublyLinkedList& x);
@@ -125,32 +146,9 @@ namespace NP_ADT {
 		datatype& operator[](int index);
 		const datatype& operator[](int index) const;
 	private:
-		listelem *head;
-		listelem *tail;
+		node *head;
+		node *tail;
 		unsigned m_size; // number of elements in the list 
-	public:
-		struct listelem // list cell
-		{
-			datatype data;
-			listelem *next;
-			listelem *prev;
-			listelem(datatype datum, listelem* p, listelem* n) : data(datum), prev(p), next(n) {} // struct constructor
-		};
-		// scoped within class list !
-		class iterator
-		{
-		public:
-			iterator(listelem* p = nullptr) : ptr(p) {}
-			iterator operator++();
-			iterator operator--();
-			iterator operator++(int);
-			iterator operator--(int);
-			listelem* operator->() const { return ptr; }
-			datatype& operator*() const { return ptr->data; }
-			operator listelem*() const { return ptr; }
-		private:
-			listelem* ptr; //current listelem or nullptr
-		};
 	};
 
 	ostream& operator<<(ostream& sout, const CircularDoublyLinkedList& x);
