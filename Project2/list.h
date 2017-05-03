@@ -129,8 +129,9 @@ namespace NP_ADT {
 		datatype& operator[](int index);
 		const datatype& operator[](int index) const;
 
+		// Head = handle and tail = handle - 1
 		node * head(void) const { return handle; }
-		node * tail(void) const { return handle->prev; }
+		node * tail(void) const { return (handle == nullptr) ? nullptr : handle->prev; }
 
 	private:
 		// remove head and tail as property
