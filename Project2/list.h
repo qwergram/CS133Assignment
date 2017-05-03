@@ -98,18 +98,18 @@ namespace NP_ADT {
 
 	typedef char datatype;
 
-	class list
+	class CircularDoublyLinkedList
 	{
 	public:
 		struct listelem; // forward declarations
 		class iterator;
 		// constructors
-		list() : head(nullptr), tail(nullptr), m_size(0) {}
-		list(size_t n_elements, datatype datum);
-		list(const list& x);
-		list(iterator b, iterator e);
+		CircularDoublyLinkedList() : head(nullptr), tail(nullptr), m_size(0) {}
+		CircularDoublyLinkedList(size_t n_elements, datatype datum);
+		CircularDoublyLinkedList(const CircularDoublyLinkedList& x);
+		CircularDoublyLinkedList(iterator b, iterator e);
 
-		~list() { release(); }
+		~CircularDoublyLinkedList() { release(); }
 		unsigned getSize() const { return m_size; }
 		iterator begin() const { return head; }
 		iterator end() const { return tail; }
@@ -121,7 +121,7 @@ namespace NP_ADT {
 		datatype& back() const { return tail->data; }
 		bool empty()const { return head == nullptr || tail == nullptr; }
 		void release();
-		list operator=(const list & rlist);
+		CircularDoublyLinkedList operator=(const CircularDoublyLinkedList & rlist);
 		datatype& operator[](int index);
 		const datatype& operator[](int index) const;
 	private:
@@ -153,6 +153,6 @@ namespace NP_ADT {
 		};
 	};
 
-	ostream& operator<<(ostream& sout, const list& x);
+	ostream& operator<<(ostream& sout, const CircularDoublyLinkedList& x);
 
 }

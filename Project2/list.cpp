@@ -13,7 +13,7 @@ namespace NP_ADT
 	//-----------------------------------------------------------------------------
 	// constructor
 	//-----------------------------------------------------------------------------
-	list::list(size_t n_elements, datatype datum)
+	CircularDoublyLinkedList::CircularDoublyLinkedList(size_t n_elements, datatype datum)
 		:m_size(0), head(nullptr), tail(nullptr)
 	{
 		if (n_elements <= 0)
@@ -25,10 +25,10 @@ namespace NP_ADT
 	//-----------------------------------------------------------------------------
 	// copy constructor
 	//-----------------------------------------------------------------------------
-	list::list(const list& x)
+	CircularDoublyLinkedList::CircularDoublyLinkedList(const CircularDoublyLinkedList& x)
 		: m_size(0), head(nullptr), tail(nullptr)
 	{
-		list::iterator r_it = x.begin();
+		CircularDoublyLinkedList::iterator r_it = x.begin();
 		while (r_it != nullptr)
 			push_front(*r_it++);
 	}
@@ -36,7 +36,7 @@ namespace NP_ADT
 	//-----------------------------------------------------------------------------
 	// constructor using iterators, copies from b to one before e
 	//-----------------------------------------------------------------------------
-	list::list(iterator b, iterator e)
+	CircularDoublyLinkedList::CircularDoublyLinkedList(iterator b, iterator e)
 		:m_size(0), head(nullptr), tail(nullptr)
 	{
 		while (b != e)
@@ -46,7 +46,7 @@ namespace NP_ADT
 	//-----------------------------------------------------------------------------
 	// empties the list
 	//-----------------------------------------------------------------------------
-	void list::release()
+	void CircularDoublyLinkedList::release()
 	{
 		while (head != nullptr)
 			pop_front();
@@ -55,9 +55,9 @@ namespace NP_ADT
 	//-----------------------------------------------------------------------------
 	// prints out a list
 	//-----------------------------------------------------------------------------
-	ostream& operator<<(ostream& sout, const list& x)
+	ostream& operator<<(ostream& sout, const CircularDoublyLinkedList& x)
 	{
-		list::iterator p = x.begin(); // gets x.h
+		CircularDoublyLinkedList::iterator p = x.begin(); // gets x.h
 		sout << "(";
 		while (p != nullptr)
 		{
@@ -73,7 +73,7 @@ namespace NP_ADT
 	//-----------------------------------------------------------------------------
 	// insert element at front of list
 	//-----------------------------------------------------------------------------
-	void list::push_front(datatype datum)
+	void CircularDoublyLinkedList::push_front(datatype datum)
 	{
 		listelem* temp = new listelem(datum, nullptr, head);
 		m_size++;
@@ -90,11 +90,11 @@ namespace NP_ADT
 
 	// returns a copy of rlist
 	//-----------------------------------------------------------------------------
-	list list::operator=(const list & rlist)
+	CircularDoublyLinkedList CircularDoublyLinkedList::operator=(const CircularDoublyLinkedList & rlist)
 	{
 		if (&rlist != this)
 		{
-			list::iterator r_it = rlist.begin();
+			CircularDoublyLinkedList::iterator r_it = rlist.begin();
 			release();
 			while (r_it != 0)
 				push_front(*r_it++);
@@ -105,7 +105,7 @@ namespace NP_ADT
 	//-----------------------------------------------------------------------------
 	// pre-increment
 	//-----------------------------------------------------------------------------
-	list::iterator list::iterator::operator++()
+	CircularDoublyLinkedList::iterator CircularDoublyLinkedList::iterator::operator++()
 	{
 		if (ptr == nullptr)
 			throw runtime_error("nullptr pointer");
@@ -116,7 +116,7 @@ namespace NP_ADT
 	//-----------------------------------------------------------------------------
 	// post-increment
 	//-----------------------------------------------------------------------------
-	list::iterator list::iterator::operator++(int)
+	CircularDoublyLinkedList::iterator CircularDoublyLinkedList::iterator::operator++(int)
 	{
 		if (ptr == nullptr)
 			throw runtime_error("nullptr pointer");
@@ -128,7 +128,7 @@ namespace NP_ADT
 	//-----------------------------------------------------------------------------
 	// pre-decrement
 	//-----------------------------------------------------------------------------
-	list::iterator list::iterator::operator--()
+	CircularDoublyLinkedList::iterator CircularDoublyLinkedList::iterator::operator--()
 	{
 		// REPLACE THE DUMMY CODE BELOW WITH YOUR OWN
 		iterator temp = nullptr;
@@ -139,7 +139,7 @@ namespace NP_ADT
 	//-----------------------------------------------------------------------------
 	// post-decrement
 	//-----------------------------------------------------------------------------
-	list::iterator list::iterator::operator--(int)
+	CircularDoublyLinkedList::iterator CircularDoublyLinkedList::iterator::operator--(int)
 	{
 		// REPLACE THE DUMMY CODE BELOW WITH YOUR OWN
 		iterator temp = nullptr;
@@ -149,7 +149,7 @@ namespace NP_ADT
 	//-----------------------------------------------------------------------------
 	// removes front element and returns the data from that element
 	//-----------------------------------------------------------------------------
-	datatype list::pop_front()
+	datatype CircularDoublyLinkedList::pop_front()
 	{
 		if (head == nullptr)
 			throw runtime_error("Empty list");
@@ -169,7 +169,7 @@ namespace NP_ADT
 	//-----------------------------------------------------------------------------
 	// [] operator -- l-value
 	//-----------------------------------------------------------------------------
-	datatype& list::operator[](int index)
+	datatype& CircularDoublyLinkedList::operator[](int index)
 	{
 		iterator it;
 		if (index >= 0)
@@ -193,7 +193,7 @@ namespace NP_ADT
 	//-----------------------------------------------------------------------------
 	// [] operator -- r-value
 	//-----------------------------------------------------------------------------
-	const datatype& list::operator[](int index)const
+	const datatype& CircularDoublyLinkedList::operator[](int index)const
 	{
 		iterator it;
 		if (index >= 0)
@@ -222,13 +222,13 @@ namespace NP_ADT
   //-----------------------------------------------------------------------------
 int main(void)
 {
-	using NP_ADT::list; // not the same as std::list<class T>
+	using NP_ADT::CircularDoublyLinkedList; // not the same as std::list<class T>
 	try
 	{
-		list mylist(3, 'X');
-		list mylist2;
-		list mylist3(mylist);
-		list mylist4(mylist.begin(), mylist.end());
+		CircularDoublyLinkedList mylist(3, 'X');
+		CircularDoublyLinkedList mylist2;
+		CircularDoublyLinkedList mylist3(mylist);
+		CircularDoublyLinkedList mylist4(mylist.begin(), mylist.end());
 		cout << "mylist: " << mylist << endl;
 		cout << "mylist2: " << mylist2 << endl;
 		cout << "mylist3: " << mylist3 << endl;
@@ -239,7 +239,7 @@ int main(void)
 		mylist2 = mylist; // a copy
 		cout << "mylist: " << mylist << endl;
 		// create a new iterator pointing to the beginning of mylist
-		list::iterator listit(mylist.begin());
+		CircularDoublyLinkedList::iterator listit(mylist.begin());
 		cout << listit++->data << " ";
 		cout << listit->data << endl;
 		cout << "mylist: ";
