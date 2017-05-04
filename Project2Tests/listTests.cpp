@@ -7,14 +7,24 @@ using namespace NP_ADT;
 
 namespace Project2Tests
 {		
-	TEST_CLASS(UnitTest1)
+	TEST_CLASS(ListTests)
 	{
 	public:
 		
-		TEST_METHOD(TestMethod1)
+		TEST_METHOD(TestEmptyConstructor)
 		{
 			CDLL<int> test = CDLL<int>();
-			
+			Assert::AreEqual(unsigned int(0), test.getSize());
+			Assert::IsTrue(nullptr == test.head());
+			Assert::IsTrue(nullptr == test.tail());
+		}
+
+		TEST_METHOD(TestOneItemList) {
+			CDLL<int> test = CDLL<int>();
+			test.push_front(1);
+			Assert::AreEqual(unsigned int(1), test.getSize());
+			Assert::IsTrue(unsigned int(1) == test.head()->data);
+			Assert::IsTrue(unsigned int(1) == test.head()->data);
 		}
 
 	};
