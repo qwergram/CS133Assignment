@@ -1,7 +1,9 @@
 #include "stdafx.h"
 #include "CppUnitTest.h"
+#include "..\Project2\list.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
+using namespace NP_ADT;
 
 namespace Project2Tests
 {		
@@ -11,7 +13,7 @@ namespace Project2Tests
 		
 		TEST_METHOD(TestMethod1)
 		{
-			// TODO: Your test code here
+			auto test = CDLL<int>();
 		}
 
 	};
