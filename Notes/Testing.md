@@ -46,3 +46,7 @@ When succesfully built, open up the test properties again and go to the input li
 Locate the new location of your `x86` build and paste the `.obj` file paths into your linker input settins like you did in Step 2.
 
 ![](http://imgur.com/dXEFVoC.png)
+
+# References
+- [UW's Mark Schofield 2/16/2011](https://courses.cs.washington.edu/courses/cse403/11wi/lectures/UnitTestinginWindows.pdf)
+
