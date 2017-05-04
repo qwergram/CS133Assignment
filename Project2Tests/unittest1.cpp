@@ -13,7 +13,8 @@ namespace Project2Tests
 		
 		TEST_METHOD(TestMethod1)
 		{
-			auto test = CDLL<int>();
+			CDLL<int> test = CDLL<int>();
+			
 		}
 
 	};
