@@ -108,8 +108,8 @@ namespace NP_ADT {
 		// Constructors
 		CDLL() : handle(nullptr), m_size(0) {}
 		CDLL(size_t n_elements, datatype datum);
-		CDLL(const CDLL& cdll);
-		CDLL(iterator begin, iterator end);
+		//CDLL(const CDLL& cdll);
+		//CDLL(iterator begin, iterator end);
 		
 		// Destructor
 		~CDLL() { release(); }
@@ -118,16 +118,16 @@ namespace NP_ADT {
 		iterator begin() const { return head(); }
 		iterator end() const { return tail(); }
 		void push_front(datatype datum);
-		datatype pop_front();
+		//datatype pop_front();
 		// void push_back(datatype datum);
 		// datatype pop_back();
 		datatype& front() const { return head()->data; }
 		datatype& back() const { return tail()->data; }
 		bool empty()const { return handle == nullptr; }
 		void release();
-		CDLL operator=(const CDLL & rlist);
-		datatype& operator[](int index);
-		const datatype& operator[](int index) const;
+		//CDLL operator=(const CDLL & rlist);
+		//datatype& operator[](int index);
+		//const datatype& operator[](int index) const;
 
 		// Head = handle and tail = handle - 1
 		node * head(void) const { return handle; }

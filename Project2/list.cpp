@@ -225,7 +225,7 @@ int main(void)
 	using NP_ADT::CDLL; // not the same as std::list<class T>
 	try
 	{
-		CDLL<char> mylist(3, 'X');
+		/*CDLL<char> mylist(3, 'X');
 		CDLL<char> mylist2;
 		CDLL<char> mylist3(mylist);
 		CDLL<char> mylist4(mylist.begin(), mylist.end());
@@ -248,7 +248,7 @@ int main(void)
 		cout << "mylist: " << endl;
 		mylist.release();
 		cout << "mylist: " << mylist << endl;
-		cout << "mylist2: " << mylist2 << endl;
+		cout << "mylist2: " << mylist2 << endl;*/
 	}
 	catch (exception e)
 	{
