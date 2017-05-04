@@ -95,7 +95,6 @@ using namespace std;
 
 namespace NP_ADT {
 
-
 	// typedef char datatype;
 
 	template <typename datatype>
@@ -112,19 +111,19 @@ namespace NP_ADT {
 		//CDLL(iterator begin, iterator end);
 		
 		// Destructor
-		~CDLL() { release(); }
+		//~CDLL() { release(); }
 
 		unsigned getSize() const { return m_size; }
-		iterator begin() const { return head(); }
-		iterator end() const { return tail(); }
+		//iterator begin() const { return head(); }
+		//iterator end() const { return tail(); }
 		void push_front(datatype datum);
 		//datatype pop_front();
 		// void push_back(datatype datum);
 		// datatype pop_back();
-		datatype& front() const { return head()->data; }
-		datatype& back() const { return tail()->data; }
-		bool empty()const { return handle == nullptr; }
-		void release();
+		//datatype& front() const { return head()->data; }
+		//datatype& back() const { return tail()->data; }
+		//bool empty()const { return handle == nullptr; }
+		//void release();
 		//CDLL operator=(const CDLL & rlist);
 		//datatype& operator[](int index);
 		//const datatype& operator[](int index) const;

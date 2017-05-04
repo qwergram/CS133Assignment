@@ -49,12 +49,12 @@ namespace NP_ADT
 	//-----------------------------------------------------------------------------
 	// empties the list
 	//-----------------------------------------------------------------------------
-	template<typename datatype>
+	/*template<typename datatype>
 	inline void NP_ADT::CDLL<datatype>::release()
 	{
 		while (handle != nullptr)
 			pop_front();
-	}
+	}*/
 
 	//-------------------------------------------------------------------------
 	// prints out a list
