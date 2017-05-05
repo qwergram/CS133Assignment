@@ -47,6 +47,20 @@ Locate the new location of your `x86` build and paste the `.obj` file paths into
 
 ![](http://imgur.com/dXEFVoC.png)
 
+## Step 4: C++ Template Class
+
+Interestingly, if you're using C++ template classes, and followed all the steps listed above and you still get linking errors like these:
+
+![](http://imgur.com/wm6ee0v.png)
+
+You need to include the following include in your testing file:
+```cpp
+#include "..\project_to_test_name\thing_to_test.h"
+#include "..\project_to_test_name\thing_to_test.cpp"
+```
+
+Otherwise, any of the definitions defined in the `.cpp` file will not register with the unit tester.
+
 # References
 - [UW's Mark Schofield 2/16/2011](https://courses.cs.washington.edu/courses/cse403/11wi/lectures/UnitTestinginWindows.pdf)
 
