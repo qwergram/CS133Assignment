@@ -5,15 +5,17 @@
 //   Functions: main
 //-----------------------------------------------------------------------------
 
-
 #include "list.h"
+
+
+using namespace std;
 
 namespace NP_ADT
 {
 	//-------------------------------------------------------------------------
 	// constructor
 	//-------------------------------------------------------------------------
-	template<typename datatype>
+	template<class datatype>
 	CDLL<datatype>::CDLL(size_t n_elements, datatype datum)
 		:m_size(0), handle(nullptr)
 	{
@@ -22,6 +24,23 @@ namespace NP_ADT
 		for (size_t i = 0; i < n_elements; i++)
 			push_front(datum);
 	}
+
+	//-------------------------------------------------------------------------
+	// insert element at front of list
+	//-------------------------------------------------------------------------
+	/*template<typename datatype>
+	void CDLL<datatype>::push_front(datatype datum)
+	{
+		return;
+		node* temp = new node(datum, nullptr, handle);
+		if (m_size++ == 0)
+		{ // was a nonempty list
+			handle->prev = temp;
+			handle = temp;
+		}
+		else
+			handle = temp;
+	}*/
 
 	//-------------------------------------------------------------------------
 	// copy constructor
@@ -74,23 +93,6 @@ namespace NP_ADT
 		sout << ")\n";
 		return sout;
 	}*/
-
-	//-------------------------------------------------------------------------
-	// insert element at front of list
-	//-------------------------------------------------------------------------
-	template<typename datatype>
-	void NP_ADT::CDLL<datatype>::push_front(datatype datum)
-	{
-		node* temp = new node(datum, nullptr, handle);
-		if (!empty())
-		{ // was a nonempty list
-			handle->prev = temp;
-			handle = temp;
-		}
-		else
-			handle = temp;
-		m_size++;
-	}
 
 	//-------------------------------------------------------------------------
 	// returns a copy of rlist
@@ -172,7 +174,7 @@ namespace NP_ADT
 		node * newHead = head()->next;
 		if (newHead != nullptr)
 			newHead->prev = handle->prev;
-		
+
 		handle = newHead;
 		return poppedData;
 	}*/
@@ -207,55 +209,13 @@ namespace NP_ADT
 	// ostream << overload
 	//-------------------------------------------------------------------------
 	//template<typename datatype>
-	
+
 	/*template <typename datatype>
 	ostream & operator << (ostream& sout, const CDLL<datatype> & cdll)
 	{
-		
+
 		return sout;
 	}*/
 
 } // end namespace NP_ADT
 
-  //---------------------------------------------------------------------------
-  // driver to test list
-  //---------------------------------------------------------------------------
-int main(void)
-{
-	using NP_ADT::CDLL; // not the same as std::list<class T>
-	try
-	{
-		/*CDLL<char> mylist(3, 'X');
-		CDLL<char> mylist2;
-		CDLL<char> mylist3(mylist);
-		CDLL<char> mylist4(mylist.begin(), mylist.end());
-		cout << "mylist: " << mylist << endl;
-		cout << "mylist2: " << mylist2 << endl;
-		cout << "mylist3: " << mylist3 << endl;
-		cout << "mylist4: " << mylist4 << endl;
-		mylist.push_front('Y');
-		mylist.push_front('Z');
-		cout << mylist.pop_front() << endl;
-		mylist2 = mylist; // a copy
-		cout << "mylist: " << mylist << endl;
-		// create a new iterator pointing to the beginning of mylist
-		CDLL<char>::iterator listit(mylist.begin());
-		cout << listit++->data << " ";
-		cout << listit->data << endl;
-		cout << "mylist: ";
-		for (int i = 0; i < static_cast<int>(mylist.getSize()); i++)
-			cout << mylist[i] << " ";
-		cout << "mylist: " << endl;
-		mylist.release();
-		cout << "mylist: " << mylist << endl;
-		cout << "mylist2: " << mylist2 << endl;*/
-	}
-	catch (exception e)
-	{
-		cerr << "program terminated: " << e.what() << endl;
-		cin.get();
-		return EXIT_FAILURE;
-	}
-	cin.get();  // keep window open
-	return EXIT_SUCCESS;
-}

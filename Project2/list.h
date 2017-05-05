@@ -1,9 +1,4 @@
-#include <iostream>
-#include <cassert>
-#include <exception>
-#include <cstdlib>
-using namespace std;
-
+#pragma once
 //-----------------------------------------------------------------------------
 //   Title: list Class
 //   Description: This file contains the class definition for list, with a test driver
@@ -97,7 +92,7 @@ namespace NP_ADT {
 
 	// typedef char datatype;
 
-	template <typename datatype>
+	template <class datatype>
 	class CDLL
 	{
 	public:
@@ -116,13 +111,13 @@ namespace NP_ADT {
 		unsigned getSize() const { return m_size; }
 		//iterator begin() const { return head(); }
 		//iterator end() const { return tail(); }
-		void push_front(datatype datum);
+		void push_front(datatype datum) {};
 		//datatype pop_front();
 		// void push_back(datatype datum);
 		// datatype pop_back();
 		//datatype& front() const { return head()->data; }
 		//datatype& back() const { return tail()->data; }
-		//bool empty()const { return handle == nullptr; }
+		// bool empty()const { return handle == nullptr; }
 		//void release();
 		//CDLL operator=(const CDLL & rlist);
 		//datatype& operator[](int index);
@@ -151,10 +146,10 @@ namespace NP_ADT {
 		{
 		public:
 			iterator(node * p = nullptr) : ptr(p) {}
-			iterator operator++();
-			iterator operator--();
-			iterator operator++(int);
-			iterator operator--(int);
+			//iterator operator++();
+			//iterator operator--();
+			//iterator operator++(int);
+			//iterator operator--(int);
 			node * operator->() const { return ptr; }
 			datatype & operator*() const { return ptr->data; }
 			operator node*() const { return ptr; }
@@ -163,7 +158,7 @@ namespace NP_ADT {
 		};
 	};
 
-	template <typename datatype>
-	ostream & operator<<(ostream& sout, const CDLL<datatype> & cdll);
+	//template <typename datatype>
+	//ostream & operator<<(ostream& sout, const CDLL<datatype> & cdll);
 
 }
