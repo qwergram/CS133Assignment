@@ -28,19 +28,17 @@ namespace NP_ADT
 	//-------------------------------------------------------------------------
 	// insert element at front of list
 	//-------------------------------------------------------------------------
-	/*template<typename datatype>
+	template<typename datatype>
 	void CDLL<datatype>::push_front(datatype datum)
 	{
-		return;
-		node* temp = new node(datum, nullptr, handle);
+		node * temp = new node(datum, handle, nullptr);
 		if (m_size++ == 0)
-		{ // was a nonempty list
-			handle->prev = temp;
+		{
 			handle = temp;
+			handle->next = handle;
+			handle->prev = handle;
 		}
-		else
-			handle = temp;
-	}*/
+	}
 
 	//-------------------------------------------------------------------------
 	// copy constructor

@@ -21,11 +21,18 @@ namespace Project2Tests
 		}
 
 		TEST_METHOD(TestOneItemList) {
-			CDLL<int> test = CDLL<int>(6, 0);
-			test.push_front(1);
-			//Assert::AreEqual(unsigned int(1), test.getSize());
-			//Assert::IsTrue(unsigned int(1) == test.head()->data);
-			//Assert::IsTrue(unsigned int(1) == test.head()->data);
+			CDLL<int> test = CDLL<int>();
+			test.push_front(0);
+			
+			CDLL<int>::node * thisThing = test.head();
+
+			Assert::AreEqual(unsigned int(1), test.getSize());
+			Assert::IsTrue(unsigned int(0) == test.tail()->data);
+			
+			for (int i = 0; i <= 20; i++) {
+				thisThing = thisThing->next;
+				Assert::IsTrue(unsigned int(0) == thisThing->data);
+			}
 		}
 
 	};

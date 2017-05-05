@@ -111,7 +111,7 @@ namespace NP_ADT {
 		unsigned getSize() const { return m_size; }
 		//iterator begin() const { return head(); }
 		//iterator end() const { return tail(); }
-		void push_front(datatype datum) {};
+		void push_front(datatype datum);
 		//datatype pop_front();
 		// void push_back(datatype datum);
 		// datatype pop_back();
@@ -139,7 +139,7 @@ namespace NP_ADT {
 			datatype data;
 			node * next;
 			node * prev;
-			node(datatype datum, node * p, node * n) : data(datum), prev(p), next(n) {} // struct constructor
+			node(datatype datum, node * prev_, node * next_) : data(datum), prev(prev_), next(next_) {} // struct constructor
 		};
 
 		class iterator
