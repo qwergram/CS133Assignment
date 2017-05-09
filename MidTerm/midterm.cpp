@@ -107,6 +107,13 @@ int main(void) {
 			used `arrayStack<long>::const_iterator`. I also had the 
 			wrong index in the first for loop; it should've been 
 			`i < 2` and not `i < 3`.
+
+			Additionally, I just had no idea what to do for the copy
+			and print. So I tried cheating it by copying to another
+			stack and then using a for loop to print that stack.
+			Evidently it didn't work to nobody's surprise. Here the
+			correct answer can be found on the first page of the mid-
+			term.
 		*/
 		for (short i = 0; i < 2; i++) {
 			for (arrayStack<long>::const_iterator k = st[i]->begin();
@@ -120,7 +127,12 @@ int main(void) {
 			while (!singleStack.empty()) {
 				st[i]->push(singleStack.pop());
 			}
+
+			ostream_iterator<long> outIt(cout, " | ");
+			copy(st[i]->begin(), st[i]->end(), outIt);
+			cout << endl;
 		}
+		
 
 	}
 	/* ** A & E CORRECTION ( -4 pts ) **
