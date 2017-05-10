@@ -89,7 +89,7 @@ namespace NP_ADT
 	{
 		if (handle == nullptr)
 			throw runtime_error("Empty list");
-		
+
 		datatype poppedData = head()->data;
 
 		if (m_size-- == 1) {
@@ -126,6 +126,24 @@ namespace NP_ADT
 		}
 
 		return poppedData;
+	}
+
+	template<class datatype>
+	datatype & CDLL<datatype>::front() const
+	{
+		if (head() != nullptr) 
+			return head()->data; 
+		else 
+			throw runtime_error("Empty list");
+	}
+
+	template<class datatype>
+	inline datatype & CDLL<datatype>::back() const 
+	{ 
+		if (tail() != nullptr) 
+			return tail()->data; 
+		else 
+			throw runtime_error("Empty list"); 
 	}
 
 	//-------------------------------------------------------------------------

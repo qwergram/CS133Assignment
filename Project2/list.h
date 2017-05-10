@@ -115,8 +115,8 @@ namespace NP_ADT {
 		void push_back(datatype datum);
 		datatype pop_front();
 		datatype pop_back();
-		datatype & front() const { return head()->data; }
-		datatype & back() const { return tail()->data; }
+		datatype & front() const;
+		datatype & back() const;
 		bool empty() const { return handle == nullptr; }
 		// void release();
 		// CDLL operator=(const CDLL & rlist);
