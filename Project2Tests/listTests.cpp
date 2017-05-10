@@ -304,5 +304,118 @@ namespace Project2Tests
 			Assert::IsTrue(test.head() == nullptr);
 			Assert::IsTrue(test.tail() == nullptr);
 		}
+
+		TEST_METHOD(TestPopBackEmptyList) {
+			bool exceptionThrown = false;
+			auto test = CDLL<int>();
+			try {
+				test.pop_back();
+			}
+			catch (runtime_error) {
+				exceptionThrown = true;
+			}
+			Assert::IsTrue(exceptionThrown);
+		}
+
+		TEST_METHOD(TestPopBackAfterPushBack) {
+			auto test = CDLL<int>();
+			test.push_back(1);
+			Assert::AreEqual(1, test.pop_back());
+			Assert::IsTrue(test.head() == nullptr);
+			Assert::IsTrue(test.tail() == nullptr);
+		}
+
+		TEST_METHOD(TestPopBackAfterTwoPushBack) {
+			auto test = CDLL<int>();
+			test.push_back(1);
+			test.push_back(2);
+			Assert::AreEqual(2, test.pop_back());
+			Assert::IsTrue(test.tail()->next->prev == test.tail());
+			Assert::IsTrue(test.tail()->prev->next == test.tail());
+			Assert::AreEqual(1, test.pop_back());
+			Assert::IsTrue(test.head() == nullptr);
+			Assert::IsTrue(test.tail() == nullptr);
+		}
+
+		TEST_METHOD(TestPopBackAfterThreePushBack) {
+			auto test = CDLL<int>();
+			test.push_back(1);
+			test.push_back(2);
+			test.push_back(3);
+			Assert::AreEqual(3, test.pop_back());
+			Assert::IsTrue(test.tail()->next->prev == test.tail());
+			Assert::IsTrue(test.tail()->prev->next == test.tail());
+			Assert::AreEqual(2, test.pop_back());
+			Assert::IsTrue(test.tail()->next->prev == test.tail());
+			Assert::IsTrue(test.tail()->prev->next == test.tail());
+			Assert::AreEqual(1, test.pop_back());
+			Assert::IsTrue(test.head() == nullptr);
+			Assert::IsTrue(test.tail() == nullptr);
+		}
+
+		TEST_METHOD(TestPopBackAfterPushFront) {
+			auto test = CDLL<int>();
+			test.push_front(1);
+			Assert::AreEqual(1, test.pop_back());
+			Assert::IsTrue(test.head() == nullptr);
+			Assert::IsTrue(test.tail() == nullptr);
+		}
+
+		TEST_METHOD(TestPopBackAfterTwoPushFront) {
+			auto test = CDLL<int>();
+			test.push_front(1);
+			test.push_front(2);
+			Assert::AreEqual(1, test.pop_back());
+			Assert::IsTrue(test.tail()->next->prev == test.tail());
+			Assert::IsTrue(test.tail()->prev->next == test.tail());
+			Assert::AreEqual(2, test.pop_back());
+			Assert::IsTrue(test.head() == nullptr);
+			Assert::IsTrue(test.tail() == nullptr);
+		}
+
+		TEST_METHOD(TestPopBackAfterThreePushFront) {
+			auto test = CDLL<int>();
+			test.push_front(1);
+			test.push_front(2);
+			test.push_front(3);
+			Assert::AreEqual(1, test.pop_back());
+			Assert::IsTrue(test.tail()->next->prev == test.tail());
+			Assert::IsTrue(test.tail()->prev->next == test.tail());
+			Assert::AreEqual(2, test.pop_back());
+			Assert::IsTrue(test.tail()->next->prev == test.tail());
+			Assert::IsTrue(test.tail()->prev->next == test.tail());
+			Assert::AreEqual(3, test.pop_back());
+			Assert::IsTrue(test.head() == nullptr);
+			Assert::IsTrue(test.tail() == nullptr);
+		}
+
+		TEST_METHOD(TestPopBackRandomPushSeries) {
+			auto test = CDLL<int>();
+			test.push_back(1);
+			test.push_front(4);
+			test.push_back(3);
+			test.push_front(2);
+			test.push_back(5);
+			test.push_back(6);
+			
+			Assert::AreEqual(6, test.pop_back());
+			Assert::IsTrue(test.tail()->next->prev == test.tail());
+			Assert::IsTrue(test.tail()->prev->next == test.tail());
+			Assert::AreEqual(5, test.pop_back());
+			Assert::IsTrue(test.tail()->next->prev == test.tail());
+			Assert::IsTrue(test.tail()->prev->next == test.tail());
+			Assert::AreEqual(3, test.pop_back());
+			Assert::IsTrue(test.tail()->next->prev == test.tail());
+			Assert::IsTrue(test.tail()->prev->next == test.tail());
+			Assert::AreEqual(1, test.pop_back());
+			Assert::IsTrue(test.tail()->next->prev == test.tail());
+			Assert::IsTrue(test.tail()->prev->next == test.tail());
+			Assert::AreEqual(4, test.pop_back());
+			Assert::IsTrue(test.tail()->next->prev == test.tail());
+			Assert::IsTrue(test.tail()->prev->next == test.tail());
+			Assert::AreEqual(2, test.pop_back());
+			Assert::IsTrue(test.head() == nullptr);
+			Assert::IsTrue(test.tail() == nullptr);
+		}
 	};
 }
