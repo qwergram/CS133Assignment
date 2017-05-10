@@ -43,14 +43,14 @@ namespace NP_ADT
 	//-------------------------------------------------------------------------
 	// copy constructor
 	//-------------------------------------------------------------------------
-	/*template<typename datatype>
-	NP_ADT::CDLL<datatype>::CDLL(const CDLL & cdll)
+	template<typename datatype>
+	NP_ADT::CDLL<datatype>::CDLL(const CDLL<datatype> & cdll)
 		: m_size(0), handle(nullptr)
 	{
 		CDLL::iterator r_it = cdll.begin();
 		while (r_it != nullptr)
 			push_front(*r_it++);
-	}*/
+	}
 
 	//-------------------------------------------------------------------------
 	// constructor using iterators, copies from begin to one before end
