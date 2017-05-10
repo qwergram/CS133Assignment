@@ -26,6 +26,18 @@ namespace NP_ADT
 	}
 
 	//-------------------------------------------------------------------------
+	// copy constructor
+	//-------------------------------------------------------------------------
+	template<typename datatype>
+	NP_ADT::CDLL<datatype>::CDLL(const CDLL<datatype> & cdll)
+		: m_size(0), handle(nullptr)
+	{
+		CDLL::iterator r_it = cdll.begin();
+		while (r_it != nullptr)
+			push_front(*r_it++);
+	}
+
+	//-------------------------------------------------------------------------
 	// insert element at front of list
 	//-------------------------------------------------------------------------
 	template<typename datatype>
@@ -48,15 +60,25 @@ namespace NP_ADT
 	}
 
 	//-------------------------------------------------------------------------
-	// copy constructor
+	// insert element at end of list
 	//-------------------------------------------------------------------------
 	template<typename datatype>
-	NP_ADT::CDLL<datatype>::CDLL(const CDLL<datatype> & cdll)
-		: m_size(0), handle(nullptr)
+	void CDLL<datatype>::push_back(datatype datum)
 	{
-		CDLL::iterator r_it = cdll.begin();
-		while (r_it != nullptr)
-			push_front(*r_it++);
+		node * temp = new node(datum, nullptr, nullptr);
+		if (m_size++ == 0)
+		{
+			temp->next = temp;
+			temp->prev = temp;
+			handle = temp;
+		}
+		else {
+			node * before = handle->prev;
+			temp->next = handle;
+			handle->prev = temp;
+			temp->prev = before;
+			before->next = temp;
+		}
 	}
 
 	//-------------------------------------------------------------------------
