@@ -18,6 +18,7 @@ namespace Project2Tests
 			Assert::AreEqual(unsigned int(0), test.getSize());
 			Assert::IsTrue(nullptr == test.head());
 			Assert::IsTrue(nullptr == test.tail());
+			Assert::IsTrue(test.head() == test.tail());
 		}
 
 		TEST_METHOD(TestOneItemList) {
@@ -29,10 +30,16 @@ namespace Project2Tests
 			Assert::AreEqual(unsigned int(1), test.getSize());
 			Assert::IsTrue(unsigned int(0) == test.tail()->data);
 			
-			for (int i = 0; i <= 20; i++) {
-				thisThing = thisThing->next;
-				Assert::IsTrue(unsigned int(0) == thisThing->data);
-			}
+			CDLL<int>::node * ptr = test.head();
+			CDLL<int>::node * nextPtr = test.head()->next;
+			CDLL<int>::node * doubleNextPtr = nextPtr->next;
+			CDLL<int>::node * prevPtr = test.head()->prev;
+			CDLL<int>::node * doublePrevPtr = prevPtr->prev;
+
+			Assert::IsTrue(ptr == nextPtr);
+			Assert::IsTrue(nextPtr == doubleNextPtr);
+			Assert::IsTrue(doubleNextPtr == prevPtr);
+			Assert::IsTrue(prevPtr == doublePrevPtr);
 		}
 
 	};
