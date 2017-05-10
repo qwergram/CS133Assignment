@@ -82,6 +82,49 @@ namespace NP_ADT
 	}
 
 	//-------------------------------------------------------------------------
+	// removes front element and returns the data from that element
+	//-------------------------------------------------------------------------
+	template<typename datatype>
+	datatype NP_ADT::CDLL<datatype>::pop_front()
+	{
+		if (handle == nullptr)
+			throw runtime_error("Empty list");
+		
+		datatype poppedData = head()->data;
+
+		if (m_size-- == 1) {
+			handle = nullptr;
+		}
+		else {
+			node * newHead = head()->next;
+			newHead->prev = head()->prev;
+			head()->prev->next = newHead;
+			handle = newHead;
+		}
+
+		return poppedData;
+	}
+
+	//-------------------------------------------------------------------------
+	// removes back element and returns the data from that element
+	//-------------------------------------------------------------------------
+	template<typename datatype>
+	datatype NP_ADT::CDLL<datatype>::pop_back()
+	{
+		if (handle == nullptr)
+			throw runtime_error("Empty list");
+		m_size--;
+
+		datatype poppedData = tail()->data;
+		node * newTail = tail()->prev;
+		if (newTail != nullptr)
+			newTail->prev = tail()->prev;
+
+		handle->prev = newTail;
+		return poppedData;
+	}
+
+	//-------------------------------------------------------------------------
 	// constructor using iterators, copies from begin to one before end
 	//-------------------------------------------------------------------------
 	/*template<typename datatype>
@@ -187,24 +230,7 @@ namespace NP_ADT
 		return temp;
 	}*/
 
-	//-------------------------------------------------------------------------
-	// removes front element and returns the data from that element
-	//-------------------------------------------------------------------------
-	/*template<typename datatype>
-	datatype NP_ADT::CDLL<datatype>::pop_front()
-	{
-		if (handle == nullptr)
-			throw runtime_error("Empty list");
-		m_size--;
 
-		datatype poppedData = head()->data;
-		node * newHead = head()->next;
-		if (newHead != nullptr)
-			newHead->prev = handle->prev;
-
-		handle = newHead;
-		return poppedData;
-	}*/
 
 	//-------------------------------------------------------------------------
 	// [] operator -- l-value
