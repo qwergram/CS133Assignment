@@ -128,6 +128,9 @@ namespace NP_ADT
 		return poppedData;
 	}
 
+	//-------------------------------------------------------------------------
+	// returns data of the first item
+	//-------------------------------------------------------------------------
 	template<class datatype>
 	datatype & CDLL<datatype>::front() const
 	{
@@ -137,6 +140,9 @@ namespace NP_ADT
 			throw runtime_error("Empty list");
 	}
 
+	//-------------------------------------------------------------------------
+	// returns data of the last item
+	//-------------------------------------------------------------------------
 	template<class datatype>
 	inline datatype & CDLL<datatype>::back() const 
 	{ 
