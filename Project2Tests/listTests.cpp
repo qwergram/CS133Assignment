@@ -51,21 +51,21 @@ namespace Project2Tests
 			CDLL<int>::node * thisThing = test.head();
 
 			Assert::AreEqual(unsigned int(2), test.getSize());
-			Assert::IsTrue(unsigned int(0) == test.tail()->data);
-			unsigned int x = test.head()->data;
-			unsigned int y = test.tail()->data;
+			
 			Assert::IsTrue(unsigned int(1) == test.head()->data);
+			Assert::IsTrue(unsigned int(0) == test.tail()->data);
+			
+			
+			CDLL<int>::node * ptr = test.head();				// == 1
+			CDLL<int>::node * nextPtr = test.head()->next;		// == 0
+			CDLL<int>::node * doubleNextPtr = nextPtr->next;	// == 1
+			CDLL<int>::node * prevPtr = test.head()->prev;		// == 0
+			CDLL<int>::node * doublePrevPtr = prevPtr->prev;	// == 1
 
-			CDLL<int>::node * ptr = test.head();
-			CDLL<int>::node * nextPtr = test.head()->next;
-			CDLL<int>::node * doubleNextPtr = nextPtr->next;
-			CDLL<int>::node * prevPtr = test.head()->prev;
-			CDLL<int>::node * doublePrevPtr = prevPtr->prev;
-
-			/*Assert::IsTrue(ptr == doubleNextPtr);
-			Assert::IsTrue(nextPtr == doubleNextPtr);
-			Assert::IsTrue(doubleNextPtr == prevPtr);
-			Assert::IsTrue(prevPtr == doublePrevPtr);*/
+			Assert::IsTrue(ptr == doubleNextPtr);
+			Assert::IsTrue(nextPtr == prevPtr);
+			Assert::IsTrue(doubleNextPtr == doublePrevPtr);
+			Assert::IsTrue(ptr != nextPtr);
 		}
 	};
 }
