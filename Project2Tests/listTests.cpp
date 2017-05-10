@@ -466,23 +466,13 @@ namespace Project2Tests
 			auto test = CDLL<int>();
 			
 			bool exceptionThrown = false;
-			try {
-				test.front();
-			}
-			catch (runtime_error) {
-				exceptionThrown = true;
-			}
-
+			try { test.front(); }
+			catch (runtime_error) { exceptionThrown = true; }
 			Assert::IsTrue(exceptionThrown);
 
 			exceptionThrown = false;
-			try {
-				test.back();
-			}
-			catch (runtime_error) {
-				exceptionThrown = true;
-			}
-			
+			try { test.back(); }
+			catch (runtime_error) { exceptionThrown = true; }
 			Assert::IsTrue(exceptionThrown);
 
 			test.push_back(1);
