@@ -113,14 +113,18 @@ namespace NP_ADT
 	{
 		if (handle == nullptr)
 			throw runtime_error("Empty list");
-		m_size--;
 
 		datatype poppedData = tail()->data;
-		node * newTail = tail()->prev;
-		if (newTail != nullptr)
-			newTail->prev = tail()->prev;
 
-		handle->prev = newTail;
+		if (m_size-- == 1) {
+			handle = nullptr;
+		}
+		else {
+			node * newTail = tail()->prev;
+			newTail->next = tail()->next;
+			tail()->next->prev = newTail;
+		}
+
 		return poppedData;
 	}
 
