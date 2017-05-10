@@ -219,6 +219,8 @@ namespace Project2Tests
 			Assert::AreEqual(2, test.pop_front());
 			Assert::IsTrue(test.head()->next->prev == test.head());
 			Assert::IsTrue(test.head()->prev->next == test.head());
+			Assert::IsTrue(test.tail()->next->prev == test.tail());
+			Assert::IsTrue(test.tail()->prev->next == test.tail());
 			Assert::AreEqual(1, test.pop_front());
 			Assert::IsTrue(test.head() == nullptr);
 			Assert::IsTrue(test.tail() == nullptr);
@@ -232,9 +234,13 @@ namespace Project2Tests
 			Assert::AreEqual(3, test.pop_front());
 			Assert::IsTrue(test.head()->next->prev == test.head());
 			Assert::IsTrue(test.head()->prev->next == test.head());
+			Assert::IsTrue(test.tail()->next->prev == test.tail());
+			Assert::IsTrue(test.tail()->prev->next == test.tail());
 			Assert::AreEqual(2, test.pop_front());
 			Assert::IsTrue(test.head()->next->prev == test.head());
 			Assert::IsTrue(test.head()->prev->next == test.head());
+			Assert::IsTrue(test.tail()->next->prev == test.tail());
+			Assert::IsTrue(test.tail()->prev->next == test.tail());
 			Assert::AreEqual(1, test.pop_front());
 			Assert::IsTrue(test.head() == nullptr);
 			Assert::IsTrue(test.tail() == nullptr);
@@ -255,6 +261,8 @@ namespace Project2Tests
 			Assert::AreEqual(1, test.pop_front());
 			Assert::IsTrue(test.head()->next->prev == test.head());
 			Assert::IsTrue(test.head()->prev->next == test.head());
+			Assert::IsTrue(test.tail()->next->prev == test.tail());
+			Assert::IsTrue(test.tail()->prev->next == test.tail());
 			Assert::AreEqual(2, test.pop_front());
 			Assert::IsTrue(test.head() == nullptr);
 			Assert::IsTrue(test.tail() == nullptr);
@@ -268,9 +276,13 @@ namespace Project2Tests
 			Assert::AreEqual(1, test.pop_front());
 			Assert::IsTrue(test.head()->next->prev == test.head());
 			Assert::IsTrue(test.head()->prev->next == test.head());
+			Assert::IsTrue(test.tail()->next->prev == test.tail());
+			Assert::IsTrue(test.tail()->prev->next == test.tail());
 			Assert::AreEqual(2, test.pop_front());
 			Assert::IsTrue(test.head()->next->prev == test.head());
 			Assert::IsTrue(test.head()->prev->next == test.head());
+			Assert::IsTrue(test.tail()->next->prev == test.tail());
+			Assert::IsTrue(test.tail()->prev->next == test.tail());
 			Assert::AreEqual(3, test.pop_front());
 			Assert::IsTrue(test.head() == nullptr);
 			Assert::IsTrue(test.tail() == nullptr);
@@ -288,18 +300,28 @@ namespace Project2Tests
 			Assert::AreEqual(2, test.pop_front());
 			Assert::IsTrue(test.head()->next->prev == test.head());
 			Assert::IsTrue(test.head()->prev->next == test.head());
+			Assert::IsTrue(test.tail()->next->prev == test.tail());
+			Assert::IsTrue(test.tail()->prev->next == test.tail());
 			Assert::AreEqual(4, test.pop_front());
 			Assert::IsTrue(test.head()->next->prev == test.head());
 			Assert::IsTrue(test.head()->prev->next == test.head());
+			Assert::IsTrue(test.tail()->next->prev == test.tail());
+			Assert::IsTrue(test.tail()->prev->next == test.tail());
 			Assert::AreEqual(1, test.pop_front());
 			Assert::IsTrue(test.head()->next->prev == test.head());
 			Assert::IsTrue(test.head()->prev->next == test.head());
+			Assert::IsTrue(test.tail()->next->prev == test.tail());
+			Assert::IsTrue(test.tail()->prev->next == test.tail());
 			Assert::AreEqual(3, test.pop_front());
 			Assert::IsTrue(test.head()->next->prev == test.head());
 			Assert::IsTrue(test.head()->prev->next == test.head());
+			Assert::IsTrue(test.tail()->next->prev == test.tail());
+			Assert::IsTrue(test.tail()->prev->next == test.tail());
 			Assert::AreEqual(5, test.pop_front());
 			Assert::IsTrue(test.head()->next->prev == test.head());
 			Assert::IsTrue(test.head()->prev->next == test.head());
+			Assert::IsTrue(test.tail()->next->prev == test.tail());
+			Assert::IsTrue(test.tail()->prev->next == test.tail());
 			Assert::AreEqual(6, test.pop_front());
 			Assert::IsTrue(test.head() == nullptr);
 			Assert::IsTrue(test.tail() == nullptr);
@@ -332,6 +354,8 @@ namespace Project2Tests
 			Assert::AreEqual(2, test.pop_back());
 			Assert::IsTrue(test.tail()->next->prev == test.tail());
 			Assert::IsTrue(test.tail()->prev->next == test.tail());
+			Assert::IsTrue(test.head()->next->prev == test.head());
+			Assert::IsTrue(test.head()->prev->next == test.head());
 			Assert::AreEqual(1, test.pop_back());
 			Assert::IsTrue(test.head() == nullptr);
 			Assert::IsTrue(test.tail() == nullptr);
@@ -345,9 +369,13 @@ namespace Project2Tests
 			Assert::AreEqual(3, test.pop_back());
 			Assert::IsTrue(test.tail()->next->prev == test.tail());
 			Assert::IsTrue(test.tail()->prev->next == test.tail());
+			Assert::IsTrue(test.head()->next->prev == test.head());
+			Assert::IsTrue(test.head()->prev->next == test.head());
 			Assert::AreEqual(2, test.pop_back());
 			Assert::IsTrue(test.tail()->next->prev == test.tail());
 			Assert::IsTrue(test.tail()->prev->next == test.tail());
+			Assert::IsTrue(test.head()->next->prev == test.head());
+			Assert::IsTrue(test.head()->prev->next == test.head());
 			Assert::AreEqual(1, test.pop_back());
 			Assert::IsTrue(test.head() == nullptr);
 			Assert::IsTrue(test.tail() == nullptr);
@@ -368,6 +396,8 @@ namespace Project2Tests
 			Assert::AreEqual(1, test.pop_back());
 			Assert::IsTrue(test.tail()->next->prev == test.tail());
 			Assert::IsTrue(test.tail()->prev->next == test.tail());
+			Assert::IsTrue(test.head()->next->prev == test.head());
+			Assert::IsTrue(test.head()->prev->next == test.head());
 			Assert::AreEqual(2, test.pop_back());
 			Assert::IsTrue(test.head() == nullptr);
 			Assert::IsTrue(test.tail() == nullptr);
@@ -381,9 +411,13 @@ namespace Project2Tests
 			Assert::AreEqual(1, test.pop_back());
 			Assert::IsTrue(test.tail()->next->prev == test.tail());
 			Assert::IsTrue(test.tail()->prev->next == test.tail());
+			Assert::IsTrue(test.head()->next->prev == test.head());
+			Assert::IsTrue(test.head()->prev->next == test.head());
 			Assert::AreEqual(2, test.pop_back());
 			Assert::IsTrue(test.tail()->next->prev == test.tail());
 			Assert::IsTrue(test.tail()->prev->next == test.tail());
+			Assert::IsTrue(test.head()->next->prev == test.head());
+			Assert::IsTrue(test.head()->prev->next == test.head());
 			Assert::AreEqual(3, test.pop_back());
 			Assert::IsTrue(test.head() == nullptr);
 			Assert::IsTrue(test.tail() == nullptr);
@@ -401,21 +435,76 @@ namespace Project2Tests
 			Assert::AreEqual(6, test.pop_back());
 			Assert::IsTrue(test.tail()->next->prev == test.tail());
 			Assert::IsTrue(test.tail()->prev->next == test.tail());
+			Assert::IsTrue(test.head()->next->prev == test.head());
+			Assert::IsTrue(test.head()->prev->next == test.head());
 			Assert::AreEqual(5, test.pop_back());
 			Assert::IsTrue(test.tail()->next->prev == test.tail());
 			Assert::IsTrue(test.tail()->prev->next == test.tail());
+			Assert::IsTrue(test.head()->next->prev == test.head());
+			Assert::IsTrue(test.head()->prev->next == test.head());
 			Assert::AreEqual(3, test.pop_back());
 			Assert::IsTrue(test.tail()->next->prev == test.tail());
 			Assert::IsTrue(test.tail()->prev->next == test.tail());
+			Assert::IsTrue(test.head()->next->prev == test.head());
+			Assert::IsTrue(test.head()->prev->next == test.head());
 			Assert::AreEqual(1, test.pop_back());
 			Assert::IsTrue(test.tail()->next->prev == test.tail());
 			Assert::IsTrue(test.tail()->prev->next == test.tail());
+			Assert::IsTrue(test.head()->next->prev == test.head());
+			Assert::IsTrue(test.head()->prev->next == test.head());
 			Assert::AreEqual(4, test.pop_back());
 			Assert::IsTrue(test.tail()->next->prev == test.tail());
 			Assert::IsTrue(test.tail()->prev->next == test.tail());
+			Assert::IsTrue(test.head()->next->prev == test.head());
+			Assert::IsTrue(test.head()->prev->next == test.head());
 			Assert::AreEqual(2, test.pop_back());
 			Assert::IsTrue(test.head() == nullptr);
 			Assert::IsTrue(test.tail() == nullptr);
 		}
+
+		TEST_METHOD(TestFrontAndBack) {
+			auto test = CDLL<int>();
+			
+			bool exceptionThrown = false;
+			try {
+				test.front();
+			}
+			catch (runtime_error) {
+				exceptionThrown = true;
+			}
+
+			Assert::IsTrue(exceptionThrown);
+
+			exceptionThrown = false;
+			try {
+				test.back();
+			}
+			catch (runtime_error) {
+				exceptionThrown = true;
+			}
+			
+			Assert::IsTrue(exceptionThrown);
+
+			test.push_back(1);
+			Assert::IsTrue(1 == test.front());
+			Assert::IsTrue(1 == test.back());
+			test.push_front(4);
+			Assert::IsTrue(4 == test.front());
+			Assert::IsTrue(1 == test.back());
+			test.push_back(3);
+			Assert::IsTrue(4 == test.front());
+			Assert::IsTrue(3 == test.back());
+			test.push_front(2);
+			Assert::IsTrue(2 == test.front());
+			Assert::IsTrue(3 == test.back());
+			test.push_back(5);
+			Assert::IsTrue(2 == test.front());
+			Assert::IsTrue(5 == test.back());
+			test.push_back(6);
+			Assert::IsTrue(2 == test.front());
+			Assert::IsTrue(6 == test.back());
+		}
+
+		
 	};
 }
