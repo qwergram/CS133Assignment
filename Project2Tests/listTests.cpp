@@ -21,7 +21,7 @@ namespace Project2Tests
 			Assert::IsTrue(test.head() == test.tail());
 		}
 
-		TEST_METHOD(TestOneItemList) {
+		TEST_METHOD(TestOnePushFrontItemList) {
 			CDLL<int> test = CDLL<int>();
 			test.push_front(0);
 			
@@ -42,7 +42,7 @@ namespace Project2Tests
 			Assert::IsTrue(prevPtr == doublePrevPtr);
 		}
 
-		TEST_METHOD(TestTwoItemList) {
+		TEST_METHOD(TestTwoPushFrontItemList) {
 			CDLL<int> test = CDLL<int>();
 			test.push_front(0);
 			test.push_front(1);
