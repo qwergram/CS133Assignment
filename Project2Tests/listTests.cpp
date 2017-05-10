@@ -42,5 +42,30 @@ namespace Project2Tests
 			Assert::IsTrue(prevPtr == doublePrevPtr);
 		}
 
+		TEST_METHOD(TestTwoItemList) {
+			CDLL<int> test = CDLL<int>();
+			test.push_front(0);
+			test.push_front(1);
+			// <-> 1 <-> 0 <->
+
+			CDLL<int>::node * thisThing = test.head();
+
+			Assert::AreEqual(unsigned int(2), test.getSize());
+			Assert::IsTrue(unsigned int(0) == test.tail()->data);
+			unsigned int x = test.head()->data;
+			unsigned int y = test.tail()->data;
+			Assert::IsTrue(unsigned int(1) == test.head()->data);
+
+			CDLL<int>::node * ptr = test.head();
+			CDLL<int>::node * nextPtr = test.head()->next;
+			CDLL<int>::node * doubleNextPtr = nextPtr->next;
+			CDLL<int>::node * prevPtr = test.head()->prev;
+			CDLL<int>::node * doublePrevPtr = prevPtr->prev;
+
+			/*Assert::IsTrue(ptr == doubleNextPtr);
+			Assert::IsTrue(nextPtr == doubleNextPtr);
+			Assert::IsTrue(doubleNextPtr == prevPtr);
+			Assert::IsTrue(prevPtr == doublePrevPtr);*/
+		}
 	};
 }
