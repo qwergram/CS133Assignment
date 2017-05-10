@@ -7,7 +7,8 @@ using namespace NP_DATETIME;
 //-----------------------------------------------------------------------------
 //    Title:            Array Sort Functions
 //
-//    Description:		This file contains the function declarations for sorting related things
+//    Description:		This file contains the function declarations for 
+//						sorting related things
 //
 //    Programmer:		Paul Bladek && Norton Pengra
 //   
@@ -38,7 +39,7 @@ namespace NP_ARRAYSORT
 	int partition(Comparable** array, int fromIndex, int toIndex);
 	void SortFirstMiddleLast(Comparable** array, int fromIndex,
 		int midIndex, int toIndex);
-	void swap(Comparable ** array, int index1, int index2);
+	void indexSwap(Comparable ** array, int index1, int index2);
 	void insertionSort(Comparable** array, int fromIndex, int toIndex);
 	void safeRead(istream& sin, Comparable* d, const char* prompt);
 	void printArray(ostream & sout, Comparable **array, int size);

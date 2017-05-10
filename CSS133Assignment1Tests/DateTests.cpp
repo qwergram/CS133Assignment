@@ -399,6 +399,11 @@ namespace CSS133Assignment1Tests
 			Assert::IsTrue(date1.isLeapYear(1760));
 		}
 
+		TEST_METHOD(testDayOfWeek) {
+			Date date1(10, 5, 2017);
+			Assert::AreEqual(short(3), date1.getDayOfWeek());
+		}
+
 
 	private:
 		short currentDate() {

@@ -1,7 +1,7 @@
 #include "ArraySort.h"
 namespace NP_ARRAYSORT
 {
-	//-----------------------------------------------------------------------------
+	//-------------------------------------------------------------------------
 	//    function:		strangeSort(Comparable ** array, int fromIndex, int toIndex)
 	//    description:	Uses quicksort if it's more than 4 items and insertion sort
 	//					otherwise.
@@ -16,7 +16,7 @@ namespace NP_ARRAYSORT
 	//    History Log:
 	//			2/9/08  PB  completed version 1.0
 	//			4/28/17	NP	Appended to version 1.0
-	// ----------------------------------------------------------------------------	
+	// ------------------------------------------------------------------------
 	void strangeSort(Comparable ** array, int fromIndex, int toIndex)
 	{
 		if (fromIndex + 4 < toIndex) {
@@ -28,7 +28,7 @@ namespace NP_ARRAYSORT
 		}
 	}
 
-	//-----------------------------------------------------------------------------
+ // ------------------------------------------------------------------------
 	//    function:		partition(Comparable ** array, int fromIndex, int toIndex)
 	//    description:	partitions and partially sorts things for quicksort.
 	//    
@@ -42,14 +42,14 @@ namespace NP_ARRAYSORT
 	//    History Log:
 	//			2/9/08  PB  completed version 1.0
 	//			4/28/17	NP	Appended to version 1.0
-	// ----------------------------------------------------------------------------	
+	// ------------------------------------------------------------------------	
 	int partition(Comparable ** array, int fromIndex, int toIndex)
 	{
 		int pivotIndex = (fromIndex + toIndex) / 2;
 		SortFirstMiddleLast(array, fromIndex, pivotIndex, toIndex);
 
 		Comparable * pivot = array[pivotIndex];
-		swap(array, pivotIndex, toIndex - 1);
+		indexSwap(array, pivotIndex, toIndex - 1);
 
 		int frontIndex = fromIndex + 1;
 		int backIndex = pivotIndex - 1;
@@ -61,9 +61,9 @@ namespace NP_ARRAYSORT
 			while (frontIndex < backIndex && *array[backIndex] >= *pivot)
 				backIndex--;
 			
-			swap(array, frontIndex++, pivotIndex--);
+			indexSwap(array, frontIndex++, pivotIndex--);
 		}
-		swap(array, fromIndex, frontIndex);
+		indexSwap(array, fromIndex, frontIndex);
 		return frontIndex;
 		
 		// Perfectly good quick sort
@@ -81,38 +81,42 @@ namespace NP_ARRAYSORT
 		*/
 	}
 
-	//-----------------------------------------------------------------------------
+ // ------------------------------------------------------------------------
 	//    function:		SortFirstMiddleLast
 	//    description:	Sort the three items
 	//    
 	//    Called By:	all sorting algs
 	// 
-	//    Parameters:	Comparable ** array, int loIndex, int midIndex, int hiIndex
+	//    Parameters:	Comparable ** array, int loIndex, int midIndex, 
+	//					int hiIndex
 	// 
 	//    Returns:          void 
 	//
 	//    History Log:
 	//			4/27/17  NP  completed version 1.0
-	// ----------------------------------------------------------------------------	
-	void SortFirstMiddleLast(Comparable ** array, int loIndex, int midIndex, int hiIndex)
+	// ------------------------------------------------------------------------	
+	void SortFirstMiddleLast(Comparable ** array, 
+							int loIndex, int midIndex, 
+							int hiIndex
+	)
 	{
 		Comparable * low = array[loIndex];
 		Comparable * mid = array[midIndex];
 		Comparable * hi = array[hiIndex];
 		while ((low > mid) || (mid > hi)) {
 			if (low > mid) 
-				swap(array, loIndex, midIndex);
+				indexSwap(array, loIndex, midIndex);
 			if (mid > hi)
-				swap(array, midIndex, hiIndex);
+				indexSwap(array, midIndex, hiIndex);
 			if (low > hi)
-				swap(array, loIndex, hiIndex);
+				indexSwap(array, loIndex, hiIndex);
 			low = array[loIndex];
 			mid = array[midIndex];
 			hi = array[hiIndex];
 		}
 	}
 
-	//-----------------------------------------------------------------------------
+ // ------------------------------------------------------------------------
 	//    function:		swap
 	//    description:	swaps two items in an array
 	//    
@@ -126,16 +130,18 @@ namespace NP_ARRAYSORT
 	//
 	//    History Log:
 	//			4/27/17  NP  completed version 1.0
-	// ----------------------------------------------------------------------------	
-	void swap(Comparable ** array, int index1, int index2) {
+	// ------------------------------------------------------------------------	
+	void indexSwap(Comparable ** array, int index1, int index2) {
 		Comparable * tmp = array[index1];
 		array[index1] = array[index2];
 		array[index2] = tmp;
 	}
 
-	//-----------------------------------------------------------------------------
-	//    function:		insertionSort(Comparable ** array, int fromIndex, int toIndex)
-	//    description:	sorts a list of comparables using insertion sort algorithm
+ // ------------------------------------------------------------------------
+	//    function:		insertionSort(Comparable ** array, int fromIndex, 
+	//					int toIndex)
+	//    description:	sorts a list of comparables using 
+	//					insertion sort algorithm
 	//    
 	//    Input:		
 	// 
@@ -147,7 +153,7 @@ namespace NP_ARRAYSORT
 	//    History Log:
 	//			2/9/08  PB  completed version 1.0
 	//			4/28/17	NP	Appended to version 1.0
-	// ----------------------------------------------------------------------------	
+	// ------------------------------------------------------------------------	
 	void insertionSort(Comparable ** array, int fromIndex, int toIndex)
 	{
 		if (fromIndex < 1)
@@ -166,7 +172,7 @@ namespace NP_ARRAYSORT
 		}
 	}
 
-	//-----------------------------------------------------------------------------
+ // ------------------------------------------------------------------------
 	//    function:		safeRead(istream& sin, Comparable* d, const char* re)
 	//    description:	safely reads in a DateTime (d) from sin.
 	//				Re-prompts and re-enters if input is invalid
@@ -183,7 +189,7 @@ namespace NP_ARRAYSORT
 	//
 	//    History Log:
 	//			2/9/08  PB  completed version 1.0
-	// ----------------------------------------------------------------------------	
+	// ------------------------------------------------------------------------	
 	void safeRead(istream& sin, Comparable* d, const char* prompt)
 	{
 		const int BUFFERSIZE = 256;
@@ -199,7 +205,7 @@ namespace NP_ARRAYSORT
 		sin.ignore(BUFFERSIZE, '\n');
 	}
 
-	//-----------------------------------------------------------------------------
+ // ------------------------------------------------------------------------
 	///    function:	void printArray(ostream & sout, Comparable **a, int size)
 	///    description:	can print out an array of DateTime *
 	// 
@@ -215,7 +221,7 @@ namespace NP_ARRAYSORT
 	//
 	//    History Log:
 	//			2/9/08  PB  completed version 1.0
-	// ----------------------------------------------------------------------------	
+	// ------------------------------------------------------------------------	
 	void printArray(ostream & sout, Comparable **array, int len)
 	{
 		for (int i = 0; i < len; i++)

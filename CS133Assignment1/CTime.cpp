@@ -11,7 +11,7 @@
 namespace NP_DATETIME
 {
 
-	//-----------------------------------------------------------------------------
+ //-------------------------------------------------------------------------
 	//    Class:		CTime
 	//    method:		hour mutator
 	//
@@ -33,7 +33,7 @@ namespace NP_DATETIME
 	//    History Log:
 	//			05/08/16  PB  completed version 1.1
 	//			04/11/17  NP  appended to version 1.1
-	//-----------------------------------------------------------------------------
+ //-------------------------------------------------------------------------
 	void CTime::setHour(short hour)
 	{
 		if (hour >= 0 && hour < HOURS_IN_DAY) {
@@ -44,7 +44,7 @@ namespace NP_DATETIME
 		}
 	}
 
-	//-----------------------------------------------------------------------------
+ //-------------------------------------------------------------------------
 	//    Class:		CTime
 	//    method:		minute mutator
 	//
@@ -66,7 +66,7 @@ namespace NP_DATETIME
 	//    History Log:
 	//			05/08/16  PB  completed version 1.1
 	//			04/11/17  NP  appended to version 1.1
-	//-----------------------------------------------------------------------------
+ //-------------------------------------------------------------------------
 	void CTime::setMinute(short minute)
 	{
 		if (minute >= 0 && minute < SEXAGESIMAL_RATE) {
@@ -77,7 +77,7 @@ namespace NP_DATETIME
 		}
 	}
 
-	//-----------------------------------------------------------------------------
+ //-------------------------------------------------------------------------
 	//    Class:		CTime
 	//    method:		second mutator
 	//
@@ -99,7 +99,7 @@ namespace NP_DATETIME
 	//    History Log:
 	//			05/08/16  PB  completed version 1.1
 	//			04/11/17  NP  appended to version 1.1
-	//-----------------------------------------------------------------------------
+ //-------------------------------------------------------------------------
 	void CTime::setSecond(short second)
 	{
 		if (second >= 0 && second < SEXAGESIMAL_RATE) {
@@ -110,7 +110,7 @@ namespace NP_DATETIME
 		}
 	}
 
-	//-----------------------------------------------------------------------------
+ //-------------------------------------------------------------------------
 	//    Class:		CTime
 	//	  method:		setCurrentTime()
 	//
@@ -120,7 +120,7 @@ namespace NP_DATETIME
 	//
 	//    History Log:
 	//			2/9/08  PB  completed version 1.0
-	// ----------------------------------------------------------------------------
+	// ------------------------------------------------------------------------
 	void CTime::setCurrentTime()
 	{
 		time_t rawtime;
@@ -133,7 +133,7 @@ namespace NP_DATETIME
 		m_second = currentTimePtr->tm_sec;
 	}
 
-	//-----------------------------------------------------------------------------
+ //-------------------------------------------------------------------------
 	//    Class:		CTime
 	//    method:		constructor
 	//
@@ -155,13 +155,13 @@ namespace NP_DATETIME
 	//    History Log:
 	//			05/08/16  PB  completed version 1.1
 	//			04/11/17  NP  appended to version 1.1
-	//-----------------------------------------------------------------------------
+ //-------------------------------------------------------------------------
 	CTime::CTime(void)
 	{
 		this->setCurrentTime();
 	}
 
-	//-----------------------------------------------------------------------------
+ //-------------------------------------------------------------------------
 	//    Class:		CTime
 	//    method:		constructor
 	//
@@ -183,7 +183,7 @@ namespace NP_DATETIME
 	//    History Log:
 	//			05/08/16  PB  completed version 1.1
 	//			04/11/17  NP  appended to version 1.1
-	//-----------------------------------------------------------------------------
+ //-------------------------------------------------------------------------
 	CTime::CTime(int hour, int minute, int second)
 	{
 		this->setHour(hour);
@@ -191,7 +191,7 @@ namespace NP_DATETIME
 		this->setSecond(second);
 	}
 
-	//-----------------------------------------------------------------------------
+ //-------------------------------------------------------------------------
 	//    Class:		CTime
 	//    method:		input(istream & sin)
 	//
@@ -213,7 +213,7 @@ namespace NP_DATETIME
 	//    History Log:
 	//			05/08/16  PB  completed version 1.1
 	//			04/11/17  NP  appended to version 1.1
-	//-----------------------------------------------------------------------------
+ //-------------------------------------------------------------------------
 	void CTime::input(istream & sin)
 	{
 		// Assume best scenario: we don't have reset everything to 0.
@@ -271,7 +271,7 @@ namespace NP_DATETIME
 
 	}
 
-	//-----------------------------------------------------------------------------
+ //-------------------------------------------------------------------------
 	//    Class:		CTime
 	//    method:		print(ostream & sout) const
 	//
@@ -293,24 +293,26 @@ namespace NP_DATETIME
 	//    History Log:
 	//			05/08/16  PB  completed version 1.1
 	//			04/11/17  NP  appended to version 1.1
-	//-----------------------------------------------------------------------------
+ //-------------------------------------------------------------------------
 	void CTime::print(ostream & sout) const
 	{
+		const int DOUBLE_DIGIT_THRESHOLD = 10;
 		string min = "";
 		string sec = "";
 		string hour = "";
 
-		if (getMinute() < 10)
+		if (getMinute() < DOUBLE_DIGIT_THRESHOLD)
 			min = "0";
-		if (getSecond() < 10)
+		if (getSecond() < DOUBLE_DIGIT_THRESHOLD)
 			sec = "0";
-		if (getHour() < 10)
+		if (getHour() < DOUBLE_DIGIT_THRESHOLD)
 			hour = "0";
 		
-		sout << hour << getHour() << ':' << min << getMinute() << ':' << sec << getSecond();
+		sout << hour << getHour() << ':' << min << getMinute() 
+			 << ':' << sec << getSecond();
 	}
 
-	//-----------------------------------------------------------------------------
+ //-------------------------------------------------------------------------
 	//    Class:		CTime
 	//    method:		operator==(const Comparable& other) const
 	//
@@ -330,7 +332,7 @@ namespace NP_DATETIME
 	//    History Log:
 	//			05/08/16  PB  completed version 1.1
 	//			04/11/17  NP  appended to version 1.1
-	//-----------------------------------------------------------------------------
+ //-------------------------------------------------------------------------
 	bool CTime::operator==(const Comparable & other) const
 	{
 		bool returnValue = false;
@@ -350,7 +352,7 @@ namespace NP_DATETIME
 		return returnValue;
 	}
 
-	//-----------------------------------------------------------------------------
+ //-------------------------------------------------------------------------
 	//    Class:		CTime
 	//    method:		operator < (const Comparable& other) const
 	//
@@ -372,7 +374,7 @@ namespace NP_DATETIME
 	//    History Log:
 	//			05/08/16  PB  completed version 1.1
 	//			04/11/17  NP  appended to version 1.1
-	//-----------------------------------------------------------------------------
+ //-------------------------------------------------------------------------
 	bool CTime::operator<(const Comparable & other) const
 	{
 		bool isLT = false;
@@ -395,7 +397,7 @@ namespace NP_DATETIME
 		return isLT;
 	}
 
-	//-----------------------------------------------------------------------------
+ //-------------------------------------------------------------------------
 	//    Class:		CTime
 	//    method:		ostream & operator << (ostream & sout, const CTime & time)
 	//
@@ -414,14 +416,14 @@ namespace NP_DATETIME
 	//
 	//    History Log:
 	//			04/11/17  NP  appended to version 1.1
-	//-----------------------------------------------------------------------------
+ //-------------------------------------------------------------------------
 	ostream & operator << (ostream & sout, const CTime & time)
 	{
 		time.print(sout);
 		return sout;
 	}
 
-	//-----------------------------------------------------------------------------
+ //-------------------------------------------------------------------------
 	//    Class:		CTime
 	//    method:		ostream & operator >> (istream & sin, CTime & time)
 	//
@@ -440,7 +442,7 @@ namespace NP_DATETIME
 	//
 	//    History Log:
 	//			04/11/17  NP  appended to version 1.1
-	//-----------------------------------------------------------------------------
+ //-------------------------------------------------------------------------
 	istream & operator >> (istream & sin, CTime & time)
 	{
 		time.input(sin);

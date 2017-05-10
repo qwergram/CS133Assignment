@@ -32,7 +32,7 @@
 using namespace std;
 namespace NP_DATETIME {
 	
-	//-----------------------------------------------------------------------------
+ //-------------------------------------------------------------------------
 	//    Class:		DateTime
 	//    method:		operator==(const Comparable& other) const
 	//
@@ -50,7 +50,7 @@ namespace NP_DATETIME {
 	//				false otherwise
 	//    History Log:
 	//			4/22/17  NP  completed version 1.1
-	// ----------------------------------------------------------------------------
+	// ------------------------------------------------------------------------
 	bool DateTime::operator==(const Comparable &other) const {
 		bool returnValue = false;
 		try
@@ -68,7 +68,7 @@ namespace NP_DATETIME {
 		return returnValue;
 	}
 
-	//-----------------------------------------------------------------------------
+ //-------------------------------------------------------------------------
 	//    Class:		DateTime
 	//    method:		operator<(const Comparable& other) const
 	//
@@ -86,7 +86,7 @@ namespace NP_DATETIME {
 	//				false otherwise
 	//    History Log:
 	//			4/22/17  NP  completed version 1.1
-	// ----------------------------------------------------------------------------
+	// ------------------------------------------------------------------------
 	bool DateTime::operator<(const Comparable & other) const
 	{
 		bool returnValue = false;
@@ -104,7 +104,7 @@ namespace NP_DATETIME {
 		return returnValue;
 	}
 
-	//-----------------------------------------------------------------------------
+ //-------------------------------------------------------------------------
 	//    Class:		DateTime
 	//    method:		input(istream & sin)
 	//
@@ -127,7 +127,7 @@ namespace NP_DATETIME {
 	//    History Log:
 	//			05/08/16  PB  completed version 1.1
 	//			04/11/17  NP  appended to version 1.1
-	//-----------------------------------------------------------------------------
+ //-------------------------------------------------------------------------
 	void DateTime::input(istream & sin)
 	{
 		
@@ -144,7 +144,7 @@ namespace NP_DATETIME {
 
 	}
 
-	//-----------------------------------------------------------------------------
+ //-------------------------------------------------------------------------
 	//    Class:		Date
 	//    method:		print(ostream & sout) const
 	//
@@ -166,7 +166,7 @@ namespace NP_DATETIME {
 	//    History Log:
 	//			05/08/16  PB  completed version 1.1
 	//			04/11/17  NP  appended to version 1.1
-	//-----------------------------------------------------------------------------
+ //-------------------------------------------------------------------------
 	void DateTime::print(ostream & sout) const
 	{
 		Date::print(sout);
@@ -174,7 +174,7 @@ namespace NP_DATETIME {
 		CTime::print(sout);
 	}
 
-	//-----------------------------------------------------------------------------
+ //-------------------------------------------------------------------------
 	//    Class:		DateTime
 	//    method:		ostream & operator << (ostream & sout, Date & date)
 	//
@@ -193,14 +193,14 @@ namespace NP_DATETIME {
 	//
 	//    History Log:
 	//			04/11/17  NP  appended to version 1.1
-	//-----------------------------------------------------------------------------
+ //-------------------------------------------------------------------------
 	ostream & operator<<(ostream & sout, const DateTime & date)
 	{
 		date.print(sout);
 		return sout;
 	}
 
-	//-----------------------------------------------------------------------------
+ //-------------------------------------------------------------------------
 	//    Class:		DateTime
 	//    method:		istream & operator >> (istream & sin, Date & date)
 	//
@@ -219,7 +219,7 @@ namespace NP_DATETIME {
 	//
 	//    History Log:
 	//			04/11/17  NP  appended to version 1.1
-	//-----------------------------------------------------------------------------
+ //-------------------------------------------------------------------------
 	istream & operator>>(istream & sin, DateTime & date)
 	{
 		date.input(sin);

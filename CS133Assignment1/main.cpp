@@ -15,7 +15,8 @@ void showSortFunction();
 // .cpp
 
 void showSortFunction() {
-	cout << "For our first act, we're going to sort some times in our very own DateTime class!" << endl;
+	cout << "For our first act, we're going to sort some" 
+		 << "times in our very own DateTime class!" << endl;
 	cout << "How many DateTimes would you like to sort? ";
 	
 	short items;
@@ -23,7 +24,8 @@ void showSortFunction() {
 	
 	cin >> items;
 	if (items <= 1) {
-		cout << "Well it wouldn't be much of a show if I didn't sort at least 2 things, right? We'll sort 2 things for now." << endl;
+		cout << "Well it wouldn't be much of a show if I didn't sort at least 2 " 
+			 << "things, right? We'll sort 2 things for now." << endl;
 		items = 2;
 	}
 	else {
@@ -52,14 +54,20 @@ void showSortFunction() {
 		Comparable * thisTimeComparable = &thisTime;
 		safeRead(cin, &thisTime, "");
 		cout << "You entered: " << thisTime << endl;
-		timesToSort[tIndex] = new DateTime(dynamic_cast<DateTime&>(*thisTimeComparable));
+		timesToSort[tIndex] = new DateTime(
+			dynamic_cast<DateTime&>(*thisTimeComparable)
+		);
 	}
 
-	cout << "Awesome! Now that we have " << items << " different DateTimes, let me present them in the order you entered..." << endl << endl;
+	cout << "Awesome! Now that we have " << items 
+		 << " different DateTimes, let me present them in the" 
+		 << " order you entered..." << endl << endl;
 	
 	printArray(cout, timesToSort, items);
 	
-	cout << endl << endl << " ... and that's all of them! Now abracadraba, quicksort away! Here's the sorted list!" << endl << endl;
+	cout << endl << endl << " ... and that's all of them! "
+		 << "Now abracadraba, quicksort away! Here's the sorted list!" 
+		 << endl << endl;
 	
 	strangeSort(timesToSort, 0, items - 1);
 	
@@ -77,17 +85,22 @@ void showSortFunction() {
 		timesToSort[tIndex] = new Date(dynamic_cast<Date&>(*thisTimeComparable));
 	}
 	
-	cout << "Awesome! Now that we have " << items << " different DAtes, let me present them in the order you entered..." << endl << endl;
+	cout << "Awesome! Now that we have " << items 
+		 << " different Dates, let me present them in the order you entered..." 
+		 << endl << endl;
 
 	printArray(cout, timesToSort, items);
 
-	cout << endl << endl << " ... and that's all of them! Now abracadraba, quicksort away! Here's the sorted list!" << endl << endl;
+	cout << endl << endl 
+		 << " ... and that's all of them! Now abracadraba, "
+		 << "quicksort away! Here's the sorted list!" << endl << endl;
 
 	strangeSort(timesToSort, 0, items - 1);
 
 	printArray(cout, timesToSort, items);
 	cout << endl << endl;
-	cout << " ... For our last trick, we will dynamically clean your memory! " << endl << endl;
+	cout << " ... For our last trick, we will dynamically clean your memory! " 
+		 << endl << endl;
 	
 	// clean up memory
 	for (int index = 0; index < items; index++) {
@@ -111,12 +124,14 @@ int main()
 		cout << "Hello, " << name << "!" << endl;
 	}
 
-	cout << "We have quite a treat for you today! We're going to sort things for you in C++!" << endl;
+	cout << "We have quite a treat for you today! "
+		 << "We're going to sort things for you in C++!" << endl;
 
 	showSortFunction();
 	
 	cout << "Thank you Seattle, you have been an amazing audience!" << endl;
-	cout << "I have been your host, Norton Pengra and I will see you later!" << endl;
+	cout << "I have been your host, Norton Pengra and I will see you later!" 
+		 << endl;
 	
 	char tmp;
 	cin >> tmp;

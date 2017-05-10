@@ -18,7 +18,7 @@
 
 namespace NP_DATETIME
 {
-	//-----------------------------------------------------------------------------
+ //-------------------------------------------------------------------------
 	//    method:		Date(short day, short month, short year) -- constructor
 	//
 	//    description:	creates a new Date object 
@@ -38,7 +38,7 @@ namespace NP_DATETIME
 	//
 	//    History Log:
 	//			2/9/08  PB  completed version 1.0
-	// ----------------------------------------------------------------------------
+	// ------------------------------------------------------------------------
 	Date::Date(short day, short month, short year)
 	{
 		setCurrentDate();
@@ -47,7 +47,7 @@ namespace NP_DATETIME
 		setDayOfMonth(day);
 	}
 
-	//-----------------------------------------------------------------------------
+ //-------------------------------------------------------------------------
 	//    Class:		Date
 	//    method:		operator==(const Comparable& other) const
 	//
@@ -62,7 +62,7 @@ namespace NP_DATETIME
 	//
 	//    History Log:
 	//			5/8/16  PB  completed version 1.1
-	//-----------------------------------------------------------------------------
+ //-------------------------------------------------------------------------
 	bool Date::operator==(const Comparable &other) const
 	{
 		bool returnValue = false;
@@ -81,7 +81,7 @@ namespace NP_DATETIME
 		}
 		return returnValue;
 	}
-	//-----------------------------------------------------------------------------
+ //-------------------------------------------------------------------------
 	//    Class:		Date
 	//    method:		operator<(const Comparable& other) const
 	//
@@ -99,7 +99,7 @@ namespace NP_DATETIME
 	//				false otherwise
 	//    History Log:
 	//			5/8/16  PB  completed version 1.1
-	// ----------------------------------------------------------------------------
+	// ------------------------------------------------------------------------
 
 	bool Date::operator<(const Comparable &other) const
 	{
@@ -122,7 +122,7 @@ namespace NP_DATETIME
 		return returnValue;
 	}
 
-	//-----------------------------------------------------------------------------
+ //-------------------------------------------------------------------------
 	//    Class:		Date
 	//    method:		setCurrentDate()
 	//
@@ -132,7 +132,7 @@ namespace NP_DATETIME
 	//
 	//    History Log:
 	//			2/9/08  PB  completed version 1.0
-	// ----------------------------------------------------------------------------
+	// ------------------------------------------------------------------------
 	void Date::setCurrentDate(void)
 	{
 		time_t rawtime;
@@ -145,7 +145,7 @@ namespace NP_DATETIME
 		m_dayOfMonth = currentTimePtr->tm_mday;
 	}
 
-	//-----------------------------------------------------------------------------
+ //-------------------------------------------------------------------------
 	//    Class:			Date
 	//    method:			countLeaps(short year)const
 	//
@@ -157,7 +157,7 @@ namespace NP_DATETIME
 	//
 	//    History Log:
 	//                           2/9/08  PB  completed version 1.0
-	//-----------------------------------------------------------------------------
+ //-------------------------------------------------------------------------
 	short Date::countLeaps(short year)const
 	{
 		short leaps = isLeapYear(LOWYEAR);
@@ -167,7 +167,7 @@ namespace NP_DATETIME
 		return leaps;
 	}
 
-	//-----------------------------------------------------------------------------
+ //-------------------------------------------------------------------------
 	//    Class:		Date
 	//    method:		getDayOfWeek() const
 	//
@@ -183,7 +183,7 @@ namespace NP_DATETIME
 	//    History Log:
 	//					02/09/08  PB  completed version 1.0
 	//					04/13/17  NP  appeneded to version 1.0
-	//-----------------------------------------------------------------------------
+ //-------------------------------------------------------------------------
 	short Date::getDayOfWeek() const
 	{
 		// Sakamoto's Algorithm
@@ -191,10 +191,14 @@ namespace NP_DATETIME
 		
 		const short references[] = { 0, 3, 2, 5, 0, 3, 5, 1, 4, 6, 2, 4 };
 		short year = getYear() - (getMonth() < 3);
-		return (year + (year / 4) - (year / 100) + (year / 400) + references[getMonth()] + getDayOfMonth()) % 7;
+		return (
+			year + (year / 4) - (year / 100)
+			+ (year / 400) + references[getMonth()] 
+			+ getDayOfMonth()
+		) % 7;
 	}
 
-	//-----------------------------------------------------------------------------
+ //-------------------------------------------------------------------------
 	//    Class:		Date
 	//    method:		getDayOfYear() const
 	//
@@ -209,13 +213,15 @@ namespace NP_DATETIME
 	//    History Log:
 	//					02/09/08  PB  completed version 1.0
 	//					04/13/17  NP  appeneded to version 1.0
-	//-----------------------------------------------------------------------------
+ //-------------------------------------------------------------------------
 	short Date::getDayOfYear() const
 	{	
 		// Sakamoto's Algorithm (Pengra Variation :)
 		
-		short references[] = { 0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334 };
-		short leap_references[] = { 0, 31, 60, 91, 121, 152, 182, 213, 244, 274, 305, 335 };
+		short references[] = { 0, 31, 59, 90, 120, 151, 181, 
+								212, 243, 273, 304, 334 };
+		short leap_references[] = { 0, 31, 60, 91, 121, 152, 
+									182, 213, 244, 274, 305, 335 };
 
 		if (isLeapYear(m_year))
 			return getDayOfMonth() + leap_references[getMonth()];
@@ -224,7 +230,7 @@ namespace NP_DATETIME
 	}
 
 
-	//-----------------------------------------------------------------------------
+ //-------------------------------------------------------------------------
 	//    Class:		Date
 	//    method:		tomorrow() const
 	//
@@ -239,7 +245,7 @@ namespace NP_DATETIME
 	//    History Log:
 	//					02/09/08  PB  completed version 1.0
 	//					04/13/17  NP  appeneded to version 1.0
-	//-----------------------------------------------------------------------------
+ //-------------------------------------------------------------------------
 	Date Date::tomorrow() const
 	{
 		short day = getDayOfMonth();
@@ -259,7 +265,7 @@ namespace NP_DATETIME
 	}
 
 
-	//-----------------------------------------------------------------------------
+ //-------------------------------------------------------------------------
 	//    Class:		Date
 	//    method:		yesterday() const
 	//
@@ -274,7 +280,7 @@ namespace NP_DATETIME
 	//    History Log:
 	//					02/09/08  PB  completed version 1.0
 	//					04/13/17  NP  appeneded to version 1.0
-	//-----------------------------------------------------------------------------
+ //-------------------------------------------------------------------------
 	Date Date::yesterday() const
 	{
 		short day = getDayOfMonth();
@@ -294,7 +300,7 @@ namespace NP_DATETIME
 		return Date(day, month, year);
 	}
 
-	//-----------------------------------------------------------------------------
+ //-------------------------------------------------------------------------
 	//    Class:		Date
 	//    method:		monthName() const
 	//
@@ -309,7 +315,7 @@ namespace NP_DATETIME
 	//    History Log:
 	//					02/09/08  PB  completed version 1.0
 	//					04/13/17  NP  appeneded to version 1.0
-	//-----------------------------------------------------------------------------
+ //-------------------------------------------------------------------------
 	const string Date::monthName(int monthNum)
 	{
 		string month = "Invalid";
@@ -354,7 +360,7 @@ namespace NP_DATETIME
 		return month;
 	}
 
-	//-----------------------------------------------------------------------------
+ //-------------------------------------------------------------------------
 	//    Class:		Date
 	//    method:		const string Date::weekdayName()
 	//
@@ -369,7 +375,7 @@ namespace NP_DATETIME
 	//    History Log:
 	//					02/09/08  PB  completed version 1.0
 	//					04/13/17  NP  appeneded to version 1.0
-	//-----------------------------------------------------------------------------
+ //-------------------------------------------------------------------------
 	const string Date::weekdayName(int weekdayNum)
 	{
 		string dayOfWeek = "Invalid";
@@ -399,7 +405,7 @@ namespace NP_DATETIME
 		return dayOfWeek;
 	}
 
-	//-----------------------------------------------------------------------------
+ //-------------------------------------------------------------------------
 	//    Class:		Date
 	//    method:		setDayOfMonth(short dayOfMonth)
 	//
@@ -413,7 +419,7 @@ namespace NP_DATETIME
 	//
 	//    History Log:
 	//			2/9/08  PB  completed version 1.0
-	//-----------------------------------------------------------------------------
+ //-------------------------------------------------------------------------
 	void Date::setDayOfMonth(short dayOfMonth)
 	{
 		if (dayOfMonth >= 0
@@ -426,7 +432,7 @@ namespace NP_DATETIME
 		}
 	}
 
-	//-----------------------------------------------------------------------------
+ //-------------------------------------------------------------------------
 	//    Class:		Date
 	//    method:		setMonth(short dmonth)
 	//
@@ -438,19 +444,22 @@ namespace NP_DATETIME
 	//
 	//    History Log:
 	//			2/9/08  PB  completed version 1.0
-	//-----------------------------------------------------------------------------
+ //-------------------------------------------------------------------------
 	void Date::setMonth(short month)
 	{
 		if (month >= 0 && month < MONTHSINYEAR) {
 			m_month = month;
-			m_dayOfMonth = (m_dayOfMonth < daysInMonth(month, m_year) - 1) ? m_dayOfMonth : daysInMonth(month, m_year) - 1;
+			m_dayOfMonth = (
+				m_dayOfMonth < daysInMonth(month, m_year) - 1) 
+					? m_dayOfMonth 
+					: daysInMonth(month, m_year) - 1;
 		} else {
 			// m_month = 0;
 			// Keep it as default constructor value
 		}
 	}
 
-	//-----------------------------------------------------------------------------
+ //-------------------------------------------------------------------------
 	//    Class:		Date
 	//    method:		setYear(short year)
 	//
@@ -462,7 +471,7 @@ namespace NP_DATETIME
 	//
 	//    History Log:
 	//			 2/9/08  PB  completed version 1.0
-	//-----------------------------------------------------------------------------
+ //-------------------------------------------------------------------------
 	void Date::setYear(short year)
 	{
 		if (year >= LOWYEAR)
@@ -473,11 +482,12 @@ namespace NP_DATETIME
 		}
 	}
 
-	//-----------------------------------------------------------------------------
+ //-------------------------------------------------------------------------
 	//    Class:		Date
 	//    method:		input(istream & sin)
 	//
-	//    description:	reads DD/MM/YYYY from istream and sets values in Date object
+	//    description:	reads DD/MM/YYYY from istream and sets 
+	//					values in Date object
 	// 
 	//    Parameters:	istream & sin  -- the istream to read from
 	//
@@ -495,7 +505,7 @@ namespace NP_DATETIME
 	//    History Log:
 	//			05/08/16  PB  completed version 1.1
 	//			04/11/17  NP  appended to version 1.1
-	//-----------------------------------------------------------------------------
+ //-------------------------------------------------------------------------
 	void Date::input(istream& sin)
 	{
 		bool proceed = true;
@@ -531,7 +541,7 @@ namespace NP_DATETIME
 		setDayOfMonth(day - 1);
 	}
 
-	//-----------------------------------------------------------------------------
+ //-------------------------------------------------------------------------
 	//    Class:		Date
 	//    method:		print(ostream & sout) const
 	//
@@ -553,7 +563,7 @@ namespace NP_DATETIME
 	//    History Log:
 	//			05/08/16  PB  completed version 1.1
 	//			04/11/17  NP  appended to version 1.1
-	//-----------------------------------------------------------------------------
+ //-------------------------------------------------------------------------
 	void Date::print(ostream& sout)const
 	{
 		sout << weekdayName(getDayOfWeek()) << ", ";
@@ -562,7 +572,7 @@ namespace NP_DATETIME
 		sout << m_year;
 	}
 
-	//-----------------------------------------------------------------------------
+ //-------------------------------------------------------------------------
 	//    Class:		Date
 	//    method:		ostream & operator << (ostream & sout, Date & date)
 	//
@@ -581,14 +591,14 @@ namespace NP_DATETIME
 	//
 	//    History Log:
 	//			04/11/17  NP  appended to version 1.1
-	//-----------------------------------------------------------------------------
+ //-------------------------------------------------------------------------
 	ostream & operator<<(ostream & sout, const Date & date)
 	{
 		date.print(sout);
 		return sout;
 	}
 
-	//-----------------------------------------------------------------------------
+ //-------------------------------------------------------------------------
 	//    Class:		Date
 	//    method:		istream & operator >> (istream & sin, Date & date)
 	//
@@ -607,7 +617,7 @@ namespace NP_DATETIME
 	//
 	//    History Log:
 	//			04/11/17  NP  appended to version 1.1
-	//-----------------------------------------------------------------------------
+ //-------------------------------------------------------------------------
 	istream & operator>>(istream & sin, Date & date)
 	{
 		date.input(sin);
