@@ -113,8 +113,8 @@ namespace NP_ADT {
 		iterator end() const { return tail(); }
 		void push_front(datatype datum);
 		void push_back(datatype datum);
-		// datatype pop_front();
-		// datatype pop_back();
+		datatype pop_front();
+		datatype pop_back();
 		datatype & front() const { return head()->data; }
 		datatype & back() const { return tail()->data; }
 		bool empty() const { return handle == nullptr; }
