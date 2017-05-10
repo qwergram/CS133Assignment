@@ -106,7 +106,7 @@ namespace NP_ADT {
 		//CDLL(iterator begin, iterator end);
 		
 		// Destructor
-		// ~CDLL() { release(); }
+		~CDLL() { release(); }
 
 		unsigned getSize() const { return m_size; }
 		iterator begin() const { return head(); }
@@ -118,7 +118,7 @@ namespace NP_ADT {
 		datatype & front() const;
 		datatype & back() const;
 		bool empty() const { return handle == nullptr; }
-		// void release();
+		void release();
 		// CDLL operator=(const CDLL & rlist);
 		// datatype& operator[](int index);
 		// const datatype& operator[](int index) const;
