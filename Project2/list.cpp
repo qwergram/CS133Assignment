@@ -31,12 +31,18 @@ namespace NP_ADT
 	template<typename datatype>
 	void CDLL<datatype>::push_front(datatype datum)
 	{
-		node * temp = new node(datum, handle, nullptr);
+		node * temp = new node(datum, nullptr, nullptr);
 		if (m_size++ == 0)
 		{
 			handle = temp;
 			handle->next = handle;
 			handle->prev = handle;
+		}
+		else {
+			temp->next = handle;
+			temp->prev = handle->prev;
+			handle->prev = temp;
+			temp->prev->next = handle;
 		}
 	}
 
