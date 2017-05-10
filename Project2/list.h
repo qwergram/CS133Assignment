@@ -109,15 +109,15 @@ namespace NP_ADT {
 		// ~CDLL() { release(); }
 
 		unsigned getSize() const { return m_size; }
-		// iterator begin() const { return head(); }
-		// iterator end() const { return tail(); }
+		iterator begin() const { return head(); }
+		iterator end() const { return tail(); }
 		void push_front(datatype datum);
 		void push_back(datatype datum);
 		// datatype pop_front();
 		// datatype pop_back();
-		// datatype& front() const { return head()->data; }
-		// datatype& back() const { return tail()->data; }
-		// bool empty()const { return handle == nullptr; }
+		datatype & front() const { return head()->data; }
+		datatype & back() const { return tail()->data; }
+		bool empty() const { return handle == nullptr; }
 		// void release();
 		// CDLL operator=(const CDLL & rlist);
 		// datatype& operator[](int index);
