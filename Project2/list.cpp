@@ -96,10 +96,12 @@ namespace NP_ADT
 			handle = nullptr;
 		}
 		else {
+			node * oldHead = head();
 			node * newHead = head()->next;
 			newHead->prev = head()->prev;
 			head()->prev->next = newHead;
 			handle = newHead;
+			delete oldHead;
 		}
 
 		return poppedData;
@@ -120,9 +122,11 @@ namespace NP_ADT
 			handle = nullptr;
 		}
 		else {
+			node * oldTail = tail();
 			node * newTail = tail()->prev;
 			newTail->next = tail()->next;
 			tail()->next->prev = newTail;
+			delete oldTail;
 		}
 
 		return poppedData;
@@ -152,6 +156,16 @@ namespace NP_ADT
 			throw runtime_error("Empty list"); 
 	}
 
+	//-----------------------------------------------------------------------------
+	// empties the list
+	//-----------------------------------------------------------------------------
+	template<typename datatype>
+	inline void NP_ADT::CDLL<datatype>::release()
+	{
+		while (handle != nullptr)
+			pop_front();
+	}
+
 	//-------------------------------------------------------------------------
 	// constructor using iterators, copies from begin to one before end
 	//-------------------------------------------------------------------------
@@ -163,15 +177,7 @@ namespace NP_ADT
 			push_front(*begin++);
 	}*/
 
-	//-----------------------------------------------------------------------------
-	// empties the list
-	//-----------------------------------------------------------------------------
-	/*template<typename datatype>
-	inline void NP_ADT::CDLL<datatype>::release()
-	{
-		while (handle != nullptr)
-			pop_front();
-	}*/
+	
 
 	//-------------------------------------------------------------------------
 	// prints out a list
