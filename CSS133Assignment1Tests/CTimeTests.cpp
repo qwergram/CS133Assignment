@@ -236,6 +236,26 @@ namespace CSS133Assignment1Tests
 			}
 		}
 
+		TEST_METHOD(RandomSortTests) {
+			auto time0 = CTime(13, 45, 23);
+			auto time1 = CTime(10, 18, 53);
+			auto time2 = CTime(17, 30, 38);
+			auto time3 = CTime(5, 20, 15);
+			auto time4 = CTime(10, 30, 50);
+			auto time5 = CTime(15, 0, 18);
+			auto time6 = CTime(13, 45, 23);
+
+			Assert::IsTrue(time0 > time1);
+			Assert::IsTrue(time1 < time2);
+			Assert::IsTrue(time2 > time3);
+			Assert::IsTrue(time3 < time4);
+			Assert::IsTrue(time4 < time5);
+			Assert::IsTrue(time5 > time6);
+			Assert::IsTrue(time0 == time6);
+
+			
+		}
+
 		TEST_METHOD(HourlyAndSecondlyComparisonTests)
 		{
 			CTime time1(0, 0, 0);
