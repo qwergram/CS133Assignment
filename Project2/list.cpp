@@ -34,16 +34,17 @@ namespace NP_ADT
 		node * temp = new node(datum, nullptr, nullptr);
 		if (m_size++ == 0)
 		{
-			handle = temp;
-			handle->next = handle;
-			handle->prev = handle;
+			temp->next = temp;
+			temp->prev = temp;
 		}
 		else {
+			node * before = handle->prev;
 			temp->next = handle;
-			temp->prev = handle->prev;
 			handle->prev = temp;
-			temp->prev->next = handle;
+			temp->prev = before;
+			before->next = temp;
 		}
+		handle = temp;
 	}
 
 	//-------------------------------------------------------------------------
