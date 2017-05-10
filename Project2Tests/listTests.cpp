@@ -617,6 +617,16 @@ namespace Project2Tests
 			Assert::IsTrue(6 == test.back());
 		}
 
-		
+		TEST_METHOD(TestReleaseAndDestructor) {
+			auto test = CDLL<int>();
+			for (int x = 0; x < 1000; x++) {
+				test.push_front(x);
+			}
+			Assert::IsTrue(test.getSize() == 1000);
+			Assert::IsFalse(test.empty());
+			test.release();
+			Assert::IsTrue(test.getSize() == 0);
+			Assert::IsTrue(test.empty());
+		}
 	};
 }
