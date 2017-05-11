@@ -32,15 +32,12 @@ namespace NP_ADT
 	NP_ADT::CDLL<datatype>::CDLL(const CDLL<datatype> & cdll)
 		: m_size(0), handle(nullptr)
 	{
-		try {
+		if (!cdll.empty()) {
 			CDLL::iterator r_it = cdll.begin();
 			
 			push_front(*r_it++);
 			while (r_it != cdll.begin())
 				push_front(*r_it++);
-		}
-		catch (runtime_error) {
-			// leave it
 		}
 	}
 
