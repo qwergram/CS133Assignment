@@ -678,5 +678,19 @@ namespace Project2Tests
 			Assert::IsTrue(*++r_it == 0);
 			Assert::IsTrue(*++r_it == 1);
 		}
+
+		TEST_METHOD(TestIteratorPostIncrementOperator) {
+			auto test = CDLL<int>();
+			for (int x = 0; x < 100; x++) {
+				test.push_back(x);
+			}
+
+			auto r_it = test.begin();
+			for (int x = 0; x < 100; x++) {
+				Assert::IsTrue(*r_it++ == x);
+			}
+			Assert::IsTrue(*r_it++ == 0);
+			Assert::IsTrue(*r_it++ == 1);
+		}
 	};
 }
