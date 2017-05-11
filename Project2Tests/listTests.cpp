@@ -628,5 +628,41 @@ namespace Project2Tests
 			Assert::IsTrue(test.getSize() == 0);
 			Assert::IsTrue(test.empty());
 		}
+
+		TEST_METHOD(TestCopyConstructorEmpty) {
+			auto test = CDLL<int>();
+			bool exceptionThrown = false;
+			try {
+				auto test2 = CDLL<int>(test);
+			}
+			catch (...) {
+				exceptionThrown = true;
+			}
+			Assert::IsFalse(exceptionThrown);
+		}
+
+		TEST_METHOD(TestCopyConstructor) {
+			auto test = CDLL<int>();
+			test.push_front(4);
+			
+			auto test2 = CDLL<int>(test);
+			Assert::IsFalse(&(test.head()->data) == &(test2.head()->data));
+			Assert::IsTrue(test.head()->data == test2.head()->data);
+		}
+
+		TEST_METHOD(TestCopyObjectConstructor) {
+			class Dummy {
+			public:
+				Dummy(int x) : m_x(x) {};
+				int m_x = 0;
+			};
+
+			auto test = CDLL<Dummy>();
+			test.push_front(Dummy(5));
+
+			auto test2 = CDLL<Dummy>(test);
+			Assert::IsFalse(&(test.head()->data) == &(test2.head()->data));
+			Assert::IsTrue(test.head()->data.m_x == test2.head()->data.m_x);
+		}
 	};
 }
