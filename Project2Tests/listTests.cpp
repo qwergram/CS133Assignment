@@ -664,5 +664,19 @@ namespace Project2Tests
 			Assert::IsFalse(&(test.head()->data) == &(test2.head()->data));
 			Assert::IsTrue(test.head()->data.m_x == test2.head()->data.m_x);
 		}
+
+		TEST_METHOD(TestIteratorPreIncrementOperator) {
+			auto test = CDLL<int>();
+			for (int x = 0; x < 100; x++) {
+				test.push_back(x);
+			}
+
+			auto r_it = test.begin();
+			for (int x = 0; x < 99; x++) {
+				Assert::IsTrue(*++r_it == x + 1);
+			}
+			Assert::IsTrue(*++r_it == 0);
+			Assert::IsTrue(*++r_it == 1);
+		}
 	};
 }
