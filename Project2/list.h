@@ -146,9 +146,9 @@ namespace NP_ADT {
 		{
 		public:
 			iterator(node * p = nullptr) : ptr(p) {}
-			//iterator operator++();
+			iterator operator++();
 			//iterator operator--();
-			//iterator operator++(int);
+			iterator operator++(int);
 			//iterator operator--(int);
 			node * operator->() const { return ptr; }
 			datatype & operator*() const { return ptr->data; }
