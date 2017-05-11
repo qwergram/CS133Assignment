@@ -32,9 +32,16 @@ namespace NP_ADT
 	NP_ADT::CDLL<datatype>::CDLL(const CDLL<datatype> & cdll)
 		: m_size(0), handle(nullptr)
 	{
-		CDLL::iterator r_it = cdll.begin();
-		while (r_it != nullptr)
+		try {
+			CDLL::iterator r_it = cdll.begin();
+			
 			push_front(*r_it++);
+			while (r_it != cdll.begin())
+				push_front(*r_it++);
+		}
+		catch (runtime_error) {
+			// leave it
+		}
 	}
 
 	//-------------------------------------------------------------------------
@@ -217,19 +224,19 @@ namespace NP_ADT
 	//-------------------------------------------------------------------------
 	// pre-increment
 	//-------------------------------------------------------------------------
-	/*template<typename datatype>
+	template<typename datatype>
 	inline typename CDLL<datatype>::iterator NP_ADT::CDLL<datatype>::iterator::operator++()
 	{
 		if (ptr == nullptr)
 			throw runtime_error("nullptr pointer");
 		ptr = ptr->next;
 		return *this;
-	}*/
+	}
 
 	//-------------------------------------------------------------------------
 	// post-increment
 	//-------------------------------------------------------------------------
-	/*template<typename datatype>
+	template<typename datatype>
 	inline typename CDLL<datatype>::iterator NP_ADT::CDLL<datatype>::iterator::operator++(int)
 	{
 		if (ptr == nullptr)
@@ -237,7 +244,7 @@ namespace NP_ADT
 		iterator temp = *this;
 		ptr = ptr->next;
 		return temp;
-	}*/
+	}
 
 	//-------------------------------------------------------------------------
 	// pre-decrement
