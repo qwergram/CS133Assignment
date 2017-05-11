@@ -12,8 +12,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Sorting", "Sorting\Sorting.vcxproj", "{06C8EE93-E504-4496-BCEF-41427D2DE61C}"
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Project2", "Project2\Project2.vcxproj", "{96A01A96-0264-4897-92B0-16A4A0541F51}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Project2Tests", "Project2Tests\Project2Tests.vcxproj", "{0318EC78-3041-4C40-A957-2706C03ADF4F}"
@@ -30,14 +28,6 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{06C8EE93-E504-4496-BCEF-41427D2DE61C}.Debug|x64.ActiveCfg = Debug|x64
-		{06C8EE93-E504-4496-BCEF-41427D2DE61C}.Debug|x64.Build.0 = Debug|x64
-		{06C8EE93-E504-4496-BCEF-41427D2DE61C}.Debug|x86.ActiveCfg = Debug|Win32
-		{06C8EE93-E504-4496-BCEF-41427D2DE61C}.Debug|x86.Build.0 = Debug|Win32
-		{06C8EE93-E504-4496-BCEF-41427D2DE61C}.Release|x64.ActiveCfg = Release|x64
-		{06C8EE93-E504-4496-BCEF-41427D2DE61C}.Release|x64.Build.0 = Release|x64
-		{06C8EE93-E504-4496-BCEF-41427D2DE61C}.Release|x86.ActiveCfg = Release|Win32
-		{06C8EE93-E504-4496-BCEF-41427D2DE61C}.Release|x86.Build.0 = Release|Win32
 		{96A01A96-0264-4897-92B0-16A4A0541F51}.Debug|x64.ActiveCfg = Debug|x64
 		{96A01A96-0264-4897-92B0-16A4A0541F51}.Debug|x64.Build.0 = Debug|x64
 		{96A01A96-0264-4897-92B0-16A4A0541F51}.Debug|x86.ActiveCfg = Debug|Win32
