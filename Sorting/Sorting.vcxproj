@@ -155,6 +155,7 @@
     <ClCompile Include="quicksort.cpp" />
     <ClCompile Include="shellsort.cpp" />
     <ClCompile Include="smoothsort.cpp" />
+    <ClCompile Include="strangesort.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="util.h" />
