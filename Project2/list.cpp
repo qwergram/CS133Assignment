@@ -302,12 +302,12 @@ namespace NP_ADT
 	//-------------------------------------------------------------------------
 	//template<typename datatype>
 
-	/*template <typename datatype>
+	template <typename datatype>
 	ostream & operator << (ostream& sout, const CDLL<datatype> & cdll)
 	{
 
 		return sout;
-	}*/
+	}
 
 } // end namespace NP_ADT
 
