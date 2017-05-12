@@ -692,5 +692,42 @@ namespace Project2Tests
 			Assert::IsTrue(*r_it++ == 0);
 			Assert::IsTrue(*r_it++ == 1);
 		}
+
+		TEST_METHOD(TestPartialIteratorConstructor) {
+			auto test = CDLL<int>();
+			for (int x = 0; x < 100; x++) {
+				test.push_back(x);
+			}
+
+			auto r_it = test.begin();
+			for (int i = 0; i < 10; i++) { r_it++; };
+
+			auto test2 = CDLL<int>(r_it, test.end());
+			r_it = test2.begin();
+
+			for (int x = 10; x < 100; x++) {
+				int y = *r_it++;
+				Assert::IsTrue(y == x);
+			}
+			Assert::IsTrue(*r_it++ == 10);
+			Assert::IsTrue(*r_it++ == 11);
+		}
+
+		TEST_METHOD(TestFullIteratorConstructor) {
+			auto test = CDLL<int>();
+			for (int x = 0; x < 100; x++) {
+				test.push_back(x);
+			}
+
+			auto r_it = test.begin();
+			auto test2 = CDLL<int>(r_it, test.end());
+
+			for (int x = 0; x < 100; x++) {
+				int y = *r_it++;
+				Assert::IsTrue(y == x);
+			}
+			Assert::IsTrue(*r_it++ == 0);
+			Assert::IsTrue(*r_it++ == 1);
+		}
 	};
 }
