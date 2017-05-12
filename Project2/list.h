@@ -121,8 +121,8 @@ namespace NP_ADT {
 		bool empty() const { return handle == nullptr; }
 		void release();
 		
-		// datatype& operator[](int index);
-		const datatype& operator[](int index) const;
+		datatype & operator[](int index);
+		const datatype & operator[](int index) const;
 
 		// Head = handle and tail = handle - 1
 		node * head(void) const { return handle; }

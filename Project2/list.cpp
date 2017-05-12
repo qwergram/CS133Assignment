@@ -200,6 +200,17 @@ namespace NP_ADT
 		if (index >= int(m_size) || index < 0) 
 			throw out_of_range("out of range");
 		
+		const iterator cursor = begin();
+		for (int x = 0; x < index; x++) { cursor++; }
+		return *cursor;
+	}
+
+	template<class datatype>
+	datatype & NP_ADT::CDLL<datatype>::operator[](int index)
+	{
+		if (index >= int(m_size) || index < 0)
+			throw out_of_range("out of range");
+
 		iterator cursor = begin();
 		for (int x = 0; x < index; x++) { cursor++; }
 		return *cursor;

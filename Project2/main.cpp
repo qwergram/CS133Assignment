@@ -34,8 +34,12 @@ int main(void)
 		cout << "mylist: ";
 		for (unsigned int i = 0; i < mylist.getSize(); i++)
 			cout << mylist[i] << " ";
+		cout << endl;
+		cout << "mylist[1] = 'N';" << endl;
+		mylist[1] = 'N';
+		cout << "mylist: " << mylist << endl;
 		mylist.release();
-		cout << endl << "mylist: " << mylist << endl;
+		cout << "mylist: " << mylist << endl;
 		cout << "mylist2: " << mylist2 << endl;
 	}
 	catch (exception e)
