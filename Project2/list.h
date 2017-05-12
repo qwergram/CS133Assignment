@@ -87,6 +87,7 @@
 //     April 15, 2011, PB completed version 1.09 
 //-----------------------------------------------------------------------------
 
+#include <iostream>
 
 namespace NP_ADT {
 
@@ -158,7 +159,7 @@ namespace NP_ADT {
 		};
 	};
 
-	//template <typename datatype>
-	//ostream & operator<<(ostream& sout, const CDLL<datatype> & cdll);
+	template <typename datatype>
+	std::ostream & operator <<(std::ostream& sout, const CDLL<datatype> & cdll);
 
 }
