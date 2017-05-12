@@ -191,17 +191,15 @@ namespace NP_ADT
 		push_back(*begin++);
 	}
 
-	
-
 	//-------------------------------------------------------------------------
-	// prints out a list
+	// get the nth item of list
 	//-------------------------------------------------------------------------
 	template<typename datatype>
 	const datatype & NP_ADT::CDLL<datatype>::operator[](int index) const
 	{
-		if (index >= m_size) {
-			throw domain_error("Index larger than list size");
-		}
+		if (index >= int(m_size) || index < 0) 
+			throw out_of_range("out of range");
+		
 		iterator cursor = begin();
 		for (int x = 0; x < index; x++) { cursor++; }
 		return *cursor;
