@@ -47,17 +47,16 @@ namespace NP_MERGESORT {
 			merge(array, start, mid, end, len);
 		}
 	}
+
+// }
+	int main() {
+		const int len = 7;
+		A * array[len] = { &B(9), &B(4), &B(8), &B(3), &B(5), &B(2), &B(1) };
+		cout << "Initial Array" << ": ";
+		printArray(array, len);
+		cout << "\n";
+		mergesort(array, 0, len - 1, len);
+		return 0;
+	}
 	
-}
-
-using namespace NP_MERGESORT;
-
-int main() {
-	const int len = 7;
-	A * array[len] = { &B(9), &B(4), &B(8), &B(3), &B(5), &B(2), &B(1) };
-	cout << "Initial Array" << ": ";
-	printArray(array, len);
-	cout << "\n";
-	mergesort(array, 0, len - 1, len);
-	return 0;
 }
