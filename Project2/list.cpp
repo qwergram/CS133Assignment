@@ -305,9 +305,12 @@ namespace NP_ADT
 	{
 		auto it = cdll.begin();
 		sout << "[";
-		while (it != cdll.end())
-			sout << *it++ << ", ";
-		sout << *it << "]";
+		if (!cdll.empty()) {
+			while (it != cdll.end())
+				sout << *it++ << ", ";
+			sout << *it;
+		}
+		sout << "]";
 		return sout;
 	}
 
