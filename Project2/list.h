@@ -91,8 +91,6 @@
 
 namespace NP_ADT {
 
-	// typedef char datatype;
-
 	template <class datatype>
 	class CDLL
 	{
