@@ -31,10 +31,11 @@ int main(void)
 		CDLL<char>::iterator listit(mylist.begin());
 		cout << listit++->data << " ";
 		cout << listit->data << endl;
+		// cout << "mylist: " << mylist << endl;
 		cout << "mylist: ";
-		//for (int i = 0; i < static_cast<int>(mylist.getSize()); i++)
-		//	cout << mylist[i] << " ";
-		cout << "mylist: " << endl;
+		for (int i = 0; i < mylist.getSize(); i++)
+			cout << mylist[i] << " ";
+		cout << endl << "mylist: " << endl;
 		mylist.release();
 		cout << "mylist: " << mylist << endl;
 		cout << "mylist2: " << mylist2 << endl;

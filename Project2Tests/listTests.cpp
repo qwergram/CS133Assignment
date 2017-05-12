@@ -919,6 +919,7 @@ namespace Project2Tests
 			Assert::AreEqual(102U, test.getSize());
 			test2 = test;
 			Assert::AreEqual(102U, test.getSize());
+			Assert::AreEqual(102U, test2.getSize());
 			Assert::AreEqual(-1, *test.begin());
 			Assert::AreEqual(-1, *test2.begin());
 			Assert::AreEqual(-2, *test.end());

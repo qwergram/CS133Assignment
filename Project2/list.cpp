@@ -196,21 +196,16 @@ namespace NP_ADT
 	//-------------------------------------------------------------------------
 	// prints out a list
 	//-------------------------------------------------------------------------
-	/*template<typename datatype>
+	template<typename datatype>
 	const datatype & NP_ADT::CDLL<datatype>::operator[](int index) const
 	{
-		CDLL::iterator p = x.begin(); // gets x.h
-		sout << "(";
-		while (p != nullptr)
-		{
-			sout << *p;
-			if (p != x.end())
-				sout << ",";
-			++p; // advances iterator using next
+		if (index >= m_size) {
+			throw domain_error("Index larger than list size");
 		}
-		sout << ")\n";
-		return sout;
-	}*/
+		iterator cursor = begin();
+		for (int x = 0; x < index; x++) { cursor++; }
+		return *cursor;
+	}
 
 	//-------------------------------------------------------------------------
 	// returns a copy of rlist
