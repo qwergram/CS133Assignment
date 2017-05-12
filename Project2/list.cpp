@@ -247,19 +247,19 @@ namespace NP_ADT
 	//-------------------------------------------------------------------------
 	// pre-decrement
 	//-------------------------------------------------------------------------
-	/*template<typename datatype>
+	template<typename datatype>
 	inline typename CDLL<datatype>::iterator NP_ADT::CDLL<datatype>::iterator::operator--()
 	{
 		if (ptr == nullptr)
 			throw runtime_error("nullptr pointer");
 		ptr = ptr->prev;
 		return *this;
-	}*/
+	}
 
 	//-------------------------------------------------------------------------
 	// post-decrement
 	//-------------------------------------------------------------------------
-	/*template<typename datatype>
+	template<typename datatype>
 	inline typename CDLL<datatype>::iterator NP_ADT::CDLL<datatype>::iterator::operator--(int)
 	{
 		if (ptr == nullptr)
@@ -267,7 +267,7 @@ namespace NP_ADT
 		iterator temp = *this;
 		ptr = ptr->prev;
 		return temp;
-	}*/
+	}
 
 
 

@@ -693,6 +693,34 @@ namespace Project2Tests
 			Assert::IsTrue(*r_it++ == 1);
 		}
 
+		TEST_METHOD(TestIteratorPreDecrementOperator) {
+			auto test = CDLL<int>();
+			for (int x = 0; x < 100; x++) {
+				test.push_front(x);
+			}
+
+			auto r_it = test.end();
+			for (int x = 0; x < 99; x++) {
+				Assert::IsTrue(*--r_it == x + 1);
+			}
+			Assert::IsTrue(*--r_it == 0);
+			Assert::IsTrue(*--r_it == 1);
+		}
+
+		TEST_METHOD(TestIteratorPostDecrementOperator) {
+			auto test = CDLL<int>();
+			for (int x = 0; x < 100; x++) {
+				test.push_front(x);
+			}
+
+			auto r_it = test.end();
+			for (int x = 0; x < 100; x++) {
+				Assert::IsTrue(*r_it-- == x);
+			}
+			Assert::IsTrue(*r_it-- == 0);
+			Assert::IsTrue(*r_it-- == 1);
+		}
+
 		TEST_METHOD(TestPartialIteratorConstructor) {
 			auto test = CDLL<int>();
 			for (int x = 0; x < 100; x++) {
