@@ -300,11 +300,15 @@ namespace NP_ADT
 	//-------------------------------------------------------------------------
 	// ostream << overload
 	//-------------------------------------------------------------------------
-	//template<typename datatype>
-
 	template <typename datatype>
 	ostream & operator << (ostream& sout, const CDLL<datatype> & cdll)
 	{
+		auto it = cdll.begin();
+		sout << "["
+		while (it != cdll.end()) 
+			sout << *it++ << ", ";
+		
+		sout << *it << "]";
 
 		return sout;
 	}
