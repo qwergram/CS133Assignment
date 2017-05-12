@@ -37,15 +37,16 @@ namespace NP_ADT
 	// copy constructor
 	//-------------------------------------------------------------------------
 	template<typename datatype>
-	NP_ADT::CDLL<datatype>::CDLL(const CDLL<datatype> & cdll)
+	NP_ADT::CDLL<datatype>::CDLL(const CDLL<datatype> & rlist)
 		: m_size(0), handle(nullptr)
 	{
-		if (!cdll.empty()) {
-			CDLL::iterator r_it = cdll.begin();
-			
-			push_front(*r_it++);
-			while (r_it != cdll.begin())
-				push_front(*r_it++);
+		if (&rlist != this && !rlist.empty())
+		{
+			auto r_it = rlist.begin();
+			release();
+			while (r_it != rlist.end())
+				push_back(*r_it++);
+			push_back(*r_it);
 		}
 	}
 
@@ -214,18 +215,19 @@ namespace NP_ADT
 	//-------------------------------------------------------------------------
 	// returns a copy of rlist
 	//-------------------------------------------------------------------------
-	/*template<typename datatype>
+	template<typename datatype>
 	CDLL<datatype> NP_ADT::CDLL<datatype>::operator=(const CDLL & rlist)
 	{
-		if (&rlist != this)
+		if (&rlist != this && !rlist.empty())
 		{
-			CDLL<datatype>::iterator r_it = rlist.begin();
+			auto r_it = rlist.begin();
 			release();
-			while (r_it != 0)
-				push_front(*r_it++);
+			while (r_it != rlist.end())
+				push_back(*r_it++);
+			push_back(*r_it);
 		}
 		return *this;
-	}*/
+	}
 
 	//-------------------------------------------------------------------------
 	// pre-increment

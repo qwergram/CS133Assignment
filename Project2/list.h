@@ -103,9 +103,11 @@ namespace NP_ADT {
 		// Constructors
 		CDLL(void);
 		CDLL(size_t n_elements, datatype datum);
-		CDLL(const CDLL& cdll);
+		CDLL(const CDLL& rlist);
 		CDLL(iterator begin, iterator end);
 		
+		CDLL operator=(const CDLL & rlist);
+
 		// Destructor
 		virtual ~CDLL() { release(); }
 
@@ -120,7 +122,7 @@ namespace NP_ADT {
 		datatype & back() const;
 		bool empty() const { return handle == nullptr; }
 		void release();
-		// CDLL operator=(const CDLL & rlist);
+		
 		// datatype& operator[](int index);
 		// const datatype& operator[](int index) const;
 

@@ -25,7 +25,7 @@ int main(void)
 		mylist.push_front('Y');
 		mylist.push_front('Z');
 		cout << mylist.pop_front() << endl;
-		// mylist2 = mylist; // a copy
+		mylist2 = mylist; // a copy
 		cout << "mylist: " << mylist << endl;
 		// create a new iterator pointing to the beginning of mylist
 		CDLL<char>::iterator listit(mylist.begin());

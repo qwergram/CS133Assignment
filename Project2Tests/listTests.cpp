@@ -25,10 +25,13 @@ namespace Project2Tests
 		{
 			CDLL<int> test = CDLL<int>();
 			Assert::IsTrue(test.empty());
+			Assert::AreEqual(unsigned(0), test.getSize());
 			test.push_front(5);
 			Assert::IsFalse(test.empty());
+			Assert::AreEqual(unsigned(1), test.getSize());
 			test.push_front(0);
 			Assert::IsFalse(test.empty());
+			Assert::AreEqual(unsigned(2), test.getSize());
 
 			Assert::IsTrue(test.head() == test.head()->next->prev);
 			Assert::IsTrue(test.head() == test.head()->prev->next);
@@ -40,10 +43,13 @@ namespace Project2Tests
 		{
 			CDLL<int> test = CDLL<int>();
 			Assert::IsTrue(test.empty());
+			Assert::AreEqual(unsigned(0), test.getSize());
 			test.push_back(5);
 			Assert::IsFalse(test.empty());
+			Assert::AreEqual(unsigned(1), test.getSize());
 			test.push_back(0);
 			Assert::IsFalse(test.empty());
+			Assert::AreEqual(unsigned(2), test.getSize());
 
 			Assert::IsTrue(test.head() == test.head()->next->prev);
 			Assert::IsTrue(test.head() == test.head()->prev->next);
@@ -54,6 +60,7 @@ namespace Project2Tests
 		TEST_METHOD(TestOnePushFrontItemList) {
 			CDLL<int> test = CDLL<int>();
 			Assert::IsTrue(test.empty());
+			Assert::AreEqual(unsigned(0), test.getSize());
 			test.push_front(0);
 			Assert::IsFalse(test.empty());
 			
@@ -77,15 +84,16 @@ namespace Project2Tests
 		TEST_METHOD(TestTwoPushFrontItemList) {
 			CDLL<int> test = CDLL<int>();
 			Assert::IsTrue(test.empty());
+			Assert::AreEqual(unsigned(0), test.getSize());
 			test.push_front(0);
 			Assert::IsFalse(test.empty());
+			Assert::AreEqual(unsigned(1), test.getSize());
 			test.push_front(1);
 			Assert::IsFalse(test.empty());
+			Assert::AreEqual(unsigned(2), test.getSize());
 			// <-> 1 <-> 0 <->
 
 			CDLL<int>::node * thisThing = test.head();
-
-			Assert::AreEqual(unsigned int(2), test.getSize());
 			
 			Assert::IsTrue(unsigned int(1) == test.head()->data);
 			Assert::IsTrue(unsigned int(0) == test.tail()->data);
@@ -106,10 +114,13 @@ namespace Project2Tests
 		TEST_METHOD(TestThreePushFrontItemList) {
 			CDLL<int> test = CDLL<int>();
 			Assert::IsTrue(test.empty());
+			Assert::AreEqual(unsigned(0), test.getSize());
 			test.push_front(0);
 			Assert::IsFalse(test.empty());
+			Assert::AreEqual(unsigned(1), test.getSize());
 			test.push_front(1);
 			Assert::IsFalse(test.empty());
+			Assert::AreEqual(unsigned(2), test.getSize());
 			test.push_front(2);
 			Assert::IsFalse(test.empty());
 			// <-> 2 <-> 1 <-> 0 <->
@@ -137,6 +148,7 @@ namespace Project2Tests
 		TEST_METHOD(TestOnePushBackItemList) {
 			CDLL<int> test = CDLL<int>();
 			Assert::IsTrue(test.empty());
+			Assert::AreEqual(unsigned(0), test.getSize());
 			test.push_back(0);
 			Assert::IsFalse(test.empty());
 
@@ -160,8 +172,10 @@ namespace Project2Tests
 		TEST_METHOD(TestTwoPushBackItemList) {
 			CDLL<int> test = CDLL<int>();
 			Assert::IsTrue(test.empty());
+			Assert::AreEqual(unsigned(0), test.getSize());
 			test.push_back(0);
 			Assert::IsFalse(test.empty());
+			Assert::AreEqual(unsigned(1), test.getSize());
 			test.push_back(1);
 			Assert::IsFalse(test.empty());
 			// <-> 0 <-> 1 <->
@@ -189,10 +203,13 @@ namespace Project2Tests
 		TEST_METHOD(TestThreePushBackItemList) {
 			CDLL<int> test = CDLL<int>();
 			Assert::IsTrue(test.empty());
+			Assert::AreEqual(unsigned(0), test.getSize());
 			test.push_back(0);
 			Assert::IsFalse(test.empty());
+			Assert::AreEqual(unsigned(1), test.getSize());
 			test.push_back(1);
 			Assert::IsFalse(test.empty());
+			Assert::AreEqual(unsigned(2), test.getSize());
 			test.push_back(2);
 			Assert::IsFalse(test.empty());
 			// <-> 0 <-> 1 <-> 2 <->
@@ -220,21 +237,26 @@ namespace Project2Tests
 		TEST_METHOD(TestPopFrontEmptyList) {
 			bool exceptionThrown = false;
 			auto test = CDLL<int>();
+			Assert::AreEqual(unsigned(0), test.getSize());
 			try {
 				test.pop_front();
 			}
 			catch (runtime_error) {
 				exceptionThrown = true;
 			}
+			Assert::AreEqual(unsigned(0), test.getSize());
 			Assert::IsTrue(exceptionThrown);
 		}
 
 		TEST_METHOD(TestPopFrontAfterPushFront) {
 			auto test = CDLL<int>();
 			Assert::IsTrue(test.empty());
+			Assert::AreEqual(unsigned(0), test.getSize());
 			test.push_front(1);
 			Assert::IsFalse(test.empty());
+			Assert::AreEqual(unsigned(1), test.getSize());
 			Assert::AreEqual(1, test.pop_front());
+			Assert::AreEqual(unsigned(0), test.getSize());
 			Assert::IsTrue(test.empty());
 			Assert::IsTrue(test.head() == nullptr);
 			Assert::IsTrue(test.tail() == nullptr);
@@ -243,17 +265,22 @@ namespace Project2Tests
 		TEST_METHOD(TestPopFrontAfterTwoPushFront) {
 			auto test = CDLL<int>();
 			Assert::IsTrue(test.empty());
+			Assert::AreEqual(unsigned(0), test.getSize());
 			test.push_front(1);
 			Assert::IsFalse(test.empty());
+			Assert::AreEqual(unsigned(1), test.getSize());
 			test.push_front(2);
 			Assert::IsFalse(test.empty());
+			Assert::AreEqual(unsigned(2), test.getSize());
 			Assert::AreEqual(2, test.pop_front());
+			Assert::AreEqual(unsigned(1), test.getSize());
 			Assert::IsFalse(test.empty());
 			Assert::IsTrue(test.head()->next->prev == test.head());
 			Assert::IsTrue(test.head()->prev->next == test.head());
 			Assert::IsTrue(test.tail()->next->prev == test.tail());
 			Assert::IsTrue(test.tail()->prev->next == test.tail());
 			Assert::AreEqual(1, test.pop_front());
+			Assert::AreEqual(unsigned(0), test.getSize());
 			Assert::IsTrue(test.empty());
 			Assert::IsTrue(test.head() == nullptr);
 			Assert::IsTrue(test.tail() == nullptr);
@@ -262,25 +289,32 @@ namespace Project2Tests
 		TEST_METHOD(TestPopFrontAfterThreePushFront) {
 			auto test = CDLL<int>();
 			Assert::IsTrue(test.empty());
+			Assert::AreEqual(unsigned(0), test.getSize());
 			test.push_front(1);
+			Assert::AreEqual(unsigned(1), test.getSize());
 			Assert::IsFalse(test.empty());
 			test.push_front(2);
+			Assert::AreEqual(unsigned(2), test.getSize());
 			Assert::IsFalse(test.empty());
 			test.push_front(3);
+			Assert::AreEqual(unsigned(3), test.getSize());
 			Assert::IsFalse(test.empty());
 			Assert::AreEqual(3, test.pop_front());
+			Assert::AreEqual(unsigned(2), test.getSize());
 			Assert::IsFalse(test.empty());
 			Assert::IsTrue(test.head()->next->prev == test.head());
 			Assert::IsTrue(test.head()->prev->next == test.head());
 			Assert::IsTrue(test.tail()->next->prev == test.tail());
 			Assert::IsTrue(test.tail()->prev->next == test.tail());
 			Assert::AreEqual(2, test.pop_front());
+			Assert::AreEqual(unsigned(1), test.getSize());
 			Assert::IsFalse(test.empty());
 			Assert::IsTrue(test.head()->next->prev == test.head());
 			Assert::IsTrue(test.head()->prev->next == test.head());
 			Assert::IsTrue(test.tail()->next->prev == test.tail());
 			Assert::IsTrue(test.tail()->prev->next == test.tail());
 			Assert::AreEqual(1, test.pop_front());
+			Assert::AreEqual(unsigned(0), test.getSize());
 			Assert::IsTrue(test.empty());
 			Assert::IsTrue(test.head() == nullptr);
 			Assert::IsTrue(test.tail() == nullptr);
@@ -288,10 +322,13 @@ namespace Project2Tests
 
 		TEST_METHOD(TestPopFrontAfterPushBack) {
 			auto test = CDLL<int>();
+			Assert::AreEqual(unsigned(0), test.getSize());
 			Assert::IsTrue(test.empty());
 			test.push_back(1);
+			Assert::AreEqual(unsigned(1), test.getSize());
 			Assert::IsFalse(test.empty());
 			Assert::AreEqual(1, test.pop_front());
+			Assert::AreEqual(unsigned(0), test.getSize());
 			Assert::IsTrue(test.empty());
 			Assert::IsTrue(test.head() == nullptr);
 			Assert::IsTrue(test.tail() == nullptr);
@@ -299,18 +336,23 @@ namespace Project2Tests
 
 		TEST_METHOD(TestPopFrontAfterTwoPushBack) {
 			auto test = CDLL<int>();
+			Assert::AreEqual(unsigned(0), test.getSize());
 			Assert::IsTrue(test.empty());
 			test.push_back(1);
+			Assert::AreEqual(unsigned(1), test.getSize());
 			Assert::IsFalse(test.empty());
 			test.push_back(2);
+			Assert::AreEqual(unsigned(2), test.getSize());
 			Assert::IsFalse(test.empty());
 			Assert::AreEqual(1, test.pop_front());
+			Assert::AreEqual(unsigned(1), test.getSize());
 			Assert::IsFalse(test.empty());
 			Assert::IsTrue(test.head()->next->prev == test.head());
 			Assert::IsTrue(test.head()->prev->next == test.head());
 			Assert::IsTrue(test.tail()->next->prev == test.tail());
 			Assert::IsTrue(test.tail()->prev->next == test.tail());
 			Assert::AreEqual(2, test.pop_front());
+			Assert::AreEqual(unsigned(0), test.getSize());
 			Assert::IsTrue(test.empty());
 			Assert::IsTrue(test.head() == nullptr);
 			Assert::IsTrue(test.tail() == nullptr);
@@ -318,20 +360,26 @@ namespace Project2Tests
 
 		TEST_METHOD(TestPopFrontAfterThreePushBack) {
 			auto test = CDLL<int>();
+			Assert::AreEqual(unsigned(0), test.getSize());
 			Assert::IsTrue(test.empty());
 			test.push_back(1);
+			Assert::AreEqual(unsigned(1), test.getSize());
 			Assert::IsFalse(test.empty());
 			test.push_back(2);
+			Assert::AreEqual(unsigned(2), test.getSize());
 			Assert::IsFalse(test.empty());
 			test.push_back(3);
+			Assert::AreEqual(unsigned(3), test.getSize());
 			Assert::IsFalse(test.empty());
 			Assert::AreEqual(1, test.pop_front());
+			Assert::AreEqual(unsigned(2), test.getSize());
 			Assert::IsFalse(test.empty());
 			Assert::IsTrue(test.head()->next->prev == test.head());
 			Assert::IsTrue(test.head()->prev->next == test.head());
 			Assert::IsTrue(test.tail()->next->prev == test.tail());
 			Assert::IsTrue(test.tail()->prev->next == test.tail());
 			Assert::AreEqual(2, test.pop_front());
+			Assert::AreEqual(unsigned(1), test.getSize());
 			Assert::IsFalse(test.empty());
 			Assert::IsTrue(test.head()->next->prev == test.head());
 			Assert::IsTrue(test.head()->prev->next == test.head());
@@ -339,6 +387,7 @@ namespace Project2Tests
 			Assert::IsTrue(test.tail()->prev->next == test.tail());
 			Assert::AreEqual(3, test.pop_front());
 			Assert::IsTrue(test.empty());
+			Assert::AreEqual(unsigned(0), test.getSize());
 			Assert::IsTrue(test.head() == nullptr);
 			Assert::IsTrue(test.tail() == nullptr);
 		}
@@ -346,50 +395,63 @@ namespace Project2Tests
 		TEST_METHOD(TestPopFrontRandomPushSeries) {
 			auto test = CDLL<int>();
 			Assert::IsTrue(test.empty());
+			Assert::AreEqual(unsigned(0), test.getSize());
 			test.push_back(1);
 			Assert::IsFalse(test.empty());
+			Assert::AreEqual(unsigned(1), test.getSize());
 			test.push_front(4);
 			Assert::IsFalse(test.empty());
+			Assert::AreEqual(unsigned(2), test.getSize());
 			test.push_back(3);
 			Assert::IsFalse(test.empty());
+			Assert::AreEqual(unsigned(3), test.getSize());
 			test.push_front(2);
 			Assert::IsFalse(test.empty());
+			Assert::AreEqual(unsigned(4), test.getSize());
 			test.push_back(5);
 			Assert::IsFalse(test.empty());
+			Assert::AreEqual(unsigned(5), test.getSize());
 			test.push_back(6);
 			Assert::IsFalse(test.empty());
+			Assert::AreEqual(unsigned(6), test.getSize());
 
 			Assert::AreEqual(2, test.pop_front());
+			Assert::AreEqual(unsigned(5), test.getSize());
 			Assert::IsFalse(test.empty());
 			Assert::IsTrue(test.head()->next->prev == test.head());
 			Assert::IsTrue(test.head()->prev->next == test.head());
 			Assert::IsTrue(test.tail()->next->prev == test.tail());
 			Assert::IsTrue(test.tail()->prev->next == test.tail());
 			Assert::AreEqual(4, test.pop_front());
+			Assert::AreEqual(unsigned(4), test.getSize());
 			Assert::IsFalse(test.empty());
 			Assert::IsTrue(test.head()->next->prev == test.head());
 			Assert::IsTrue(test.head()->prev->next == test.head());
 			Assert::IsTrue(test.tail()->next->prev == test.tail());
 			Assert::IsTrue(test.tail()->prev->next == test.tail());
 			Assert::AreEqual(1, test.pop_front());
+			Assert::AreEqual(unsigned(3), test.getSize());
 			Assert::IsFalse(test.empty());
 			Assert::IsTrue(test.head()->next->prev == test.head());
 			Assert::IsTrue(test.head()->prev->next == test.head());
 			Assert::IsTrue(test.tail()->next->prev == test.tail());
 			Assert::IsTrue(test.tail()->prev->next == test.tail());
 			Assert::AreEqual(3, test.pop_front());
+			Assert::AreEqual(unsigned(2), test.getSize());
 			Assert::IsFalse(test.empty());
 			Assert::IsTrue(test.head()->next->prev == test.head());
 			Assert::IsTrue(test.head()->prev->next == test.head());
 			Assert::IsTrue(test.tail()->next->prev == test.tail());
 			Assert::IsTrue(test.tail()->prev->next == test.tail());
 			Assert::AreEqual(5, test.pop_front());
+			Assert::AreEqual(unsigned(1), test.getSize());
 			Assert::IsFalse(test.empty());
 			Assert::IsTrue(test.head()->next->prev == test.head());
 			Assert::IsTrue(test.head()->prev->next == test.head());
 			Assert::IsTrue(test.tail()->next->prev == test.tail());
 			Assert::IsTrue(test.tail()->prev->next == test.tail());
 			Assert::AreEqual(6, test.pop_front());
+			Assert::AreEqual(unsigned(0), test.getSize());
 			Assert::IsTrue(test.empty());
 			Assert::IsTrue(test.head() == nullptr);
 			Assert::IsTrue(test.tail() == nullptr);
@@ -398,6 +460,7 @@ namespace Project2Tests
 		TEST_METHOD(TestPopBackEmptyList) {
 			bool exceptionThrown = false;
 			auto test = CDLL<int>();
+			Assert::AreEqual(unsigned(0), test.getSize());
 			Assert::IsTrue(test.empty());
 			try {
 				test.pop_back();
@@ -406,15 +469,19 @@ namespace Project2Tests
 				exceptionThrown = true;
 			}
 			Assert::IsTrue(test.empty());
+			Assert::AreEqual(unsigned(0), test.getSize());
 			Assert::IsTrue(exceptionThrown);
 		}
 
 		TEST_METHOD(TestPopBackAfterPushBack) {
 			auto test = CDLL<int>();
+			Assert::AreEqual(unsigned(0), test.getSize());
 			Assert::IsTrue(test.empty());
 			test.push_back(1);
+			Assert::AreEqual(unsigned(1), test.getSize());
 			Assert::IsFalse(test.empty());
 			Assert::AreEqual(1, test.pop_back());
+			Assert::AreEqual(unsigned(0), test.getSize());
 			Assert::IsTrue(test.empty());
 			Assert::IsTrue(test.head() == nullptr);
 			Assert::IsTrue(test.tail() == nullptr);
@@ -423,17 +490,22 @@ namespace Project2Tests
 		TEST_METHOD(TestPopBackAfterTwoPushBack) {
 			auto test = CDLL<int>();
 			Assert::IsTrue(test.empty());
+			Assert::AreEqual(unsigned(0), test.getSize());
 			test.push_back(1);
+			Assert::AreEqual(unsigned(1), test.getSize());
 			Assert::IsFalse(test.empty());
 			test.push_back(2);
+			Assert::AreEqual(unsigned(2), test.getSize());
 			Assert::IsFalse(test.empty());
 			Assert::AreEqual(2, test.pop_back());
+			Assert::AreEqual(unsigned(1), test.getSize());
 			Assert::IsFalse(test.empty());
 			Assert::IsTrue(test.tail()->next->prev == test.tail());
 			Assert::IsTrue(test.tail()->prev->next == test.tail());
 			Assert::IsTrue(test.head()->next->prev == test.head());
 			Assert::IsTrue(test.head()->prev->next == test.head());
 			Assert::AreEqual(1, test.pop_back());
+			Assert::AreEqual(unsigned(0), test.getSize());
 			Assert::IsTrue(test.empty());
 			Assert::IsTrue(test.head() == nullptr);
 			Assert::IsTrue(test.tail() == nullptr);
@@ -442,25 +514,32 @@ namespace Project2Tests
 		TEST_METHOD(TestPopBackAfterThreePushBack) {
 			auto test = CDLL<int>();
 			Assert::IsTrue(test.empty());
+			Assert::AreEqual(unsigned(0), test.getSize());
 			test.push_back(1);
 			Assert::IsFalse(test.empty());
+			Assert::AreEqual(unsigned(1), test.getSize());
 			test.push_back(2);
 			Assert::IsFalse(test.empty());
+			Assert::AreEqual(unsigned(2), test.getSize());
 			test.push_back(3);
 			Assert::IsFalse(test.empty());
+			Assert::AreEqual(unsigned(3), test.getSize());
 			Assert::AreEqual(3, test.pop_back());
+			Assert::AreEqual(unsigned(2), test.getSize());
 			Assert::IsFalse(test.empty());
 			Assert::IsTrue(test.tail()->next->prev == test.tail());
 			Assert::IsTrue(test.tail()->prev->next == test.tail());
 			Assert::IsTrue(test.head()->next->prev == test.head());
 			Assert::IsTrue(test.head()->prev->next == test.head());
 			Assert::AreEqual(2, test.pop_back());
+			Assert::AreEqual(unsigned(1), test.getSize());
 			Assert::IsFalse(test.empty());
 			Assert::IsTrue(test.tail()->next->prev == test.tail());
 			Assert::IsTrue(test.tail()->prev->next == test.tail());
 			Assert::IsTrue(test.head()->next->prev == test.head());
 			Assert::IsTrue(test.head()->prev->next == test.head());
 			Assert::AreEqual(1, test.pop_back());
+			Assert::AreEqual(unsigned(0), test.getSize());
 			Assert::IsTrue(test.empty());
 			Assert::IsTrue(test.head() == nullptr);
 			Assert::IsTrue(test.tail() == nullptr);
@@ -468,10 +547,13 @@ namespace Project2Tests
 
 		TEST_METHOD(TestPopBackAfterPushFront) {
 			auto test = CDLL<int>();
+			Assert::AreEqual(unsigned(0), test.getSize());
 			Assert::IsTrue(test.empty());
 			test.push_front(1);
+			Assert::AreEqual(unsigned(1), test.getSize());
 			Assert::IsFalse(test.empty());
 			Assert::AreEqual(1, test.pop_back());
+			Assert::AreEqual(unsigned(0), test.getSize());
 			Assert::IsTrue(test.empty());
 			Assert::IsTrue(test.head() == nullptr);
 			Assert::IsTrue(test.tail() == nullptr);
@@ -479,18 +561,23 @@ namespace Project2Tests
 
 		TEST_METHOD(TestPopBackAfterTwoPushFront) {
 			auto test = CDLL<int>();
+			Assert::AreEqual(unsigned(0), test.getSize());
 			Assert::IsTrue(test.empty());
 			test.push_front(1);
+			Assert::AreEqual(unsigned(1), test.getSize());
 			Assert::IsFalse(test.empty());
 			test.push_front(2);
+			Assert::AreEqual(unsigned(2), test.getSize());
 			Assert::IsFalse(test.empty());
 			Assert::AreEqual(1, test.pop_back());
+			Assert::AreEqual(unsigned(1), test.getSize());
 			Assert::IsFalse(test.empty());
 			Assert::IsTrue(test.tail()->next->prev == test.tail());
 			Assert::IsTrue(test.tail()->prev->next == test.tail());
 			Assert::IsTrue(test.head()->next->prev == test.head());
 			Assert::IsTrue(test.head()->prev->next == test.head());
 			Assert::AreEqual(2, test.pop_back());
+			Assert::AreEqual(unsigned(0), test.getSize());
 			Assert::IsTrue(test.empty());
 			Assert::IsTrue(test.head() == nullptr);
 			Assert::IsTrue(test.tail() == nullptr);
@@ -498,26 +585,33 @@ namespace Project2Tests
 
 		TEST_METHOD(TestPopBackAfterThreePushFront) {
 			auto test = CDLL<int>();
+			Assert::AreEqual(unsigned(0), test.getSize());
 			Assert::IsTrue(test.empty());
 			test.push_front(1);
+			Assert::AreEqual(unsigned(1), test.getSize());
 			Assert::IsFalse(test.empty());
 			test.push_front(2);
+			Assert::AreEqual(unsigned(2), test.getSize());
 			Assert::IsFalse(test.empty());
 			test.push_front(3);
+			Assert::AreEqual(unsigned(3), test.getSize());
 			Assert::IsFalse(test.empty());
 			Assert::AreEqual(1, test.pop_back());
+			Assert::AreEqual(unsigned(2), test.getSize());
 			Assert::IsFalse(test.empty());
 			Assert::IsTrue(test.tail()->next->prev == test.tail());
 			Assert::IsTrue(test.tail()->prev->next == test.tail());
 			Assert::IsTrue(test.head()->next->prev == test.head());
 			Assert::IsTrue(test.head()->prev->next == test.head());
 			Assert::AreEqual(2, test.pop_back());
+			Assert::AreEqual(unsigned(1), test.getSize());
 			Assert::IsFalse(test.empty());
 			Assert::IsTrue(test.tail()->next->prev == test.tail());
 			Assert::IsTrue(test.tail()->prev->next == test.tail());
 			Assert::IsTrue(test.head()->next->prev == test.head());
 			Assert::IsTrue(test.head()->prev->next == test.head());
 			Assert::AreEqual(3, test.pop_back());
+			Assert::AreEqual(unsigned(0), test.getSize());
 			Assert::IsTrue(test.empty());
 			Assert::IsTrue(test.head() == nullptr);
 			Assert::IsTrue(test.tail() == nullptr);
@@ -525,51 +619,64 @@ namespace Project2Tests
 
 		TEST_METHOD(TestPopBackRandomPushSeries) {
 			auto test = CDLL<int>();
+			Assert::AreEqual(unsigned(0), test.getSize());
 			Assert::IsTrue(test.empty());
 			test.push_back(1);
+			Assert::AreEqual(unsigned(1), test.getSize());
 			Assert::IsFalse(test.empty());
 			test.push_front(4);
+			Assert::AreEqual(unsigned(2), test.getSize());
 			Assert::IsFalse(test.empty());
 			test.push_back(3);
+			Assert::AreEqual(unsigned(3), test.getSize());
 			Assert::IsFalse(test.empty());
 			test.push_front(2);
+			Assert::AreEqual(unsigned(4), test.getSize());
 			Assert::IsFalse(test.empty());
 			test.push_back(5);
+			Assert::AreEqual(unsigned(5), test.getSize());
 			Assert::IsFalse(test.empty());
 			test.push_back(6);
+			Assert::AreEqual(unsigned(6), test.getSize());
 			Assert::IsFalse(test.empty());
 			
 			Assert::AreEqual(6, test.pop_back());
+			Assert::AreEqual(unsigned(5), test.getSize());
 			Assert::IsFalse(test.empty());
 			Assert::IsTrue(test.tail()->next->prev == test.tail());
 			Assert::IsTrue(test.tail()->prev->next == test.tail());
 			Assert::IsTrue(test.head()->next->prev == test.head());
 			Assert::IsTrue(test.head()->prev->next == test.head());
 			Assert::AreEqual(5, test.pop_back());
+			Assert::AreEqual(unsigned(4), test.getSize());
 			Assert::IsFalse(test.empty());
 			Assert::IsTrue(test.tail()->next->prev == test.tail());
 			Assert::IsTrue(test.tail()->prev->next == test.tail());
 			Assert::IsTrue(test.head()->next->prev == test.head());
 			Assert::IsTrue(test.head()->prev->next == test.head());
 			Assert::AreEqual(3, test.pop_back());
+			Assert::AreEqual(unsigned(3), test.getSize());
 			Assert::IsFalse(test.empty());
 			Assert::IsTrue(test.tail()->next->prev == test.tail());
 			Assert::IsTrue(test.tail()->prev->next == test.tail());
 			Assert::IsTrue(test.head()->next->prev == test.head());
 			Assert::IsTrue(test.head()->prev->next == test.head());
 			Assert::AreEqual(1, test.pop_back());
+			Assert::AreEqual(unsigned(2), test.getSize());
 			Assert::IsFalse(test.empty());
 			Assert::IsTrue(test.tail()->next->prev == test.tail());
 			Assert::IsTrue(test.tail()->prev->next == test.tail());
 			Assert::IsTrue(test.head()->next->prev == test.head());
 			Assert::IsTrue(test.head()->prev->next == test.head());
 			Assert::AreEqual(4, test.pop_back());
+			Assert::AreEqual(unsigned(1), test.getSize());
 			Assert::IsFalse(test.empty());
 			Assert::IsTrue(test.tail()->next->prev == test.tail());
 			Assert::IsTrue(test.tail()->prev->next == test.tail());
 			Assert::IsTrue(test.head()->next->prev == test.head());
 			Assert::IsTrue(test.head()->prev->next == test.head());
 			Assert::AreEqual(2, test.pop_back());
+			Assert::AreEqual(unsigned(0), test.getSize());
 			Assert::IsTrue(test.empty());
 			Assert::IsTrue(test.head() == nullptr);
 			Assert::IsTrue(test.tail() == nullptr);
@@ -578,59 +685,71 @@ namespace Project2Tests
 		TEST_METHOD(TestFrontAndBack) {
 			auto test = CDLL<int>();
 			Assert::IsTrue(test.empty());
+			Assert::AreEqual(unsigned(0), test.getSize());
 			
 			bool exceptionThrown = false;
 			try { test.front(); }
 			catch (runtime_error) { exceptionThrown = true; }
 			Assert::IsTrue(exceptionThrown);
 			Assert::IsTrue(test.empty());
+			Assert::AreEqual(unsigned(0), test.getSize());
 			
 			exceptionThrown = false;
 			try { test.back(); }
 			catch (runtime_error) { exceptionThrown = true; }
 			Assert::IsTrue(exceptionThrown);
 			Assert::IsTrue(test.empty());
+			Assert::AreEqual(unsigned(0), test.getSize());
 
 			test.push_back(1);
 			Assert::IsFalse(test.empty());
 			Assert::IsTrue(1 == test.front());
 			Assert::IsTrue(1 == test.back());
+			Assert::AreEqual(unsigned(1), test.getSize());
 			test.push_front(4);
 			Assert::IsFalse(test.empty());
 			Assert::IsTrue(4 == test.front());
 			Assert::IsTrue(1 == test.back());
+			Assert::AreEqual(unsigned(2), test.getSize());
 			test.push_back(3);
 			Assert::IsFalse(test.empty());
 			Assert::IsTrue(4 == test.front());
 			Assert::IsTrue(3 == test.back());
+			Assert::AreEqual(unsigned(3), test.getSize());
 			test.push_front(2);
 			Assert::IsFalse(test.empty());
 			Assert::IsTrue(2 == test.front());
 			Assert::IsTrue(3 == test.back());
+			Assert::AreEqual(unsigned(4), test.getSize());
 			test.push_back(5);
 			Assert::IsFalse(test.empty());
 			Assert::IsTrue(2 == test.front());
 			Assert::IsTrue(5 == test.back());
+			Assert::AreEqual(unsigned(5), test.getSize());
 			test.push_back(6);
 			Assert::IsFalse(test.empty());
 			Assert::IsTrue(2 == test.front());
 			Assert::IsTrue(6 == test.back());
+			Assert::AreEqual(unsigned(6), test.getSize());
 		}
 
 		TEST_METHOD(TestReleaseAndDestructor) {
 			auto test = CDLL<int>();
+			Assert::AreEqual(unsigned(0), test.getSize());
 			for (int x = 0; x < 1000; x++) {
 				test.push_front(x);
+				Assert::AreEqual(unsigned(x + 1), test.getSize());
 			}
 			Assert::IsTrue(test.getSize() == 1000);
 			Assert::IsFalse(test.empty());
 			test.release();
-			Assert::IsTrue(test.getSize() == 0);
+			Assert::AreEqual(unsigned(0), test.getSize());
 			Assert::IsTrue(test.empty());
 		}
 
 		TEST_METHOD(TestCopyConstructorEmpty) {
 			auto test = CDLL<int>();
+			Assert::AreEqual(unsigned(0), test.getSize());
 			bool exceptionThrown = false;
 			try {
 				auto test2 = CDLL<int>(test);
@@ -639,13 +758,17 @@ namespace Project2Tests
 				exceptionThrown = true;
 			}
 			Assert::IsFalse(exceptionThrown);
+			Assert::AreEqual(unsigned(0), test.getSize());
 		}
 
 		TEST_METHOD(TestCopyConstructor) {
 			auto test = CDLL<int>();
+			Assert::AreEqual(unsigned(0), test.getSize());
 			test.push_front(4);
+			Assert::AreEqual(unsigned(1), test.getSize());
 			
 			auto test2 = CDLL<int>(test);
+			Assert::AreEqual(unsigned(1), test2.getSize());
 			Assert::IsFalse(&(test.head()->data) == &(test2.head()->data));
 			Assert::IsTrue(test.head()->data == test2.head()->data);
 		}
@@ -658,17 +781,22 @@ namespace Project2Tests
 			};
 
 			auto test = CDLL<Dummy>();
+			Assert::AreEqual(unsigned(0), test.getSize());
 			test.push_front(Dummy(5));
+			Assert::AreEqual(unsigned(1), test.getSize());
 
 			auto test2 = CDLL<Dummy>(test);
+			Assert::AreEqual(unsigned(1), test2.getSize());
 			Assert::IsFalse(&(test.head()->data) == &(test2.head()->data));
 			Assert::IsTrue(test.head()->data.m_x == test2.head()->data.m_x);
 		}
 
 		TEST_METHOD(TestIteratorPreIncrementOperator) {
 			auto test = CDLL<int>();
+			Assert::AreEqual(unsigned(0), test.getSize());
 			for (int x = 0; x < 100; x++) {
 				test.push_back(x);
+				Assert::AreEqual(unsigned(x + 1), test.getSize());
 			}
 
 			auto r_it = test.begin();
@@ -677,12 +805,14 @@ namespace Project2Tests
 			}
 			Assert::IsTrue(*++r_it == 0);
 			Assert::IsTrue(*++r_it == 1);
+			Assert::AreEqual(unsigned(100), test.getSize());
 		}
 
 		TEST_METHOD(TestIteratorPostIncrementOperator) {
 			auto test = CDLL<int>();
 			for (int x = 0; x < 100; x++) {
 				test.push_back(x);
+				Assert::AreEqual(unsigned(x + 1), test.getSize());
 			}
 
 			auto r_it = test.begin();
@@ -691,12 +821,14 @@ namespace Project2Tests
 			}
 			Assert::IsTrue(*r_it++ == 0);
 			Assert::IsTrue(*r_it++ == 1);
+			Assert::AreEqual(unsigned(100), test.getSize());
 		}
 
 		TEST_METHOD(TestIteratorPreDecrementOperator) {
 			auto test = CDLL<int>();
 			for (int x = 0; x < 100; x++) {
 				test.push_front(x);
+				Assert::AreEqual(unsigned(x + 1), test.getSize());
 			}
 
 			auto r_it = test.end();
@@ -705,12 +837,14 @@ namespace Project2Tests
 			}
 			Assert::IsTrue(*--r_it == 0);
 			Assert::IsTrue(*--r_it == 1);
+			Assert::AreEqual(unsigned(100), test.getSize());
 		}
 
 		TEST_METHOD(TestIteratorPostDecrementOperator) {
 			auto test = CDLL<int>();
 			for (int x = 0; x < 100; x++) {
 				test.push_front(x);
+				Assert::AreEqual(unsigned(x + 1), test.getSize());
 			}
 
 			auto r_it = test.end();
@@ -719,18 +853,21 @@ namespace Project2Tests
 			}
 			Assert::IsTrue(*r_it-- == 0);
 			Assert::IsTrue(*r_it-- == 1);
+			Assert::AreEqual(unsigned(100), test.getSize());
 		}
 
 		TEST_METHOD(TestPartialIteratorConstructor) {
 			auto test = CDLL<int>();
 			for (int x = 0; x < 100; x++) {
 				test.push_back(x);
+				Assert::AreEqual(unsigned(x + 1), test.getSize());
 			}
 
 			auto r_it = test.begin();
 			for (int i = 0; i < 10; i++) { r_it++; };
 
 			auto test2 = CDLL<int>(r_it, test.end());
+			Assert::AreEqual(unsigned(90), test2.getSize());
 			r_it = test2.begin();
 
 			for (int x = 10; x < 100; x++) {
@@ -743,12 +880,15 @@ namespace Project2Tests
 
 		TEST_METHOD(TestFullIteratorConstructor) {
 			auto test = CDLL<int>();
+			Assert::AreEqual(unsigned(0), test.getSize());
 			for (int x = 0; x < 100; x++) {
 				test.push_back(x);
+				Assert::AreEqual(unsigned(x + 1), test.getSize());
 			}
-
+			Assert::AreEqual(unsigned(100), test.getSize());
 			auto r_it = test.begin();
 			auto test2 = CDLL<int>(r_it, test.end());
+			Assert::AreEqual(unsigned(100), test2.getSize());
 
 			for (int x = 0; x < 100; x++) {
 				int y = *r_it++;
@@ -756,6 +896,19 @@ namespace Project2Tests
 			}
 			Assert::IsTrue(*r_it++ == 0);
 			Assert::IsTrue(*r_it++ == 1);
+		}
+
+		TEST_METHOD(TestAssignmentOverload) {
+			auto test = CDLL<int>(100, 4);
+			test.push_front(-1);
+			test.push_back(-2);
+			Assert::AreEqual(102U, test.getSize());
+			auto test2 = test;
+			Assert::AreEqual(102U, test.getSize());
+			Assert::AreEqual(-1, *test.begin());
+			Assert::AreEqual(-1, *test2.begin());
+			Assert::AreEqual(-2, *test.end());
+			Assert::AreEqual(-2, *test2.end());
 		}
 	};
 }
