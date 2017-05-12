@@ -1,4 +1,5 @@
 #include "list.h"
+#include "list.cpp"
 #include <iostream>
 #include <cassert>
 #include <exception>
@@ -13,7 +14,7 @@ int main(void)
 	using NP_ADT::CDLL; // not the same as std::list<class T>
 	try
 	{
-		/*CDLL<char> mylist(3, 'X');
+		CDLL<char> mylist(3, 'X');
 		CDLL<char> mylist2;
 		CDLL<char> mylist3(mylist);
 		CDLL<char> mylist4(mylist.begin(), mylist.end());
@@ -24,19 +25,19 @@ int main(void)
 		mylist.push_front('Y');
 		mylist.push_front('Z');
 		cout << mylist.pop_front() << endl;
-		mylist2 = mylist; // a copy
+		// mylist2 = mylist; // a copy
 		cout << "mylist: " << mylist << endl;
 		// create a new iterator pointing to the beginning of mylist
 		CDLL<char>::iterator listit(mylist.begin());
 		cout << listit++->data << " ";
 		cout << listit->data << endl;
 		cout << "mylist: ";
-		for (int i = 0; i < static_cast<int>(mylist.getSize()); i++)
-		cout << mylist[i] << " ";
+		//for (int i = 0; i < static_cast<int>(mylist.getSize()); i++)
+		//	cout << mylist[i] << " ";
 		cout << "mylist: " << endl;
 		mylist.release();
 		cout << "mylist: " << mylist << endl;
-		cout << "mylist2: " << mylist2 << endl;*/
+		cout << "mylist2: " << mylist2 << endl;
 	}
 	catch (exception e)
 	{
