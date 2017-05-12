@@ -103,7 +103,7 @@ namespace NP_ADT {
 		CDLL() : handle(nullptr), m_size(0) {}
 		CDLL(size_t n_elements, datatype datum);
 		CDLL(const CDLL& cdll);
-		//CDLL(iterator begin, iterator end);
+		CDLL(iterator begin, iterator end);
 		
 		// Destructor
 		~CDLL() { release(); }

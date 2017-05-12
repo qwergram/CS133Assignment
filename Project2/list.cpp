@@ -173,13 +173,14 @@ namespace NP_ADT
 	//-------------------------------------------------------------------------
 	// constructor using iterators, copies from begin to one before end
 	//-------------------------------------------------------------------------
-	/*template<typename datatype>
+	template<typename datatype>
 	NP_ADT::CDLL<datatype>::CDLL(iterator begin, iterator end)
 		:m_size(0), handle(nullptr)
 	{
 		while (begin != end)
-			push_front(*begin++);
-	}*/
+			push_back(*begin++);
+		push_back(*begin++);
+	}
 
 	
 
