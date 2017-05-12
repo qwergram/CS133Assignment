@@ -304,12 +304,10 @@ namespace NP_ADT
 	ostream & operator << (ostream& sout, const CDLL<datatype> & cdll)
 	{
 		auto it = cdll.begin();
-		sout << "["
-		while (it != cdll.end()) 
+		sout << "[";
+		while (it != cdll.end())
 			sout << *it++ << ", ";
-		
 		sout << *it << "]";
-
 		return sout;
 	}
 
