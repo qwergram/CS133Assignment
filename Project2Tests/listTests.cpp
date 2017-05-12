@@ -898,12 +898,26 @@ namespace Project2Tests
 			Assert::IsTrue(*r_it++ == 1);
 		}
 
-		TEST_METHOD(TestAssignmentOverload) {
+		TEST_METHOD(TestCopyConstructorBiggerList) {
 			auto test = CDLL<int>(100, 4);
 			test.push_front(-1);
 			test.push_back(-2);
 			Assert::AreEqual(102U, test.getSize());
 			auto test2 = test;
+			Assert::AreEqual(102U, test.getSize());
+			Assert::AreEqual(-1, *test.begin());
+			Assert::AreEqual(-1, *test2.begin());
+			Assert::AreEqual(-2, *test.end());
+			Assert::AreEqual(-2, *test2.end());
+		}
+
+		TEST_METHOD(TestAssignmentOverload) {
+			auto test = CDLL<int>(100, 4);
+			auto test2 = CDLL<int>(1, 1);
+			test.push_front(-1);
+			test.push_back(-2);
+			Assert::AreEqual(102U, test.getSize());
+			test2 = test;
 			Assert::AreEqual(102U, test.getSize());
 			Assert::AreEqual(-1, *test.begin());
 			Assert::AreEqual(-1, *test2.begin());
