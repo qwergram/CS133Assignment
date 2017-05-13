@@ -12,7 +12,7 @@ namespace NP_INSERTIONSORT {
 		cout << "\n";
 	}
 
-	void insertionsort(A ** array, int fromIndex, int toIndex) {
+	void insertionSort(A ** array, int fromIndex, int toIndex) {
 		if (fromIndex < 1)
 			fromIndex = 1;
 
@@ -37,7 +37,7 @@ namespace NP_INSERTIONSORT {
 		array = new A*[size] { &B(1), &B(7), &B(3), &B(0), &B(3), &B(1), &B(9), &B(9), &B(7) };
 		cout << "Initial Array : ";
 		printArray(array, size);
-		insertionsort(array, 0, size);
+		insertionSort(array, 0, size);
 		return 0;
 	}
 }

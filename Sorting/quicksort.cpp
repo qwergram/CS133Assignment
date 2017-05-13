@@ -2,8 +2,10 @@
 #include "util.h"
 using namespace std;
 
+
+
 namespace NP_QUICKSORT {
-	
+
 	int len;
 
 	void printArray(A ** array, int size) {
@@ -44,14 +46,19 @@ namespace NP_QUICKSORT {
 			quickSort(arr, position + 1, toIndex);
 		}
 	}
-	
-	int main() {
-		len = 7;
-		A ** arr = nullptr;
-		arr = new A*[len] { &B(9), &B(4), &B(8), &B(3), &B(1), &B(2), &B(5) };
-		cout << "Initial Array : ";
-		printArray(arr, len);
-		quickSort(arr, 0, len - 1);
-		return 0;
-	}
+
+
 }
+
+//using namespace NP_QUICKSORT;
+//
+//int main() {
+//	len = 8;
+//	A ** arr = nullptr;
+//	arr = new A*[len] { &B(9), &B(6), &B(2), &B(7), &B(0), &B(4), &B(1), &B(3) };
+//	cout << "Initial Array : ";
+//	printArray(arr, len);
+//	quickSort(arr, 0, len - 1);
+//	cin.get();
+//	return 0;
+//}

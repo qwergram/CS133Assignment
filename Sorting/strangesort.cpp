@@ -1,59 +1,21 @@
-// #include "util.h"
-#include <iostream>
-
+// quicksort
+#include "util.h"
 using namespace std;
 
+int len;
+
 namespace NP_STRANGESORT {
-	
-	void printArray(int*, int);
-	void strangeSort(int *, int, int);
-	int partition(int *, int, int);
-	void indexSwap(int *, int, int);
-	void SortFirstMiddleLast(int *, int, int, int);
 
 	void printArray(int * array, int size) {
 		for (int index = 0; index < size; index++) {
+			// array[index]->print();
 			cout << array[index] << ' ';
 		}
 
 		cout << "\n";
 	}
 
-	void strangeSort(int * arr, int fromIndex, int toIndex) 
-	{
-		if (fromIndex < toIndex) {
-			int position = partition(arr, fromIndex, toIndex);
-			strangeSort(arr, fromIndex, position - 1);
-			strangeSort(arr, position + 1, toIndex);
-		}
-	}
-
-	int partition(int * array, int fromIndex, int toIndex)
-	{
-		int pivotIndex = (fromIndex + toIndex) / 2;
-		SortFirstMiddleLast(array, fromIndex, pivotIndex, toIndex);
-
-		int pivot = array[pivotIndex];
-		indexSwap(array, pivotIndex, toIndex - 1);
-
-		int frontIndex = fromIndex + 1;
-		int backIndex = pivotIndex - 1;
-
-		while (frontIndex < backIndex) {
-			while (frontIndex < backIndex && pivot >= array[frontIndex])
-				frontIndex++;
-
-			while (frontIndex < backIndex && array[backIndex] >= pivot)
-				backIndex--;
-
-			indexSwap(array, frontIndex++, pivotIndex--);
-		}
-		indexSwap(array, fromIndex, frontIndex);
-		return frontIndex;
-	}
-
-	void indexSwap(int * array, int index1, int index2) 
-	{
+	void indexSwap(int * array, int index1, int index2) {
 		int tmp = array[index1];
 		array[index1] = array[index2];
 		array[index2] = tmp;
@@ -61,7 +23,8 @@ namespace NP_STRANGESORT {
 
 	void SortFirstMiddleLast(int * array,
 		int loIndex, int midIndex,
-		int hiIndex) 
+		int hiIndex
+	)
 	{
 		int low = array[loIndex];
 		int mid = array[midIndex];
@@ -69,31 +32,77 @@ namespace NP_STRANGESORT {
 		while ((low > mid) || (mid > hi)) {
 			if (low > mid)
 				indexSwap(array, loIndex, midIndex);
-			if (mid > hi)
+			else if (mid > hi)
 				indexSwap(array, midIndex, hiIndex);
-			if (low > hi)
+			else if (low > hi)
 				indexSwap(array, loIndex, hiIndex);
 			low = array[loIndex];
 			mid = array[midIndex];
 			hi = array[hiIndex];
 		}
 	}
+
+	int partition(int * array, int fromIndex, int toIndex) {
+		
+		int smallIndex = fromIndex - 1;
+
+		
+		
+		int pivot = array[toIndex];
+		
+		for (int k = fromIndex; k < toIndex; k++) {
+			if (array[k] <= pivot) {
+				smallIndex++;
+				indexSwap(array, k, smallIndex);
+			}
+		}
+
+		indexSwap(array, toIndex, smallIndex + 1);
+		cout << "Pivot = " << array[smallIndex + 1] << "\n";
+		printArray(array, len);
+		return smallIndex + 1;
+	}
+
+	void insertionSort(int * array, int fromIndex, int toIndex)
+	{
+		for (int cursor = fromIndex; cursor < toIndex; cursor++) {
+			int secondCursor = cursor - 1;
+			int temp = array[cursor];
+
+			while (secondCursor >= 0 && temp < array[secondCursor]) {
+				array[secondCursor + 1] = array[secondCursor];
+				secondCursor--;
+			}
+
+			array[secondCursor + 1] = temp;
+		}
+	}
+
+	void strangeSort(int * arr, int fromIndex, int toIndex) {
+		if (fromIndex < toIndex) {
+			SortFirstMiddleLast(arr, fromIndex, (fromIndex + toIndex) / 2, toIndex);
+			int position = partition(arr, fromIndex, toIndex);
+			strangeSort(arr, fromIndex, position - 1);
+			strangeSort(arr, position + 1, toIndex);
+		}
+		else if (fromIndex < toIndex) {
+			insertionSort(arr, fromIndex, toIndex);
+		}
+	}
+
+
 }
 
+using namespace NP_STRANGESORT;
+
 int main() {
-	const int ARRAY_SIZE = 8;
-	int intArray[8] = { -6, -3, 8, -9, -2, 5, 1, -4 };
-	int* intPtr = nullptr;
-
-	cout << "The original array: " << endl;
-	NP_STRANGESORT::printArray(intArray, ARRAY_SIZE);
-	cout << endl;
-
-	NP_STRANGESORT::strangeSort(intArray, 0, ARRAY_SIZE);
-
-	cout << "The array after quicksort:" << endl;
-	NP_STRANGESORT::printArray(intArray, ARRAY_SIZE);
-
+	len = 10;
+	int * arr = nullptr;
+	// arr = new A*[len] { &B(9), &B(6), &B(2), &B(7), &B(0), &B(4), &B(1), &B(3) };
+	arr = new int[len] { 9, 1, 2, 7, 5, 4, 8, 3, 6, 0 };
+	cout << "Initial Array : ";
+	printArray(arr, len);
+	strangeSort(arr, 0, len - 1);
 	cin.get();
-	return EXIT_SUCCESS;
+	return 0;
 }
