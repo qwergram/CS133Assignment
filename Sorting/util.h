@@ -20,8 +20,8 @@ namespace std {
 	public:
 		B(int num) : A(num) { this->number = num; }
 		virtual int method() { return this->number; }
-		virtual bool operator>(A & lhs) { return this->number < dynamic_cast<B&>(lhs).method(); };
-		virtual bool operator<(A & lhs) { return this->number > dynamic_cast<B&>(lhs).method(); };
+		virtual bool operator>(A & lhs) { return this->number > dynamic_cast<B&>(lhs).method(); };
+		virtual bool operator<(A & lhs) { return this->number < dynamic_cast<B&>(lhs).method(); };
 		virtual bool operator==(A & lhs) { return this->number == dynamic_cast<B&>(lhs).method(); };
 		virtual bool operator>=(A & lhs) { return this->number >= dynamic_cast<B&>(lhs).method(); };
 		virtual bool operator<=(A & lhs) { return this->number <= dynamic_cast<B&>(lhs).method(); };
