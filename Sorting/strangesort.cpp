@@ -9,6 +9,7 @@ namespace NP_STRANGESORT {
 	void printArray(A ** array, int size) {
 		for (int index = 0; index < size; index++) {
 			array[index]->print();
+			// cout << array[index] << ' ';
 		}
 
 		cout << "\n";
@@ -16,6 +17,7 @@ namespace NP_STRANGESORT {
 
 	void indexSwap(A ** array, int index1, int index2) {
 		A * tmp = array[index1];
+		// int tmp = array[index1];
 		array[index1] = array[index2];
 		array[index2] = tmp;
 	}
@@ -25,28 +27,42 @@ namespace NP_STRANGESORT {
 		int hiIndex
 	)
 	{
-		A* low = array[loIndex];
-		A* mid = array[midIndex];
-		A* hi = array[hiIndex];
+		A * low = array[loIndex];
+		// int low = array[loIndex];
+		A * mid = array[midIndex];
+		//int mid = array[midIndex];
+		A * hi = array[hiIndex];
+		//int hi = array[hiIndex];
+
+		// while ((low > mid) || (mid > hi)) {
 		while ((*low > *mid) || (*mid > *hi)) {
+			//if (low > mid)
 			if (*low > *mid)
 				indexSwap(array, loIndex, midIndex);
+			//else if (mid > hi)
 			else if (*mid > *hi)
 				indexSwap(array, midIndex, hiIndex);
+			//else if (low > hi)
 			else if (*low > *hi)
 				indexSwap(array, loIndex, hiIndex);
-			*low = *array[loIndex];
-			*mid = *array[midIndex];
-			*hi = *array[hiIndex];
+			//*low = *array[loIndex];
+			low = array[loIndex];
+			//*mid = *array[midIndex];
+			mid = array[midIndex];
+			//*hi = *array[hiIndex];
+			hi = array[hiIndex];
 		}
 	}
 
 	int partition(A ** array, int fromIndex, int toIndex) {
 		
 		int smallIndex = fromIndex - 1;
+		
+		//int pivot = array[toIndex];
 		A* pivot = array[toIndex];
 		
 		for (int k = fromIndex; k < toIndex; k++) {
+			// if (array[k] <= pivot) {
 			if (*array[k] <= *pivot) {
 				smallIndex++;
 				indexSwap(array, k, smallIndex);
@@ -55,6 +71,7 @@ namespace NP_STRANGESORT {
 
 		indexSwap(array, toIndex, smallIndex + 1);
 		cout << "Pivot = " << array[smallIndex + 1]->method() << "\n";
+		// cout << "Pivot = " << array[smallIndex + 1] << "\n";
 		printArray(array, len);
 		return smallIndex + 1;
 	}
@@ -63,14 +80,21 @@ namespace NP_STRANGESORT {
 	{
 		for (int cursor = fromIndex; cursor < toIndex; cursor++) {
 			int secondCursor = cursor - 1;
-			A* temp = array[cursor];
+			A * temp = array[cursor];
+			// int temp = array[cursor];
 
 			while (secondCursor >= 0 && *temp < *array[secondCursor]) {
 				*array[secondCursor + 1] = *array[secondCursor];
 				secondCursor--;
 			}
 
+			/*while (secondCursor >= 0 && temp < array[secondCursor]) {
+				array[secondCursor + 1] = array[secondCursor];
+				secondCursor--;
+			}*/
+
 			*array[secondCursor + 1] = *temp;
+			//array[secondCursor + 1] = temp;
 		}
 	}
 
@@ -81,9 +105,9 @@ namespace NP_STRANGESORT {
 			strangeSort(arr, fromIndex, position - 1);
 			strangeSort(arr, position + 1, toIndex);
 		}
-		else if (fromIndex < toIndex) {
-			insertionSort(arr, fromIndex, toIndex);
-		}
+		// else if (fromIndex < toIndex) {
+			// insertionSort(arr, fromIndex, toIndex);
+		// }
 	}
 
 
@@ -94,7 +118,8 @@ using namespace NP_STRANGESORT;
 int main() {
 	len = 10;
 	A ** arr = new A*[len] { &B(9), &B(1), &B(2), &B(7), &B(5), &B(4), &B(8), &B(3), &B(6), &B(0) };
-	// arr = new int[len] { 9, 1, 2, 7, 5, 4, 8, 3, 6, 0 };
+	// cout << bool(B(4) < B(5)) << '\n';
+	// int * arr = new int[len] { 9, 1, 2, 7, 5, 4, 8, 3, 6, 0 };
 	cout << "Initial Array : ";
 	printArray(arr, len);
 	strangeSort(arr, 0, len - 1);
