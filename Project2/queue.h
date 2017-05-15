@@ -6,23 +6,37 @@ namespace NP_ADT {
 	template <class datatype>
 	class Queue : virtual protected CDLL<datatype> {
 	public:
-		Queue() : handle(nullptr), m_size(0) {}
-		Queue(size_t n_elements, datatype datum);
-		Queue(const CDLL& cdll);
-		Queue(iterator begin, iterator end);
+		Queue(void) 
+			: handle(nullptr), m_size(0),
+			CDLL<datatype>::CDLL() {}
+		Queue(size_t n_elements, datatype datum) 
+			: handle(nullptr), m_size(0), 
+			CDLL<datatype>::CDLL(n_elements, datum) { };
+		Queue(const CDLL & queue) 
+			: handle(nullptr), m_size(0), 
+			CDLL<datatype>::CDLL(queue) { };
+		Queue(iterator begin, iterator end) 
+			: handle(nullptr), m_size(0), 
+			CDLL<datatype>::CDLL(begin, end) { };
+		
+		~Queue() { release(); };
 
-		~Queue() { };
-
-		unsigned getSize() const;
-		bool empty() const;
-		void release();
+		unsigned getSize() const { return m_size; }
+		bool empty() const { return CDLL<datatype>::empty(); }
+		
+		void release() { CDLL<datatype>::release(); }
 
 		iterator begin() const { return head(); }
 		iterator end() const { return tail(); }
 		
-		void push(datatype & element);
-		datatype & pop();
+		void push(datatype & element) { CDLL<datatype>::push_back(element); m_size++; }
+		void push(datatype element) { CDLL<datatype>::push_back(element); m_size++; }
+		datatype & pop() { return CDLL<datatype>::pop_front(element); m_size--; }
 
-
+		node * head() { return CDLL<datatype>::head(); }
+		node * tail() { return CDLL<datatype>::tail(); }
+	protected:
+		node * handle;
+		unsigned m_size; // number of elements in the list 
 	};
 }
