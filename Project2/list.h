@@ -128,7 +128,7 @@ namespace NP_ADT {
 		node * head(void) const { return handle; }
 		node * tail(void) const { return (handle == nullptr) ? nullptr : handle->prev; }
 
-	private:
+	protected:
 		// remove head and tail as property
 		// and only keep track of one handle
 		node * handle;
