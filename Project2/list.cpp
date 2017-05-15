@@ -283,34 +283,6 @@ namespace NP_ADT
 		return temp;
 	}
 
-
-
-	//-------------------------------------------------------------------------
-	// [] operator -- l-value
-	//-------------------------------------------------------------------------
-	/*template<typename datatype>
-	datatype & NP_ADT::CDLL<datatype>::operator[](int index)
-	{
-		iterator it;
-		if (index >= 0)
-		{
-			if (index >= static_cast<int>(getSize()))
-				throw out_of_range("index out-of-range");
-			it = begin();
-			for (int i = 0; i < index; i++)
-				it++;
-		}
-		else
-		{
-			if (index < -(static_cast<int>(getSize())))
-				throw out_of_range("index out-of-range");
-			it = end();
-			for (int i = -1; i > index; i--)
-				it--;
-		}
-		return *it;
-	}*/
-
 	//-------------------------------------------------------------------------
 	// ostream << overload
 	//-------------------------------------------------------------------------
