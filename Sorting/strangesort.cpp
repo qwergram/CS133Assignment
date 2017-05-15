@@ -99,15 +99,15 @@ namespace NP_STRANGESORT {
 	}
 
 	void strangeSort(A ** arr, int fromIndex, int toIndex) {
-		if (fromIndex < toIndex) {
+		if (fromIndex + 4 < toIndex) {
 			SortFirstMiddleLast(arr, fromIndex, (fromIndex + toIndex) / 2, toIndex);
 			int position = partition(arr, fromIndex, toIndex);
 			strangeSort(arr, fromIndex, position - 1);
 			strangeSort(arr, position + 1, toIndex);
 		}
-		// else if (fromIndex < toIndex) {
-			// insertionSort(arr, fromIndex, toIndex);
-		// }
+		else if (fromIndex < toIndex) {
+			insertionSort(arr, fromIndex, toIndex);
+		}
 	}
 
 
