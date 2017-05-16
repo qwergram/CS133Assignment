@@ -38,7 +38,8 @@ namespace Project2Tests
 		TEST_METHOD(TestCopyConstructor) {
 			auto test = Queue<int>();
 			Assert::AreEqual(unsigned(0), test.getSize());
-			test.push(4);
+			int toPush = 5;
+			test.push(toPush);
 			Assert::AreEqual(unsigned(1), test.getSize());
 
 			auto test2 = Queue<int>(test);
@@ -64,6 +65,22 @@ namespace Project2Tests
 			//Assert::AreEqual(unsigned(1), test2.getSize());
 			//Assert::IsFalse(&(test.head()->data) == &(test2.head()->data));
 			//Assert::IsTrue(test.head()->data.m_x == test2.head()->data.m_x);
+		}
+
+		TEST_METHOD(TestReleaseAndDestructor) {
+			auto test = Queue<int>();
+			Assert::AreEqual(unsigned(0), test.getSize());
+			for (int x = 0; x < 1000; x++) {
+				test.push(x);
+				Assert::AreEqual(unsigned(x + 1), test.getSize());
+			}
+			Assert::IsTrue(test.getSize() == 1000);
+			Assert::IsFalse(test.empty());
+			test.release();
+			Assert::IsTrue(test.head() == nullptr);
+			Assert::IsTrue(test.tail() == nullptr);
+			Assert::AreEqual(unsigned(0), test.getSize());
+			Assert::IsTrue(test.empty());
 		}
 
 	};
