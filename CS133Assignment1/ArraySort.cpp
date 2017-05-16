@@ -17,15 +17,16 @@ namespace NP_ARRAYSORT
 	//			2/9/08  PB  completed version 1.0
 	//			4/28/17	NP	Appended to version 1.0
 	// ------------------------------------------------------------------------
-	void strangeSort(Comparable ** array, int fromIndex, int toIndex)
-	{
-		if (fromIndex + 4 < toIndex) {
-			int position = partition(array, fromIndex, toIndex);
-			strangeSort(array, fromIndex, position - 1);
-			strangeSort(array, position + 1, toIndex);
-		} else if (fromIndex < toIndex) {
-			insertionSort(array, fromIndex, toIndex);
+	void strangeSort(Comparable ** arr, int fromIndex, int toIndex) {
+		if (fromIndex < toIndex) {
+			// SortFirstMiddleLast(arr, fromIndex, (fromIndex + toIndex) / 2, toIndex);
+			int position = partition(arr, fromIndex, toIndex);
+			strangeSort(arr, fromIndex, position - 1);
+			strangeSort(arr, position + 1, toIndex);
 		}
+		// else if (fromIndex < toIndex) {
+			// insertionSort(arr, fromIndex, toIndex);
+		//}
 	}
 
  // ------------------------------------------------------------------------
@@ -43,42 +44,21 @@ namespace NP_ARRAYSORT
 	//			2/9/08  PB  completed version 1.0
 	//			4/28/17	NP	Appended to version 1.0
 	// ------------------------------------------------------------------------	
-	int partition(Comparable ** array, int fromIndex, int toIndex)
-	{
-		int pivotIndex = (fromIndex + toIndex) / 2;
-		SortFirstMiddleLast(array, fromIndex, pivotIndex, toIndex);
+	int partition(Comparable ** array, int fromIndex, int toIndex) {
 
-		Comparable * pivot = array[pivotIndex];
-		indexSwap(array, pivotIndex, toIndex - 1);
+		int smallIndex = fromIndex - 1;
 
-		int frontIndex = fromIndex + 1;
-		int backIndex = pivotIndex - 1;
+		Comparable * pivot = array[toIndex];
 
-		while (frontIndex < backIndex) {
-			while (frontIndex < backIndex && *pivot >= *array[frontIndex])
-				frontIndex++;
-			
-			while (frontIndex < backIndex && *array[backIndex] >= *pivot)
-				backIndex--;
-			
-			indexSwap(array, frontIndex++, pivotIndex--);
-		}
-		indexSwap(array, fromIndex, frontIndex);
-		return frontIndex;
-		
-		// Perfectly good quick sort
-		/*
-		Comparable * mid = array[toIndex];
-		int small = fromIndex - 1;
-		for (int index = fromIndex; index < toIndex; index++) {
-			if (*array[index] <= *mid) {
-				small++;
-				swap(array, index, small);
+		for (int k = fromIndex; k < toIndex; k++) {
+			if (*array[k] <= *pivot) {
+				smallIndex++;
+				indexSwap(array, k, smallIndex);
 			}
 		}
-		swap(array, toIndex, small + 1);
-		return small + 1;
-		*/
+
+		indexSwap(array, toIndex, smallIndex + 1);
+		return smallIndex + 1;
 	}
 
  // ------------------------------------------------------------------------
@@ -95,20 +75,22 @@ namespace NP_ARRAYSORT
 	//    History Log:
 	//			4/27/17  NP  completed version 1.0
 	// ------------------------------------------------------------------------	
-	void SortFirstMiddleLast(Comparable ** array, 
-							int loIndex, int midIndex, 
-							int hiIndex
+	void SortFirstMiddleLast(
+		Comparable ** array,
+		int loIndex, int midIndex,
+		int hiIndex
 	)
 	{
 		Comparable * low = array[loIndex];
 		Comparable * mid = array[midIndex];
 		Comparable * hi = array[hiIndex];
-		while ((low > mid) || (mid > hi)) {
-			if (low > mid) 
+
+		while ((*low > *mid) || (*mid > *hi)) {
+			if (*low > *mid)
 				indexSwap(array, loIndex, midIndex);
-			if (mid > hi)
+			else if (*mid > *hi)
 				indexSwap(array, midIndex, hiIndex);
-			if (low > hi)
+			else if (*low > *hi)
 				indexSwap(array, loIndex, hiIndex);
 			low = array[loIndex];
 			mid = array[midIndex];
@@ -156,19 +138,16 @@ namespace NP_ARRAYSORT
 	// ------------------------------------------------------------------------	
 	void insertionSort(Comparable ** array, int fromIndex, int toIndex)
 	{
-		if (fromIndex < 1)
-			fromIndex = 1;
+		for (int cursor = fromIndex; cursor < toIndex; cursor++) {
+			int secondCursor = cursor - 1;
+			Comparable * temp = array[cursor];
 
-		for (int outerIndex = fromIndex; outerIndex < toIndex; outerIndex++) {
-			int innerIndex = outerIndex - 1;
-			Comparable * temp = array[outerIndex];
-
-			while (innerIndex >= 0 && *temp < *array[innerIndex]) {
-				array[innerIndex + 1] = array[innerIndex];
-				innerIndex--;
+			while (secondCursor >= 0 && *temp < *array[secondCursor]) {
+				*array[secondCursor + 1] = *array[secondCursor];
+				secondCursor--;
 			}
 
-			array[innerIndex + 1] = temp;
+			*array[secondCursor + 1] = *temp;
 		}
 	}
 
