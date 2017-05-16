@@ -315,6 +315,10 @@ namespace CSS133Assignment1Tests
 			}
 		}
 
+		TEST_METHOD(sortTest) {
+
+		}
+
 	private:
 		void validateTime(CTime time) {
 			Assert::IsTrue(time.getHour() >= 0 && time.getHour() < 24);
