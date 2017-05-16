@@ -1,10 +1,9 @@
 #include "stdafx.h"
 #include "CppUnitTest.h"
-// #include "..\CS133Assignment1\Comparable.h"
-
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 using namespace NP_DATETIME;
+using namespace NP_ARRAYSORT;
 
 namespace CSS133Assignment1Tests
 {
@@ -87,6 +86,43 @@ namespace CSS133Assignment1Tests
 				Assert::IsTrue(date2 < date1);
 				Assert::IsTrue(date2 <= date1);
 			}
+		}
+
+		TEST_METHOD(DateTimeRandomTests) {
+			DateTime date1(4, 0, 1760, 4, 0, 0);
+			DateTime date2(0, 0, 1760, 0, 0, 0);
+			DateTime date3(2, 0, 1760, 2, 0, 0);
+
+			Assert::IsTrue(date1 > date2);
+			Assert::IsTrue(date1 >= date2);
+			Assert::IsTrue(date1 != date2);
+			Assert::IsFalse(date1 < date2);
+			Assert::IsFalse(date1 <= date2);
+			Assert::IsFalse(date1 == date2);
+
+			Assert::IsFalse(date2 > date3);
+			Assert::IsFalse(date2 >= date3);
+			Assert::IsTrue(date2 != date3);
+			Assert::IsTrue(date2 < date3);
+			Assert::IsTrue(date2 <= date3);
+			Assert::IsFalse(date2 == date3);
+
+			Assert::IsTrue(date1 > date3);
+			Assert::IsTrue(date1 >= date3);
+			Assert::IsTrue(date1 != date3);
+			Assert::IsFalse(date1 < date3);
+			Assert::IsFalse(date1 <= date3);
+			Assert::IsFalse(date1 == date3);
+		}
+
+		TEST_METHOD(DateTimeSortTimes) {
+			Comparable * timesToSort[3] = {
+				&DateTime(4, 0, 1760, 4, 0, 0),
+				&DateTime(0, 0, 1760, 0, 0, 0),
+				&DateTime(2, 0, 1760, 2, 0, 0)
+			};
+			strangeSort(timesToSort, 0, 2);
+			// Assert::IsTrue(*timesToSort[0] == DateTime(0, 0, 1760, 0, 0, 0));
 		}
 
 
