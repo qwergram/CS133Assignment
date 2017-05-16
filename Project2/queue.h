@@ -24,14 +24,14 @@ namespace NP_ADT {
 		unsigned getSize() const { return m_size; }
 		bool empty() const { return CDLL<datatype>::empty(); }
 		
-		void release() { CDLL<datatype>::release(); }
+		void release() { while (handle != nullptr) { pop(); } }
 
 		iterator begin() const { return head(); }
 		iterator end() const { return tail(); }
 		
 		void push(datatype & element) { CDLL<datatype>::push_back(element); m_size++; }
-		void push(datatype element) { CDLL<datatype>::push_back(element); m_size++; }
-		datatype & pop() { return CDLL<datatype>::pop_front(element); m_size--; }
+		// void push(datatype element) { CDLL<datatype>::push_back(element); m_size++; }
+		datatype & pop() { m_size--; return CDLL<datatype>::pop_front(); }
 
 		node * head() { return CDLL<datatype>::head(); }
 		node * tail() { return CDLL<datatype>::tail(); }
