@@ -10,5 +10,6 @@
 // Headers for CppUnitTest
 #include "CppUnitTest.h"
 #include "..\CS133Assignment1\DateTime.h"
+#include "..\CS133Assignment1\ArraySort.h"
 
 // TODO: reference additional headers your program requires here
