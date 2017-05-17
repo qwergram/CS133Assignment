@@ -14,11 +14,9 @@ namespace NP_ADT {
 	}
 
 	template<class datatype>
-	datatype & Queue<datatype>::pop()
+	datatype Queue<datatype>::pop()
 	{
-		datatype popped_value = CDLL<datatype>::pop_front();
-		datatype & popped_value_reference = popped_value;
-		return popped_value_reference;
+		return CDLL<datatype>::pop_front();
 	}
 
 }
