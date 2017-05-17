@@ -109,7 +109,7 @@ namespace NP_ADT {
 		// Destructor
 		virtual ~CDLL() { release(); }
 
-		unsigned getSize() const { return m_size; }
+		virtual unsigned getSize() const { return m_size; }
 		iterator begin() const { return head(); }
 		iterator end() const { return tail(); }
 		void push_front(datatype datum);
@@ -118,7 +118,7 @@ namespace NP_ADT {
 		datatype pop_back();
 		datatype & front() const;
 		datatype & back() const;
-		bool empty() const { return handle == nullptr; }
+		virtual bool empty() const { return handle == nullptr; }
 		void release();
 		
 		datatype & operator[](int index);
