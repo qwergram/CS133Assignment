@@ -8,30 +8,26 @@ namespace NP_ADT {
 	public:
 
 		Queue(void) 
-			: // handle(nullptr), m_size(0),
-			CDLL<datatype>::CDLL() {}
+			: CDLL<datatype>::CDLL() {}
 		Queue(size_t n_elements, datatype datum) 
-			: // handle(nullptr), m_size(0), 
-			CDLL<datatype>::CDLL(n_elements, datum) { };
+			: CDLL<datatype>::CDLL(n_elements, datum) { };
 		Queue(const CDLL & queue) 
-			: // handle(nullptr), m_size(0), 
-			CDLL<datatype>::CDLL(queue) { };
+			: CDLL<datatype>::CDLL(queue) { };
 		Queue(iterator begin, iterator end) 
-			: // handle(nullptr), m_size(0), 
-			CDLL<datatype>::CDLL(begin, end) { };
+			: CDLL<datatype>::CDLL(begin, end) { };
 		
 		virtual ~Queue() { release(); };
 
-		virtual unsigned getSize() const;
-		virtual bool empty() const { return (handle == nullptr); };
+		unsigned getSize() const;
+		bool empty() const { return (handle == nullptr); };
 		
 		void release() { while (handle != nullptr) { pop(); } }
 
-		iterator begin() const { return head(); }
-		iterator end() const { return tail(); }
+		iterator begin() const { return CDLL<datatype>::begin(); }
+		iterator end() const { return CDLL<datatype>::end(); }
 		
 		void push(datatype & element);
-		datatype & pop();
+		datatype pop();
 
 		node * head() { return handle; }
 		node * tail() { return (handle == nullptr) ? nullptr : handle->prev; }
