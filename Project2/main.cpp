@@ -46,7 +46,7 @@ int main(void)
 		cout << "mylist2: " << mylist2 << endl;
 
 		// Queue Pointer Tests
-		
+		/*
 		myqueue = &Queue<char>(3, 'X');
 		CDLL<char> mylist2;
 		CDLL<char> mylist3(mylist);
@@ -74,6 +74,7 @@ int main(void)
 		mylist.release();
 		cout << "mylist: " << mylist << endl;
 		cout << "mylist2: " << mylist2 << endl;
+		*/
 	}
 	catch (exception e)
 	{
