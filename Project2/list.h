@@ -107,7 +107,7 @@ namespace NP_ADT {
 		CDLL operator=(const CDLL & rlist);
 
 		// Destructor
-		virtual ~CDLL() { release(); }
+		~CDLL() { release(); }
 
 		virtual unsigned getSize() const { return m_size; }
 		iterator begin() const { return head(); }
