@@ -6,7 +6,6 @@ namespace NP_ADT {
 	template <class datatype>
 	class Queue : virtual protected CDLL<datatype> {
 	public:
-
 		Queue(void) 
 			: CDLL<datatype>::CDLL() {}
 		Queue(size_t n_elements, datatype datum) 
@@ -18,7 +17,7 @@ namespace NP_ADT {
 		
 		virtual ~Queue() { release(); };
 
-		unsigned getSize() const;
+		unsigned getSize() const { return CDLL<datatype>::getSize(); }
 		bool empty() const { return (handle == nullptr); };
 		
 		void release() { while (handle != nullptr) { pop(); } }
@@ -26,13 +25,10 @@ namespace NP_ADT {
 		iterator begin() const { return CDLL<datatype>::begin(); }
 		iterator end() const { return CDLL<datatype>::end(); }
 		
-		void push(datatype & element);
-		datatype pop();
+		void push(datatype & element) { push_back(element); }
+		datatype pop() { return CDLL<datatype>::pop_front(); }
 
 		node * head() { return handle; }
 		node * tail() { return (handle == nullptr) ? nullptr : handle->prev; }
-	protected:
-		// node * handle;
-		// unsigned m_size; // number of elements in the list 
 	};
 }
