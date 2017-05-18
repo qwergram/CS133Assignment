@@ -110,8 +110,8 @@ namespace NP_ADT {
 		~CDLL() { release(); }
 
 		virtual unsigned getSize() const { return m_size; }
-		iterator begin() const { return head(); }
-		iterator end() const { return tail(); }
+		virtual iterator begin() const { return head(); }
+		virtual iterator end() const { return tail(); }
 		void push_front(datatype datum);
 		void push_back(datatype datum);
 		datatype pop_front();
