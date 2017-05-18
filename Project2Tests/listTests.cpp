@@ -5,7 +5,7 @@
 #include "..\Project2\queue.h"
 #include "..\Project2\queue.cpp"
 #include "..\Project2\public_queue.h"
-
+#include "..\Project2\npadtexcept.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 using namespace NP_ADT;
@@ -412,6 +412,452 @@ namespace Project2Tests
 			Assert::AreEqual(4, *test2.begin());
 			Assert::AreEqual(-2, *test.end());
 			Assert::AreEqual(-2, *test2.end());
+		}
+
+		TEST_METHOD(PublicQueue_TestIllegalMethods) {
+			bool exceptionsThrown[4] = {
+				false, false, 
+				false, false 
+			};
+
+			auto test = PublicQueue<int>();
+
+			try {
+				test.pop_front();
+			}
+			catch (MethodNotSupported) {
+				exceptionsThrown[0] = true;
+			}
+
+			try {
+				test.pop_back();
+			}
+			catch (MethodNotSupported) {
+				exceptionsThrown[1] = true;
+			}
+			
+			try {
+				test.push_front(1);
+			}
+			catch (MethodNotSupported) {
+				exceptionsThrown[2] = true;
+			}
+
+			try {
+				test.push_back(2);
+			}
+			catch (MethodNotSupported) {
+				exceptionsThrown[3] = true;
+			}
+
+			Assert::IsTrue(exceptionsThrown[0]);
+			Assert::IsTrue(exceptionsThrown[1]);
+			Assert::IsTrue(exceptionsThrown[2]);
+			Assert::IsTrue(exceptionsThrown[3]);
+		}
+
+	};
+
+	TEST_CLASS(QueuePointerTests)
+	{
+	public:
+
+		TEST_METHOD(QueuePointer_TestEmptyConstructor)
+		{
+			Queue<int> * test = &Queue<int>();
+			Assert::AreEqual(unsigned int(0), test->getSize());
+			Assert::IsTrue(nullptr == test->head());
+			Assert::IsTrue(nullptr == test->tail());
+			Assert::IsTrue(test->empty());
+		}
+
+		TEST_METHOD(QueuePointer_TestPushConnections)
+		{
+			Queue<int> * test = &Queue<int>();
+			Assert::IsTrue(test->empty());
+			Assert::AreEqual(unsigned(0), test->getSize());
+			auto x = 5;
+			auto y = 0;
+			test->push(x);
+			Assert::IsFalse(test->empty());
+			Assert::AreEqual(unsigned(1), test->getSize());
+			test->push(y);
+			Assert::IsFalse(test->empty());
+			Assert::AreEqual(unsigned(2), test->getSize());
+
+			Assert::IsTrue(test->head() == test->head()->next->prev);
+			Assert::IsTrue(test->head() == test->head()->prev->next);
+			Assert::IsTrue(test->tail() == test->tail()->next->prev);
+			Assert::IsTrue(test->tail() == test->tail()->prev->next);
+		}
+
+		TEST_METHOD(QueuePointer_TestOnePushItemQueue) {
+			Queue<int> * test = &Queue<int>();
+			Assert::IsTrue(test->empty());
+			Assert::AreEqual(unsigned(0), test->getSize());
+			auto x = 5;
+			auto y = 0;
+			test->push(y);
+			Assert::IsFalse(test->empty());
+
+			CDLL<int>::node * thisThing = test->head();
+
+			Assert::AreEqual(unsigned int(1), test->getSize());
+			Assert::IsTrue(unsigned int(0) == test->tail()->data);
+
+			CDLL<int>::node * ptr = test->head();
+			CDLL<int>::node * nextPtr = test->head()->next;
+			CDLL<int>::node * doubleNextPtr = nextPtr->next;
+			CDLL<int>::node * prevPtr = test->head()->prev;
+			CDLL<int>::node * doublePrevPtr = prevPtr->prev;
+
+			Assert::IsTrue(ptr == nextPtr);
+			Assert::IsTrue(nextPtr == doubleNextPtr);
+			Assert::IsTrue(doubleNextPtr == prevPtr);
+			Assert::IsTrue(prevPtr == doublePrevPtr);
+		}
+
+		TEST_METHOD(QueuePointer_TestTwoPushItemQueue) {
+			Queue<int> * test = &Queue<int>();
+			Assert::IsTrue(test->empty());
+			Assert::AreEqual(unsigned(0), test->getSize());
+			auto x = 5;
+			auto y = 0;
+			test->push(y);
+			Assert::IsFalse(test->empty());
+			Assert::AreEqual(unsigned(1), test->getSize());
+			test->push(x);
+			Assert::IsFalse(test->empty());
+			// <-> 0 <-> 1 <->
+
+			CDLL<int>::node * thisThing = test->head();
+
+			Assert::AreEqual(unsigned int(2), test->getSize());
+
+			Assert::AreEqual(y, test->head()->data);
+			Assert::AreEqual(x, test->tail()->data);
+
+
+			CDLL<int>::node * ptr = test->head();				// == 1
+			CDLL<int>::node * nextPtr = test->head()->next;		// == 0
+			CDLL<int>::node * doubleNextPtr = nextPtr->next;	// == 1
+			CDLL<int>::node * prevPtr = test->head()->prev;		// == 0
+			CDLL<int>::node * doublePrevPtr = prevPtr->prev;	// == 1
+
+			Assert::IsTrue(ptr == doubleNextPtr);
+			Assert::IsTrue(nextPtr == prevPtr);
+			Assert::IsTrue(doubleNextPtr == doublePrevPtr);
+			Assert::IsTrue(ptr != nextPtr);
+		}
+
+		TEST_METHOD(QueuePointer_TestThreePushItemQueue) {
+			Queue<int> * test = &Queue<int>();
+			auto x = 0;
+			auto y = 1;
+			auto z = 2;
+			Assert::IsTrue(test->empty());
+			Assert::AreEqual(unsigned(0), test->getSize());
+			test->push(x);
+			Assert::IsFalse(test->empty());
+			Assert::AreEqual(unsigned(1), test->getSize());
+			test->push(y);
+			Assert::IsFalse(test->empty());
+			Assert::AreEqual(unsigned(2), test->getSize());
+			test->push(z);
+			Assert::IsFalse(test->empty());
+			// <-> 0 <-> 1 <-> 2 <->
+
+			CDLL<int>::node * thisThing = test->head();
+
+			Assert::AreEqual(unsigned int(3), test->getSize());
+
+			Assert::AreEqual(x, test->head()->data);
+			Assert::AreEqual(z, test->tail()->data);
+
+			CDLL<int>::node * ptr = test->head();				// == 0
+			CDLL<int>::node * nextPtr = test->head()->next;		// == 1
+			CDLL<int>::node * doubleNextPtr = nextPtr->next;	// == 2
+			CDLL<int>::node * prevPtr = test->head()->prev;		// == 2
+			CDLL<int>::node * doublePrevPtr = prevPtr->prev;	// == 0
+
+			Assert::IsTrue(ptr == doubleNextPtr->next);
+			Assert::IsTrue(nextPtr == doublePrevPtr);
+			Assert::IsTrue(prevPtr == doubleNextPtr);
+			Assert::IsTrue(ptr != nextPtr);
+			Assert::IsTrue(nextPtr != doubleNextPtr);
+		}
+
+		TEST_METHOD(QueuePointer_TestPopEmptyQueue) {
+			bool exceptionThrown = false;
+			Queue<int> * test = &Queue<int>();
+			Assert::AreEqual(unsigned(0), test->getSize());
+			try {
+				test->pop();
+			}
+			catch (runtime_error) {
+				exceptionThrown = true;
+			}
+			Assert::AreEqual(unsigned(0), test->getSize());
+			Assert::IsTrue(exceptionThrown);
+		}
+
+		TEST_METHOD(QueuePointer_TestPopAfterPush) {
+			Queue<int> * test = &Queue<int>();
+			auto x = 1;
+			Assert::AreEqual(unsigned(0), test->getSize());
+			Assert::IsTrue(test->empty());
+			test->push(x);
+			Assert::AreEqual(unsigned(1), test->getSize());
+			Assert::IsFalse(test->empty());
+			Assert::AreEqual(1, test->pop());
+			Assert::AreEqual(unsigned(0), test->getSize());
+			Assert::IsTrue(test->empty());
+			Assert::IsTrue(test->head() == nullptr);
+			Assert::IsTrue(test->tail() == nullptr);
+		}
+
+		TEST_METHOD(QueuePointer_TestPopAfterTwoPush) {
+			Queue<int> * test = &Queue<int>();
+			auto x = 1;
+			auto y = 2;
+			Assert::AreEqual(unsigned(0), test->getSize());
+			Assert::IsTrue(test->empty());
+			test->push(x);
+			Assert::AreEqual(unsigned(1), test->getSize());
+			Assert::IsFalse(test->empty());
+			test->push(y);
+			Assert::AreEqual(unsigned(2), test->getSize());
+			Assert::IsFalse(test->empty());
+			Assert::AreEqual(1, test->pop());
+			Assert::AreEqual(unsigned(1), test->getSize());
+			Assert::IsFalse(test->empty());
+			Assert::IsTrue(test->head()->next->prev == test->head());
+			Assert::IsTrue(test->head()->prev->next == test->head());
+			Assert::IsTrue(test->tail()->next->prev == test->tail());
+			Assert::IsTrue(test->tail()->prev->next == test->tail());
+			Assert::AreEqual(2, test->pop());
+			Assert::AreEqual(unsigned(0), test->getSize());
+			Assert::IsTrue(test->empty());
+			Assert::IsTrue(test->head() == nullptr);
+			Assert::IsTrue(test->tail() == nullptr);
+		}
+
+		TEST_METHOD(QueuePointer_TestPopFrontAfterThreePush) {
+			Queue<int> * test = &Queue<int>();
+			auto x = 1;
+			auto y = 2;
+			auto z = 3;
+			Assert::AreEqual(unsigned(0), test->getSize());
+			Assert::IsTrue(test->empty());
+			test->push(x);
+			Assert::AreEqual(unsigned(1), test->getSize());
+			Assert::IsFalse(test->empty());
+			test->push(y);
+			Assert::AreEqual(unsigned(2), test->getSize());
+			Assert::IsFalse(test->empty());
+			test->push(z);
+			Assert::AreEqual(unsigned(3), test->getSize());
+			Assert::IsFalse(test->empty());
+			Assert::AreEqual(1, test->pop());
+			Assert::AreEqual(unsigned(2), test->getSize());
+			Assert::IsFalse(test->empty());
+			Assert::IsTrue(test->head()->next->prev == test->head());
+			Assert::IsTrue(test->head()->prev->next == test->head());
+			Assert::IsTrue(test->tail()->next->prev == test->tail());
+			Assert::IsTrue(test->tail()->prev->next == test->tail());
+			Assert::AreEqual(2, test->pop());
+			Assert::AreEqual(unsigned(1), test->getSize());
+			Assert::IsFalse(test->empty());
+			Assert::IsTrue(test->head()->next->prev == test->head());
+			Assert::IsTrue(test->head()->prev->next == test->head());
+			Assert::IsTrue(test->tail()->next->prev == test->tail());
+			Assert::IsTrue(test->tail()->prev->next == test->tail());
+			Assert::AreEqual(3, test->pop());
+			Assert::IsTrue(test->empty());
+			Assert::AreEqual(unsigned(0), test->getSize());
+			Assert::IsTrue(test->head() == nullptr);
+			Assert::IsTrue(test->tail() == nullptr);
+		}
+
+		TEST_METHOD(QueuePointer_TestReleaseAndDestructor) {
+			Queue<int> * test = &Queue<int>();
+			Assert::AreEqual(unsigned(0), test->getSize());
+			for (int x = 0; x < 1000; x++) {
+				test->push(x);
+				Assert::AreEqual(unsigned(x + 1), test->getSize());
+			}
+			Assert::IsTrue(test->getSize() == 1000);
+			Assert::IsFalse(test->empty());
+			test->release();
+			Assert::AreEqual(unsigned(0), test->getSize());
+			Assert::IsTrue(test->empty());
+		}
+
+		TEST_METHOD(QueuePointer_TestCopyConstructorEmpty) {
+			Queue<int> * test = &Queue<int>();
+			Assert::AreEqual(unsigned(0), test->getSize());
+			bool exceptionThrown = false;
+			try {
+				Queue<int> * test2 = &Queue<int>(*test);
+			}
+			catch (...) {
+				exceptionThrown = true;
+			}
+			Assert::IsFalse(exceptionThrown);
+			Assert::AreEqual(unsigned(0), test->getSize());
+		}
+
+		TEST_METHOD(QueuePointer_TestCopyConstructor) {
+			Queue<int> * test = &Queue<int>();
+			auto x = 4;
+			Assert::AreEqual(unsigned(0), test->getSize());
+			test->push(x);
+			Assert::AreEqual(unsigned(1), test->getSize());
+
+			Queue<int> * test2 = &Queue<int>(*test);
+			Assert::AreEqual(unsigned(1), test2->getSize());
+			Assert::IsFalse(&(test->head()->data) == &(test2->head()->data));
+			Assert::IsTrue(test->head()->data == test2->head()->data);
+		}
+
+		TEST_METHOD(QueuePointer_TestCopyObjectConstructor) {
+			class Dummy {
+			public:
+				Dummy(int x) : m_x(x) {};
+				int m_x = 0;
+			};
+
+			Queue<Dummy> * test = & Queue<Dummy>();
+			Assert::AreEqual(unsigned(0), test->getSize());
+			test->push(Dummy(5));
+			Assert::AreEqual(unsigned(1), test->getSize());
+
+			Queue<Dummy> * test2 = & Queue<Dummy>(*test);
+			Assert::AreEqual(unsigned(1), test2->getSize());
+			Assert::IsFalse(&(test->head()->data) == &(test2->head()->data));
+			Assert::IsTrue(test->head()->data.m_x == test2->head()->data.m_x);
+		}
+
+		TEST_METHOD(QueuePointer_TestIteratorPreIncrementOperator) {
+			Queue<int> * test = &Queue<int>();
+			Assert::AreEqual(unsigned(0), test->getSize());
+			for (int x = 0; x < 100; x++) {
+				test->push(x);
+				Assert::AreEqual(unsigned(x + 1), test->getSize());
+			}
+
+			auto r_it = test->begin();
+			for (int x = 0; x < 99; x++) {
+				Assert::IsTrue(*++r_it == x + 1);
+			}
+			Assert::IsTrue(*++r_it == 0);
+			Assert::IsTrue(*++r_it == 1);
+			Assert::AreEqual(unsigned(100), test->getSize());
+		}
+
+		TEST_METHOD(QueuePointer_TestIteratorPostIncrementOperator) {
+			Queue<int> * test = &Queue<int>();
+			for (int x = 0; x < 100; x++) {
+				test->push(x);
+				Assert::AreEqual(unsigned(x + 1), test->getSize());
+			}
+
+			auto r_it = test->begin();
+			for (int x = 0; x < 100; x++) {
+				Assert::IsTrue(*r_it++ == x);
+			}
+			Assert::IsTrue(*r_it++ == 0);
+			Assert::IsTrue(*r_it++ == 1);
+			Assert::AreEqual(unsigned(100), test->getSize());
+		}
+
+		TEST_METHOD(QueuePointer_TestIteratorPreDecrementOperator) {
+			Queue<int> * test = &Queue<int>();
+			for (int x = 0; x < 100; x++) {
+				test->push(x);
+				Assert::AreEqual(unsigned(x + 1), test->getSize());
+			}
+
+			auto r_it = test->end();
+			for (int x = 99; x > 0; x--) {
+				Assert::AreEqual(x - 1, *--r_it);
+			}
+			Assert::IsTrue(*--r_it == 99);
+			Assert::IsTrue(*--r_it == 98);
+			Assert::AreEqual(unsigned(100), test->getSize());
+		}
+
+		TEST_METHOD(QueuePointer_TestIteratorPostDecrementOperator) {
+			Queue<int> * test = &Queue<int>();
+			for (int x = 0; x < 100; x++) {
+				test->push(x);
+				Assert::AreEqual(unsigned(x + 1), test->getSize());
+			}
+
+			auto r_it = test->end();
+			for (int x = 99; x >= 0; x--) {
+				Assert::IsTrue(*r_it-- == x);
+			}
+			Assert::IsTrue(*r_it-- == 99);
+			Assert::IsTrue(*r_it-- == 98);
+			Assert::AreEqual(unsigned(100), test->getSize());
+		}
+
+		TEST_METHOD(QueuePointer_TestPartialIteratorConstructor) {
+			Queue<int> * test = &Queue<int>();
+			for (int x = 0; x < 100; x++) {
+				test->push(x);
+				Assert::AreEqual(unsigned(x + 1), test->getSize());
+			}
+
+			auto r_it = test->begin();
+			for (int i = 0; i < 10; i++) { r_it++; };
+
+			Queue<int> * test2 = &Queue<int>(r_it, test->end());
+			Assert::AreEqual(unsigned(90), test2->getSize());
+			r_it = test2->begin();
+
+			for (int x = 10; x < 100; x++) {
+				int y = *r_it++;
+				Assert::IsTrue(y == x);
+			}
+			Assert::IsTrue(*r_it++ == 10);
+			Assert::IsTrue(*r_it++ == 11);
+		}
+
+		TEST_METHOD(QueuePointer_TestFullIteratorConstructor) {
+			Queue<int> * test = &Queue<int>();
+			Assert::AreEqual(unsigned(0), test->getSize());
+			for (int x = 0; x < 100; x++) {
+				test->push(x);
+				Assert::AreEqual(unsigned(x + 1), test->getSize());
+			}
+			Assert::AreEqual(unsigned(100), test->getSize());
+			auto r_it = test->begin();
+			Queue<int> * test2 = &Queue<int>(r_it, test->end());
+			Assert::AreEqual(unsigned(100), test2->getSize());
+
+			for (int x = 0; x < 100; x++) {
+				int y = *r_it++;
+				Assert::IsTrue(y == x);
+			}
+			Assert::IsTrue(*r_it++ == 0);
+			Assert::IsTrue(*r_it++ == 1);
+		}
+
+		TEST_METHOD(QueuePointer_TestAssignmentOverload) {
+			Queue<int> * test = &Queue<int>(100, 4);
+			Queue<int> * test2 = &Queue<int>(1, 1);
+			int y = -2;
+			test->push(y);
+			Assert::AreEqual(101U, test->getSize());
+			test2 = test;
+			Assert::AreEqual(101U, test->getSize());
+			Assert::AreEqual(101U, test2->getSize());
+			Assert::AreEqual(4, *test->begin());
+			Assert::AreEqual(4, *test2->begin());
+			Assert::AreEqual(-2, *test->end());
+			Assert::AreEqual(-2, *test2->end());
 		}
 	};
 
