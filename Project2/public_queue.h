@@ -1,39 +1,44 @@
 #pragma once
 #pragma once
 #include "list.h"
+#include "npadtexcept.h"
 
 namespace NP_ADT {
 
 	template <class datatype>
-	class Queue : virtual public CDLL<datatype> {
+	class PublicQueue : virtual public CDLL<datatype> {
 	public:
-
-		Queue(void)
+		PublicQueue(void)
 			: CDLL<datatype>::CDLL() {}
-		Queue(size_t n_elements, datatype datum)
+		PublicQueue(size_t n_elements, datatype datum)
 			: CDLL<datatype>::CDLL(n_elements, datum) { };
-		Queue(const CDLL & queue)
+		PublicQueue(const CDLL & queue)
 			: CDLL<datatype>::CDLL(queue) { };
-		Queue(iterator begin, iterator end)
+		PublicQueue(iterator begin, iterator end)
 			: CDLL<datatype>::CDLL(begin, end) { };
 
-		virtual ~ProtectedQueue() { release(); };
-
-		unsigned getSize() const;
-		bool empty() const { return (handle == nullptr); };
-
-		void release() { while (handle != nullptr) { pop(); } }
-
-		iterator begin() const { return CDLL<datatype>::begin(); }
-		iterator end() const { return CDLL<datatype>::end(); }
+		virtual ~PublicQueue() { release(); };
 
 		void push(datatype & element);
 		datatype pop();
 
-		node * head() { return handle; }
-		node * tail() { return (handle == nullptr) ? nullptr : handle->prev; }
-	protected:
-		// node * handle;
-		// unsigned m_size; // number of elements in the list 
+		// Overload
+		virtual void push_front(datatype datum) { throw MethodNotSupported(); }
+		virtual void push_back(datatype datum) { throw MethodNotSupported(); }
+
+		virtual datatype pop_front() { throw MethodNotSupported(); }
+		virtual datatype pop_back() { throw MethodNotSupported(); }
 	};
+
+	template<class datatype>
+	inline void PublicQueue<datatype>::push(datatype & element)
+	{
+		CDLL<datatype>::push_back(element);
+	}
+
+	template<class datatype>
+	inline datatype PublicQueue<datatype>::pop()
+	{
+		return CDLL<datatype>::pop_front();
+	}
 }
