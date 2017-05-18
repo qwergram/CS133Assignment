@@ -6,7 +6,7 @@
 namespace NP_ADT {
 
 	template <class datatype>
-	class PublicQueue : virtual public CDLL<datatype> {
+	class PublicQueue : public CDLL<datatype> {
 	public:
 		PublicQueue(void)
 			: CDLL<datatype>::CDLL() {}
