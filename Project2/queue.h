@@ -4,7 +4,7 @@
 namespace NP_ADT {
 
 	template <class datatype>
-	class Queue : virtual protected CDLL<datatype> {
+	class Queue : protected CDLL<datatype> {
 	public:
 		Queue(void) 
 			: CDLL<datatype>::CDLL() {}

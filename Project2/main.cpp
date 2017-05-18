@@ -47,18 +47,19 @@ int main(void)
 		cout << "mylist2: " << mylist2 << endl;
 
 		// Queue Pointer Tests
-		
+
 		PublicQueue<char> * myqueue = &PublicQueue<char>(3, 'X');
-		CDLL<char> * myqueue2 = &PublicQueue<char>();
-		CDLL<char> * myqueue3 = &PublicQueue<char>(*myqueue);
-		// CDLL<char> * myqueue4 = &PublicQueue<char>(myqueue->begin(), myqueue->end());
 		cout << "myqueue: " << *myqueue << endl;
+		CDLL<char> * myqueue2 = &PublicQueue<char>();
 		cout << "myqueue2: " << *myqueue2 << endl;
+		CDLL<char> * myqueue3 = &PublicQueue<char>(*myqueue);
 		cout << "myqueue3: " << *myqueue3 << endl;
-		// cout << "myqueue4: " << *myqueue4 << endl;
+		CDLL<char> * myqueue4 = &PublicQueue<char>(myqueue->begin(), myqueue->end());
+		cout << "myqueue4: " << *myqueue4 << endl;
 		char Y = 'Y', Z = 'Z';
 		myqueue->push(Y);
 		myqueue->push(Z);
+		
 		cout << myqueue->pop() << endl;
 		*myqueue2 = *myqueue; // a copy
 		cout << "myqueue: " << myqueue << endl;
