@@ -1,5 +1,5 @@
 # Behavior Decisions in Project 2
-- () and Head() are methods
+- Tail() and Head() are methods
 - Front() and back() will throw runtime exceptions
 - Begin() and end() will never throw runtime exceptions
 - Copy Constructor will never throw exception
