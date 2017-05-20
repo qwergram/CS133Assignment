@@ -6,14 +6,7 @@ namespace NP_ADT {
 	template <class datatype>
 	class Queue : protected CDLL<datatype> {
 	public:
-		Queue(void) 
-			: Queue<datatype>::CDLL() {}
-		Queue(size_t n_elements, datatype datum) 
-			: Queue<datatype>::CDLL(n_elements, datum) { };
-		Queue(const CDLL & queue) 
-			: Queue<datatype>::CDLL(queue) { };
-		Queue(iterator begin, iterator end) 
-			: Queue<datatype>::CDLL(begin, end) { };
+		using CDLL::CDLL;
 		
 		virtual ~Queue() { release(); };
 
@@ -31,4 +24,5 @@ namespace NP_ADT {
 		node * head() { return handle; }
 		node * tail() { return (handle == nullptr) ? nullptr : handle->prev; }
 	};
+
 }
