@@ -7,13 +7,13 @@ namespace NP_ADT {
 	class Queue : protected CDLL<datatype> {
 	public:
 		Queue(void) 
-			: CDLL<datatype>::CDLL() {}
+			: Queue<datatype>::CDLL() {}
 		Queue(size_t n_elements, datatype datum) 
-			: CDLL<datatype>::CDLL(n_elements, datum) { };
+			: Queue<datatype>::CDLL(n_elements, datum) { };
 		Queue(const CDLL & queue) 
-			: CDLL<datatype>::CDLL(queue) { };
+			: Queue<datatype>::CDLL(queue) { };
 		Queue(iterator begin, iterator end) 
-			: CDLL<datatype>::CDLL(begin, end) { };
+			: Queue<datatype>::CDLL(begin, end) { };
 		
 		virtual ~Queue() { release(); };
 
