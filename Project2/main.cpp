@@ -15,7 +15,6 @@ using namespace NP_ADT;
 //---------------------------------------------------------------------------
 int main(void)
 {
-	using NP_ADT::CDLL; // not the same as std::list<class T>
 	try
 	{
 		CDLL<char> mylist(3, 'X');
