@@ -1,8 +1,7 @@
 //-----------------------------------------------------------------------------
-//   File: list.cpp
-//
-//   Class: list
-//   Functions: main
+// File: list.cpp
+// Description: Contains all the non-inline methods for list.h
+// this file must be included for full cdll functionality.
 //-----------------------------------------------------------------------------
 
 #include "list.h"
@@ -12,17 +11,16 @@ using namespace std;
 
 namespace NP_ADT
 {
-	// Constructors
-
 	//-------------------------------------------------------------------------
-	// constructor
-	//-------------------------------------------------------------------------
-	template<class datatype>
-	inline CDLL<datatype>::CDLL(void) : handle(nullptr), m_size(0) {}
-	
-	//-------------------------------------------------------------------------
-	// constructor
-	//-------------------------------------------------------------------------
+	// Function: Constructor		
+	// Description:	Element Repetition
+	// Called By: main
+	// Calls: push_front
+	// Parameters: n_elements, datum
+	// Throws: out_of_range if n_elements is invalid
+	// History Log:
+	// https://github.com/qwergram/CS133Assignment/blame/master/Project2/list.cpp
+	// ------------------------------------------------------------------------
 	template<class datatype>
 	CDLL<datatype>::CDLL(size_t n_elements, datatype datum)
 		:m_size(0), handle(nullptr)
@@ -34,8 +32,14 @@ namespace NP_ADT
 	}
 
 	//-------------------------------------------------------------------------
-	// copy constructor
-	//-------------------------------------------------------------------------
+	// Function: Constructor		
+	// Description:	Copy Constructor
+	// Called By: main
+	// Calls: release, push_back, begin, empty, end
+	// Parameters: &rlist
+	// History Log:
+	// https://github.com/qwergram/CS133Assignment/blame/master/Project2/list.cpp
+	// ------------------------------------------------------------------------
 	template<typename datatype>
 	NP_ADT::CDLL<datatype>::CDLL(const CDLL<datatype> & rlist)
 		: m_size(0), handle(nullptr)
@@ -51,8 +55,14 @@ namespace NP_ADT
 	}
 
 	//-------------------------------------------------------------------------
-	// insert element at front of list
-	//-------------------------------------------------------------------------
+	// Function: push_front
+	// Description:	Insert in front of list
+	// Called By: ctors, main
+	// Calls: node ctor
+	// Parameters: datum
+	// History Log:
+	// https://github.com/qwergram/CS133Assignment/blame/master/Project2/list.cpp
+	// ------------------------------------------------------------------------
 	template<typename datatype>
 	void CDLL<datatype>::push_front(datatype datum)
 	{
@@ -73,8 +83,14 @@ namespace NP_ADT
 	}
 
 	//-------------------------------------------------------------------------
-	// insert element at end of list
-	//-------------------------------------------------------------------------
+	// Function: push_back	
+	// Description:	add item to the end of a list
+	// Called By: ctors, main
+	// Calls: node()
+	// Parameters: datum
+	// History Log:
+	// https://github.com/qwergram/CS133Assignment/blame/master/Project2/list.cpp
+	// ------------------------------------------------------------------------
 	template<typename datatype>
 	void CDLL<datatype>::push_back(datatype datum)
 	{
@@ -95,8 +111,15 @@ namespace NP_ADT
 	}
 
 	//-------------------------------------------------------------------------
-	// removes front element and returns the data from that element
-	//-------------------------------------------------------------------------
+	// Function: pop_front		
+	// Description:	remove the first item of the list and return the value
+	// Called By: release, main
+	// Calls: head
+	// Returns: datatype  
+	// Throws: runtime_error if empty list
+	// History Log:
+	// https://github.com/qwergram/CS133Assignment/blame/master/Project2/list.cpp
+	// ------------------------------------------------------------------------
 	template<typename datatype>
 	datatype NP_ADT::CDLL<datatype>::pop_front()
 	{
@@ -121,8 +144,15 @@ namespace NP_ADT
 	}
 
 	//-------------------------------------------------------------------------
-	// removes back element and returns the data from that element
-	//-------------------------------------------------------------------------
+	// Function: pop_back	
+	// Description:	return the last item of the cdll and return the value
+	// Called By: main
+	// Calls: tail
+	// Returns: datatype  
+	// Throws: runtime_error if list is empty
+	// History Log:
+	// https://github.com/qwergram/CS133Assignment/blame/master/Project2/list.cpp
+	// ------------------------------------------------------------------------
 	template<typename datatype>
 	datatype NP_ADT::CDLL<datatype>::pop_back()
 	{
@@ -146,8 +176,14 @@ namespace NP_ADT
 	}
 
 	//-------------------------------------------------------------------------
-	// returns data of the first item
-	//-------------------------------------------------------------------------
+	// Function: front()
+	// Description:	return the first item in the cdll
+	// Called By: pop_front
+	// Returns: &datatype
+	// Throws: runtime_error if empty list
+	// History Log:
+	// https://github.com/qwergram/CS133Assignment/blame/master/Project2/list.cpp
+	// ------------------------------------------------------------------------
 	template<class datatype>
 	datatype & CDLL<datatype>::front() const
 	{
@@ -157,9 +193,16 @@ namespace NP_ADT
 			throw runtime_error("Empty list");
 	}
 
+
 	//-------------------------------------------------------------------------
-	// returns data of the last item
-	//-------------------------------------------------------------------------
+	// Function: back()
+	// Description:	Returns the data of the last item 
+	// Called By: pop_back
+	// Returns: &datatype
+	// Throws: runtime_error if empty list
+	// History Log:
+	// https://github.com/qwergram/CS133Assignment/blame/master/Project2/list.cpp
+	// ------------------------------------------------------------------------
 	template<class datatype>
 	inline datatype & CDLL<datatype>::back() const 
 	{ 
@@ -169,9 +212,14 @@ namespace NP_ADT
 			throw runtime_error("Empty list"); 
 	}
 
-	//-----------------------------------------------------------------------------
-	// empties the list
-	//-----------------------------------------------------------------------------
+	//-------------------------------------------------------------------------
+	// Function: release()
+	// Description:	empties the list
+	// Called By: destructor
+	// Calls: pop_front
+	// History Log:
+	// https://github.com/qwergram/CS133Assignment/blame/master/Project2/list.cpp
+	// ------------------------------------------------------------------------
 	template<typename datatype>
 	inline void NP_ADT::CDLL<datatype>::release()
 	{
@@ -180,8 +228,14 @@ namespace NP_ADT
 	}
 
 	//-------------------------------------------------------------------------
-	// constructor using iterators, copies from begin to one before end
-	//-------------------------------------------------------------------------
+	// Function: Constructor
+	// Description:	Constructor takes inclusive iterator bounds
+	// Called By: main
+	// Calls: push_back
+	// Parameters: begin, end
+	// History Log:
+	// https://github.com/qwergram/CS133Assignment/blame/master/Project2/list.cpp
+	// ------------------------------------------------------------------------
 	template<typename datatype>
 	NP_ADT::CDLL<datatype>::CDLL(iterator begin, iterator end)
 		:m_size(0), handle(nullptr)
@@ -192,8 +246,16 @@ namespace NP_ADT
 	}
 
 	//-------------------------------------------------------------------------
-	// get the nth item of list
-	//-------------------------------------------------------------------------
+	// Function: operator[] const
+	// Description:	return the value at the index 
+	// Called By: main
+	// Calls: begin
+	// Parameters: index
+	// Returns: &datatype
+	// Throws: out_of_range of index is invalid
+	// History Log:
+	// https://github.com/qwergram/CS133Assignment/blame/master/Project2/list.cpp
+	// ------------------------------------------------------------------------
 	template<typename datatype>
 	const datatype & NP_ADT::CDLL<datatype>::operator[](int index) const
 	{
@@ -205,6 +267,17 @@ namespace NP_ADT
 		return *cursor;
 	}
 
+	//-------------------------------------------------------------------------
+	// Function: operator[]
+	// Description:	returns a mutable nth item of the list
+	// Called By: main
+	// Calls: begin
+	// Parameters: index
+	// Returns: &datatype
+	// Throws: out_of_range of index is invalid
+	// History Log:
+	// https://github.com/qwergram/CS133Assignment/blame/master/Project2/list.cpp
+	// ------------------------------------------------------------------------
 	template<class datatype>
 	datatype & NP_ADT::CDLL<datatype>::operator[](int index)
 	{
@@ -217,8 +290,14 @@ namespace NP_ADT
 	}
 
 	//-------------------------------------------------------------------------
-	// returns a copy of rlist
-	//-------------------------------------------------------------------------
+	// Function: operator=
+	// Description:	creates a deep copy of a list
+	// Called By: main
+	// Calls: empty, begin, release, end, push_back
+	// Parameters: &rlist
+	// History Log:
+	// https://github.com/qwergram/CS133Assignment/blame/master/Project2/list.cpp
+	// ------------------------------------------------------------------------
 	template<typename datatype>
 	CDLL<datatype> NP_ADT::CDLL<datatype>::operator=(const CDLL & rlist)
 	{
@@ -234,10 +313,16 @@ namespace NP_ADT
 	}
 
 	//-------------------------------------------------------------------------
-	// pre-increment
-	//-------------------------------------------------------------------------
-	template<typename datatype>
-	inline typename CDLL<datatype>::iterator NP_ADT::CDLL<datatype>::iterator::operator++()
+	// Function: iterator operator++
+	// Description:	pre incrementor for iterator
+	// Called By: main
+	// Returns: iterator
+	// Throws: runtime_error if nullptr
+	// History Log:
+	// https://github.com/qwergram/CS133Assignment/blame/master/Project2/list.cpp
+	// ------------------------------------------------------------------------
+	template<typename datatype> inline typename 
+	CDLL<datatype>::iterator CDLL<datatype>::iterator::operator++()
 	{
 		if (ptr == nullptr)
 			throw runtime_error("nullptr pointer");
@@ -246,10 +331,16 @@ namespace NP_ADT
 	}
 
 	//-------------------------------------------------------------------------
-	// post-increment
-	//-------------------------------------------------------------------------
-	template<typename datatype>
-	inline typename CDLL<datatype>::iterator NP_ADT::CDLL<datatype>::iterator::operator++(int)
+	// Function: iterator operator++
+	// Description:	post incrementor for iterator
+	// Called By: main
+	// Returns: iterator
+	// Throws: runtime_error if nullptr 
+	// History Log:
+	// https://github.com/qwergram/CS133Assignment/blame/master/Project2/list.cpp
+	// ------------------------------------------------------------------------
+	template<typename datatype> inline typename
+	CDLL<datatype>::iterator NP_ADT::CDLL<datatype>::iterator::operator++(int)
 	{
 		if (ptr == nullptr)
 			throw runtime_error("nullptr pointer");
@@ -259,10 +350,16 @@ namespace NP_ADT
 	}
 
 	//-------------------------------------------------------------------------
-	// pre-decrement
-	//-------------------------------------------------------------------------
-	template<typename datatype>
-	inline typename CDLL<datatype>::iterator NP_ADT::CDLL<datatype>::iterator::operator--()
+	// Function: iterator operator--
+	// Description:	pre decrement for iterator
+	// Called By: main
+	// Returns: iterator
+	// Throws: runtime_error if nullptr
+	// History Log:
+	// https://github.com/qwergram/CS133Assignment/blame/master/Project2/list.cpp
+	// ------------------------------------------------------------------------
+	template<typename datatype> inline typename
+	CDLL<datatype>::iterator NP_ADT::CDLL<datatype>::iterator::operator--()
 	{
 		if (ptr == nullptr)
 			throw runtime_error("nullptr pointer");
@@ -271,10 +368,16 @@ namespace NP_ADT
 	}
 
 	//-------------------------------------------------------------------------
-	// post-decrement
-	//-------------------------------------------------------------------------
-	template<typename datatype>
-	inline typename CDLL<datatype>::iterator NP_ADT::CDLL<datatype>::iterator::operator--(int)
+	// Function: iterator operator--
+	// Description:	post decrement for iterator
+	// Called By: main
+	// Returns: iterator
+	// Throws: runtime_error if nullptr 
+	// History Log:
+	// https://github.com/qwergram/CS133Assignment/blame/master/Project2/list.cpp
+	// ------------------------------------------------------------------------
+	template<typename datatype> inline typename
+	CDLL<datatype>::iterator NP_ADT::CDLL<datatype>::iterator::operator--(int)
 	{
 		if (ptr == nullptr)
 			throw runtime_error("nullptr pointer");
@@ -284,8 +387,15 @@ namespace NP_ADT
 	}
 
 	//-------------------------------------------------------------------------
-	// ostream << overload
-	//-------------------------------------------------------------------------
+	// Function: ostream operator <<
+	// Description:	push string representation of a list to ostream
+	// Called By: main
+	// Calls: begin, empty, end
+	// Parameters: sout, cdll
+	// Returns: sout
+	// History Log:
+	// https://github.com/qwergram/CS133Assignment/blame/master/Project2/list.cpp
+	// ------------------------------------------------------------------------
 	template <typename datatype>
 	ostream & operator << (ostream& sout, const CDLL<datatype> & cdll)
 	{
