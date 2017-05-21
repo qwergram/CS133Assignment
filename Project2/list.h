@@ -1,32 +1,33 @@
 #pragma once
 //-----------------------------------------------------------------------------
-//   Title: list Class
-//   Description: This file contains the class definition for list, with a test driver
+//   Title: circular doubly list Class
+//   Description: This file contains the class 
+//				  definition for list, with a test driver
 //
 //   Programmer: 
 //    Object Oriented Programming Using C++, Edition 2 By Ira Pohl
-//      modified by Paul Bladek
+//      modified by Paul Bladek and Norton Pengra
 // 
 //   Date: original: Summer 1996
-//   Version: 1.06
+//   Version: 1.10
 //
 //   Environment: Intel Xeon PC
-//     Software: MS Windows 7 for execution;
-//     Compiles under Microsoft Visual C++.Net 2010
+//     Software: MS Windows 10 for execution;
+//     Compiles under Microsoft Visual C++.Net 2017
 //
-//   class list:
+//   class cdll:
 //
 //     Properties:
-//       listelem *head -- front end of list
-//       listelem *tail -- back end of list
+//       datatype *handle -- handle of list
 //       unsigned m_size -- number of elements in the list
 //
 //     Methods:
 // 
 //       inline: 
-//         list() -- construct the empty list
-//         list(size_t n_elements, datatype datum) -- create a list of a specific size, all elements the same
-//         ~list() { release(); } -- destructor
+//         cdll() -- construct the empty list
+//         cdll(size_t n_elements, datatype datum) -- create a 
+//					list of a specific size, all elements the same
+//         ~cdll() -- destructor
 //         unsigned getSize()const  -- accessor, returns m_size
 //         iterator begin()const -- returns address of first element
 //         iterator end()const -- returns address of last element
@@ -35,33 +36,36 @@
 //         bool empty()const -- true if no elements
 //
 //       non-inline:
-//         list(const list& x); -- copy constructor
-//         list(iterator b, iterator e) -- constructor using iterators
+//         cdll(const cdll& x); -- copy constructor
+//         cdll(iterator b, iterator e) -- constructor using iterators
 //         void push_front(datatype datum) -- insert element at front of list
-//         datatype pop_front(); -- removes front element and returns the data from that element
+//         datatype pop_front(); -- removes front element and returns the data 
+//									from that element
 //         void push_back(datatype datum) -- insert element at back of list 
-//         datatype pop_back() -- removes back element and returns the data from that element
+//         datatype pop_back() -- removes back element and returns the data 
+//									from that element
 //         void release() -- removes all items from list
-//         list operator=(const list & rlist) -- returns a copy of rlist
+//         list operator=(const cdll & rlist) -- returns a copy of rlist
 //         datatype& operator[](int index) -- for l-value
 //         const datatype& operator[](int index)const -- for r-value
 //
 //    Public Nested Structures:
 //
-//      struct listelem -- list cell
+//      struct node -- list cell
 //
 //        properties:
 //          datatype data -- the actual datum
-//          listelem *next -- forward link
-//          listelem *prev -- backward link
+//          node *next -- forward link
+//          node *prev -- backward link
 //        constructor:
-//          listelem(datatype c, listelem* p, listelem* n, listelem* p) -- struct constructor
+//          node(datatype c, node* p, node* n, node* p) 
+//						-- struct constructor
 //
 //     class iterator
 //        Public Methods
 // 
 //           inline: 
-//            listelem* operator->() -- same as for pointer
+//            node* operator->() -- same as for pointer
 //            datatype& operator*() -- same as for pointer
 //            operator listelem*() -- conversion
 //            iterator(listelem* p = nullptr) -- constructor
@@ -73,7 +77,7 @@
 //            iterator operator--(int) -- post-decrement
 // 
 //        Private Properties
-//            listelem* ptr -- current listelem or NULL
+//            node* ptr -- current listelem or NULL
 //
 //   History Log:
 //     summer, 1996 original  IP completed version 1.0 
@@ -85,6 +89,7 @@
 //     April 15, 2008, PB  completed version 1.06
 //     April 20, 2010, PB completed version 1.07 
 //     April 15, 2011, PB completed version 1.09 
+//	   May 18, 2017, NP completed version 1.10
 //-----------------------------------------------------------------------------
 
 #include <iostream>
@@ -99,7 +104,7 @@ namespace NP_ADT {
 		class iterator;
 		
 		// Constructors
-		CDLL(void);
+		CDLL(void) : handle(nullptr), m_size(0) {};
 		CDLL(size_t n_elements, datatype datum);
 		CDLL(const CDLL& rlist);
 		CDLL(iterator begin, iterator end);
@@ -126,7 +131,8 @@ namespace NP_ADT {
 
 		// Head = handle and tail = handle - 1
 		node * head(void) const { return handle; }
-		node * tail(void) const { return (handle == nullptr) ? nullptr : handle->prev; }
+		node * tail(void) const 
+			{ return (handle == nullptr) ? nullptr : handle->prev; }
 
 	protected:
 		// remove head and tail as property
@@ -140,7 +146,8 @@ namespace NP_ADT {
 			datatype data;
 			node * next;
 			node * prev;
-			node(datatype datum, node * prev_, node * next_) : data(datum), prev(prev_), next(next_) {} // struct constructor
+			node(datatype datum, node * prev_, node * next_) 
+				: data(datum), prev(prev_), next(next_) {}
 		};
 
 		class iterator
