@@ -12,13 +12,94 @@ using namespace NP_ADT;
 
 namespace Project2Tests
 {	
+	TEST_CLASS(PublicQueueCDLLPointerTests)
+	{
+	public:
+
+		TEST_METHOD(PublicQueuePointer_TestEmptyConstructor)
+		{
+			PublicQueue<int> t = PublicQueue<int>();
+			CDLL<int> * test = &t;
+			Assert::AreEqual(unsigned int(0), test->getSize());
+			Assert::IsTrue(nullptr == test->head());
+			Assert::IsTrue(nullptr == test->tail());
+			Assert::IsTrue(test->empty());
+		}
+
+		TEST_METHOD(PublicQueuePointer_TestCopyConstructorEmpty) {
+			PublicQueue<int> t = PublicQueue<int>();
+			CDLL<int> * test = &t;
+			Assert::AreEqual(unsigned(0), test->getSize());
+			bool exceptionThrown = false;
+			try {
+				CDLL<int> * test2 = &PublicQueue<int>(*test);
+			}
+			catch (...) {
+				exceptionThrown = true;
+			}
+			Assert::IsFalse(exceptionThrown);
+			Assert::AreEqual(unsigned(0), test->getSize());
+		}
+
+		TEST_METHOD(PublicQueuePointer_TestCopyObjectConstructor) {
+			class Dummy {
+			public:
+				Dummy(int x) : m_x(x) {};
+				int m_x = 0;
+			};
+
+			auto t = PublicQueue<Dummy>();
+			PublicQueue<Dummy> * test = &t;
+			Assert::AreEqual(unsigned(0), test->getSize());
+			test->push(Dummy(5));
+			Assert::AreEqual(unsigned(1), test->getSize());
+
+			auto t2 = PublicQueue<Dummy>(*test);
+			PublicQueue<Dummy> * test2 = &t2;
+			Assert::AreEqual(unsigned(1), test2->getSize());
+			Assert::IsFalse(&(test->head()->data) == &(test2->head()->data));
+			Assert::IsTrue(test->head()->data.m_x == test2->head()->data.m_x);
+		}
+
+		TEST_METHOD(PublicQueuePointer_BadMethods) {
+			auto t = PublicQueue<int>();
+			PublicQueue<int> * test = &t;
+			try {
+				(*test)[0];
+				Assert::IsTrue(false);
+			}
+			catch (MethodNotSupported) {}
+			try {
+				test->push_front(0);
+				Assert::IsTrue(false);
+			}
+			catch (MethodNotSupported) {}
+			try {
+				test->push_back(0);
+				Assert::IsTrue(false);
+			}
+			catch (MethodNotSupported) {}
+			try {
+				test->pop_front();
+				Assert::IsTrue(false);
+			}
+			catch (MethodNotSupported) {}
+			try {
+				test->pop_back();
+				Assert::IsTrue(false);
+			}
+			catch (MethodNotSupported) {}
+		}
+	};
+
 	TEST_CLASS(PublicQueuePointerTests)
 	{
 	public:
 
 		TEST_METHOD(PublicQueuePointer_TestEmptyConstructor)
 		{
-			PublicQueue<int> * test = &PublicQueue<int>();
+			PublicQueue<int> t = PublicQueue<int>();
+			PublicQueue<int> * test = &t;
 			Assert::AreEqual(unsigned int(0), test->getSize());
 			Assert::IsTrue(nullptr == test->head());
 			Assert::IsTrue(nullptr == test->tail());
@@ -27,7 +108,8 @@ namespace Project2Tests
 
 		TEST_METHOD(PublicQueuePointer_TestPushConnections)
 		{
-			PublicQueue<int> * test = &PublicQueue<int>();
+			PublicQueue<int> t = PublicQueue<int>();
+			PublicQueue<int> * test = &t;
 			Assert::IsTrue(test->empty());
 			Assert::AreEqual(unsigned(0), test->getSize());
 			auto x = 5;
@@ -46,7 +128,8 @@ namespace Project2Tests
 		}
 
 		TEST_METHOD(PublicQueuePointer_TestOnePushItemQueue) {
-			PublicQueue<int> * test = &PublicQueue<int>();
+			PublicQueue<int> t = PublicQueue<int>();
+			PublicQueue<int> * test = &t;
 			Assert::IsTrue(test->empty());
 			Assert::AreEqual(unsigned(0), test->getSize());
 			auto x = 5;
@@ -72,7 +155,8 @@ namespace Project2Tests
 		}
 
 		TEST_METHOD(PublicQueuePointer_TestTwoPushItemQueue) {
-			PublicQueue<int> * test = &PublicQueue<int>();
+			PublicQueue<int> t = PublicQueue<int>();
+			PublicQueue<int> * test = &t;
 			Assert::IsTrue(test->empty());
 			Assert::AreEqual(unsigned(0), test->getSize());
 			auto x = 5;
@@ -105,7 +189,8 @@ namespace Project2Tests
 		}
 
 		TEST_METHOD(PublicQueuePointer_TestThreePushItemQueue) {
-			PublicQueue<int> * test = &PublicQueue<int>();
+			PublicQueue<int> t = PublicQueue<int>();
+			PublicQueue<int> * test = &t;
 			auto x = 0;
 			auto y = 1;
 			auto z = 2;
@@ -143,7 +228,8 @@ namespace Project2Tests
 
 		TEST_METHOD(PublicQueuePointer_TestPopEmptyQueue) {
 			bool exceptionThrown = false;
-			PublicQueue<int> * test = &PublicQueue<int>();
+			PublicQueue<int> t = PublicQueue<int>();
+			PublicQueue<int> * test = &t;
 			Assert::AreEqual(unsigned(0), test->getSize());
 			try {
 				test->pop();
@@ -156,7 +242,8 @@ namespace Project2Tests
 		}
 
 		TEST_METHOD(PublicQueuePointer_TestPopAfterPush) {
-			PublicQueue<int> * test = &PublicQueue<int>();
+			PublicQueue<int> t = PublicQueue<int>();
+			PublicQueue<int> * test = &t;
 			auto x = 1;
 			Assert::AreEqual(unsigned(0), test->getSize());
 			Assert::IsTrue(test->empty());
@@ -171,7 +258,8 @@ namespace Project2Tests
 		}
 
 		TEST_METHOD(PublicQueuePointer_TestPopAfterTwoPush) {
-			PublicQueue<int> * test = &PublicQueue<int>();
+			PublicQueue<int> t = PublicQueue<int>();
+			PublicQueue<int> * test = &t;
 			auto x = 1;
 			auto y = 2;
 			Assert::AreEqual(unsigned(0), test->getSize());
@@ -197,7 +285,8 @@ namespace Project2Tests
 		}
 
 		TEST_METHOD(PublicQueuePointer_TestPopFrontAfterThreePush) {
-			PublicQueue<int> * test = &PublicQueue<int>();
+			PublicQueue<int> t = PublicQueue<int>();
+			PublicQueue<int> * test = &t;
 			auto x = 1;
 			auto y = 2;
 			auto z = 3;
@@ -234,7 +323,8 @@ namespace Project2Tests
 		}
 
 		TEST_METHOD(PublicQueuePointer_TestReleaseAndDestructor) {
-			PublicQueue<int> * test = &PublicQueue<int>();
+			PublicQueue<int> t = PublicQueue<int>();
+			PublicQueue<int> * test = &t;
 			Assert::AreEqual(unsigned(0), test->getSize());
 			for (int x = 0; x < 1000; x++) {
 				test->push(x);
@@ -248,7 +338,8 @@ namespace Project2Tests
 		}
 
 		TEST_METHOD(PublicQueuePointer_TestCopyConstructorEmpty) {
-			PublicQueue<int> * test = &PublicQueue<int>();
+			PublicQueue<int> t = PublicQueue<int>();
+			PublicQueue<int> * test = &t;
 			Assert::AreEqual(unsigned(0), test->getSize());
 			bool exceptionThrown = false;
 			try {
@@ -262,13 +353,15 @@ namespace Project2Tests
 		}
 
 		TEST_METHOD(PublicQueuePointer_TestCopyConstructor) {
-			PublicQueue<int> * test = &PublicQueue<int>();
+			PublicQueue<int> t = PublicQueue<int>();
+			PublicQueue<int> * test = &t;
 			auto x = 4;
 			Assert::AreEqual(unsigned(0), test->getSize());
 			test->push(x);
 			Assert::AreEqual(unsigned(1), test->getSize());
 
-			PublicQueue<int> * test2 = &PublicQueue<int>(*test);
+			PublicQueue<int> t2 = PublicQueue<int>(*test);
+			PublicQueue<int> * test2 = &t2;
 			Assert::AreEqual(unsigned(1), test2->getSize());
 			Assert::IsFalse(&(test->head()->data) == &(test2->head()->data));
 			Assert::IsTrue(test->head()->data == test2->head()->data);
@@ -281,19 +374,22 @@ namespace Project2Tests
 				int m_x = 0;
 			};
 
-			Queue<Dummy> * test = &Queue<Dummy>();
+			auto t = Queue<Dummy>();
+			Queue<Dummy> * test = &t;
 			Assert::AreEqual(unsigned(0), test->getSize());
 			test->push(Dummy(5));
 			Assert::AreEqual(unsigned(1), test->getSize());
 
-			Queue<Dummy> * test2 = &Queue<Dummy>(*test);
+			auto t2 = Queue<Dummy>(*test);
+			Queue<Dummy> * test2 = &t2;
 			Assert::AreEqual(unsigned(1), test2->getSize());
 			Assert::IsFalse(&(test->head()->data) == &(test2->head()->data));
 			Assert::IsTrue(test->head()->data.m_x == test2->head()->data.m_x);
 		}
 
 		TEST_METHOD(PublicQueuePointer_TestIteratorPreIncrementOperator) {
-			PublicQueue<int> * test = &PublicQueue<int>();
+			PublicQueue<int> t = PublicQueue<int>();
+			PublicQueue<int> * test = &t;
 			Assert::AreEqual(unsigned(0), test->getSize());
 			for (int x = 0; x < 100; x++) {
 				test->push(x);
@@ -310,7 +406,8 @@ namespace Project2Tests
 		}
 
 		TEST_METHOD(PublicQueuePointer_TestIteratorPostIncrementOperator) {
-			PublicQueue<int> * test = &PublicQueue<int>();
+			PublicQueue<int> t = PublicQueue<int>();
+			PublicQueue<int> * test = &t;
 			for (int x = 0; x < 100; x++) {
 				test->push(x);
 				Assert::AreEqual(unsigned(x + 1), test->getSize());
@@ -326,7 +423,8 @@ namespace Project2Tests
 		}
 
 		TEST_METHOD(PublicQueuePointer_TestIteratorPreDecrementOperator) {
-			PublicQueue<int> * test = &PublicQueue<int>();
+			PublicQueue<int> t = PublicQueue<int>();
+			PublicQueue<int> * test = &t;
 			for (int x = 0; x < 100; x++) {
 				test->push(x);
 				Assert::AreEqual(unsigned(x + 1), test->getSize());
@@ -342,7 +440,8 @@ namespace Project2Tests
 		}
 
 		TEST_METHOD(PublicQueuePointer_TestIteratorPostDecrementOperator) {
-			PublicQueue<int> * test = &PublicQueue<int>();
+			PublicQueue<int> t = PublicQueue<int>();
+			PublicQueue<int> * test = &t;
 			for (int x = 0; x < 100; x++) {
 				test->push(x);
 				Assert::AreEqual(unsigned(x + 1), test->getSize());
@@ -358,7 +457,8 @@ namespace Project2Tests
 		}
 
 		TEST_METHOD(PublicQueuePointer_TestPartialIteratorConstructor) {
-			PublicQueue<int> * test = &PublicQueue<int>();
+			PublicQueue<int> t = PublicQueue<int>();
+			PublicQueue<int> * test = &t;
 			for (int x = 0; x < 100; x++) {
 				test->push(x);
 				Assert::AreEqual(unsigned(x + 1), test->getSize());
@@ -367,7 +467,8 @@ namespace Project2Tests
 			auto r_it = test->begin();
 			for (int i = 0; i < 10; i++) { r_it++; };
 
-			PublicQueue<int> * test2 = &PublicQueue<int>(r_it, test->end());
+			PublicQueue<int> t2 = PublicQueue<int>(r_it, test->end());
+			PublicQueue<int> * test2 = &t2;
 			Assert::AreEqual(unsigned(90), test2->getSize());
 			r_it = test2->begin();
 
@@ -380,7 +481,8 @@ namespace Project2Tests
 		}
 
 		TEST_METHOD(PublicQueuePointer_TestFullIteratorConstructor) {
-			PublicQueue<int> * test = &PublicQueue<int>();
+			PublicQueue<int> t = PublicQueue<int>();
+			PublicQueue<int> * test = &t;
 			Assert::AreEqual(unsigned(0), test->getSize());
 			for (int x = 0; x < 100; x++) {
 				test->push(x);
@@ -388,7 +490,8 @@ namespace Project2Tests
 			}
 			Assert::AreEqual(unsigned(100), test->getSize());
 			auto r_it = test->begin();
-			PublicQueue<int> * test2 = &PublicQueue<int>(r_it, test->end());
+			PublicQueue<int> t2 = PublicQueue<int>(r_it, test->end());
+			PublicQueue<int> * test2 = &t2;
 			Assert::AreEqual(unsigned(100), test2->getSize());
 
 			for (int x = 0; x < 100; x++) {
@@ -400,8 +503,10 @@ namespace Project2Tests
 		}
 
 		TEST_METHOD(PublicQueuePointer_TestAssignmentOverload) {
-			PublicQueue<int> * test = &PublicQueue<int>(100, 4);
-			PublicQueue<int> * test2 = &PublicQueue<int>(1, 1);
+			PublicQueue<int> rtest = PublicQueue<int>(100, 4);
+			PublicQueue<int> * test = &rtest;
+			PublicQueue<int> rtest2 = PublicQueue<int>(1, 1);
+			PublicQueue<int> * test2 = &rtest2;
 			int y = -2;
 			test->push(y);
 			Assert::AreEqual(101U, test->getSize());
@@ -1111,13 +1216,15 @@ namespace Project2Tests
 		}
 
 		TEST_METHOD(QueuePointer_TestCopyConstructor) {
-			Queue<int> * test = &Queue<int>();
+			Queue<int> t = Queue<int>();
+			Queue<int> * test = &t;
 			auto x = 4;
 			Assert::AreEqual(unsigned(0), test->getSize());
 			test->push(x);
 			Assert::AreEqual(unsigned(1), test->getSize());
 
-			Queue<int> * test2 = &Queue<int>(*test);
+			Queue<int> t2 = Queue<int>(*test);
+			Queue<int> * test2 = &t2;
 			Assert::AreEqual(unsigned(1), test2->getSize());
 			Assert::IsFalse(&(test->head()->data) == &(test2->head()->data));
 			Assert::IsTrue(test->head()->data == test2->head()->data);
@@ -1130,12 +1237,14 @@ namespace Project2Tests
 				int m_x = 0;
 			};
 
-			Queue<Dummy> * test = & Queue<Dummy>();
+			Queue<Dummy> t = Queue<Dummy>();
+			Queue<Dummy> * test = &t;
 			Assert::AreEqual(unsigned(0), test->getSize());
 			test->push(Dummy(5));
 			Assert::AreEqual(unsigned(1), test->getSize());
 
-			Queue<Dummy> * test2 = & Queue<Dummy>(*test);
+			Queue<Dummy> t2 = Queue<Dummy>(*test);
+			Queue<Dummy> * test2 = &t2;
 			Assert::AreEqual(unsigned(1), test2->getSize());
 			Assert::IsFalse(&(test->head()->data) == &(test2->head()->data));
 			Assert::IsTrue(test->head()->data.m_x == test2->head()->data.m_x);
@@ -1207,7 +1316,8 @@ namespace Project2Tests
 		}
 
 		TEST_METHOD(QueuePointer_TestPartialIteratorConstructor) {
-			Queue<int> * test = &Queue<int>();
+			Queue<int> t = Queue<int>();
+			Queue<int> * test = &t;
 			for (int x = 0; x < 100; x++) {
 				test->push(x);
 				Assert::AreEqual(unsigned(x + 1), test->getSize());
@@ -1216,7 +1326,8 @@ namespace Project2Tests
 			auto r_it = test->begin();
 			for (int i = 0; i < 10; i++) { r_it++; };
 
-			Queue<int> * test2 = &Queue<int>(r_it, test->end());
+			Queue<int> t2 = Queue<int>(r_it, test->end());
+			Queue<int> * test2 = &t2;
 			Assert::AreEqual(unsigned(90), test2->getSize());
 			r_it = test2->begin();
 
@@ -1229,6 +1340,7 @@ namespace Project2Tests
 		}
 
 		TEST_METHOD(QueuePointer_TestFullIteratorConstructor) {
+			Queue<int> t = Queue<int>();
 			Queue<int> * test = &Queue<int>();
 			Assert::AreEqual(unsigned(0), test->getSize());
 			for (int x = 0; x < 100; x++) {
@@ -1237,7 +1349,8 @@ namespace Project2Tests
 			}
 			Assert::AreEqual(unsigned(100), test->getSize());
 			auto r_it = test->begin();
-			Queue<int> * test2 = &Queue<int>(r_it, test->end());
+			Queue<int> t2 = Queue<int>(r_it, test->end());
+			Queue<int> * test2 = &t2;
 			Assert::AreEqual(unsigned(100), test2->getSize());
 
 			for (int x = 0; x < 100; x++) {
@@ -1249,8 +1362,10 @@ namespace Project2Tests
 		}
 
 		TEST_METHOD(QueuePointer_TestAssignmentOverload) {
-			Queue<int> * test = &Queue<int>(100, 4);
-			Queue<int> * test2 = &Queue<int>(1, 1);
+			Queue<int> t = Queue<int>(100, 4);
+			Queue<int> t2 = Queue<int>(1, 1);
+			Queue<int> * test = &t;
+			Queue<int> * test2 = &t2;
 			int y = -2;
 			test->push(y);
 			Assert::AreEqual(101U, test->getSize());
