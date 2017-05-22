@@ -35,7 +35,7 @@ All the things I've learned in the realm of C++ and whatnot.
   <td><a href="https://github.com/qwergram/CS133Assignment/tree/master/Project2">Source</a></td>
 </tr>
 <tr>
-  <td>Midtrem Corrections</td>
+  <td>Midterm Corrections</td>
   <td>Readme</td>
   <td><a href="https://github.com/qwergram/CS133Assignment/blob/master/MidTerm/midterm.cpp">Source</a></td>
 </tr>
