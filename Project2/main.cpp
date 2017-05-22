@@ -52,13 +52,17 @@ int main(void)
 
 		// Queue Pointer Tests
 
-		PublicQueue<char> * myqueue = &PublicQueue<char>(3, 'X');
+		PublicQueue<char> m = PublicQueue<char>(3, 'X');
+		PublicQueue<char> * myqueue = &m;
 		cout << "myqueue: " << *myqueue << endl;
-		CDLL<char> * myqueue2 = &PublicQueue<char>();
+		CDLL<char> m2 = PublicQueue<char>();
+		CDLL<char> * myqueue2 = &m2;
 		cout << "myqueue2: " << *myqueue2 << endl;
-		CDLL<char> * myqueue3 = &PublicQueue<char>(*myqueue);
+		CDLL<char> m3 = PublicQueue<char>(*myqueue);
+		CDLL<char> * myqueue3 = &m3;
 		cout << "myqueue3: " << *myqueue3 << endl;
-		CDLL<char> * myqueue4 = &PublicQueue<char>(myqueue->begin(), myqueue->end());
+		CDLL<char> m4 = PublicQueue<char>(myqueue->begin(), myqueue->end());
+		CDLL<char> * myqueue4 = &m4;
 		cout << "myqueue4: " << *myqueue4 << endl;
 		char Y = 'Y', Z = 'Z';
 		myqueue->push(Y);
@@ -66,21 +70,14 @@ int main(void)
 		
 		cout << myqueue->pop() << endl;
 		*myqueue2 = *myqueue; // a copy
-		cout << "myqueue: " << myqueue << endl;
+		cout << "myqueue: " << *myqueue << endl;
 		// create a new iterator pointing to the beginning of mylist
-		PublicQueue<char>::iterator queueit(mylist.begin());
+		CDLL<char>::iterator queueit(myqueue->begin());
 		cout << queueit++->data << " ";
 		cout << queueit->data << endl;
-		cout << "myqueue: ";
-		for (unsigned int i = 0; i < myqueue->getSize(); i++)
-			cout << (*myqueue)[i] << " ";
-		cout << endl;
-		cout << "myqueue[1] = 'N';" << endl;
-		(*myqueue)[1] = 'N';
-		cout << "myqueue: " << myqueue << endl;
-		mylist.release();
-		cout << "myqueue: " << myqueue << endl;
-		cout << "myqueue2: " << myqueue2 << endl;
+		myqueue->release();
+		cout << "myqueue: " << *myqueue << endl;
+		cout << "myqueue2: " << *myqueue2 << endl;
 		
 	}
 	catch (exception e)
