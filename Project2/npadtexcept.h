@@ -19,8 +19,6 @@
 // 
 //       inline: 
 //         const char* what(); -- pass through for runtime_error's what()
-//		   All other methods are overridden and will throw an exception
-//		   if called.
 //
 //
 //   History Log:
