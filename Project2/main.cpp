@@ -10,9 +10,14 @@
 using namespace std;
 using namespace NP_ADT;
 
-//---------------------------------------------------------------------------
-// driver to test list
-//---------------------------------------------------------------------------
+//-------------------------------------------------------------------------
+// Function: main		
+// Description:	show case of Queue/CDLL
+// Calls: All CDLL/Queue methods
+// Throws: catches all exceptions
+// History Log:
+// https://github.com/qwergram/CS133Assignment/blame/master/Project2/main.cpp
+// ------------------------------------------------------------------------
 int main(void)
 {
 	try
