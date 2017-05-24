@@ -10,6 +10,7 @@
 // revised May, 2008
 // revised May, 2012
 // revised June, 2013
+// revised May, 2017
 //--------------------------------------------------------------------
 
 #include <iostream>
@@ -130,8 +131,9 @@ namespace PB_BST
 			bst<T> temp = *this;
 			temp.insert(d, temp.root); return temp;
 		}
+		bool contains(const T& item);
 		void findFirstOf(const T& d, node<T>* &np, node<T>* &match);
-		void insert(T d);
+		bool insert(T d);
 		void delTree() { delTree(root); }
 		void print(ostream& out)const { print(root, out); }
 		void print(node<T>* cur, ostream& out) const;
@@ -155,7 +157,7 @@ namespace PB_BST
 		int getNumberOfNodes(node<T>* np) const;
 		~bst() { delTree(root); }
 	protected:
-		void insert(T d, node<T>* &cur);
+		bool insert(T d, node<T>* &cur);
 		node<T>* root; // root of this tree
 		node<T>** parentptr; // holding pointer needed by some functions
 
@@ -208,6 +210,14 @@ namespace PB_BST
 		}
 	}
 
+	template<class T>
+	inline bool bst<T>::contains(const T & item)
+	{
+		node<T>* matchptr = nullptr;
+		findFirstOf(item, getroot(), matchptr);
+		return matchptr != nullptr;
+	}
+
 	//--------------------------------------------------------------------
 	// recursively finds the first occurance of a data item
 	// pre: match must be set to nullptr
@@ -235,9 +245,9 @@ namespace PB_BST
 	// into the tree
 	//--------------------------------------------------------------------
 	template <class T>
-	void bst<T>::insert(T d)
+	bool bst<T>::insert(T d)
 	{
-		insert(d, root);
+		return insert(d, root);
 	}
 	//--------------------------------------------------------------------
 	// inserts a new element
@@ -245,15 +255,15 @@ namespace PB_BST
 	// throws bad_alloc
 	//--------------------------------------------------------------------
 	template <class T>
-	void bst<T>::insert(T d, node<T>* &cur)
+	bool bst<T>::insert(T d, node<T>* &cur)
 	{
 		if (cur == nullptr)
 		{
 			cur = new node<T>(d);
 			if (isempty())
 				root = cur;
-		}
-		else
+			return true;
+		} else if (!contains(d))
 		{
 			if (d < cur->value())
 				insert(d, cur->left);
@@ -261,7 +271,9 @@ namespace PB_BST
 				insert(d, cur->right);
 			if (root != nullptr)
 				root->setHeight();
+			return true;
 		}
+		return false;
 	}
 
 	//-------------------------------------------------------------------- 

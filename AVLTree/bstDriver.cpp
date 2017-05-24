@@ -45,7 +45,7 @@ int main(void)
 		tree2.printXlevel(cout);
 		cout << endl << endl << "Enter character to match: ";
 		cin >> c;
-		tree.findFirstOf(c, tree.getroot(), marker);
+		cout << tree.contains(c);
 
 		// set marker to first match of c
 		if (marker != nullptr)
