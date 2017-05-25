@@ -67,6 +67,7 @@ namespace NP_AVL {
 			else
 				*target = rotateRight(*target);
 		}
+		setHeight();
 		return * target;
 	}
 	template<class T>
