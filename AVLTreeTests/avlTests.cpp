@@ -1,2 +1,2 @@
 #include "catch.hpp"
-#include "..\AVLTree\bst.h"
+#include "..\AVLTree\avl.h"
