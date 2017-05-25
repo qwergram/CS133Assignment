@@ -23,7 +23,7 @@
 
 using namespace std;
 
-namespace PB_BST
+namespace NP_BST
 {
 	// CLASS DEFINITIONS 
 	template<class T>
