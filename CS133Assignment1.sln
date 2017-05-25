@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.26403.7
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AVLTree", "AVLTree\AVLTree.vcxproj", "{8EF438BA-6718-495C-AF5F-288B9EB89462}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AVLTreeTests", "AVLTreeTests\AVLTreeTests.vcxproj", "{1757FDC3-9A69-4445-A537-012EDA8A09E6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -21,6 +23,14 @@ Global
 		{8EF438BA-6718-495C-AF5F-288B9EB89462}.Release|x64.Build.0 = Release|x64
 		{8EF438BA-6718-495C-AF5F-288B9EB89462}.Release|x86.ActiveCfg = Release|Win32
 		{8EF438BA-6718-495C-AF5F-288B9EB89462}.Release|x86.Build.0 = Release|Win32
+		{1757FDC3-9A69-4445-A537-012EDA8A09E6}.Debug|x64.ActiveCfg = Debug|x64
+		{1757FDC3-9A69-4445-A537-012EDA8A09E6}.Debug|x64.Build.0 = Debug|x64
+		{1757FDC3-9A69-4445-A537-012EDA8A09E6}.Debug|x86.ActiveCfg = Debug|Win32
+		{1757FDC3-9A69-4445-A537-012EDA8A09E6}.Debug|x86.Build.0 = Debug|Win32
+		{1757FDC3-9A69-4445-A537-012EDA8A09E6}.Release|x64.ActiveCfg = Release|x64
+		{1757FDC3-9A69-4445-A537-012EDA8A09E6}.Release|x64.Build.0 = Release|x64
+		{1757FDC3-9A69-4445-A537-012EDA8A09E6}.Release|x86.ActiveCfg = Release|Win32
+		{1757FDC3-9A69-4445-A537-012EDA8A09E6}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
