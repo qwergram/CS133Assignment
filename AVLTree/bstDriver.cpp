@@ -13,8 +13,8 @@ using namespace std;
 //--------------------------------------------------------------------
 int main(void)
 {
-	using PB_BST::bst;
-	using PB_BST::node;
+	using NP_BST::bst;
+	using NP_BST::node;
 	try
 	{
 		bst<char> tree;
