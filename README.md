@@ -92,7 +92,7 @@ Congrats! Now you can start churning out work.
 
 As a good rule of thumb, everytime you make a small change and save your files (which should be often), it's a good place to "commit" your changes. In other words, document what you've done. It's important to make many "commits", so if you make a mistake, you can roll back to the last commmit you have. The more commits you have, the more options you have.
 
-Here are the commands with the explanation to follow:
+Here are the commands with the explanations to follow:
 ```
 git add .
 git commit -m "description of what you did"
@@ -113,6 +113,10 @@ git push -u origin norton-add-feature
 ```
 git push
 ```
+
+## 7. Combining work
+
+Once we have completed a feature (e.g. our adder feature), we will want to "merge" our work back in to the `master` branch. (we will turn in the `master` branch to Bladek, so make sure your code can merge!)
 
 # Assignments
 
