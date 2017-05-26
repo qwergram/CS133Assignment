@@ -18,7 +18,7 @@ Here's how you can get started with github and git.
 
 ## 1. Downloading Git
 First, install git from their [website](https://git-scm.com/downloads).
-Once installed, open up a terminal of your choice and type `git`. 
+Once installed, open up a terminal of your choice (such as command prompt [`windows key + R` -> type in `cmd` -> hit `enter`] or powershell [`windows key + R` -> type in `powershell` -> hit `enter`]) and type `git`. 
 The output should look like this:
 ```
 usage: git [--version] [--help] [-C <path>] [-c name=value]
