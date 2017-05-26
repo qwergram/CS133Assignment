@@ -96,10 +96,23 @@ Here are the commands with the explanation to follow:
 ```
 git add .
 git commit -m "description of what you did"
-git push
 ```
 
 Line 1 is a way to tell Git: "Hey, I did something, record it please". Line 2 is the actual commit. In the quotes, you describe to git (and your teammates) what you just did. Keep in mind that "updated file" is a useless description. Try something like "created declarations for adder method". (Descriptions should be no more than a sentence.)
+
+## 6. Publishing your work
+Once you have a sizeable amount of work done (maybe like 10 - 15 commits), it's worth "pushing" your work to the server for everyone to
+see what you're doing. 
+
+**If you have *NOT* "pushed" your work before run this command:**
+```
+git push -u origin norton-add-feature
+```
+
+**If you *HAVE* "pushed" your work before run this command:**
+```
+git push
+```
 
 # Assignments
 
