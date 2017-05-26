@@ -92,6 +92,14 @@ Congrats! Now you can start churning out work.
 
 As a good rule of thumb, everytime you make a small change and save your files (which should be often), it's a good place to "commit" your changes. In other words, document what you've done. It's important to make many "commits", so if you make a mistake, you can roll back to the last commmit you have. The more commits you have, the more options you have.
 
+Here are the commands with the explanation to follow:
+```
+git add .
+git commit -m "description of what you did"
+git push
+```
+
+Line 1 is a way to tell Git: "Hey, I did something, record it please". Line 2 is the actual commit. In the quotes, you describe to git (and your teammates) what you just did. Keep in mind that "updated file" is a useless description. Try something like "created declarations for adder method". (Descriptions should be no more than a sentence.)
 
 # Assignments
 
