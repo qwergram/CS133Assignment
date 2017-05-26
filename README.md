@@ -56,7 +56,7 @@ in class.
 If you run into issues or have questions, don't email me. Put your issues [here](https://github.com/qwergram/CS133Assignment/issues).
 Either a team member or I will take a look at it and answer it.
 
-## 4. Doing your sprint
+## 4. Setting up your sprint
 Your feature will be completed in your own branch. A branch is a way
 for developers to work on a set of files without messing up the work
 of other developers. When both developers are ready to combine work,
@@ -76,6 +76,20 @@ git push origin norton-add-feature
 ```
 
 Line 1 and 2 ensures you have the most up-to-date code that everyone is working on. Line 3 actually creates your new `norton-add-feature` branch, and line 4 publishes it to the server so everyone can see your work.
+
+If you've done everything correctly, the following command:
+```
+git status
+```
+will result in:
+```
+Your branch is up-to-date with 'origin/norton-add-feature'
+```
+Congrats! Now you can start churning out work.
+
+## 5. Doing your sprint
+
+
 
 # Assignments
 
