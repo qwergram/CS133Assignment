@@ -18,7 +18,8 @@ Here's how you can get started with github and git.
 
 ## 1. Downloading Git
 First, install git from their [website](https://git-scm.com/downloads).
-Once installed, open up a terminal of your choice (such as command prompt [`windows key + R` -> type in `cmd` -> hit `enter`] or powershell [`windows key + R` -> type in `powershell` -> hit `enter`]) and type `git`. 
+Once installed, open up a terminal of your choice (such as command prompt [`windows key + R` -> type in `cmd` -> hit `enter`] or powershell [`windows key + R` -> type in `powershell` -> hit `enter`]) and type `git`.
+
 The output should look like this:
 ```
 usage: git [--version] [--help] [-C <path>] [-c name=value]
@@ -47,13 +48,13 @@ Congrats! You've cloned this project.
 
 ## 3. Figuring out what you need to do
 For this project, work to be done, doing and done will be recorded
-in a kanban style board, [found here](https://github.com/qwergram/CS133Assignment/projects/1).
+in a kanban style board. [click here for the kanban board](https://github.com/qwergram/CS133Assignment/projects/1).
 We will work in 2 day sprints. Everyone will pick a feature they presume
 will take 2 days, and build it. Tag your card with your name so everyone
 is aware of who is doing what. I will create the sprints and tasks
 in class.
 
-If you run into issues or have questions, don't email me. Put your issues [here](https://github.com/qwergram/CS133Assignment/issues).
+If you run into issues or have questions, don't email me. Put your issues in the issues board. [click here to see the issues board](https://github.com/qwergram/CS133Assignment/issues).
 Either a team member or I will take a look at it and answer it.
 
 ## 4. Setting up your sprint
@@ -89,6 +90,7 @@ Congrats! Now you can start churning out work.
 
 ## 5. Doing your sprint
 
+As a good rule of thumb, everytime you make a small change and save your files (which should be often), it's a good place to "commit" your changes. In other words, document what you've done. It's important to make many "commits", so if you make a mistake, you can roll back to the last commmit you have. The more commits you have, the more options you have.
 
 
 # Assignments
