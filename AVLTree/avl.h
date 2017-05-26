@@ -7,7 +7,7 @@ namespace NP_AVL {
 	template <class T>
 	class avl : public bst<T> {
 	public:
-		using bst::bst;
+		using bst<T>::bst;
 	protected:
 		node<T> * rotateRight(node <T> * target);
 		node<T> * rotateLeft(node <T> * target);
@@ -77,7 +77,7 @@ namespace NP_AVL {
 		int right = 0;
 		if (target->left != nullptr)
 			left = target->left->getHeight();
-		if (traget->right != nullptr)
+		if (target->right != nullptr)
 			right = target->right->getHeight();
 		return left - right;
 	}
