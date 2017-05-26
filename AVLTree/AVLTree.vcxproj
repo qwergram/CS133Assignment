@@ -148,8 +148,10 @@
   <ItemGroup>
     <ClInclude Include="avl.h" />
     <ClInclude Include="bst.h" />
+    <ClInclude Include="catch.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="avlTests.cpp" />
     <ClCompile Include="bstDriver.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
