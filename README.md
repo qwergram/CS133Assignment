@@ -5,6 +5,78 @@ Professor: Paul Bladek of EDCC
 
 All the things I've learned in the realm of C++ and whatnot.
 
+# Contributing
+
+Hello Team 4, welcome to github.
+Github is a tool that makes software collaboration easier. Here are
+some of it's strengths that will benefit us:
+
+- Easy rollback (if bad code is written, it's easy to go back to an early version)
+- Automatic testing frameworks (with good tests, it's really hard to push bad code)
+
+Here's how you can get started with github and git.
+
+## 1. Downloading Git
+First, install git from their [website](https://git-scm.com/downloads).
+Once installed, open up a terminal of your choice and type `git`. 
+The output should look like this:
+```
+usage: git [--version] [--help] [-C <path>] [-c name=value]
+           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]
+           [-p | --paginate | --no-pager] [--no-replace-objects] [--bare]
+           [--git-dir=<path>] [--work-tree=<path>] [--namespace=<name>]
+           <command> [<args>]
+
+... more lines below
+```
+If you see this, congrats! you've installed git correctly.
+
+## 2. Cloning this project
+The first step to contributing is to change to a directory you want
+to work from. In this guideline, we'll assume the directory `C:\temp\`.
+To clone this project, enter the following commands:
+```
+cd C:\temp\
+git clone https://github.com/qwergram/CS133Assignment.git
+```
+This will create a directory named `CS133Assignment`. Go into it with:
+```
+cd CS133Assignment
+```
+Congrats! You've cloned this project.
+
+## 3. Figuring out what you need to do
+For this project, work to be done, doing and done will be recorded
+in a kanban style board, [found here](https://github.com/qwergram/CS133Assignment/projects/1).
+We will work in 2 day sprints. Everyone will pick a feature they presume
+will take 2 days, and build it. Tag your card with your name so everyone
+is aware of who is doing what. I will create the sprints and tasks
+in class.
+
+If you run into issues or have questions, don't email me. Put your issues [here](https://github.com/qwergram/CS133Assignment/issues).
+Either a team member or I will take a look at it and answer it.
+
+## 4. Doing your sprint
+Your feature will be completed in your own branch. A branch is a way
+for developers to work on a set of files without messing up the work
+of other developers. When both developers are ready to combine work,
+they merge the branches together. (Git's philosophy is code is like a
+river. Think of your branches as branches of a river that split and
+then merge back together again.) 
+
+Say I'm working on the adding feature for a calculator. I would then create a branch called `norton-add-feature`.
+
+I'll first show you the commands to type in and explain what each one does later.
+
+```
+git checkout master
+git pull origin master
+git checkout -b norton-add-feature
+git push origin norton-add-feature
+```
+
+Line 1 and 2 ensures you have the most up-to-date code that everyone is working on. Line 3 actually creates your new `norton-add-feature` branch, and line 4 publishes it to the server so everyone can see your work.
+
 # Assignments
 
 <table>
