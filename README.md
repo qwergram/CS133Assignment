@@ -95,8 +95,7 @@ As a good rule of thumb, everytime you make a small change and save your files (
 Here are the commands with the explanations to follow:
 ```
 git add .
-git commit -m "description of what you did"
-```
+git commit -m "description of what you did"```
 
 Line 1 is a way to tell Git: "Hey, I did something, record it please". Line 2 is the actual commit. In the quotes, you describe to git (and your teammates) what you just did. Keep in mind that "updated file" is a useless description. Try something like "created declarations for adder method". (Descriptions should be no more than a sentence.)
 
@@ -106,7 +105,7 @@ see what you're doing.
 
 **If you have *NOT* "pushed" your work before run this command:**
 ```
-git push -u origin norton-add-feature
+Sgit push -u origin norton-add-feature
 ```
 
 **If you *HAVE* "pushed" your work before run this command:**
@@ -116,7 +115,7 @@ git push
 
 ## 7. Combining work
 
-Once we have completed a feature (e.g. our adder feature), we will want to "merge" our work back in to the `master` branch. (we will turn in the `master` branch to Bladek, so make sure your code can merge!)
+"Once we have completed a feature (e.g. our adder feature), we will want to "merge" our work back in to the `master` branch. (we will turn in the `master` branch to Bladek, so make sure your code can merge!)
 
 # Assignments
 
@@ -151,6 +150,10 @@ Once we have completed a feature (e.g. our adder feature), we will want to "merg
   <td>Readme</td>
   <td><a href="https://github.com/qwergram/CS133Assignment/blob/master/MidTerm/midterm.cpp">Source</a></td>
 </tr>
+<tr>
+  <td>AVL Tree</td>
+  <td><a href="">Readme</a></td>
+  <td><a href="https://github.com/qwergram/CS133Assignment/tree/master/AVLTree">Source</a></td>
 <tr>
   <td>RPN Calculator</td>
   <td><a href="https://github.com/qwergram/CS133Assignment/blob/master/Notes/project4.md">Readme</a></td>
