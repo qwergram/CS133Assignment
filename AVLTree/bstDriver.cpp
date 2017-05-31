@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cstdlib>
 #include "bst.h"
+#include "avl.h"
 using namespace std;
 
 //--------------------------------------------------------------------
@@ -13,11 +14,11 @@ using namespace std;
 //--------------------------------------------------------------------
 int main(void)
 {
-	using NP_BST::bst;
+	using NP_AVL::avl;
 	using NP_BST::node;
 	try
 	{
-		bst<char> tree;
+		avl<char> tree;
 		node<char>* marker = nullptr;
 		char c;
 		cout << "enter some characters, followed by <enter>.\n";
