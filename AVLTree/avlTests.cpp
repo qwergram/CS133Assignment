@@ -1,18 +1,16 @@
 #define CATCH_CONFIG_MAIN
 #include "catch.hpp"
-#include "..\AVLTree\avl.h"
+#include "avl.h"
 
-TEST_CASE("A wonderful test", "[vector]") {
-	std::vector<int> v(5);
+using namespace NP_AVL;
 
-	REQUIRE(v.size() == 5);
-	REQUIRE(v.capacity() >= 5);
-
-	SECTION("resizing bigger changes size and capacity") {
-		v.resize(10);
-		
-		REQUIRE(v.size() == 10);
-		REQUIRE(v.capacity() < 10);
+TEST_CASE("Testing inserting and balances", "[avl]") {
+	auto item = avl<int>();
+	
+	SECTION("adding one item") {
+		item.insert(1);
+		REQUIRE(item.getHeight() == 1);
 	}
+
 	cin.get(); // keep window open
 }
