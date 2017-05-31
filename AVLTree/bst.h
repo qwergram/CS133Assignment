@@ -139,7 +139,6 @@ namespace NP_BST
 		void print(node<T>* cur, ostream& out) const;
 		void printXlevel(ostream& out) const { printXlevel(root, out); }
 		void printXlevel(node<T>* cur, ostream& out) const;
-		void print(node<T>* cur, ostream& out, int level2print) const;
 		T popNode(node<T>* &cur);
 		T popLow(node<T>* &cur);
 		T popHigh(node<T>* &cur);
