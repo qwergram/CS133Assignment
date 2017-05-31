@@ -7,10 +7,9 @@ namespace NP_AVL {
 	template <class T>
 	class avl : public bst<T> {
 	public:
-		using bst::bst;
-		bool insert(T d);
+		using bst<T>::bst;
 	protected:
-		bool avl<T>::insert(T d, node<T>* &cur);
+		virtual void setHeight() { bst<T>::setHeight(); very invalid syntax }
 		node<T> * rotateRight(node <T> * target);
 		node<T> * rotateLeft(node <T> * target);
 		node<T> * rotateRightLeft(node <T> * target);
@@ -18,43 +17,13 @@ namespace NP_AVL {
 		node<T> * rebalance(node<T> * target);
 		int getHeightDifference(const node<T> * const target) const;
 	};
-
-	template <class T>
-	bool avl<T>::insert(T d)
-	{
-		return insert(d, root);
-	}
-
-	template<class T>
-	inline bool avl<T>::insert(T d, node<T>* &cur) {
-		if (cur == nullptr)
-		{
-			cur = new node<T>(d);
-			if (isempty())
-				root = cur;
-			return true;
-		}
-		else if (!contains(d))
-		{
-			if (d < cur->value())
-				insert(d, cur->left);
-			else
-				insert(d, cur->right);
-			if (root != nullptr)
-				root->setHeight();
-			rebalance();
-			return true;
-		}
-		return false;
-	}
-
 	template<class T>
 	inline node<T> * avl<T>::rotateRight(node<T>* target)
 	{
 		node<T> * temp = target->right;
 		target->right = temp->left;
 		temp->left = target;
-		return temp;
+		return * temp;
 	}
 	template<class T>
 	inline node<T>* avl<T>::rotateLeft(node<T>* target)
@@ -63,44 +32,44 @@ namespace NP_AVL {
 		temp = target->left;
 		target->left = temp->right;
 		temp->right = target;
-		return temp;
+		return * temp;
 	}
 	template<class T>
 	inline node<T>* avl<T>::rotateRightLeft(node<T>* target)
 	{
 		node<T> * temp;
 		temp = target->right;
-		target->right = rotateLeft(temp);
-		return rotateRight(target);
+		target->right = rotateLeft(*temp);
+		return rotateRight(*target);
 	}
 	template<class T>
 	inline node<T>* avl<T>::rotateLeftRight(node<T>* target)
 	{
 		node<T> * temp;
 		temp = target->left;
-		target->left = rotateRight(temp);
-		return rotateLeft(target);
+		target->left = rotateRight(*temp);
+		return rotateLeft(*target);
 	}
 	template<class T>
 	inline node<T>* avl<T>::rebalance(node<T>* target)
 	{
-		int bal_factor = getHeightDifference(target);
+		int bal_factor = getHeightDifference(*target);
 		if (bal_factor > 1)
 		{
-			if (getHeightDifference(target->left) > 0)
-				target = rotateLeft(target);
+			if (getHeightDifference(*target->left) > 0)
+				*target = rotateLeft(*target);
 			else
-				target = rotateLeftRight(target);
+				*target = rotateLeftRight(*target);
 		}
 		else if (bal_factor < -1)
 		{
-			if (getHeightDifference(target->right) > 0)
-				target = rotateRightLeft(target);
+			if (getHeightDifference(*target->right) > 0)
+				*target = rotateRigthLeft(*target);
 			else
-				target = rotateRight(target);
+				*target = rotateRight(*target);
 		}
 		setHeight();
-		return target;
+		return * target;
 	}
 	template<class T>
 	inline int avl<T>::getHeightDifference(const node<T> * const target) const

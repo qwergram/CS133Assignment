@@ -1,6 +1,6 @@
 #define CATCH_CONFIG_MAIN
 #include "catch.hpp"
-#include "..\AVLTree\avl.h"
+#include "avl.h"
 
 TEST_CASE("A wonderful test", "[vector]") {
 	std::vector<int> v(5);
