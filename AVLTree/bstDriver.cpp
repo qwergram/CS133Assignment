@@ -12,7 +12,7 @@ using namespace std;
 // revised April, 2005
 // revised June, 2015
 //--------------------------------------------------------------------
-int main(void)
+int main2(void)
 {
 	using NP_AVL::avl;
 	using NP_BST::node;

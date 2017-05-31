@@ -13,14 +13,13 @@ namespace NP_AVL
 		using bst<T>::bst;
 		avl<T>& operator=(const avl<T> & t);
 		avl<T>& operator=(const bst<T> & t);
-		avl<T>& operator+=(const T d) { insert(d); return *this; }
 		avl<T> operator+(const T d)
 			{ avl<T> temp = *this; temp.insert(d); return temp; }
 		bool insert(T d) { return insert(d, root); }
 		bool insert(T d, node<T>* &cur);
 		T popLow(node<T> * &cur);
 		T popFirst(const T& d, node<T>* np);
-		~avl() { deltree(); }
+		~avl() { delTree(); }
 	protected:
 		T popNode(node<T>* &cur);
 		node<T> * rotateRight(node<T> *nodeN);
@@ -49,7 +48,7 @@ namespace NP_AVL
 				insert(d, cur->right);
 			if (root != nullptr)
 				root->setHeight();
-			rebalance();
+			rebalance(getroot());
 			return true;
 		}
 		return false;
@@ -90,7 +89,7 @@ namespace NP_AVL
 	}
 
 	template<class T>
-	inline node<T>* avl<T>::rebalance(node<T>*& nodeN)
+	inline node<T>* avl<T>::rebalance(node<T> *& target)
 	{
 		int bal_factor = getHeightDifference(target);
 		if (bal_factor > 1)

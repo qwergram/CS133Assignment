@@ -14,4 +14,5 @@ TEST_CASE("A wonderful test", "[vector]") {
 		REQUIRE(v.size() == 10);
 		REQUIRE(v.capacity() < 10);
 	}
+	cin.get(); // keep window open
 }
