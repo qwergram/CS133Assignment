@@ -1,29 +1,36 @@
 #ifndef AVL_H
 #define AVL_H
-#include "bst.h"
-using namespace NP_BST;
 
-namespace NP_AVL {
-	template <class T>
-	class avl : public bst<T> {
+#include "bst.h"
+using namespace std;
+using namespace NP_BST;
+namespace NP_AVL
+{
+	template<class T>
+	class avl : public bst<T>
+	{
 	public:
-		using bst::bst;
-		bool insert(T d);
+		using bst<T>::bst;
+		avl<T>& operator=(const avl<T> & t);
+		avl<T>& operator=(const bst<T> & t);
+		avl<T>& operator+=(const T d) { insert(d); return *this; }
+		avl<T> operator+(const T d)
+			{ avl<T> temp = *this; temp.insert(d); return temp; }
+		bool insert(T d) { return insert(d, root); }
+		bool insert(T d, node<T>* &cur);
+		T popLow(node<T> * &cur);
+		T popFirst(const T& d, node<T>* np);
+		~avl() { deltree(); }
 	protected:
-		bool avl<T>::insert(T d, node<T>* &cur);
-		node<T> * rotateRight(node <T> * target);
-		node<T> * rotateLeft(node <T> * target);
-		node<T> * rotateRightLeft(node <T> * target);
-		node<T> * rotateLeftRight(node <T> * target);
-		node<T> * rebalance(node<T> * target);
-		int getHeightDifference(const node<T> * const target) const;
+		T popNode(node<T>* &cur);
+		node<T> * rotateRight(node<T> *nodeN);
+		node<T> * rotateLeft(node<T> *nodeN);
+		node<T> * rotateRightLeft(node<T> *nodeN);
+		node<T> * rotateLeftRight(node<T> *nodeN);
+		node<T> * rebalance(node<T> *& nodeN);
+		int getHeightDifference(const node<T> *const nodeN) const;
 	};
 
-	template <class T>
-	bool avl<T>::insert(T d)
-	{
-		return insert(d, root);
-	}
 
 	template<class T>
 	inline bool avl<T>::insert(T d, node<T>* &cur) {
@@ -81,8 +88,9 @@ namespace NP_AVL {
 		target->left = rotateRight(temp);
 		return rotateLeft(target);
 	}
+
 	template<class T>
-	inline node<T>* avl<T>::rebalance(node<T>* target)
+	inline node<T>* avl<T>::rebalance(node<T>*& nodeN)
 	{
 		int bal_factor = getHeightDifference(target);
 		if (bal_factor > 1)
@@ -102,6 +110,7 @@ namespace NP_AVL {
 		setHeight();
 		return target;
 	}
+
 	template<class T>
 	inline int avl<T>::getHeightDifference(const node<T> * const target) const
 	{
