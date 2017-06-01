@@ -21,7 +21,6 @@ namespace NP_AVL
 		T popFirstOf(const T& d, node<T> *& np);
 		~avl() { delTree(); }
 	protected:
-		T popNode(node<T>* &cur);
 		node<T> * rotateRight(node<T> *nodeN);
 		node<T> * rotateLeft(node<T> *nodeN);
 		node<T> * rotateRightLeft(node<T> *nodeN);
@@ -55,55 +54,28 @@ namespace NP_AVL
 	}
 
 	template<class T>
-	inline T avl<T>::popNode(node<T>*& cur)
-	{
-		if (cur == nullptr)
-			throw (invalid_argument("Pointer does not point to a node"));
-		T contents = cur->value();
-		if (cur->left == nullptr && cur->right == nullptr)
-		{ // no children
-			delete cur;
-			cur = nullptr;
-		}
-		else if (cur->left == nullptr)
-		{ // only right child
-			node<T>* temp = cur->right;
-			delete cur;
-			cur = temp;
-			rebalance(getroot());
-		}
-		else if (cur->right == nullptr)
-		{ // only left child
-			node<T>* temp = cur->left;
-			delete cur;
-			cur = temp;
-			rebalance(getroot());
-		}
-		else
-		{ // two children
-			cur->setdata(popHigh(cur->left));
-			rebalance(getroot());
-			// pops leftmost node of right child and
-			// places that value into the current node
-		}
-		if (root != nullptr)
-			root->setHeight();
-		return contents;
-	}
-
-	template<class T>
 	inline T avl<T>::popFirstOf(const T & d, node<T>*& np)
 	{
-		node<T>* matchptr = nullptr;
+		T val;
+		if (np->value() == d)
+			val = popNode(np);
+		else if (d < np->value())
+			val = popFirstOf(d, np->left);
+		else
+			val = popFirstOf(d, np->right);
+
+		/*node<T>* matchptr = nullptr;
 		findFirstOf(d, np, matchptr);
 		if (*parentptr != nullptr)
 		{
 			if ((*parentptr)->value() == d)
 				return popNode((*parentptr));
+			rebalance(*parentptr);
 		}
 		if (root != nullptr)
 			root->setHeight();
-		return 0;
+		return 0;*/
+		return val;
 	}
 
 	template<class T>
@@ -114,6 +86,7 @@ namespace NP_AVL
 		temp->left = target;
 		return temp;
 	}
+
 	template<class T>
 	inline node<T>* avl<T>::rotateLeft(node<T>* target)
 	{
@@ -123,6 +96,7 @@ namespace NP_AVL
 		temp->right = target;
 		return temp;
 	}
+
 	template<class T>
 	inline node<T>* avl<T>::rotateRightLeft(node<T>* target)
 	{
@@ -131,6 +105,7 @@ namespace NP_AVL
 		target->right = rotateLeft(temp);
 		return rotateRight(target);
 	}
+
 	template<class T>
 	inline node<T>* avl<T>::rotateLeftRight(node<T>* target)
 	{
