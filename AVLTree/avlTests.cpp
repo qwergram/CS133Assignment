@@ -297,14 +297,14 @@ TEST_CASE("Testing deleting and balances") {
 
 	SECTION("pop 50") {
 		test.popFirstOf(50);
-		REQUIRE(*test.getroot() == 50);
+		REQUIRE(*test.getroot() == 45);
 		REQUIRE(*test.getroot()->left == 25);
 		REQUIRE(*test.getroot()->left->left == 15);
 		REQUIRE(*test.getroot()->left->left->left == 10);
 		REQUIRE(*test.getroot()->left->left->right == 17);
 		REQUIRE(*test.getroot()->left->right == 35);
 		REQUIRE(*test.getroot()->left->right->left == 30);
-		REQUIRE(*test.getroot()->left->right->right == 45);
+		REQUIRE(test.getroot()->left->right->right == nullptr);
 		REQUIRE(*test.getroot()->right == 75);
 		REQUIRE(*test.getroot()->right->left == 60);
 		REQUIRE(*test.getroot()->right->left->left == 55);
