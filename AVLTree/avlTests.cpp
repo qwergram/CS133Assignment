@@ -125,7 +125,7 @@ TEST_CASE("Testing deleting and balances") {
 	}
 
 	SECTION("pop 70") {
-		test.popFirstOf(45);
+		test.popFirstOf(70);
 		REQUIRE(*test.getroot() == 50);
 		REQUIRE(*test.getroot()->left == 25);
 		REQUIRE(*test.getroot()->left->left == 15);
@@ -181,6 +181,138 @@ TEST_CASE("Testing deleting and balances") {
 		REQUIRE(test.getroot()->right->right->right == nullptr);
 	}
 
+	SECTION("pop 15") {
+		test.popFirstOf(15);
+		REQUIRE(*test.getroot() == 50);
+		REQUIRE(*test.getroot()->left == 25);
+		REQUIRE(*test.getroot()->left->left == 10);
+		REQUIRE(test.getroot()->left->left->left == nullptr);
+		REQUIRE(*test.getroot()->left->left->right == 17);
+		REQUIRE(*test.getroot()->left->right == 35);
+		REQUIRE(*test.getroot()->left->right->left == 30);
+		REQUIRE(*test.getroot()->left->right->right == 45);
+		REQUIRE(*test.getroot()->right == 75);
+		REQUIRE(*test.getroot()->right->left == 60);
+		REQUIRE(*test.getroot()->right->left->left == 55);
+		REQUIRE(*test.getroot()->right->left->right == 70);
+		REQUIRE(*test.getroot()->right->right == 100);
+		REQUIRE(*test.getroot()->right->right->left == 80);
+		REQUIRE(*test.getroot()->right->right->right == 150);
+	}
+
+	SECTION("pop 35") {
+		test.popFirstOf(35);
+		REQUIRE(*test.getroot() == 50);
+		REQUIRE(*test.getroot()->left == 25);
+		REQUIRE(*test.getroot()->left->left == 15);
+		REQUIRE(*test.getroot()->left->left->left == 10);
+		REQUIRE(*test.getroot()->left->left->right == 17);
+		REQUIRE(*test.getroot()->left->right == 30);
+		REQUIRE(test.getroot()->left->right->left == nullptr);
+		REQUIRE(*test.getroot()->left->right->right == 45);
+		REQUIRE(*test.getroot()->right == 75);
+		REQUIRE(*test.getroot()->right->left == 60);
+		REQUIRE(*test.getroot()->right->left->left == 55);
+		REQUIRE(*test.getroot()->right->left->right == 70);
+		REQUIRE(*test.getroot()->right->right == 100);
+		REQUIRE(*test.getroot()->right->right->left == 80);
+		REQUIRE(*test.getroot()->right->right->right == 150);
+	}
+
+	SECTION("pop 60") {
+		test.popFirstOf(60);
+		REQUIRE(*test.getroot() == 50);
+		REQUIRE(*test.getroot()->left == 25);
+		REQUIRE(*test.getroot()->left->left == 15);
+		REQUIRE(*test.getroot()->left->left->left == 10);
+		REQUIRE(*test.getroot()->left->left->right == 17);
+		REQUIRE(*test.getroot()->left->right == 35);
+		REQUIRE(*test.getroot()->left->right->left == 30);
+		REQUIRE(*test.getroot()->left->right->right == 45);
+		REQUIRE(*test.getroot()->right == 75);
+		REQUIRE(*test.getroot()->right->left == 55);
+		REQUIRE(test.getroot()->right->left->left == nullptr);
+		REQUIRE(*test.getroot()->right->left->right == 70);
+		REQUIRE(*test.getroot()->right->right == 100);
+		REQUIRE(*test.getroot()->right->right->left == 80);
+		REQUIRE(*test.getroot()->right->right->right == 150);
+	}
+
+	SECTION("pop 100") {
+		test.popFirstOf(100);
+		REQUIRE(*test.getroot() == 50);
+		REQUIRE(*test.getroot()->left == 25);
+		REQUIRE(*test.getroot()->left->left == 15);
+		REQUIRE(*test.getroot()->left->left->left == 10);
+		REQUIRE(*test.getroot()->left->left->right == 17);
+		REQUIRE(*test.getroot()->left->right == 35);
+		REQUIRE(*test.getroot()->left->right->left == 30);
+		REQUIRE(*test.getroot()->left->right->right == 45);
+		REQUIRE(*test.getroot()->right == 75);
+		REQUIRE(*test.getroot()->right->left == 60);
+		REQUIRE(*test.getroot()->right->left->left == 55);
+		REQUIRE(*test.getroot()->right->left->right == 70);
+		REQUIRE(*test.getroot()->right->right == 80);
+		REQUIRE(test.getroot()->right->right->left == nullptr);
+		REQUIRE(*test.getroot()->right->right->right == 150);
+	}
+
+	SECTION("pop 25") {
+		test.popFirstOf(25);
+		REQUIRE(*test.getroot() == 50);
+		REQUIRE(*test.getroot()->left == 17);
+		REQUIRE(*test.getroot()->left->left == 15);
+		REQUIRE(*test.getroot()->left->left->left == 10);
+		REQUIRE(test.getroot()->left->left->right == nullptr);
+		REQUIRE(*test.getroot()->left->right == 35);
+		REQUIRE(*test.getroot()->left->right->left == 30);
+		REQUIRE(*test.getroot()->left->right->right == 45);
+		REQUIRE(*test.getroot()->right == 75);
+		REQUIRE(*test.getroot()->right->left == 60);
+		REQUIRE(*test.getroot()->right->left->left == 55);
+		REQUIRE(*test.getroot()->right->left->right == 70);
+		REQUIRE(*test.getroot()->right->right == 100);
+		REQUIRE(*test.getroot()->right->right->left == 80);
+		REQUIRE(*test.getroot()->right->right->right == 150);
+	}
+
+	SECTION("pop 75") {
+		test.popFirstOf(75);
+		REQUIRE(*test.getroot() == 50);
+		REQUIRE(*test.getroot()->left == 25);
+		REQUIRE(*test.getroot()->left->left == 15);
+		REQUIRE(*test.getroot()->left->left->left == 10);
+		REQUIRE(*test.getroot()->left->left->right == 17);
+		REQUIRE(*test.getroot()->left->right == 35);
+		REQUIRE(*test.getroot()->left->right->left == 30);
+		REQUIRE(*test.getroot()->left->right->right == 45);
+		REQUIRE(*test.getroot()->right == 70);
+		REQUIRE(*test.getroot()->right->left == 60);
+		REQUIRE(*test.getroot()->right->left->left == 55);
+		REQUIRE(test.getroot()->right->left->right == nullptr);
+		REQUIRE(*test.getroot()->right->right == 100);
+		REQUIRE(*test.getroot()->right->right->left == 80);
+		REQUIRE(*test.getroot()->right->right->right == 150);
+	}
+
+	SECTION("pop 50") {
+		test.popFirstOf(50);
+		REQUIRE(*test.getroot() == 50);
+		REQUIRE(*test.getroot()->left == 25);
+		REQUIRE(*test.getroot()->left->left == 15);
+		REQUIRE(*test.getroot()->left->left->left == 10);
+		REQUIRE(*test.getroot()->left->left->right == 17);
+		REQUIRE(*test.getroot()->left->right == 35);
+		REQUIRE(*test.getroot()->left->right->left == 30);
+		REQUIRE(*test.getroot()->left->right->right == 45);
+		REQUIRE(*test.getroot()->right == 75);
+		REQUIRE(*test.getroot()->right->left == 60);
+		REQUIRE(*test.getroot()->right->left->left == 55);
+		REQUIRE(*test.getroot()->right->left->right == 70);
+		REQUIRE(*test.getroot()->right->right == 100);
+		REQUIRE(*test.getroot()->right->right->left == 80);
+		REQUIRE(*test.getroot()->right->right->right == 150);
+	}
 }
 
 TEST_CASE("Testing inserting and balances") {
