@@ -32,7 +32,6 @@ TEST_CASE("deleting with balancing") {
 	SECTION("heavy deletion left side") {
 		test.popFirstOf(25);
 		test.popFirstOf(17);
-		test.popFirstOf(25);
 		test.popFirstOf(15);
 
 		REQUIRE(*test.getroot() == 50);
