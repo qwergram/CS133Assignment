@@ -48,7 +48,7 @@ namespace NP_AVL
 				insert(d, cur->right);
 			if (root != nullptr)
 				root->setHeight();
-			rebalance(getroot());
+			rebalance(cur);
 			return true;
 		}
 		return false;
