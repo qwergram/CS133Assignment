@@ -17,11 +17,11 @@ namespace NP_AVL
 			{ avl<T> temp = *this; temp.insert(d); return temp; }
 		bool insert(T d) { return insert(d, root); }
 		bool insert(T d, node<T>* &cur);
-		T popLow(node<T> * &cur);
-		T popFirst(const T& d, node<T>* np);
+		T popLow(node<T>* &cur);
+		T popNode(node<T>* &cur);
+		T popHigh(node<T>* &cur);
 		~avl() { delTree(); }
 	protected:
-		T popNode(node<T>* &cur);
 		node<T> * rotateRight(node<T> *nodeN);
 		node<T> * rotateLeft(node<T> *nodeN);
 		node<T> * rotateRightLeft(node<T> *nodeN);
@@ -52,6 +52,77 @@ namespace NP_AVL
 			return true;
 		}
 		return false;
+	}
+
+	template<class T>
+	inline T avl<T>::popLow(node<T>*& cur)
+	{
+		if (cur == nullptr)
+			throw (invalid_argument("Pointer does not point to a node"));
+		if (cur->left == nullptr)
+		{
+			T temp = cur->value();
+			node<T>* temptr = cur->right;
+			delete cur;
+			cur = temptr;
+			if (root != nullptr) {
+				root->setHeight();
+			}
+			return temp;
+		}
+		return popLow(cur->left);
+	}
+
+	template<class T>
+	inline T avl<T>::popNode(node<T>*& cur)
+	{
+		if (cur == nullptr)
+			throw (invalid_argument("Pointer does not point to a node"));
+		T contents = cur->value();
+		if (cur->left == nullptr && cur->right == nullptr)
+		{ // no children
+			delete cur;
+			cur = nullptr;
+		}
+		else if (cur->left == nullptr)
+		{ // only right child
+			node<T>* temp = cur->right;
+			delete cur;
+			cur = temp;
+		}
+		else if (cur->right == nullptr)
+		{ // only left child
+			node<T>* temp = cur->left;
+			delete cur;
+			cur = temp;
+		}
+		else
+		{ // two children
+			cur->setdata(popHigh(cur->left));
+			// pops leftmost node of right child and
+			// places that value into the current node
+		}
+		if (root != nullptr)
+			root->setHeight();
+		return contents;
+	}
+
+	template<class T>
+	inline T avl<T>::popHigh(node<T>*& cur)
+	{
+		if (cur == nullptr)
+			throw(invalid_argument("Pointer does not point to a node"));
+		if (cur->right == nullptr)
+		{
+			T temp = cur->value();
+			node<T>* temptr = cur->left;
+			delete cur;
+			cur = temptr;
+			if (root != nullptr)
+				root->setHeight();
+			return temp;
+		}
+		return popHigh(cur->right);
 	}
 
 	template<class T>
