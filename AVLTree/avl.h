@@ -17,7 +17,6 @@ namespace NP_AVL
 			{ avl<T> temp = *this; temp.insert(d); return temp; }
 		bool insert(T d) { return insert(d, root); }
 		bool insert(T d, node<T>* &cur);
-		T popHigh(node<T>* &cur);
 		T popFirstOf(const T& d) { return popFirstOf(d, root); }
 		T popFirstOf(const T& d, node<T> *& np);
 		~avl() { delTree(); }
@@ -90,25 +89,6 @@ namespace NP_AVL
 		if (root != nullptr)
 			root->setHeight();
 		return contents;
-	}
-
-	template<class T>
-	inline T avl<T>::popHigh(node<T>*& cur)
-	{
-		if (cur == nullptr)
-			throw(invalid_argument("Pointer does not point to a node"));
-		if (cur->right == nullptr)
-		{
-			T temp = cur->value();
-			node<T>* temptr = cur->left;
-			delete cur;
-			cur = temptr;
-			if (root != nullptr)
-				root->setHeight();
-			rebalance(cur);
-			return temp;
-		}
-		return popHigh(cur->right);
 	}
 
 	template<class T>
