@@ -182,6 +182,26 @@ TEST_CASE("Testing inserting and balances") {
 		REQUIRE(*(test.getroot()->right) == 75);
 	}
 
+	SECTION("test insert zig-zag on left side") {
+		/*
+		Given the input 60, 50, 75
+		The AVL tree should output
+				60
+			50		75
+
+		*/
+		test.insert(60);
+		test.insert(50);
+		test.insert(75);
+
+		REQUIRE(test.getHeight() == 2);
+		REQUIRE(test.getNumberOfNodes() == 3);
+
+		REQUIRE(*(test.getroot()) == 60);
+		REQUIRE(*(test.getroot()->left) == 50);
+		REQUIRE(*(test.getroot()->right) == 75);
+	}
+
 	SECTION("test insert heavy zig-zag on right side") {
 		/*
 		Given the input 50, 75, 60, 70
@@ -215,6 +235,41 @@ TEST_CASE("Testing inserting and balances") {
 		REQUIRE(*(test.getroot()->right) == 70);
 		REQUIRE(*(test.getroot()->right->left) == 65);
 		REQUIRE(*(test.getroot()->right->right) == 75);
+	}
+
+	SECTION("test insert heavy zig-zag on right side") {
+		/*
+		Given the input 50, 25, 35, 30, 32
+		The AVL tree should output
+					35
+				30		50
+			  25  32
+
+		*/
+		test.insert(50);
+		test.insert(25);
+		test.insert(35);
+		test.insert(30);
+
+
+		REQUIRE(test.getHeight() == 3);
+		REQUIRE(test.getNumberOfNodes() == 4);
+
+		REQUIRE(*(test.getroot()) == 35);
+		REQUIRE(*(test.getroot()->left) == 25);
+		REQUIRE(*(test.getroot()->right) == 50);
+		REQUIRE(*(test.getroot()->left->right) == 30);
+
+		test.insert(32);
+
+		REQUIRE(test.getHeight() == 3);
+		REQUIRE(test.getNumberOfNodes() == 5);
+
+		REQUIRE(*(test.getroot()) == 35);
+		REQUIRE(*(test.getroot()->left) == 30);
+		REQUIRE(*(test.getroot()->right) == 50);
+		REQUIRE(*(test.getroot()->left->left) == 25);
+		REQUIRE(*(test.getroot()->left->right) == 32);
 	}
 
 	
