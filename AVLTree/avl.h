@@ -18,10 +18,12 @@ namespace NP_AVL
 		bool insert(T d) { return insert(d, root); }
 		bool insert(T d, node<T>* &cur);
 		T popLow(node<T>* &cur);
-		T popNode(node<T>* &cur);
 		T popHigh(node<T>* &cur);
+		T popFirstOf(const T& d) { return popFirstOf(d, root); }
+		T popFirstOf(const T& d, node<T> *& np);
 		~avl() { delTree(); }
 	protected:
+		T popNode(node<T>* &cur);
 		node<T> * rotateRight(node<T> *nodeN);
 		node<T> * rotateLeft(node<T> *nodeN);
 		node<T> * rotateRightLeft(node<T> *nodeN);
@@ -68,6 +70,7 @@ namespace NP_AVL
 			if (root != nullptr) {
 				root->setHeight();
 			}
+			rebalance(cur);
 			return temp;
 		}
 		return popLow(cur->left);
@@ -89,16 +92,19 @@ namespace NP_AVL
 			node<T>* temp = cur->right;
 			delete cur;
 			cur = temp;
+			rebalance(getroot());
 		}
 		else if (cur->right == nullptr)
 		{ // only left child
 			node<T>* temp = cur->left;
 			delete cur;
 			cur = temp;
+			rebalance(getroot());
 		}
 		else
 		{ // two children
 			cur->setdata(popHigh(cur->left));
+			rebalance(getroot());
 			// pops leftmost node of right child and
 			// places that value into the current node
 		}
@@ -120,9 +126,25 @@ namespace NP_AVL
 			cur = temptr;
 			if (root != nullptr)
 				root->setHeight();
+			rebalance(cur);
 			return temp;
 		}
 		return popHigh(cur->right);
+	}
+
+	template<class T>
+	inline T avl<T>::popFirstOf(const T & d, node<T>*& np)
+	{
+		node<T>* matchptr = nullptr;
+		findFirstOf(d, np, matchptr);
+		if (*parentptr != nullptr)
+		{
+			if ((*parentptr)->value() == d)
+				return popNode((*parentptr));
+		}
+		if (root != nullptr)
+			root->setHeight();
+		return 0;
 	}
 
 	template<class T>
@@ -184,13 +206,16 @@ namespace NP_AVL
 	template<class T>
 	inline int avl<T>::getHeightDifference(const node<T> * const target) const
 	{
-		int left = 0;
-		int right = 0;
-		if (target->left != nullptr)
-			left = target->left->getHeight();
-		if (target->right != nullptr)
-			right = target->right->getHeight();
-		return left - right;
+		if (target != nullptr) {
+			int left = 0;
+			int right = 0;
+			if (target->left != nullptr)
+				left = target->left->getHeight();
+			if (target->right != nullptr)
+				right = target->right->getHeight();
+			return left - right;
+		}
+		return 0;
 	}
 }
 #endif
