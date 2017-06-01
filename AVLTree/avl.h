@@ -63,18 +63,8 @@ namespace NP_AVL
 			val = popFirstOf(d, np->left);
 		else
 			val = popFirstOf(d, np->right);
-
-		/*node<T>* matchptr = nullptr;
-		findFirstOf(d, np, matchptr);
-		if (*parentptr != nullptr)
-		{
-			if ((*parentptr)->value() == d)
-				return popNode((*parentptr));
-			rebalance(*parentptr);
-		}
-		if (root != nullptr)
-			root->setHeight();
-		return 0;*/
+		
+		rebalance(np);
 		return val;
 	}
 
