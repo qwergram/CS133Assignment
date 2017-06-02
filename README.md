@@ -7,6 +7,7 @@ All the things I've learned in the realm of C++ and whatnot.
 
 # Testing Framework Badges
 [![Build Status](https://travis-ci.org/qwergram/CS133Assignment.svg?branch=master)](https://travis-ci.org/qwergram/CS133Assignment)
+[![Build status](https://ci.appveyor.com/api/projects/status/o3eopf6bs2o12t3c?svg=true)](https://ci.appveyor.com/project/qwergram/cs133assignment)
 
 *With more to come...*
 
