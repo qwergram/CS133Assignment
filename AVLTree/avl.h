@@ -113,10 +113,10 @@ namespace NP_AVL
 		int bal_factor = getHeightDifference(target);
 		if (bal_factor > 1)
 		{
-			if (getHeightDifference(target->left) > 0)
-				target = rotateLeft(target);
-			else
+			if (getHeightDifference(target->left) < 0)
 				target = rotateLeftRight(target);
+			else
+				target = rotateLeft(target);
 		}
 		else if (bal_factor < -1)
 		{
