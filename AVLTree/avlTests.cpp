@@ -22,13 +22,117 @@ TEST_CASE("Tree operation Overloads") {
 		test2.insert(num);
 	}
 
-
-	SECTION("= overload") {
-		
-	}
+	avl<int>test3 = avl<int>();
+	test3.insert(5);
 
 	SECTION("+= overload") {
+		SECTION("Duplicate Items") {
+			test2 += test3;
 
+			REQUIRE(*test2.getroot() == 47);
+			REQUIRE(*test2.getroot()->left == 20);
+			REQUIRE(*test2.getroot()->right == 73);
+			REQUIRE(*test2.getroot()->left->left == 13);
+			REQUIRE(*test2.getroot()->left->right == 33);
+			REQUIRE(*test2.getroot()->right->left == 57);
+			REQUIRE(*test2.getroot()->right->right == 90);
+			REQUIRE(*test2.getroot()->left->left->left == 5);
+			REQUIRE(*test2.getroot()->left->left->right == 16);
+			REQUIRE(*test2.getroot()->left->right->left == 27);
+			REQUIRE(*test2.getroot()->left->right->right == 40);
+			REQUIRE(*test2.getroot()->right->left->left == 53);
+			REQUIRE(*test2.getroot()->right->left->right == 65);
+			REQUIRE(*test2.getroot()->right->right->left == 77);
+			REQUIRE(*test2.getroot()->right->right->right == 125);
+		}
+
+		SECTION("Mutually exclusive trees") {
+			test += test2;
+
+			REQUIRE(*test.getroot() == 50);
+			REQUIRE(*test.getroot()->left == 25);
+			REQUIRE(*test.getroot()->left->left == 15);
+			REQUIRE(*test.getroot()->left->left->left == 10);
+			REQUIRE(*test.getroot()->left->left->right == 17);
+			REQUIRE(*test.getroot()->left->right == 35);
+			REQUIRE(*test.getroot()->left->right->left == 30);
+			REQUIRE(*test.getroot()->left->right->right == 45);
+			REQUIRE(*test.getroot()->right == 75);
+			REQUIRE(*test.getroot()->right->left == 60);
+			REQUIRE(*test.getroot()->right->left->left == 55);
+			REQUIRE(*test.getroot()->right->left->right == 70);
+			REQUIRE(*test.getroot()->right->right == 100);
+			REQUIRE(*test.getroot()->right->right->left == 80);
+			REQUIRE(*test.getroot()->right->right->right == 150);
+			REQUIRE(*test.getroot()->left->left->left->left == 5);
+			REQUIRE(*test.getroot()->left->left->left->right == 13);
+			REQUIRE(*test.getroot()->left->left->right->left == 16);
+			REQUIRE(*test.getroot()->left->left->right->right == 20);
+			REQUIRE(*test.getroot()->left->right->left->left == 27);
+			REQUIRE(*test.getroot()->left->right->left->right == 33);
+			REQUIRE(*test.getroot()->left->right->right->left == 40);
+			REQUIRE(*test.getroot()->left->right->right->right == 47);
+			REQUIRE(*test.getroot()->right->left->left->left == 53);
+			REQUIRE(*test.getroot()->right->left->left->right == 57);
+			REQUIRE(*test.getroot()->right->left->right->left == 65);
+			REQUIRE(*test.getroot()->right->left->right->right == 73);
+			REQUIRE(*test.getroot()->right->right->left->left == 77);
+			REQUIRE(*test.getroot()->right->right->left->right == 90);
+			REQUIRE(*test.getroot()->right->right->right->left == 125);
+			REQUIRE(*test.getroot()->right->right->right->right == 200);
+		}
+	}
+
+	SECTION("= overload") {
+		test = test2;
+		
+		REQUIRE_FALSE(test.contains(50));
+		REQUIRE_FALSE(test.contains(75));
+		REQUIRE_FALSE(test.contains(25));
+		REQUIRE_FALSE(test.contains(15));
+		REQUIRE_FALSE(test.contains(60));
+		REQUIRE_FALSE(test.contains(35));
+		REQUIRE_FALSE(test.contains(100));
+		REQUIRE_FALSE(test.contains(10));
+		REQUIRE_FALSE(test.contains(30));
+		REQUIRE_FALSE(test.contains(55));
+		REQUIRE_FALSE(test.contains(80));
+		REQUIRE_FALSE(test.contains(17));
+		REQUIRE_FALSE(test.contains(45));
+		REQUIRE_FALSE(test.contains(70));
+		REQUIRE_FALSE(test.contains(150));
+
+		REQUIRE(*test.getroot() == 47);
+		REQUIRE(*test.getroot()->left == 20);
+		REQUIRE(*test.getroot()->right == 73);
+		REQUIRE(*test.getroot()->left->left == 13);
+		REQUIRE(*test.getroot()->left->right == 33);
+		REQUIRE(*test.getroot()->right->left == 57);
+		REQUIRE(*test.getroot()->right->right == 90);
+		REQUIRE(*test.getroot()->left->left->left == 5);
+		REQUIRE(*test.getroot()->left->left->right == 16);
+		REQUIRE(*test.getroot()->left->right->left == 27);
+		REQUIRE(*test.getroot()->left->right->right == 40);
+		REQUIRE(*test.getroot()->right->left->left == 53);
+		REQUIRE(*test.getroot()->right->left->right == 65);
+		REQUIRE(*test.getroot()->right->right->left == 77);
+		REQUIRE(*test.getroot()->right->right->right == 125);
+
+		REQUIRE(*test2.getroot() == 47);
+		REQUIRE(*test2.getroot()->left == 20);
+		REQUIRE(*test2.getroot()->right == 73);
+		REQUIRE(*test2.getroot()->left->left == 13);
+		REQUIRE(*test2.getroot()->left->right == 33);
+		REQUIRE(*test2.getroot()->right->left == 57);
+		REQUIRE(*test2.getroot()->right->right == 90);
+		REQUIRE(*test2.getroot()->left->left->left == 5);
+		REQUIRE(*test2.getroot()->left->left->right == 16);
+		REQUIRE(*test2.getroot()->left->right->left == 27);
+		REQUIRE(*test2.getroot()->left->right->right == 40);
+		REQUIRE(*test2.getroot()->right->left->left == 53);
+		REQUIRE(*test2.getroot()->right->left->right == 65);
+		REQUIRE(*test2.getroot()->right->right->left == 77);
+		REQUIRE(*test2.getroot()->right->right->right == 125);
 	}
 
 }
@@ -107,7 +211,7 @@ TEST_CASE("deleting with balancing") {
 	SECTION("Sanity deletion tests") {
 		test.insert(1);
 		test.popFirstOf(1);
-		REQUIRE(!test.contains(1));
+		REQUIRE_FALSE(test.contains(1));
 	}
 
 	SECTION("Delete empty tree") {
