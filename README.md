@@ -5,6 +5,11 @@ Professor: Paul Bladek of EDCC
 
 All the things I've learned in the realm of C++ and whatnot.
 
+# Testing Framework Badges
+[![Build Status](https://travis-ci.org/qwergram/CS133Assignment.svg?branch=master)](https://travis-ci.org/qwergram/CS133Assignment)
+
+*With more to come...*
+
 # Contributing
 
 Hello Team 4, welcome to github.
