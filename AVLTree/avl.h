@@ -15,6 +15,8 @@ namespace NP_AVL
 		avl<T>& operator=(const bst<T> & t);
 		avl<T> operator+(const T d)
 			{ avl<T> temp = *this; temp.insert(d); return temp; }
+		avl<T>& operator+=(const bst<T>& t);
+		avl<T>& operator+=(const T d) { insert(d, root); return *this; }
 		bool insert(T d) { return insert(d, root); }
 		bool insert(T d, node<T>* &cur);
 		T popFirstOf(const T& d) { return popFirstOf(d, root); }
