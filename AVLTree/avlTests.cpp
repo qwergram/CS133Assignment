@@ -73,6 +73,69 @@ TEST_CASE("deleting with balancing") {
 			REQUIRE(*test.getroot()->right->left == 80);
 		}
 	}
+
+	SECTION("heavy deletion right side") {
+		SECTION("scenario 1") {
+			test.popFirstOf(75);
+			test.popFirstOf(70);
+			test.popFirstOf(60);
+
+			REQUIRE(*test.getroot() == 50);
+			REQUIRE(*test.getroot()->right == 100);
+			REQUIRE(*test.getroot()->right->right == 150);
+			REQUIRE(*test.getroot()->right->left == 55);
+			REQUIRE(*test.getroot()->right->left->right == 80);
+		}
+
+		SECTION("scenario 2") {
+			test.popFirstOf(100);
+			test.popFirstOf(60);
+			test.popFirstOf(50);
+
+			REQUIRE(*test.getroot() == 45);
+			REQUIRE(*test.getroot()->right == 75);
+			REQUIRE(*test.getroot()->right->right == 80);
+			REQUIRE(*test.getroot()->right->right->right == 150);
+			REQUIRE(*test.getroot()->right->left == 55);
+			REQUIRE(*test.getroot()->right->left->right == 70);
+			REQUIRE(*test.getroot()->left == 25);
+			REQUIRE(*test.getroot()->left->left == 15);
+			REQUIRE(*test.getroot()->left->right == 35);
+			REQUIRE(*test.getroot()->left->right->left == 30);
+			REQUIRE(*test.getroot()->left->left->left == 10);
+			REQUIRE(*test.getroot()->left->left->right == 17);
+		}
+
+		SECTION("scenario 3") {
+			test.popFirstOf(100);
+			test.popFirstOf(60);
+			test.popFirstOf(50);
+			test.popFirstOf(75);
+			test.popFirstOf(80);
+			test.popFirstOf(70);
+
+			REQUIRE(*test.getroot() == 45);
+			REQUIRE(*test.getroot()->right == 55);
+			REQUIRE(*test.getroot()->right->right == 150);
+			REQUIRE(*test.getroot()->left == 25);
+			REQUIRE(*test.getroot()->left->right == 35);
+			REQUIRE(*test.getroot()->left->right->left == 30);
+			REQUIRE(*test.getroot()->left->left == 15);
+			REQUIRE(*test.getroot()->left->left->left == 10);
+			REQUIRE(*test.getroot()->left->left->right == 17);
+
+			test.popFirstOf(150);
+
+			REQUIRE(*test.getroot() == 25);
+			REQUIRE(*test.getroot()->left == 15);
+			REQUIRE(*test.getroot()->left->left == 10);
+			REQUIRE(*test.getroot()->left->right == 17);
+			REQUIRE(*test.getroot()->right == 45);
+			REQUIRE(*test.getroot()->right->right == 55);
+			REQUIRE(*test.getroot()->right->left == 35);
+			REQUIRE(*test.getroot()->right->left->left == 30);
+		}
+	}
 }
 
 TEST_CASE("Testing deleting without balancing") {
