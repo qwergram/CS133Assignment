@@ -4,7 +4,36 @@
 
 using namespace NP_AVL;
 
-TEST_CASE("deleting with balancing") {
+TEST_CASE("Tree operation Overloads") {
+
+	avl<int> test = avl<int>();
+	for (int num : {
+		50, 75, 25, 15, 60, 35, 100,
+		10, 30, 55, 80, 17, 45, 70, 150
+	}) {
+		test.insert(num);
+	}
+
+	avl<int>test2 = avl<int>();
+	for (int num : {
+		5, 13, 16, 20, 27, 33, 40, 47,
+		53, 57, 65, 73, 77, 90, 125, 200
+	}) {
+		test2.insert(num);
+	}
+
+
+	SECTION("= overload") {
+		
+	}
+
+	SECTION("+= overload") {
+
+	}
+
+}
+
+TEST_CASE("Creating Large Trees") {
 	avl<int> test = avl<int>();
 	for (int num : {
 		50, 75, 25, 15, 60, 35, 100,
@@ -13,21 +42,85 @@ TEST_CASE("deleting with balancing") {
 		test.insert(num);
 	}
 
-	REQUIRE(*test.getroot() == 50);
-	REQUIRE(*test.getroot()->left == 25);
-	REQUIRE(*test.getroot()->left->left == 15);
-	REQUIRE(*test.getroot()->left->left->left == 10);
-	REQUIRE(*test.getroot()->left->left->right == 17);
-	REQUIRE(*test.getroot()->left->right == 35);
-	REQUIRE(*test.getroot()->left->right->left == 30);
-	REQUIRE(*test.getroot()->left->right->right == 45);
-	REQUIRE(*test.getroot()->right == 75);
-	REQUIRE(*test.getroot()->right->left == 60);
-	REQUIRE(*test.getroot()->right->left->left == 55);
-	REQUIRE(*test.getroot()->right->left->right == 70);
-	REQUIRE(*test.getroot()->right->right == 100);
-	REQUIRE(*test.getroot()->right->right->left == 80);
-	REQUIRE(*test.getroot()->right->right->right == 150);
+	SECTION("Tree with height of 4 tests") {
+		REQUIRE(*test.getroot() == 50);
+		REQUIRE(*test.getroot()->left == 25);
+		REQUIRE(*test.getroot()->left->left == 15);
+		REQUIRE(*test.getroot()->left->left->left == 10);
+		REQUIRE(*test.getroot()->left->left->right == 17);
+		REQUIRE(*test.getroot()->left->right == 35);
+		REQUIRE(*test.getroot()->left->right->left == 30);
+		REQUIRE(*test.getroot()->left->right->right == 45);
+		REQUIRE(*test.getroot()->right == 75);
+		REQUIRE(*test.getroot()->right->left == 60);
+		REQUIRE(*test.getroot()->right->left->left == 55);
+		REQUIRE(*test.getroot()->right->left->right == 70);
+		REQUIRE(*test.getroot()->right->right == 100);
+		REQUIRE(*test.getroot()->right->right->left == 80);
+		REQUIRE(*test.getroot()->right->right->right == 150);
+	}
+
+	test.insert(5);
+	test.insert(27);
+	test.insert(53);
+	test.insert(77);
+	test.insert(13);
+	test.insert(16);
+	test.insert(20);
+	test.insert(33);
+	test.insert(40);
+	test.insert(47);
+	test.insert(57);
+	test.insert(65);
+	test.insert(73);
+	test.insert(90);
+	test.insert(125);
+	test.insert(200);
+
+	SECTION("Tree with height of 5 tests") {
+		REQUIRE(test.getHeight() == 5);
+		REQUIRE(test.getNumberOfNodes() == 31);
+
+		REQUIRE(*test.getroot()->left->left->left->left == 5);
+		REQUIRE(*test.getroot()->left->left->left->right == 13);
+		REQUIRE(*test.getroot()->left->left->right->left == 16);
+		REQUIRE(*test.getroot()->left->left->right->right == 20);
+		REQUIRE(*test.getroot()->left->right->left->left == 27);
+		REQUIRE(*test.getroot()->left->right->left->right == 33);
+		REQUIRE(*test.getroot()->left->right->right->left == 40);
+		REQUIRE(*test.getroot()->left->right->right->right == 47);
+		REQUIRE(*test.getroot()->right->left->left->left == 53);
+		REQUIRE(*test.getroot()->right->left->left->right == 57);
+		REQUIRE(*test.getroot()->right->left->right->left == 65);
+		REQUIRE(*test.getroot()->right->left->right->right == 73);
+		REQUIRE(*test.getroot()->right->right->left->left == 77);
+		REQUIRE(*test.getroot()->right->right->left->right == 90);
+		REQUIRE(*test.getroot()->right->right->right->left == 125);
+		REQUIRE(*test.getroot()->right->right->right->right == 200);
+	}
+
+}
+
+TEST_CASE("deleting with balancing") {
+	avl<int> test = avl<int>();
+	
+	SECTION("Sanity deletion tests") {
+		test.insert(1);
+		test.popFirstOf(1);
+		REQUIRE(!test.contains(1));
+	}
+
+	SECTION("Delete empty tree") {
+		test.popFirstOf(0);
+		// Throw an exception: nullptr
+	}
+	
+	for (int num : {
+		50, 75, 25, 15, 60, 35, 100,
+			10, 30, 55, 80, 17, 45, 70, 150
+	}) {
+		test.insert(num);
+	}
 
 	SECTION("heavy deletion left side") {
 		SECTION("scenario 1") {
@@ -452,6 +545,8 @@ TEST_CASE("Testing deleting without balancing") {
 TEST_CASE("Testing inserting and balances") {
 	avl<int> test = avl<int>();
 	
+	
+
 	SECTION("empty tree sanity test") {
 		REQUIRE(test.getHeight() == 0);
 		REQUIRE(test.getNumberOfNodes() == 0);
@@ -682,7 +777,7 @@ TEST_CASE("Testing inserting and balances") {
 		REQUIRE(*(test.getroot()->right->right) == 75);
 	}
 
-	SECTION("test insert heavy zig-zag on right side") {
+	SECTION("test insert heavy zig-zag on left side") {
 		/*
 		Given the input 50, 25, 35, 30, 32
 		The AVL tree should output
@@ -717,6 +812,31 @@ TEST_CASE("Testing inserting and balances") {
 		REQUIRE(*(test.getroot()->left->right) == 32);
 	}
 
+	SECTION("Random insertion tests") {
+		for (int num : {
+			5, 13, 16, 20, 27, 33, 40, 47,
+				53, 57, 65, 73, 77, 90, 125, 200
+		}) {
+			test.insert(num);
+		}
+
+		REQUIRE(*test.getroot() == 47);
+		REQUIRE(*test.getroot()->left == 20);
+		REQUIRE(*test.getroot()->right == 73);
+		REQUIRE(*test.getroot()->left->left == 13);
+		REQUIRE(*test.getroot()->left->right == 33);
+		REQUIRE(*test.getroot()->right->left == 57);
+		REQUIRE(*test.getroot()->right->right == 90);
+		REQUIRE(*test.getroot()->left->left->left == 5);
+		REQUIRE(*test.getroot()->left->left->right == 16);
+		REQUIRE(*test.getroot()->left->right->left == 27);
+		REQUIRE(*test.getroot()->left->right->right == 40);
+		REQUIRE(*test.getroot()->right->left->left == 53);
+		REQUIRE(*test.getroot()->right->left->right == 65);
+		REQUIRE(*test.getroot()->right->right->left == 77);
+		REQUIRE(*test.getroot()->right->right->right == 125);
+
+	}
 	
 }
 

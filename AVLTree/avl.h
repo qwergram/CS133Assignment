@@ -11,12 +11,12 @@ namespace NP_AVL
 	{
 	public:
 		using bst<T>::bst;
-		avl<T>& operator=(const avl<T> & t);
-		avl<T>& operator=(const bst<T> & t);
+		//avl<T>& operator=(const avl<T> & t);
+		//avl<T>& operator=(const bst<T> & t);
 		avl<T> operator+(const T d)
 			{ avl<T> temp = *this; temp.insert(d); return temp; }
-		avl<T>& operator+=(const bst<T>& t);
-		avl<T>& operator+=(const T d) { insert(d, root); return *this; }
+		//avl<T>& operator+=(const bst<T>& t);
+		//avl<T>& operator+=(const T d) { insert(d, root); return *this; }
 		bool insert(T d) { return insert(d, root); }
 		bool insert(T d, node<T>* &cur);
 		T popFirstOf(const T& d) { return popFirstOf(d, root); }
@@ -58,15 +58,16 @@ namespace NP_AVL
 	template<class T>
 	inline T avl<T>::popFirstOf(const T & d, node<T>*& np)
 	{
-		T val;
-		if (np->value() == d)
-			val = popNode(np);
-		else if (d < np->value())
-			val = popFirstOf(d, np->left);
-		else
-			val = popFirstOf(d, np->right);
-		
-		rebalance(np);
+		T val = NULL;
+		if (np != nullptr) {
+			if (np->value() == d)
+				val = popNode(np);
+			else if (np->left != nullptr && d < np->value())
+				val = popFirstOf(d, np->left);
+			else if (np->right != nullptr)
+				val = popFirstOf(d, np->right);
+			rebalance(np);
+		}
 		return val;
 	}
 
