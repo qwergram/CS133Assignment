@@ -4,7 +4,7 @@ install:
 compiler: 
   - g++
 before_script:
-  - ls
+  - cd ./AVLTree
 script:
   - g++ *.h* *.cpp -std=gnu++0x
   - ./a.out
