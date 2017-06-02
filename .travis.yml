@@ -1,8 +1,13 @@
+sudo: false
 language: cpp
 compiler: 
   - g++
+addons:
+  apt:
+    packages:
+      - g++-4.8
 before_script:
   - cd ./AVLTree
 script:
-  - g++ *.h* *.cpp -std=gnu++0x
+  - g++-4.8 *.h* *.cpp -std=gnu++0x
   - ./a.out
