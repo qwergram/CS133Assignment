@@ -9,6 +9,8 @@ being [catch.hpp](https://github.com/philsquared/Catch).
 - [Native Unit Tests Guide]()
 
 
+# C++ Testing with Catch.hpp
+
 # C++ Testing with MS Native Unit Tests
 
 ## Step 0: Create a new Testing Project
