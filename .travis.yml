@@ -2,10 +2,12 @@ language: cpp
 compiler: 
   - g++
 install:
-  - sudo apt-get install g++-4.8
+  - sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y;
+  - sudo apt-get update -qq
+  - sudo apt-get install g++-4.9
 before_script:
   - cd ./AVLTree
 script:
-  - g++ --version
-  - g++-4.8 *.h* *.cpp -std=gnu++0x
+  - g++-4.9 --version
+  - g++-4.9 *.h* *.cpp -std=gnu++0x
   - ./a.out
