@@ -5,8 +5,8 @@ being [catch.hpp](https://github.com/philsquared/Catch).
 
 ## Contents
 
-- [Catch.hpp Guide]()
-- [Native Unit Tests Guide]()
+- [Catch.hpp Guide](#c-testing-with-catchhpp)
+- [Native Unit Tests Guide](#c-testing-with-ms-native-unit-tests)
 
 
 # C++ Testing with Catch.hpp
