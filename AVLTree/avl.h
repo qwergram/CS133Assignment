@@ -11,11 +11,11 @@ namespace NP_AVL
 	{
 	public:
 		using bst<T>::bst;
-		bool insert(T d) { return insert(d, root); }
+		bool insert(T d) { return insert(d, this->root); }
 		bool insert(T d, node<T>* &cur);
-		T popFirstOf(const T& d) { return popFirstOf(d, root); }
+		T popFirstOf(const T& d) { return popFirstOf(d, this->root); }
 		T popFirstOf(const T& d, node<T> *& np);
-		~avl() { delTree(); }
+		~avl() { this->delTree(); }
 	protected:
 		node<T> * rotateRight(node<T> *nodeN);
 		node<T> * rotateLeft(node<T> *nodeN);
@@ -30,18 +30,18 @@ namespace NP_AVL
 		if (cur == nullptr)
 		{
 			cur = new node<T>(d);
-			if (isempty())
-				root = cur;
+			if (this->isempty())
+				this->root = cur;
 			return true;
 		}
-		else if (!contains(d))
+		else if (!this->contains(d))
 		{
 			if (d < cur->value())
 				insert(d, cur->left);
 			else
 				insert(d, cur->right);
-			if (root != nullptr)
-				root->setHeight();
+			if (this->root != nullptr)
+				this->root->setHeight();
 			rebalance(cur);
 			return true;
 		}
@@ -51,14 +51,14 @@ namespace NP_AVL
 	template<class T>
 	inline T avl<T>::popFirstOf(const T & d, node<T>*& np)
 	{
-		T val = NULL;
+		T val = (T)0;
 		if (np != nullptr) {
 			if (np->value() == d)
-				val = popNode(np);
+				val = this->popNode(np);
 			else if (d < np->value())
-				val = popFirstOf(d, np->left);
+				val = this->popFirstOf(d, np->left);
 			else
-				val = popFirstOf(d, np->right);
+				val = this->popFirstOf(d, np->right);
 			rebalance(np);
 		} else {
 			throw invalid_argument("Requested deleted item not found");
@@ -121,7 +121,7 @@ namespace NP_AVL
 			else
 				target = rotateRight(target);
 		}
-		setHeight();
+		this->setHeight();
 		return target;
 	}
 
