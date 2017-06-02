@@ -111,15 +111,18 @@ TEST_CASE("deleting with balancing") {
 	}
 
 	SECTION("Delete empty tree") {
-		test.popFirstOf(0);
-		// Throw an exception: nullptr
+		REQUIRE_THROWS_WITH(test.popFirstOf(0), "Requested deleted item not found");
 	}
-	
+
 	for (int num : {
 		50, 75, 25, 15, 60, 35, 100,
 			10, 30, 55, 80, 17, 45, 70, 150
 	}) {
 		test.insert(num);
+	}
+
+	SECTION("Delete non-existent nodes") {
+		REQUIRE_THROWS_WITH(test.popFirstOf(1), "Requested deleted item not found");
 	}
 
 	SECTION("heavy deletion left side") {
