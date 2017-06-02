@@ -4,6 +4,7 @@
 
 using namespace NP_AVL;
 
+/*
 TEST_CASE("Parent and Child class operations") {
 	avl<int> test = avl<int>();
 	for (int num : {
@@ -133,7 +134,7 @@ TEST_CASE("Parent and Child class operations") {
 		REQUIRE(*test2.getroot()->right->right->left == 77);
 		REQUIRE(*test2.getroot()->right->right->right == 125);
 	}
-}
+}*/
 
 TEST_CASE("Tree operation Overloads") {
 
