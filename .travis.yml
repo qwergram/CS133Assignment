@@ -1,6 +1,4 @@
 language: cpp
-install:
-  - sudo apt-get install make
 compiler: 
   - g++
 before_script:
