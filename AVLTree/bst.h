@@ -155,14 +155,13 @@ namespace NP_BST
 		int getNumberOfNodes() const { return getNumberOfNodes(root); }
 		int getNumberOfNodes(node<T>* np) const;
 		~bst() { delTree(root); }
+		void delTree(node<T>* &cur);
 	protected:
 		bool insert(T d, node<T>* &cur);
 		node<T>* root; // root of this tree
 		node<T>** parentptr; // holding pointer needed by some functions
 
 		void addTree(const node<T>* np); // used by +
-	private:
-		void delTree(node<T>* &cur);
 	};
 
 	//--------------------------------------------------------------------
