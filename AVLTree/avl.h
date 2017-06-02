@@ -25,7 +25,6 @@ namespace NP_AVL
 		int getHeightDifference(const node<T> *const nodeN) const;
 	};
 
-
 	template<class T>
 	inline bool avl<T>::insert(T d, node<T>* &cur) {
 		if (cur == nullptr)

@@ -83,7 +83,7 @@ TEST_CASE("Parent and Child class operations") {
 	}
 
 	SECTION("= overload") {
-		test = test2;
+		// test = test2;
 
 		REQUIRE_FALSE(test.contains(50));
 		REQUIRE_FALSE(test.contains(75));
