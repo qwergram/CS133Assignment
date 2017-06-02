@@ -62,11 +62,13 @@ namespace NP_AVL
 		if (np != nullptr) {
 			if (np->value() == d)
 				val = popNode(np);
-			else if (np->left != nullptr && d < np->value())
+			else if (d < np->value())
 				val = popFirstOf(d, np->left);
-			else if (np->right != nullptr)
+			else
 				val = popFirstOf(d, np->right);
 			rebalance(np);
+		} else {
+			throw invalid_argument("Requested deleted item not found");
 		}
 		return val;
 	}
