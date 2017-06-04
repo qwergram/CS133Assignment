@@ -4,7 +4,7 @@
 
 using namespace NP_AVL;
 
-/*
+
 TEST_CASE("Parent and Child class operations") {
 	avl<int> test = avl<int>();
 	for (int num : {
@@ -26,6 +26,14 @@ TEST_CASE("Parent and Child class operations") {
 	test3.insert(5);
 
 	SECTION("+= overload") {
+		SECTION("+= non-tree entity") {
+			test3 += 10;
+			REQUIRE(test3.getNumberOfNodes() == 2);
+			REQUIRE(test3.getHeight() == 2);
+			REQUIRE(*test3.getroot() == 5);
+			REQUIRE(*test3.getroot()->right == 10);
+		}
+
 		SECTION("Duplicate Items") {
 			test2 += test3;
 
@@ -46,7 +54,7 @@ TEST_CASE("Parent and Child class operations") {
 			REQUIRE(*test2.getroot()->right->right->right == 125);
 		}
 
-		SECTION("Mutually exclusive trees") {
+		/*SECTION("Mutually exclusive trees") {
 			test += test2;
 
 			REQUIRE(*test.getroot() == 50);
@@ -80,10 +88,10 @@ TEST_CASE("Parent and Child class operations") {
 			REQUIRE(*test.getroot()->right->right->left->right == 90);
 			REQUIRE(*test.getroot()->right->right->right->left == 125);
 			REQUIRE(*test.getroot()->right->right->right->right == 200);
-		}
+		}*/
 	}
 
-	SECTION("= overload") {
+	/*SECTION("= overload") {
 		// test = test2;
 
 		REQUIRE_FALSE(test.contains(50));
@@ -133,8 +141,8 @@ TEST_CASE("Parent and Child class operations") {
 		REQUIRE(*test2.getroot()->right->left->right == 65);
 		REQUIRE(*test2.getroot()->right->right->left == 77);
 		REQUIRE(*test2.getroot()->right->right->right == 125);
-	}
-}*/
+	}*/
+}
 
 TEST_CASE("Tree operation Overloads") {
 
