@@ -11,6 +11,13 @@ namespace NP_AVL
 	{
 	public:
 		using bst<T>::bst;
+		avl<T>& operator=(const avl<T>& t);
+		avl<T>& operator+=(const avl<T>& t);
+		avl<T>& operator+=(const T d) { insert(d, root); return *this; }
+		avl<T> operator+(const T d) {
+			bst<T> temp = *this;
+			temp.insert(d, temp.root); return temp;
+		}
 		bool insert(T d) { return insert(d, this->root); }
 		bool insert(T d, node<T>* &cur);
 		T popFirstOf(const T& d) { return popFirstOf(d, this->root); }
@@ -24,6 +31,28 @@ namespace NP_AVL
 		node<T> * rebalance(node<T> *& nodeN);
 		int getHeightDifference(const node<T> *const nodeN) const;
 	};
+
+	template<class T>
+	inline avl<T>& avl<T>::operator=(const avl<T>& t)
+	{
+		if (this != &t)
+		{
+			if (!isempty())
+				delTree(root);
+			if (!t.isempty())
+			{
+				root = new node<T>(*(t.root));
+			}
+		}
+		return *this;
+	}
+
+	template<class T>
+	inline avl<T>& avl<T>::operator+=(const avl<T>& t)
+	{
+		addTree(t.root);
+		return *this;
+	}
 
 	template<class T>
 	inline bool avl<T>::insert(T d, node<T>* &cur) {
