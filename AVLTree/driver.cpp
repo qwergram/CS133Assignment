@@ -6,17 +6,25 @@
 using namespace NP_AVL;
 using namespace NP_SET;
 
+// == Set Tests == 
 TEST_CASE("Set Test operations") {
+	// test is a set with the tree structure:
+	//		2
+	//	3		1
 	Set<int> test = Set<int>();
 	test.insert(1);
 	test.insert(2);
 	test.insert(3);
 
+	// test2 is a set with the tree structure:
+	//		4
+	//	5		3
 	Set<int> test2 = Set<int>();
 	test2.insert(3);
 	test2.insert(4);
 	test2.insert(5);
 
+	// Make sure that 1, 2, 3 exist in test1 but not 4
 	SECTION("Set isMember tests") {
 		REQUIRE(test.isMember(1));
 		REQUIRE(test.isMember(2));
@@ -24,12 +32,16 @@ TEST_CASE("Set Test operations") {
 		REQUIRE_FALSE(test.isMember(4));
 	}
 
+	// Insert 4 and test isMember
 	SECTION("Set isMember/Insertion tests") {
 		test.insert(4);
 		REQUIRE(test.isMember(4));
 	}
 
+	// Test unions
 	SECTION("union tests") {
+		// Esnure a union with itself
+		// results in the same list
 		SECTION("union self test") {
 			auto test3 = test.Union(test);
 			REQUIRE(test3.isMember(1));
@@ -37,6 +49,10 @@ TEST_CASE("Set Test operations") {
 			REQUIRE(test3.isMember(3));
 		}
 
+		// Ensure a union between {1, 2, 3}
+		// and {3, 4, 5} results in 
+		// {1, 2, 3, 4, 5} and has no effect
+		// on existing trees.
 		SECTION("union second tree test") {
 			auto test3 = test.Union(test2);
 			REQUIRE(test3.isMember(1));
@@ -51,21 +67,31 @@ TEST_CASE("Set Test operations") {
 			REQUIRE_FALSE(test2.isMember(2));
 		}
 
+		// Ensure doing a union with an empty tree
+		// doesn't break.
 		SECTION("empty tree test") {
 			auto test3 = test.Union(Set<int>());
+			auto test4 = Set<int>();
+			test4.Union(Set<int>());
 			REQUIRE(test3.isMember(1));
 			REQUIRE(test3.isMember(2));
 			REQUIRE(test3.isMember(3));
 		}
 	}
-
+	
 	SECTION("Intersection tests") {
-		auto test3 = test.intersection(test2);
-		REQUIRE(test3.isMember(3));
-		REQUIRE_FALSE(test3.isMember(1));
-		REQUIRE_FALSE(test3.isMember(2));
-		REQUIRE_FALSE(test3.isMember(4));
-		REQUIRE_FALSE(test3.isMember(5));
+		// Basic intersection test
+		// Ensure intersection between
+		// {1, 2, 3} and {3, 4, 5}
+		// results in {3}
+		SECTION("Basic intersection") {
+			auto test3 = test.intersection(test2);
+			REQUIRE(test3.isMember(3));
+			REQUIRE_FALSE(test3.isMember(1));
+			REQUIRE_FALSE(test3.isMember(2));
+			REQUIRE_FALSE(test3.isMember(4));
+			REQUIRE_FALSE(test3.isMember(5));
+		}
 	}
 }
 
