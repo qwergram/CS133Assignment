@@ -101,6 +101,18 @@ TEST_CASE("Set Test operations") {
 			auto test4 = Set<int>();
 			auto test5 = test3.intersection(test4);
 		}
+
+		// Ensure intersectiosn between two sets with
+		// no identical elements returns empty tree
+		SECTION("No intersection") {
+			auto test3 = Set<int>();
+			test3.insert(1);
+			auto test4 = Set<int>();
+			test4.insert(0);
+			auto test5 = test3.intersection(test4);
+			REQUIRE_FALSE(test5.isMember(0));
+			REQUIRE_FALSE(test5.isMember(1));
+		}
 	}
 }
 
