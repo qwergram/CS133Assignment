@@ -14,9 +14,9 @@ namespace NP_SET
 		using avl<T>::avl;
 		bool insert(T d) { return avl<T>::insert(d, this->root); }
 		// print methods
-		void print(ostream& out)const { print(root, out); }
+		void print(ostream& out)const { this->print(this->root, out); }
 		void print(node<T>* cur, ostream& out) const;
-		void printXlevel(ostream& out) const { printXlevel(root, out); }
+		void printXlevel(ostream& out) const { this->printXlevel(this->root, out); }
 		void printXlevel(node<T>* cur, ostream& out) const;
 
 		bool remove(T target);
@@ -56,8 +56,16 @@ namespace NP_SET
 	inline Set<T> Set<T>::intersection(Set<T> rhs)
 	{
 		auto newTree = Set<T>();
+		node<T> * cursor = this->getroot();
 
-		
+		while (true) {
+			if (rhs.isMember(cursor)) {
+				newTree.insert(cursor);
+			}
+
+
+		}
+		return newTree;
 	}
 
 }
