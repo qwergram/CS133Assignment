@@ -217,6 +217,7 @@ TEST_CASE("Breadth Traversal") {
 		REQUIRE(iterator.next().value() == 70);
 		REQUIRE(iterator.next().value() == 80);
 		REQUIRE(iterator.next().value() == 150);
+		REQUIRE_THROWS_WITH(iterator.next(), "Reached end of tree");
 	}
 
 	SECTION("getLast iteration tests") {
@@ -250,6 +251,7 @@ TEST_CASE("Breadth Traversal") {
 		REQUIRE(iterator.getLast().value() == 80);
 		iterator.next();
 		REQUIRE(iterator.getLast().value() == 150);
+		REQUIRE_THROWS_WITH(iterator.next(), "Reached end of tree");
 	}
 
 }
