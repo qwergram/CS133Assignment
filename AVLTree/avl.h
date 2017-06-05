@@ -57,39 +57,38 @@ namespace NP_AVL
 	};
 
 	//--------------------------------------------------------------------
-	// Title: 
-	// Description: 
-	// Called By: 
-	// Calls: 
-	// Parameters: 
-	// Throws:
-	// History Log: https://github.com/qwergram/CS133Assignment/blame/project3/AVLTree/
+	// Title: AVL::insert
+	// Description: insert data at node target and rebalance
+	// Called By: drivers
+	// Calls: isempty, insert, node constructor
+	// Parameters: data to insert, node target to insert into
+	// History Log: https://github.com/qwergram/CS133Assignment/blame/project3/AVLTree/avl.h
 	// Test Plan: https://travis-ci.org/qwergram/CS133Assignment/
 	//--------------------------------------------------------------------
 	template<class T>
-	inline bool avl<T>::insert(T d, Node<T>* &cur) {
-		if (cur == nullptr)
+	inline bool avl<T>::insert(T data, Node<T>* &target) {
+		if (target == nullptr)
 		{
-			cur = new Node<T>(d);
+			target = new Node<T>(data);
 			if (this->isempty())
-				this->root = cur;
+				this->root = target;
 			return true;
 		}
-		if (d < cur->value())
-			insert(d, cur->left);
-		else if (d > cur->value())
-			insert(d, cur->right);
+		if (data < target->value())
+			insert(data, target->left);
+		else if (data > target->value())
+			insert(data, target->right);
 		else
 			return false;
 		if (this->root != nullptr)
 			this->root->setHeight();
-		rebalance(cur);
+		rebalance(target);
 		return true;
 	}
 
 	//--------------------------------------------------------------------
-	// Title: 
-	// Description: 
+	// Title: AVL::popFirstOf
+	// Description: removes item 
 	// Called By: 
 	// Calls: 
 	// Parameters: 
@@ -98,17 +97,17 @@ namespace NP_AVL
 	// Test Plan: https://travis-ci.org/qwergram/CS133Assignment/
 	//--------------------------------------------------------------------
 	template<class T>
-	inline T avl<T>::popFirstOf(const T & d, Node<T>*& np)
+	inline T avl<T>::popFirstOf(const T & data, Node<T>*& target)
 	{
 		T val = (T)0;
-		if (np != nullptr) {
-			if (np->value() == d)
-				val = this->popNode(np);
-			else if (d < np->value())
-				val = this->popFirstOf(d, np->left);
+		if (target != nullptr) {
+			if (target->value() == data)
+				val = this->popNode(target);
+			else if (data < target->value())
+				val = this->popFirstOf(data, target->left);
 			else
-				val = this->popFirstOf(d, np->right);
-			rebalance(np);
+				val = this->popFirstOf(data, target->right);
+			rebalance(target);
 		} else {
 			throw invalid_argument("Requested deleted item not found");
 		}
