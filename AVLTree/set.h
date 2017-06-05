@@ -103,6 +103,14 @@ namespace NP_SET
 	inline Set<T> Set<T>::intersection(Set<T> rhs)
 	{
 		auto newTree = Set<T>();
+		// Dear Future Norton:
+		// The following line of code can be explained here:
+		// https://travis-ci.org/qwergram/CS133Assignment/builds/239750741#L309
+		// https://travis-ci.org/qwergram/CS133Assignment/builds/239752012
+		// Also here:
+		// https://github.com/qwergram/CS133Assignment/commit/8602ca33fc8357960ca269d0aa0aaf31b6bd5925
+		// Much love,
+		// Past Norton.
 		auto lhsIterator = typename Set<T>::BFIterator(*this);
 
 		while (!lhsIterator.endOfTree()) {
