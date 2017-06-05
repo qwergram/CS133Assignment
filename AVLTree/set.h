@@ -166,13 +166,13 @@ namespace NP_SET
 	}
 
 	//--------------------------------------------------------------------
-	// Title: 
-	// Description: 
-	// Called By: 
-	// Calls: 
-	// Parameters: 
-	// Returns: 
-	// Throws:
+	// Title: Set::intersection
+	// Description: returns mathematical intersection with this tree
+	//				and another tree.
+	// Called By: driver
+	// Calls: iterator constructor, iterator::next, insert
+	// Parameters: right hand side tree to intersect with
+	// Returns: new tree with items that intersect
 	// History Log: https://github.com/qwergram/CS133Assignment/blame/project3/AVLTree/set.h
 	// Test Plan: https://travis-ci.org/qwergram/CS133Assignment/
 	//--------------------------------------------------------------------
