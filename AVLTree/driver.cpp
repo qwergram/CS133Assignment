@@ -190,6 +190,10 @@ TEST_CASE("Tree operation Overloads") {
 
 }
 
+TEST_CASE("Traversals") {
+
+}
+
 TEST_CASE("Creating Large Trees") {
 	avl<int> test = avl<int>();
 	for (int num : {
