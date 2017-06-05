@@ -121,14 +121,17 @@ namespace NP_BST
 				oldQueue.push(*tree.getroot());
 			};
 			const node<T> next() {
-				node<T> lastNode = oldQueue.front();
-				oldQueue.pop();
-				if (lastNode.left != nullptr)
-					oldQueue.push(*lastNode.left);
-				if (lastNode.right != nullptr)
-					oldQueue.push(*lastNode.right);
-				this->lastPop = lastNode;
-				return lastNode;
+				if (!oldQueue.empty()) {
+					node<T> lastNode = oldQueue.front();
+					oldQueue.pop();
+					if (lastNode.left != nullptr)
+						oldQueue.push(*lastNode.left);
+					if (lastNode.right != nullptr)
+						oldQueue.push(*lastNode.right);
+					this->lastPop = lastNode;
+					return lastNode;
+				}
+				throw out_of_range("Reached end of tree");
 			}
 			const node<T> getLast() {
 				return this->lastPop;
