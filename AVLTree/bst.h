@@ -117,21 +117,27 @@ namespace NP_BST
 	public:
 		class BFIterator {
 		public:
-			iterator(bst<T> tree) : oldQueue(tree.getroot()) {};
+			BFIterator(bst<T> & tree) {
+				oldQueue.push(*tree.getroot());
+			};
 			const node<T> next() {
-				node<T> lastNode = oldQueue.pop();
-				if (lastNode->left != nullptr)
-					oldQueue.push(lastNode->left);
-				if (lastNode->right != nullptr)
-					oldQueue.push(lastNode->right);
+				node<T> lastNode = oldQueue.front();
+				oldQueue.pop();
+				if (lastNode.left != nullptr)
+					oldQueue.push(*lastNode.left);
+				if (lastNode.right != nullptr)
+					oldQueue.push(*lastNode.right);
 				this->lastPop = lastNode;
 				return lastNode;
 			}
+			const node<T> getLast() {
+				return this->lastPop;
+			}
 			const T operator * () {
-				return this->lastPop->value();
+				return this->lastPop.value();
 			}
 		protected:
-			queue<node<T>> oldQueue;
+			queue<node<T>> oldQueue = queue<node<T>>();
 			node<T> lastPop;
 		};
 
