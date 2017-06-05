@@ -79,8 +79,9 @@ TEST_CASE("Set Test operations") {
 		}
 	}
 	
+	// Basic intersection test
 	SECTION("Intersection tests") {
-		// Basic intersection test
+		
 		// Ensure intersection between
 		// {1, 2, 3} and {3, 4, 5}
 		// results in {3}
@@ -91,6 +92,14 @@ TEST_CASE("Set Test operations") {
 			REQUIRE_FALSE(test3.isMember(2));
 			REQUIRE_FALSE(test3.isMember(4));
 			REQUIRE_FALSE(test3.isMember(5));
+		}
+
+		// Ensure that calling intersection on
+		// empty trees doesn't crash.
+		SECTION("Empty intersection") {
+			auto test3 = Set<int>();
+			auto test4 = Set<int>();
+			auto test5 = test3.intersection(test4);
 		}
 	}
 }
