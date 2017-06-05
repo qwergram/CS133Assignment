@@ -97,7 +97,7 @@ namespace NP_AVL
 	// Parameters: data to remove, target to remove data from
 	// Returns: data removed from tree on success and T(0) otherwise
 	// Throws: invalid_argument if data not found
-	// History Log: https://github.com/qwergram/CS133Assignment/blame/project3/AVLTree/
+	// History Log: https://github.com/qwergram/CS133Assignment/blame/project3/AVLTree/avl.h
 	// Test Plan: https://travis-ci.org/qwergram/CS133Assignment/
 	//--------------------------------------------------------------------
 	template<class T>
@@ -125,7 +125,7 @@ namespace NP_AVL
 	// Calls: node copy constructor
 	// Parameters: target to rotate
 	// Returns: the new target
-	// History Log: https://github.com/qwergram/CS133Assignment/blame/project3/AVLTree/
+	// History Log: https://github.com/qwergram/CS133Assignment/blame/project3/AVLTree/avl.h
 	// Test Plan: https://travis-ci.org/qwergram/CS133Assignment/
 	//--------------------------------------------------------------------
 	template<class T>
@@ -144,7 +144,7 @@ namespace NP_AVL
 	// Calls: node copy constructor
 	// Parameters: target to rotate
 	// Returns: the new target
-	// History Log: https://github.com/qwergram/CS133Assignment/blame/project3/AVLTree/
+	// History Log: https://github.com/qwergram/CS133Assignment/blame/project3/AVLTree/avl.h
 	// Test Plan: https://travis-ci.org/qwergram/CS133Assignment/
 	//--------------------------------------------------------------------
 	template<class T>
@@ -164,7 +164,7 @@ namespace NP_AVL
 	// Calls: node copy constructor, rotateLeft
 	// Parameters: target to rotate
 	// Returns: the new target
-	// History Log: https://github.com/qwergram/CS133Assignment/blame/project3/AVLTree/
+	// History Log: https://github.com/qwergram/CS133Assignment/blame/project3/AVLTree/avl.h
 	// Test Plan: https://travis-ci.org/qwergram/CS133Assignment/
 	//--------------------------------------------------------------------
 	template<class T>
@@ -183,7 +183,7 @@ namespace NP_AVL
 	// Calls: node copy constructor, rotateRight
 	// Parameters: target to rotate
 	// Returns: the new target
-	// History Log: https://github.com/qwergram/CS133Assignment/blame/project3/AVLTree/
+	// History Log: https://github.com/qwergram/CS133Assignment/blame/project3/AVLTree/avl.h
 	// Test Plan: https://travis-ci.org/qwergram/CS133Assignment/
 	//--------------------------------------------------------------------
 	template<class T>
@@ -196,14 +196,13 @@ namespace NP_AVL
 	}
 
 	//--------------------------------------------------------------------
-	// Title: 
-	// Description: 
-	// Called By: 
-	// Calls: 
-	// Parameters: 
-	// Returns: 
-	// Throws:
-	// History Log: https://github.com/qwergram/CS133Assignment/blame/project3/AVLTree/
+	// Title: AVL::rebalance
+	// Description: rebalance the target (not recursive)
+	// Called By: insert, popFirstOf
+	// Calls: getHeightDifference, all rotates
+	// Parameters: target node to rotate
+	// Returns: target after balance and rotations
+	// History Log: https://github.com/qwergram/CS133Assignment/blame/project3/AVLTree/avl.h
 	// Test Plan: https://travis-ci.org/qwergram/CS133Assignment/
 	//--------------------------------------------------------------------
 	template<class T>
@@ -236,7 +235,7 @@ namespace NP_AVL
 	// Parameters: 
 	// Returns: 
 	// Throws:
-	// History Log: https://github.com/qwergram/CS133Assignment/blame/project3/AVLTree/
+	// History Log: https://github.com/qwergram/CS133Assignment/blame/project3/AVLTree/avl.h
 	// Test Plan: https://travis-ci.org/qwergram/CS133Assignment/
 	//--------------------------------------------------------------------
 	template<class T>
