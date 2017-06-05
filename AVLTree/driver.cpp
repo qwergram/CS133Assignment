@@ -50,6 +50,13 @@ TEST_CASE("Set Test operations") {
 			REQUIRE_FALSE(test2.isMember(1));
 			REQUIRE_FALSE(test2.isMember(2));
 		}
+
+		SECTION("empty tree test") {
+			auto test3 = test.Union(Set<int>());
+			REQUIRE(test3.isMember(1));
+			REQUIRE(test3.isMember(2));
+			REQUIRE(test3.isMember(3));
+		}
 	}
 
 	SECTION("Intersection tests") {
