@@ -25,7 +25,8 @@ namespace NP_SET
 		Set<T> intersection(Set<T> rhs);
 
 		~Set() { this->delTree(); }
-
+	
+	protected:
 		node<T>* &getroot() { return this->root; }
 	};
 
@@ -55,7 +56,8 @@ namespace NP_SET
 	inline Set<T> Set<T>::intersection(Set<T> rhs)
 	{
 		auto newTree = Set<T>();
-		return Set<T>();
+
+		
 	}
 
 }
