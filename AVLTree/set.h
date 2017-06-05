@@ -1,4 +1,4 @@
-#ifndef SET_H
+﻿#ifndef SET_H
 #define SET_H
 //-----------------------------------------------------------------------------
 // Title: 
@@ -14,42 +14,18 @@
 //		Software: MS Windows 10 for execution;
 //		Compiles under Microsoft Visual C++.Net 2017
 // Classes:
-//		class Node<T>:
-//			A node containing a value, with two pointers
-//			to a left and right child. Also holds a height
-//			attribute.
-//		
-//		class Bst<T>:
-//	!NEW!	Public Sub Classes:
-//	!NEW!		BFIterator
-//	!NEW!			Constructor(tree) -- creates a BF traversal iterator of given tree
-//	!NEW!			next() -- returns the next node in BF traversal
-//	!NEW!			endOfTree() -- returns True if BFT has reached the end
-//	!NEW!			getLast() -- retrieve the last thing returned by next
+//		class set<T> (protected inheritance from avl)
 //			Public Methods:
-//				Constructors
-//				getroot() -- used for retrieving root node
-//				operator = overload -- used for reassigning trees
-//				operator += overload -- used for adding trees with syntactic sugars
-//					(can be used to add another T or another Bst<T>)
-//				operator + overload -- used for adding trees with syntactic sugars
-//				isempty() -- returns true of the tree contains no items
-//	!NEW!		contains(T item) -- returns true if item is in tree
-//				insert(T item) -- inserts item into tree
-//				delTree() -- deletes entire tree
-//				print() -- "pretty" prints the tree up to 7 layers
-//				print ... () -- related methods for print
-//				popNode(Node<T> *& t) -- pop the node t from the tree
-//				popLow(Node<T> *& t) -- pop the leftmost child of node t
-//				popHigh(Node<T> *& t) -- pop the rightmost child of node t
-//				getHeight() -- get height of the tree
-//				setHeight() -- recursively set the height attribute of each node.
-//				setLevel -- related method for print
-//				getNumberOfNodes -- get number of nodes in tree
-//				destructor -- calls delTree
-//			Protected Attributes:
-//				Node<T> * root -- the root of the tree
-//				Node<T> ** parentptr -- holding pointer needed by some functions
+//				Inheritance of all AVL Constructors
+//				print ... () -- synonymous to BST::print ... 
+//				remove() -- synonymous to AVL::popFirstOf
+//				insert() -- synonymous to AVL::insert
+//				isMember() -- synonymous to BST::contains
+//				Union() -- return a new tree with this tree ∪ new tree
+//				intersection() -- return a new tree with this tree ∩ new tree
+//				destructor -- synonymous to BST::destructors
+//			Protected Methods:
+//				getroot() -- synonymous to BST::getroot
 //				
 // History Log:
 //		revised June, 2017
@@ -86,71 +62,65 @@ namespace NP_SET
 	};
 
 	//--------------------------------------------------------------------
-	// Title: 
-	// Description: 
-	// Called By: 
-	// Calls: 
-	// Parameters: 
-	// Returns: 
-	// Throws:
-	// History Log: https://github.com/qwergram/CS133Assignment/blame/project3/AVLTree/
+	// Title: Set::print
+	// Description: recursively prints out the tree inorder
+	// Calls: print (self)
+	// Parameters: the target node to print and stream to print to
+	// History Log: https://github.com/qwergram/CS133Assignment/blame/project3/AVLTree/set.h
 	// Test Plan: https://travis-ci.org/qwergram/CS133Assignment/
 	//--------------------------------------------------------------------
 	template<class T>
-	inline void Set<T>::print(Node<T>* cur, ostream & out) const
+	inline void Set<T>::print(Node<T>* target, ostream & sout) const
 	{
-		if (cur != nullptr)
+		if (target != nullptr)
 		{
-			print(cur->left, out);
-			out << cur->value() << "(" << cur->getHeight() << ") ";
-			print(cur->right, out);
+			print(target->left, sout);
+			sout << target->value() << "(" << target->getHeight() << ") ";
+			print(target->right, sout);
 		}
 	}
 
 	//--------------------------------------------------------------------
-	// Title: 
-	// Description: 
-	// Called By: 
-	// Calls: 
-	// Parameters: 
-	// Returns: 
-	// Throws:
-	// History Log: https://github.com/qwergram/CS133Assignment/blame/project3/AVLTree/
+	// Title: Set::printXLevel
+	// Description: prints out the tree in level order
+	// Calls: getHeight
+	// Parameters: target node to start with and stream to print to
+	// History Log: https://github.com/qwergram/CS133Assignment/blame/project3/AVLTree/set.h
 	// Test Plan: https://travis-ci.org/qwergram/CS133Assignment/
 	//--------------------------------------------------------------------
 	template<class T>
-	inline void Set<T>::printXlevel(Node<T>* cur, ostream & out) const
+	inline void Set<T>::printXlevel(Node<T>* target, ostream & sout) const
 	{
-		if (cur == nullptr)
+		if (target == nullptr)
 			return;
 		const size_t SPACER = 64;
 		const T NO_NODE = static_cast<T>(-1);
 		const int PRINT_MAX = 6;
-		vector<vector<T>> treeVector(cur->getHeight());
+		vector<vector<T>> treeVector(target->getHeight());
 
-		for (int i = 0; i < cur->getHeight(); i++)
+		for (int i = 0; i < target->getHeight(); i++)
 		{
-			out << "level " << i + 1 << ": ";
+			sout << "level " << i + 1 << ": ";
 			if (i < PRINT_MAX)
 			{
 				int size = static_cast<int>(pow(2.0, i));
 				treeVector[i] = vector<T>(size, NO_NODE);
-				setLevel(cur, treeVector[i], i);
-				out << string(SPACER / (2 * size), ' ');
+				setLevel(target, treeVector[i], i);
+				sout << string(SPACER / (2 * size), ' ');
 				for (int j = 0; j < static_cast<int>(treeVector[i].size());
 					j++)
 				{
 					if (treeVector[i][j] != NO_NODE)
-						out << treeVector[i][j];
+						sout << treeVector[i][j];
 					else
-						out << ' ';
-					out << string(SPACER / size - 1, ' ');
+						sout << ' ';
+					sout << string(SPACER / size - 1, ' ');
 				}
 			}
 			else
-				out << "  . . .";
+				sout << "  . . .";
 
-			out << endl;
+			sout << endl;
 		}
 	}
 
@@ -162,7 +132,7 @@ namespace NP_SET
 	// Parameters: 
 	// Returns: 
 	// Throws:
-	// History Log: https://github.com/qwergram/CS133Assignment/blame/project3/AVLTree/
+	// History Log: https://github.com/qwergram/CS133Assignment/blame/project3/AVLTree/set.h
 	// Test Plan: https://travis-ci.org/qwergram/CS133Assignment/
 	//--------------------------------------------------------------------
 	template<class T>
@@ -185,7 +155,7 @@ namespace NP_SET
 	// Parameters: 
 	// Returns: 
 	// Throws:
-	// History Log: https://github.com/qwergram/CS133Assignment/blame/project3/AVLTree/
+	// History Log: https://github.com/qwergram/CS133Assignment/blame/project3/AVLTree/set.h
 	// Test Plan: https://travis-ci.org/qwergram/CS133Assignment/
 	//--------------------------------------------------------------------
 	template<class T>
@@ -204,7 +174,7 @@ namespace NP_SET
 	// Parameters: 
 	// Returns: 
 	// Throws:
-	// History Log: https://github.com/qwergram/CS133Assignment/blame/project3/AVLTree/
+	// History Log: https://github.com/qwergram/CS133Assignment/blame/project3/AVLTree/set.h
 	// Test Plan: https://travis-ci.org/qwergram/CS133Assignment/
 	//--------------------------------------------------------------------
 	template<class T>
