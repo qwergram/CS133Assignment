@@ -5,7 +5,7 @@ Param(
 
 clear;
 
-$code = Get-ChildItem $folder -Recurse | Where-Object { $_.extension -eq ".h" -or $_.extension -eq ".cpp" -or $_.extension -eq ".hpp" }
+$code = Get-ChildItem $folder -Recurse | Where-Object { $_.extension -eq ".h" -or $_.extension -eq ".cpp" }
 
 
 For ($i = 0; $i -lt $code.Length; $i++) {
