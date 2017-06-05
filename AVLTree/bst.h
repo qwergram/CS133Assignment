@@ -133,6 +133,9 @@ namespace NP_BST
 				}
 				throw out_of_range("Reached end of tree");
 			}
+			const bool endOfTree() {
+				return oldQueue.empty();
+			}
 			const node<T> getLast() {
 				return this->lastPop;
 			}
