@@ -53,7 +53,12 @@ TEST_CASE("Set Test operations") {
 	}
 
 	SECTION("Intersection tests") {
-
+		auto test3 = test.intersection(test2);
+		REQUIRE(test3.isMember(3));
+		REQUIRE_FALSE(test3.isMember(1));
+		REQUIRE_FALSE(test3.isMember(2));
+		REQUIRE_FALSE(test3.isMember(4));
+		REQUIRE_FALSE(test3.isMember(5));
 	}
 }
 
