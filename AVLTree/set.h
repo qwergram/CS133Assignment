@@ -35,6 +35,53 @@ namespace NP_SET
 	
 
 	template<class T>
+	inline void Set<T>::print(node<T>* cur, ostream & out) const
+	{
+		if (cur != nullptr)
+		{
+			print(cur->left, out);
+			out << cur->value() << "(" << cur->getHeight() << ") ";
+			print(cur->right, out);
+		}
+	}
+
+	template<class T>
+	inline void Set<T>::printXlevel(node<T>* cur, ostream & out) const
+	{
+		if (cur == nullptr)
+			return;
+		const size_t SPACER = 64;
+		const T NO_NODE = static_cast<T>(-1);
+		const int PRINT_MAX = 6;
+		vector<vector<T>> treeVector(cur->getHeight());
+
+		for (int i = 0; i < cur->getHeight(); i++)
+		{
+			out << "level " << i + 1 << ": ";
+			if (i < PRINT_MAX)
+			{
+				int size = static_cast<int>(pow(2.0, i));
+				treeVector[i] = vector<T>(size, NO_NODE);
+				setLevel(cur, treeVector[i], i);
+				out << string(SPACER / (2 * size), ' ');
+				for (int j = 0; j < static_cast<int>(treeVector[i].size());
+					j++)
+				{
+					if (treeVector[i][j] != NO_NODE)
+						out << treeVector[i][j];
+					else
+						out << ' ';
+					out << string(SPACER / size - 1, ' ');
+				}
+			}
+			else
+				out << "  . . .";
+
+			out << endl;
+		}
+	}
+
+	template<class T>
 	inline bool Set<T>::remove(T target)
 	{
 		try {
