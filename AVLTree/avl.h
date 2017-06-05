@@ -59,9 +59,12 @@ namespace NP_AVL
 	//--------------------------------------------------------------------
 	// Title: AVL::insert
 	// Description: insert data at node target and rebalance
+	//				will return false and refuse to insert if data
+	//				already in tree.
 	// Called By: drivers
-	// Calls: isempty, insert, node constructor
+	// Calls: isempty, insert, node constructor, rebalance
 	// Parameters: data to insert, node target to insert into
+	// Returns: true if insert succeeded
 	// History Log: https://github.com/qwergram/CS133Assignment/blame/project3/AVLTree/avl.h
 	// Test Plan: https://travis-ci.org/qwergram/CS133Assignment/
 	//--------------------------------------------------------------------
@@ -88,18 +91,19 @@ namespace NP_AVL
 
 	//--------------------------------------------------------------------
 	// Title: AVL::popFirstOf
-	// Description: removes item 
-	// Called By: 
-	// Calls: 
-	// Parameters: 
-	// Throws:
+	// Description: removes data specified from target node
+	// Called By: drivers
+	// Calls: popNode, popFirstOf, rebalance
+	// Parameters: data to remove, target to remove data from
+	// Returns: data removed from tree on success and T(0) otherwise
+	// Throws: invalid_argument if data not found
 	// History Log: https://github.com/qwergram/CS133Assignment/blame/project3/AVLTree/
 	// Test Plan: https://travis-ci.org/qwergram/CS133Assignment/
 	//--------------------------------------------------------------------
 	template<class T>
-	inline T avl<T>::popFirstOf(const T & data, Node<T>*& target)
+	inline T avl<T>::popFirstOf(const T & data, Node<T> *& target)
 	{
-		T val = (T)0;
+		T val = T(0);
 		if (target != nullptr) {
 			if (target->value() == data)
 				val = this->popNode(target);
