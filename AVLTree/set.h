@@ -125,13 +125,12 @@ namespace NP_SET
 	}
 
 	//--------------------------------------------------------------------
-	// Title: 
-	// Description: 
-	// Called By: 
-	// Calls: 
-	// Parameters: 
-	// Returns: 
-	// Throws:
+	// Title: Set::remove
+	// Description: removes target from tree
+	// Called By: driver
+	// Calls: popFirstOf
+	// Parameters: target to remove
+	// Returns: true on success
 	// History Log: https://github.com/qwergram/CS133Assignment/blame/project3/AVLTree/set.h
 	// Test Plan: https://travis-ci.org/qwergram/CS133Assignment/
 	//--------------------------------------------------------------------
