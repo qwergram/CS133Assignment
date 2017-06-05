@@ -199,9 +199,27 @@ TEST_CASE("Breadth Traversal") {
 		test.insert(num);
 	}
 
-	auto iterator = avl<int>::BFIterator();
+	auto iterator = avl<int>::BFIterator(test);
 	
 	SECTION("forward iteration tests") {
+		REQUIRE(iterator.next().value() == 50);
+		REQUIRE(iterator.next().value() == 25);
+		REQUIRE(iterator.next().value() == 75);
+		REQUIRE(iterator.next().value() == 15);
+		REQUIRE(iterator.next().value() == 35);
+		REQUIRE(iterator.next().value() == 60);
+		REQUIRE(iterator.next().value() == 100);
+		REQUIRE(iterator.next().value() == 10);
+		REQUIRE(iterator.next().value() == 17);
+		REQUIRE(iterator.next().value() == 30);
+		REQUIRE(iterator.next().value() == 45);
+		REQUIRE(iterator.next().value() == 55);
+		REQUIRE(iterator.next().value() == 70);
+		REQUIRE(iterator.next().value() == 80);
+		REQUIRE(iterator.next().value() == 150);
+	}
+
+	SECTION("getLast iteration tests") {
 
 	}
 
