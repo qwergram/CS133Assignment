@@ -163,7 +163,9 @@ namespace NP_BST
 		class BFIterator { // NEW CLASS
 		public:
 			BFIterator(Bst<T> & tree) {
-				oldQueue.push(*tree.getroot());
+				if (!tree.isempty()) {
+					oldQueue.push(*tree.getroot());
+				}
 			};
 			const Node<T> next();
 			const bool endOfTree() { return oldQueue.empty(); }
