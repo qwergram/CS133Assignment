@@ -149,6 +149,7 @@
     <ClInclude Include="avl.h" />
     <ClInclude Include="bst.h" />
     <ClInclude Include="catch.hpp" />
+    <ClInclude Include="set.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="avlTests.cpp" />

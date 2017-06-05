@@ -27,6 +27,9 @@
     <ClInclude Include="catch.hpp">
       <Filter>Test Files</Filter>
     </ClInclude>
+    <ClInclude Include="set.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="bstDriver.cpp">
