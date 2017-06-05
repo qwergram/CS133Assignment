@@ -199,7 +199,7 @@ namespace NP_AVL
 	// Title: AVL::rebalance
 	// Description: rebalance the target (not recursive)
 	// Called By: insert, popFirstOf
-	// Calls: getHeightDifference, all rotates
+	// Calls: getHeightDifference, all rotates, setHeight
 	// Parameters: target node to rotate
 	// Returns: target after balance and rotations
 	// History Log: https://github.com/qwergram/CS133Assignment/blame/project3/AVLTree/avl.h
@@ -228,13 +228,12 @@ namespace NP_AVL
 	}
 
 	//--------------------------------------------------------------------
-	// Title: 
-	// Description: 
-	// Called By: 
-	// Calls: 
-	// Parameters: 
-	// Returns: 
-	// Throws:
+	// Title: AVL::getHeightDifference
+	// Description: returns number representing balance of trees
+	// Called By: rebalance
+	// Calls: getHeight
+	// Parameters: target to check balance of
+	// Returns: positive number if left side heavier, negative number if right side heavier
 	// History Log: https://github.com/qwergram/CS133Assignment/blame/project3/AVLTree/avl.h
 	// Test Plan: https://travis-ci.org/qwergram/CS133Assignment/
 	//--------------------------------------------------------------------
