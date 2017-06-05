@@ -15,9 +15,9 @@ namespace NP_SET
 		bool insert(T d) { return avl<T>::insert(d, this->root); }
 		// print methods
 		void print(ostream& out)const { this->print(this->root, out); }
-		void print(node<T>* cur, ostream& out) const;
+		void print(Node<T>* cur, ostream& out) const;
 		void printXlevel(ostream& out) const { this->printXlevel(this->root, out); }
-		void printXlevel(node<T>* cur, ostream& out) const;
+		void printXlevel(Node<T>* cur, ostream& out) const;
 
 		bool remove(T target);
 		bool isMember(T target) { return this->contains(target); }
@@ -27,13 +27,13 @@ namespace NP_SET
 		~Set() { this->delTree(); }
 
 	protected:
-		node<T>* &getroot() { return this->root; }
+		Node<T>* &getroot() { return this->root; }
 	};
 
 	
 
 	template<class T>
-	inline void Set<T>::print(node<T>* cur, ostream & out) const
+	inline void Set<T>::print(Node<T>* cur, ostream & out) const
 	{
 		if (cur != nullptr)
 		{
@@ -44,7 +44,7 @@ namespace NP_SET
 	}
 
 	template<class T>
-	inline void Set<T>::printXlevel(node<T>* cur, ostream & out) const
+	inline void Set<T>::printXlevel(Node<T>* cur, ostream & out) const
 	{
 		if (cur == nullptr)
 			return;

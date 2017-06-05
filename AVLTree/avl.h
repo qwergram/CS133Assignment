@@ -7,29 +7,29 @@ using namespace NP_BST;
 namespace NP_AVL
 {
 	template<class T>
-	class avl : public bst<T>
+	class avl : public Bst<T>
 	{
 	public:
-		using bst<T>::bst;
+		using Bst<T>::Bst;
 		bool insert(T d) { return insert(d, this->root); }
-		bool insert(T d, node<T>* &cur);
+		bool insert(T d, Node<T>* &cur);
 		T popFirstOf(const T& d) { return popFirstOf(d, this->root); }
-		T popFirstOf(const T& d, node<T> *& np);
+		T popFirstOf(const T& d, Node<T> *& np);
 		~avl() { this->delTree(); }
 	protected:
-		node<T> * rotateRight(node<T> *nodeN);
-		node<T> * rotateLeft(node<T> *nodeN);
-		node<T> * rotateRightLeft(node<T> *nodeN);
-		node<T> * rotateLeftRight(node<T> *nodeN);
-		node<T> * rebalance(node<T> *& nodeN);
-		int getHeightDifference(const node<T> *const nodeN) const;
+		Node<T> * rotateRight(Node<T> *nodeN);
+		Node<T> * rotateLeft(Node<T> *nodeN);
+		Node<T> * rotateRightLeft(Node<T> *nodeN);
+		Node<T> * rotateLeftRight(Node<T> *nodeN);
+		Node<T> * rebalance(Node<T> *& nodeN);
+		int getHeightDifference(const Node<T> *const nodeN) const;
 	};
 
 	template<class T>
-	inline bool avl<T>::insert(T d, node<T>* &cur) {
+	inline bool avl<T>::insert(T d, Node<T>* &cur) {
 		if (cur == nullptr)
 		{
-			cur = new node<T>(d);
+			cur = new Node<T>(d);
 			if (this->isempty())
 				this->root = cur;
 			return true;
@@ -47,7 +47,7 @@ namespace NP_AVL
 	}
 
 	template<class T>
-	inline T avl<T>::popFirstOf(const T & d, node<T>*& np)
+	inline T avl<T>::popFirstOf(const T & d, Node<T>*& np)
 	{
 		T val = (T)0;
 		if (np != nullptr) {
@@ -65,18 +65,18 @@ namespace NP_AVL
 	}
 
 	template<class T>
-	inline node<T> * avl<T>::rotateRight(node<T>* target)
+	inline Node<T> * avl<T>::rotateRight(Node<T>* target)
 	{
-		node<T> * temp = target->right;
+		Node<T> * temp = target->right;
 		target->right = temp->left;
 		temp->left = target;
 		return temp;
 	}
 
 	template<class T>
-	inline node<T>* avl<T>::rotateLeft(node<T>* target)
+	inline Node<T>* avl<T>::rotateLeft(Node<T>* target)
 	{
-		node<T> * temp;
+		Node<T> * temp;
 		temp = target->left;
 		target->left = temp->right;
 		temp->right = target;
@@ -84,25 +84,25 @@ namespace NP_AVL
 	}
 
 	template<class T>
-	inline node<T>* avl<T>::rotateRightLeft(node<T>* target)
+	inline Node<T>* avl<T>::rotateRightLeft(Node<T>* target)
 	{
-		node<T> * temp;
+		Node<T> * temp;
 		temp = target->right;
 		target->right = rotateLeft(temp);
 		return rotateRight(target);
 	}
 
 	template<class T>
-	inline node<T>* avl<T>::rotateLeftRight(node<T>* target)
+	inline Node<T>* avl<T>::rotateLeftRight(Node<T>* target)
 	{
-		node<T> * temp;
+		Node<T> * temp;
 		temp = target->left;
 		target->left = rotateRight(temp);
 		return rotateLeft(target);
 	}
 
 	template<class T>
-	inline node<T>* avl<T>::rebalance(node<T> *& target)
+	inline Node<T>* avl<T>::rebalance(Node<T> *& target)
 	{
 		int bal_factor = getHeightDifference(target);
 		if (bal_factor > 1)
@@ -124,7 +124,7 @@ namespace NP_AVL
 	}
 
 	template<class T>
-	inline int avl<T>::getHeightDifference(const node<T> * const target) const
+	inline int avl<T>::getHeightDifference(const Node<T> * const target) const
 	{
 		if (target != nullptr) {
 			int left = 0;

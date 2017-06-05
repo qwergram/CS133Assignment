@@ -15,11 +15,11 @@ using namespace std;
 int main2(void)
 {
 	using NP_AVL::avl;
-	using NP_BST::node;
+	using NP_BST::Node;
 	try
 	{
 		avl<char> tree;
-		node<char>* marker = nullptr;
+		Node<char>* marker = nullptr;
 		char c;
 		cout << "enter some characters, followed by <enter>.\n";
 		do
@@ -35,7 +35,7 @@ int main2(void)
 
 		tree.printXlevel(cout);
 		//
-		bst<char> tree2 = tree; // test overloaded =
+		Bst<char> tree2 = tree; // test overloaded =
 		tree2 += tree; // test overloaded +
 		cout << "tree 1:" << endl;
 		cout << tree << " : " << tree.getNumberOfNodes()
