@@ -199,6 +199,5 @@ namespace NP_SET
 
 		return newTree;
 	}
-
 }
 #endif
