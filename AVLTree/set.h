@@ -26,7 +26,7 @@ namespace NP_SET
 
 		~Set() { this->delTree(); }
 
-		
+		node<T>* &getroot() { return this->root; }
 	};
 
 	
@@ -46,9 +46,16 @@ namespace NP_SET
 	template<class T>
 	inline Set<T> Set<T>::Union(Set<T> rhs)
 	{
-		auto newTree = Set<T>(this->getroot());
-		newTree += rhs;
+		auto newTree = Set<T>(*this);
+		newTree.addTree(rhs.getroot());
 		return newTree;
+	}
+
+	template<class T>
+	inline Set<T> Set<T>::intersection(Set<T> rhs)
+	{
+		auto newTree = Set<T>();
+		return Set<T>();
 	}
 
 }
