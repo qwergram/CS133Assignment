@@ -158,13 +158,12 @@ namespace NP_AVL
 	}
 
 	//--------------------------------------------------------------------
-	// Title: 
-	// Description: 
-	// Called By: 
-	// Calls: 
-	// Parameters:
-	// Returns: 
-	// Throws:
+	// Title: AVL::rotateRightLeft
+	// Description: rotate "against" heavy right side (zig zag motion)
+	// Called By: rebalance
+	// Calls: node copy constructor, rotateLeft
+	// Parameters: target to rotate
+	// Returns: the new target
 	// History Log: https://github.com/qwergram/CS133Assignment/blame/project3/AVLTree/
 	// Test Plan: https://travis-ci.org/qwergram/CS133Assignment/
 	//--------------------------------------------------------------------
@@ -178,13 +177,12 @@ namespace NP_AVL
 	}
 
 	//--------------------------------------------------------------------
-	// Title: 
-	// Description: 
-	// Called By: 
-	// Calls: 
-	// Parameters: 
-	// Returns: 
-	// Throws:
+	// Title: AVL::rotateLeftRight
+	// Description: rotate "against" heavy leftt side (zig zag motion)
+	// Called By: rebalance
+	// Calls: node copy constructor, rotateRight
+	// Parameters: target to rotate
+	// Returns: the new target
 	// History Log: https://github.com/qwergram/CS133Assignment/blame/project3/AVLTree/
 	// Test Plan: https://travis-ci.org/qwergram/CS133Assignment/
 	//--------------------------------------------------------------------
