@@ -1,9 +1,40 @@
 #ifndef AVL_H
 #define AVL_H
+//-----------------------------------------------------------------------------
+// Title: AVL Tree
+// Description: A self-balancing AVL tree
+// Meta: https://en.wikipedia.org/wiki/Tree_rotation
+// Programmer: 
+//		Written by Norton Pengra
+// Date: June 2017
+// Version: 1.10
+// Environment: 
+//      Intel i7
+//		Software: MS Windows 10 for execution;
+//		Compiles under Microsoft Visual C++.Net 2017
+// Classes:
+//		class avl<T> (public inheritance from bst)
+//			Public Methods:
+//				Inheritance of all BST Constructors
+//				insert() -- synonymous to BST::insert
+//				popFirstOf -- synonymous to BST::popFirstOf
+//				destructor -- synonymous to BST::destructors
+//			Protected Methods:
+//				rotateRight -- fix right heavy imbalance
+//				rotateLeft -- fix left heavy imbalance
+//				rotateRightLeft -- fix right heavy imbalance
+//				rotateLeftRight -- fix left heavy imbalance
+//				getHeightDifference -- find imbalance and on what side
+//				
+// History Log:
+//		https://github.com/qwergram/CS133Assignment/commits/project3
+//--------------------------------------------------------------------
 
 #include "bst.h"
+
 using namespace std;
 using namespace NP_BST;
+
 namespace NP_AVL
 {
 	template<class T>
@@ -25,6 +56,16 @@ namespace NP_AVL
 		int getHeightDifference(const Node<T> *const nodeN) const;
 	};
 
+	//--------------------------------------------------------------------
+	// Title: 
+	// Description: 
+	// Called By: 
+	// Calls: 
+	// Parameters: 
+	// Throws:
+	// History Log: https://github.com/qwergram/CS133Assignment/blame/project3/AVLTree/
+	// Test Plan: https://travis-ci.org/qwergram/CS133Assignment/
+	//--------------------------------------------------------------------
 	template<class T>
 	inline bool avl<T>::insert(T d, Node<T>* &cur) {
 		if (cur == nullptr)
@@ -46,6 +87,16 @@ namespace NP_AVL
 		return true;
 	}
 
+	//--------------------------------------------------------------------
+	// Title: 
+	// Description: 
+	// Called By: 
+	// Calls: 
+	// Parameters: 
+	// Throws:
+	// History Log: https://github.com/qwergram/CS133Assignment/blame/project3/AVLTree/
+	// Test Plan: https://travis-ci.org/qwergram/CS133Assignment/
+	//--------------------------------------------------------------------
 	template<class T>
 	inline T avl<T>::popFirstOf(const T & d, Node<T>*& np)
 	{
@@ -64,6 +115,16 @@ namespace NP_AVL
 		return val;
 	}
 
+	//--------------------------------------------------------------------
+	// Title: 
+	// Description: 
+	// Called By: 
+	// Calls: 
+	// Parameters: 
+	// Throws:
+	// History Log: https://github.com/qwergram/CS133Assignment/blame/project3/AVLTree/
+	// Test Plan: https://travis-ci.org/qwergram/CS133Assignment/
+	//--------------------------------------------------------------------
 	template<class T>
 	inline Node<T> * avl<T>::rotateRight(Node<T>* target)
 	{
@@ -73,6 +134,16 @@ namespace NP_AVL
 		return temp;
 	}
 
+	//--------------------------------------------------------------------
+	// Title: 
+	// Description: 
+	// Called By: 
+	// Calls: 
+	// Parameters: 
+	// Throws:
+	// History Log: https://github.com/qwergram/CS133Assignment/blame/project3/AVLTree/
+	// Test Plan: https://travis-ci.org/qwergram/CS133Assignment/
+	//--------------------------------------------------------------------
 	template<class T>
 	inline Node<T>* avl<T>::rotateLeft(Node<T>* target)
 	{
@@ -83,6 +154,16 @@ namespace NP_AVL
 		return temp;
 	}
 
+	//--------------------------------------------------------------------
+	// Title: 
+	// Description: 
+	// Called By: 
+	// Calls: 
+	// Parameters: 
+	// Throws:
+	// History Log: https://github.com/qwergram/CS133Assignment/blame/project3/AVLTree/
+	// Test Plan: https://travis-ci.org/qwergram/CS133Assignment/
+	//--------------------------------------------------------------------
 	template<class T>
 	inline Node<T>* avl<T>::rotateRightLeft(Node<T>* target)
 	{
@@ -92,6 +173,16 @@ namespace NP_AVL
 		return rotateRight(target);
 	}
 
+	//--------------------------------------------------------------------
+	// Title: 
+	// Description: 
+	// Called By: 
+	// Calls: 
+	// Parameters: 
+	// Throws:
+	// History Log: https://github.com/qwergram/CS133Assignment/blame/project3/AVLTree/
+	// Test Plan: https://travis-ci.org/qwergram/CS133Assignment/
+	//--------------------------------------------------------------------
 	template<class T>
 	inline Node<T>* avl<T>::rotateLeftRight(Node<T>* target)
 	{
@@ -101,6 +192,16 @@ namespace NP_AVL
 		return rotateLeft(target);
 	}
 
+	//--------------------------------------------------------------------
+	// Title: 
+	// Description: 
+	// Called By: 
+	// Calls: 
+	// Parameters: 
+	// Throws:
+	// History Log: https://github.com/qwergram/CS133Assignment/blame/project3/AVLTree/
+	// Test Plan: https://travis-ci.org/qwergram/CS133Assignment/
+	//--------------------------------------------------------------------
 	template<class T>
 	inline Node<T>* avl<T>::rebalance(Node<T> *& target)
 	{
@@ -123,6 +224,16 @@ namespace NP_AVL
 		return target;
 	}
 
+	//--------------------------------------------------------------------
+	// Title: 
+	// Description: 
+	// Called By: 
+	// Calls: 
+	// Parameters: 
+	// Throws:
+	// History Log: https://github.com/qwergram/CS133Assignment/blame/project3/AVLTree/
+	// Test Plan: https://travis-ci.org/qwergram/CS133Assignment/
+	//--------------------------------------------------------------------
 	template<class T>
 	inline int avl<T>::getHeightDifference(const Node<T> * const target) const
 	{
@@ -137,5 +248,5 @@ namespace NP_AVL
 		}
 		return 0;
 	}
-}
+} // /NP_AVL
 #endif
