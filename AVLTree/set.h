@@ -103,7 +103,7 @@ namespace NP_SET
 	inline Set<T> Set<T>::intersection(Set<T> rhs)
 	{
 		auto newTree = Set<T>();
-		auto lhsIterator = BFIterator(*this);
+		auto lhsIterator = Set<T>::BFIterator(*this);
 
 		while (!lhsIterator.endOfTree()) {
 			auto thisNode = lhsIterator.next().value();
