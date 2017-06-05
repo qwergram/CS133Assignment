@@ -152,7 +152,7 @@
     <ClInclude Include="set.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="avlTests.cpp" />
+    <ClCompile Include="driver.cpp" />
     <ClCompile Include="bstDriver.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

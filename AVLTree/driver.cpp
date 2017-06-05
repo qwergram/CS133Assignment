@@ -1,9 +1,61 @@
 #define CATCH_CONFIG_MAIN
 #include "catch.hpp"
 #include "avl.h"
+#include "set.h"
 
 using namespace NP_AVL;
+using namespace NP_SET;
 
+TEST_CASE("Set Test operations") {
+	Set<int> test = Set<int>();
+	test.insert(1);
+	test.insert(2);
+	test.insert(3);
+
+	Set<int> test2 = Set<int>();
+	test2.insert(3);
+	test2.insert(4);
+	test2.insert(5);
+
+	SECTION("Set isMember tests") {
+		REQUIRE(test.isMember(1));
+		REQUIRE(test.isMember(2));
+		REQUIRE(test.isMember(3));
+		REQUIRE_FALSE(test.isMember(4));
+	}
+
+	SECTION("Set isMember/Insertion tests") {
+		test.insert(4);
+		REQUIRE(test.isMember(4));
+	}
+
+	SECTION("union tests") {
+		SECTION("union self test") {
+			auto test3 = test.Union(test);
+			REQUIRE(test3.isMember(1));
+			REQUIRE(test3.isMember(2));
+			REQUIRE(test3.isMember(3));
+		}
+
+		SECTION("union second tree test") {
+			auto test3 = test.Union(test2);
+			REQUIRE(test3.isMember(1));
+			REQUIRE(test3.isMember(2));
+			REQUIRE(test3.isMember(3));
+			REQUIRE(test3.isMember(4));
+			REQUIRE(test3.isMember(5));
+
+			REQUIRE_FALSE(test.isMember(4));
+			REQUIRE_FALSE(test.isMember(5));
+			REQUIRE_FALSE(test2.isMember(1));
+			REQUIRE_FALSE(test2.isMember(2));
+		}
+	}
+
+	SECTION("Intersection tests") {
+
+	}
+}
 
 TEST_CASE("Tree operation Overloads") {
 

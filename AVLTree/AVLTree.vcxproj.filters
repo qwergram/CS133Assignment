@@ -35,7 +35,7 @@
     <ClCompile Include="bstDriver.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="avlTests.cpp">
+    <ClCompile Include="driver.cpp">
       <Filter>Test Files</Filter>
     </ClCompile>
   </ItemGroup>
