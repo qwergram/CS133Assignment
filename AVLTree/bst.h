@@ -160,30 +160,14 @@ namespace NP_BST
 	class Bst
 	{
 	public:
-		class BFIterator {
+		class BFIterator { // NEW
 		public:
 			BFIterator(Bst<T> & tree) {
 				oldQueue.push(*tree.getroot());
 			};
-			const Node<T> next() {
-				if (!oldQueue.empty()) {
-					Node<T> lastNode = oldQueue.front();
-					oldQueue.pop();
-					if (lastNode.left != nullptr)
-						oldQueue.push(*lastNode.left);
-					if (lastNode.right != nullptr)
-						oldQueue.push(*lastNode.right);
-					this->lastPop = lastNode;
-					return lastNode;
-				}
-				throw out_of_range("Reached end of tree");
-			}
-			const bool endOfTree() {
-				return oldQueue.empty();
-			}
-			const Node<T> getLast() {
-				return this->lastPop;
-			}
+			const Node<T> next();
+			const bool endOfTree() { return oldQueue.empty(); }
+			const Node<T> getLast() { return this->lastPop; }
 		protected:
 			queue<Node<T>> oldQueue = queue<Node<T>>();
 			Node<T> lastPop;
@@ -206,7 +190,7 @@ namespace NP_BST
 			Bst<T> temp = *this;
 			temp.insert(d, temp.root); return temp;
 		}
-		bool contains(const T& item);
+		bool contains(const T& item); // NEW
 		void findFirstOf(const T& d, Node<T>* &np, Node<T>* &match);
 		bool insert(T d);
 		void delTree() { delTree(root); }
@@ -568,6 +552,21 @@ namespace NP_BST
 	{
 		tree.print(tree.getroot(), out);
 		return out;
+	}
+
+	template<class T>
+	inline const Node<T> Bst<T>::BFIterator::next() {
+		if (!oldQueue.empty()) {
+			Node<T> lastNode = oldQueue.front();
+			oldQueue.pop();
+			if (lastNode.left != nullptr)
+				oldQueue.push(*lastNode.left);
+			if (lastNode.right != nullptr)
+				oldQueue.push(*lastNode.right);
+			this->lastPop = lastNode;
+			return lastNode;
+		}
+		throw out_of_range("Reached end of tree");
 	}
 
 } // end namespace PB_BST
