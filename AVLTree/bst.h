@@ -20,6 +20,7 @@
 #include <vector>
 #include <cmath>
 #include <string>
+#include <queue>
 
 using namespace std;
 
@@ -114,7 +115,25 @@ namespace NP_BST
 	class bst
 	{
 	public:
-		class iterator;
+		class BFIterator {
+		public:
+			iterator(bst<T> tree) : oldQueue(tree.getroot()) {};
+			const node<T> next() {
+				node<T> lastNode = oldQueue.pop();
+				if (lastNode->left != nullptr)
+					oldQueue.push(lastNode->left);
+				if (lastNode->right != nullptr)
+					oldQueue.push(lastNode->right);
+				this->lastPop = lastNode;
+				return lastNode;
+			}
+			const T operator * () {
+				return this->lastPop->value();
+			}
+		protected:
+			queue<node<T>> oldQueue;
+			node<T> lastPop;
+		};
 
 		bst() : root(nullptr), parentptr(&root) {}
 		bst(const bst<T>& t) : root(nullptr), parentptr(&root)

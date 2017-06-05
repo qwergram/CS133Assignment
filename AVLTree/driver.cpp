@@ -190,7 +190,20 @@ TEST_CASE("Tree operation Overloads") {
 
 }
 
-TEST_CASE("Traversals") {
+TEST_CASE("Breadth Traversal") {
+	avl<int> test = avl<int>();
+	for (int num : {
+		50, 75, 25, 15, 60, 35, 100,
+			10, 30, 55, 80, 17, 45, 70, 150
+	}) {
+		test.insert(num);
+	}
+
+	auto iterator = avl<int>::BFIterator();
+	
+	SECTION("forward iteration tests") {
+
+	}
 
 }
 
