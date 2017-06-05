@@ -220,7 +220,36 @@ TEST_CASE("Breadth Traversal") {
 	}
 
 	SECTION("getLast iteration tests") {
-
+		iterator.next();
+		REQUIRE(iterator.getLast().value() == 50);
+		iterator.next();
+		REQUIRE(iterator.getLast().value() == 25);
+		iterator.next();
+		REQUIRE(iterator.getLast().value() == 75);
+		iterator.next();
+		REQUIRE(iterator.getLast().value() == 15);
+		iterator.next();
+		REQUIRE(iterator.getLast().value() == 35);
+		iterator.next();
+		REQUIRE(iterator.getLast().value() == 60);
+		iterator.next();
+		REQUIRE(iterator.getLast().value() == 100);
+		iterator.next();
+		REQUIRE(iterator.getLast().value() == 10);
+		iterator.next();
+		REQUIRE(iterator.getLast().value() == 17);
+		iterator.next();
+		REQUIRE(iterator.getLast().value() == 30);
+		iterator.next();
+		REQUIRE(iterator.getLast().value() == 45);
+		iterator.next();
+		REQUIRE(iterator.getLast().value() == 55);
+		iterator.next();
+		REQUIRE(iterator.getLast().value() == 70);
+		iterator.next();
+		REQUIRE(iterator.getLast().value() == 80);
+		iterator.next();
+		REQUIRE(iterator.getLast().value() == 150);
 	}
 
 }
