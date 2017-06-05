@@ -160,7 +160,7 @@ namespace NP_BST
 	class Bst
 	{
 	public:
-		class BFIterator { // NEW
+		class BFIterator { // NEW CLASS
 		public:
 			BFIterator(Bst<T> & tree) {
 				oldQueue.push(*tree.getroot());
@@ -554,6 +554,15 @@ namespace NP_BST
 		return out;
 	}
 
+	//--------------------------------------------------------------------
+	// Title: BFIterator next method
+	// Description: goes to next item in BFT
+	// Called By: Set<T>::intersection
+	// Calls: node::value()
+	// Throws: out_of_range if next() called at end of tree
+	// History Log: https://github.com/qwergram/CS133Assignment/blame/project3/AVLTree/avl.h
+	// Test Plan: https://travis-ci.org/qwergram/CS133Assignment/
+	//--------------------------------------------------------------------
 	template<class T>
 	inline const Node<T> Bst<T>::BFIterator::next() {
 		if (!oldQueue.empty()) {
@@ -569,6 +578,6 @@ namespace NP_BST
 		throw out_of_range("Reached end of tree");
 	}
 
-} // end namespace PB_BST
+} // end namespace NP_BST
 
 #endif
