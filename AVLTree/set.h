@@ -22,12 +22,16 @@ namespace NP_SET
 		bool remove(T target);
 		bool isMember(T target) { return this->contains(target); }
 		Set<T> Union(Set<T> rhs);
-		Set<T> intersection(Set<T> rhs);
+		Set<T> intersection(Set<T> rhs, Node<T> * target = this->getroot());
 
 		~Set() { this->delTree(); }
 	
+		
+
 	protected:
 		node<T>* &getroot() { return this->root; }
+	private:
+		Set<T> copyCat;
 	};
 
 	
@@ -53,18 +57,10 @@ namespace NP_SET
 	}
 
 	template<class T>
-	inline Set<T> Set<T>::intersection(Set<T> rhs)
+	inline Set<T> Set<T>::intersection(Set<T> rhs, Node<T>* target)
 	{
-		auto newTree = Set<T>();
-		node<T> * cursor = this->getroot();
+		if (target == nullptr)
 
-		while (true) {
-			if (rhs.isMember(cursor)) {
-				newTree.insert(cursor);
-			}
-
-
-		}
 		return newTree;
 	}
 
