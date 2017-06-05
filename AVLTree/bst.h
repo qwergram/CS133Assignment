@@ -114,6 +114,8 @@ namespace NP_BST
 	class bst
 	{
 	public:
+		class iterator;
+
 		bst() : root(nullptr), parentptr(&root) {}
 		bst(const bst<T>& t) : root(nullptr), parentptr(&root)
 		{
