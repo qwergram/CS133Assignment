@@ -138,13 +138,12 @@ namespace NP_AVL
 	}
 
 	//--------------------------------------------------------------------
-	// Title: 
-	// Description: 
-	// Called By: 
-	// Calls: 
-	// Parameters: 
-	// Returns: 
-	// Throws:
+	// Title: AVL::rotateLeft
+	// Description: rotate "against" heavy leftt side
+	// Called By: rebalance
+	// Calls: node copy constructor
+	// Parameters: target to rotate
+	// Returns: the new target
 	// History Log: https://github.com/qwergram/CS133Assignment/blame/project3/AVLTree/
 	// Test Plan: https://travis-ci.org/qwergram/CS133Assignment/
 	//--------------------------------------------------------------------
