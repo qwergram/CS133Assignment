@@ -42,3 +42,53 @@ github.
 </table>
 
 This boilerplate comes with unit tests. You do have the ability to remove the testing framework if you choose to by using the [`notests` branch](https://github.com/qwergram/AVL-Tree/tree/notests).
+
+## Product
+
+The following files are to turn in:
+
+### Testing Results and other Links
+
+[![Build Status](https://travis-ci.org/qwergram/CS133Assignment.svg?branch=project3)](https://travis-ci.org/qwergram/CS133Assignment)
+[![Build status](https://ci.appveyor.com/api/projects/status/o3eopf6bs2o12t3c?svg=true)](https://ci.appveyor.com/project/qwergram/cs133assignment)
+
+- [Pull Request](https://github.com/qwergram/CS133Assignment/pull/1)
+- [Travis Test Results](https://travis-ci.org/qwergram/CS133Assignment/)
+- [App Veyor Test Results](https://ci.appveyor.com/project/qwergram/cs133assignment)
+
+### Files
+
+<table>
+<tr>
+    <th>File Name</th>
+    <th>Source</th>
+</tr>
+<tr>
+    <td><code>avl.h</code></td>
+    <td><a href="https://github.com/qwergram/CS133Assignment/blob/project3/AVLTree/avl.h">Source</a></td>
+</tr>
+<tr>
+    <td><code>bst.h</code></td>
+    <td><a href="https://github.com/qwergram/CS133Assignment/blob/project3/AVLTree/bst.h">Source</a></td>
+</tr>
+<tr>
+    <td><code>bstDriver.cpp</code> [Not Used]</td>
+    <td><a href="https://github.com/qwergram/CS133Assignment/blob/project3/AVLTree/bstDriver.cpp">Source</a></td>
+</tr>
+<tr>
+    <td><code>catch.hpp</code> [Testing Framework]</td>
+    <td><a href="https://github.com/qwergram/CS133Assignment/blob/project3/AVLTree/catch.hpp">Source</a></td>
+</tr>
+<tr>
+    <td><code>driver.cpp</code></td>
+    <td><a href="https://github.com/qwergram/CS133Assignment/blob/project3/AVLTree/driver.cpp">Source</a></td>
+</tr>
+<tr>
+    <td><code>set.h</code></td>
+    <td><a href="https://github.com/qwergram/CS133Assignment/blob/project3/AVLTree/set.h">Source</a></td>
+</tr>
+<tr>
+    <td><code>Project Directory</code></td>
+    <td><a href="https://github.com/qwergram/CS133Assignment/tree/project3/AVLTree">Source</a></td>
+</tr>
+</table>
