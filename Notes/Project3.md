@@ -92,3 +92,6 @@ The following files are to turn in:
     <td><a href="https://github.com/qwergram/CS133Assignment/tree/project3/AVLTree">Source</a></td>
 </tr>
 </table>
+
+### Behavior Changes
+- `isMember` is not clearly defined in instructions. Changing it to have the same behavior as `contains` in bst.
