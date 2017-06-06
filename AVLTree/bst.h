@@ -269,6 +269,16 @@ namespace NP_BST
 		}
 	}
 
+	//--------------------------------------------------------------------
+	// Title: BST::contains
+	// Description: checks if an item is in the tree
+	// Called By: AVL and Set methods and driver
+	// Calls: findFirstOf
+	// Parameters: item to find
+	// Returns: True if item exists
+	// History Log: https://github.com/qwergram/CS133Assignment/blame/project3/AVLTree/
+	// Test Plan: https://travis-ci.org/qwergram/CS133Assignment/
+	//--------------------------------------------------------------------
 	template<class T>
 	inline bool Bst<T>::contains(const T & item)
 	{
