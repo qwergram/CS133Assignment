@@ -116,8 +116,15 @@ TEST_CASE("Set Test operations") {
 	}
 }
 
+// Test tree operation overloads
 TEST_CASE("Tree operation Overloads") {
-
+	/*
+		test tree:
+						50
+				25				75
+			15		35		60		100
+		10	   17 30  45  55  70  80   150
+	*/
 	avl<int> test = avl<int>();
 	for (int num : {
 		50, 75, 25, 15, 60, 35, 100,
@@ -126,6 +133,14 @@ TEST_CASE("Tree operation Overloads") {
 		test.insert(num);
 	}
 
+	/*
+		test2 tree:
+						47
+				20				73
+			13		33		57		90
+		05	   16 27  40  53  65  77  125
+										200
+	*/
 	avl<int>test2 = avl<int>();
 	for (int num : {
 		5, 13, 16, 20, 27, 33, 40, 47,
@@ -134,13 +149,20 @@ TEST_CASE("Tree operation Overloads") {
 		test2.insert(num);
 	}
 
+	/*
+		test3 tree:
+						5
+	*/
 	avl<int>test3 = avl<int>();
 	test3.insert(5);
 
 	SECTION("+= overload") {
+		// Test duplicate items are ignored
+		// test2 already has all items in test3
+		// Test test2 does not change at all
 		SECTION("Duplicate Items") {
 			test2 += test3;
-
+			
 			REQUIRE(*test2.getroot() == 47);
 			REQUIRE(*test2.getroot()->left == 20);
 			REQUIRE(*test2.getroot()->right == 73);
@@ -158,6 +180,18 @@ TEST_CASE("Tree operation Overloads") {
 			REQUIRE(*test2.getroot()->right->right->right == 125);
 		}
 
+		// Test addition between test and test2
+		// Tree should appear to be:
+		/*
+			test tree after +=:
+								50
+						25					75
+				15			 35			60		100
+			10	   17	   30   45	  55  70  80   150
+		  05  13  16 27  33 ... so on so forth
+
+		  All items in test 2 should become leaf nodes in test
+		*/
 		SECTION("Mutually exclusive trees") {
 			test += test2;
 
@@ -195,6 +229,10 @@ TEST_CASE("Tree operation Overloads") {
 		}
 	}
 
+	// Ensure a tree overwritten with = is replaced properly
+	// Test none of test's original items are found again
+	// Test tree of test is identical to tree2 and tree2 is
+	// unaffected by operation.
 	SECTION("= overload") {
 		test = test2;
 		
@@ -249,7 +287,15 @@ TEST_CASE("Tree operation Overloads") {
 
 }
 
+// test iterator through avl
 TEST_CASE("Breadth Traversal") {
+	/*
+		test tree:
+						50
+				25				75
+			15		35		60		100
+		10	   17 30  45  55  70  80   150
+	*/
 	avl<int> test = avl<int>();
 	for (int num : {
 		50, 75, 25, 15, 60, 35, 100,
@@ -260,6 +306,12 @@ TEST_CASE("Breadth Traversal") {
 
 	auto iterator = avl<int>::BFIterator(test);
 	
+	// Test BFT:
+	// tree BFT should be this order:
+	// {50, 25, 75, 15, 35, 60, 
+	//	100, 10, 17, 30, 45, 55, 70, 80, 150}
+	// all further calls of next should throw
+	// an exception.
 	SECTION("forward iteration tests") {
 		REQUIRE(iterator.next().value() == 50);
 		REQUIRE(iterator.next().value() == 25);
@@ -279,6 +331,8 @@ TEST_CASE("Breadth Traversal") {
 		REQUIRE_THROWS_WITH(iterator.next(), "Reached end of tree");
 	}
 
+	// Exact same test as previous, but ensure getLast
+	// returns the correct item.
 	SECTION("getLast iteration tests") {
 		iterator.next();
 		REQUIRE(iterator.getLast().value() == 50);
@@ -315,7 +369,11 @@ TEST_CASE("Breadth Traversal") {
 
 }
 
+// The first time I created trees, they broke after inserting 
+// more than 3 layers of items. This test ensures the tree
+// looks the way they're supposed to.
 TEST_CASE("Creating Large Trees") {
+	// Tree: http://imgur.com/a/v6tLc.png
 	avl<int> test = avl<int>();
 	for (int num : {
 		50, 75, 25, 15, 60, 35, 100,
@@ -324,6 +382,7 @@ TEST_CASE("Creating Large Trees") {
 		test.insert(num);
 	}
 
+	// Ensure tree appears like the image
 	SECTION("Tree with height of 4 tests") {
 		REQUIRE(*test.getroot() == 50);
 		REQUIRE(*test.getroot()->left == 25);
@@ -358,7 +417,10 @@ TEST_CASE("Creating Large Trees") {
 	test.insert(90);
 	test.insert(125);
 	test.insert(200);
+	// Tree after insertions:
+	// http://imgur.com/pmCrt00.png
 
+	// Ensure the tree looks like the image provided
 	SECTION("Tree with height of 5 tests") {
 		REQUIRE(test.getHeight() == 5);
 		REQUIRE(test.getNumberOfNodes() == 31);
@@ -383,30 +445,57 @@ TEST_CASE("Creating Large Trees") {
 
 }
 
+// Deletion tests
 TEST_CASE("deleting with balancing") {
+	// test is currently an empty tree
 	avl<int> test = avl<int>();
 	
+	// ensure a simple insert results
+	// in a removed item
 	SECTION("Sanity deletion tests") {
 		test.insert(1);
 		test.popFirstOf(1);
 		REQUIRE_FALSE(test.contains(1));
 	}
 
+	// Ensure deletion of an empty tree or non
+	// existant item throws exception.
 	SECTION("Delete empty tree") {
 		REQUIRE_THROWS_WITH(test.popFirstOf(0), "Requested deleted item not found");
 	}
 
+	// Add items to tree
 	for (int num : {
 		50, 75, 25, 15, 60, 35, 100,
 		10, 30, 55, 80, 17, 45, 70, 150
 	}) {
 		test.insert(num);
 	}
+	/*
+		test tree:
+						50
+				25				75
+			15		35		60		100
+		10	   17 30  45  55  70  80   150
+	*/
 
+	// Ensure deletion of an empty tree or non
+	// existant item throws exception.
 	SECTION("Delete non-existent nodes") {
 		REQUIRE_THROWS_WITH(test.popFirstOf(1), "Requested deleted item not found");
 	}
 
+	// Delete items until balance occurs
+	/*
+		test tree:
+						50
+				X				75
+			X		35		60		100
+		10	   X 30  45  55  70  80   150
+
+		tree should look like:
+		http://imgur.com/SVeloek.png
+	*/
 	SECTION("heavy deletion left side") {
 		SECTION("scenario 1") {
 			test.popFirstOf(25);
@@ -420,6 +509,8 @@ TEST_CASE("deleting with balancing") {
 			REQUIRE(*test.getroot()->left->right == 45);
 		}
 
+		// tree should look like:
+		// http://imgur.com/60c8JAH.png
 		SECTION("scenario 2") {
 			test.popFirstOf(35);
 			test.popFirstOf(15);
@@ -432,6 +523,8 @@ TEST_CASE("deleting with balancing") {
 			REQUIRE(*test.getroot()->left->right == 30);
 		}
 
+		// tree should look like:
+		// http://imgur.com/Gr15tdy.png
 		SECTION("scenario 3") {
 			test.popFirstOf(35);
 			test.popFirstOf(15);
@@ -453,6 +546,8 @@ TEST_CASE("deleting with balancing") {
 	}
 
 	SECTION("heavy deletion right side") {
+		// Tree should look like:
+		// http://imgur.com/D0KEjtM.png
 		SECTION("scenario 1") {
 			test.popFirstOf(75);
 			test.popFirstOf(70);
@@ -465,6 +560,8 @@ TEST_CASE("deleting with balancing") {
 			REQUIRE(*test.getroot()->right->left->right == 80);
 		}
 
+		// Tree should look like:
+		// http://imgur.com/yfKHRFV.png
 		SECTION("scenario 2") {
 			test.popFirstOf(100);
 			test.popFirstOf(60);
@@ -484,6 +581,7 @@ TEST_CASE("deleting with balancing") {
 			REQUIRE(*test.getroot()->left->left->right == 17);
 		}
 
+		// Tree should look like:
 		SECTION("scenario 3") {
 			test.popFirstOf(100);
 			test.popFirstOf(60);
@@ -491,6 +589,8 @@ TEST_CASE("deleting with balancing") {
 			test.popFirstOf(75);
 			test.popFirstOf(80);
 			test.popFirstOf(70);
+
+			// http://imgur.com/YTSZOFO.png
 
 			REQUIRE(*test.getroot() == 45);
 			REQUIRE(*test.getroot()->right == 55);
@@ -503,6 +603,8 @@ TEST_CASE("deleting with balancing") {
 			REQUIRE(*test.getroot()->left->left->right == 17);
 
 			test.popFirstOf(150);
+
+			// http://imgur.com/eJAFI3M.png
 
 			REQUIRE(*test.getroot() == 25);
 			REQUIRE(*test.getroot()->left == 15);
@@ -524,6 +626,8 @@ TEST_CASE("Testing deleting without balancing") {
 	}) {
 		test.insert(num);
 	}
+	// Tree looks like:
+	// http://imgur.com/QCWLPoe.png
 
 	REQUIRE(*test.getroot() == 50);
 	REQUIRE(*test.getroot()->left == 25);
@@ -541,6 +645,12 @@ TEST_CASE("Testing deleting without balancing") {
 	REQUIRE(*test.getroot()->right->right->left == 80);
 	REQUIRE(*test.getroot()->right->right->right == 150);
 
+	// Next sections of tests are designed to test
+	// the following:
+	//	1. Item is deleted
+	//	2. All other parts of the tree stay
+	//	3. Tree is grabbing correct replacement node
+	
 	SECTION("pop 10") {
 		test.popFirstOf(10);
 		REQUIRE(*test.getroot() == 50);
@@ -827,22 +937,29 @@ TEST_CASE("Testing deleting without balancing") {
 	}
 }
 
+// Test that insert is inserting items at the right points
+// and tree height and number of nodes is set correctly.
 TEST_CASE("Testing inserting and balances") {
+	// create empty tree
 	avl<int> test = avl<int>();
-	
-	
 
+	// Test emtpy tree stats
 	SECTION("empty tree sanity test") {
 		REQUIRE(test.getHeight() == 0);
 		REQUIRE(test.getNumberOfNodes() == 0);
 	}
 
+	// Test one item doesn't crash the whole
+	// program.
 	SECTION("adding one item") {
 		test.insert(50);
 		REQUIRE(test.getNumberOfNodes() == 1);
 		REQUIRE(test.getHeight() == 1);
 	}
 	
+	// Test height/number of nodes grows accordingly.
+	// Creating this tree: http://imgur.com/QCWLPoe.png
+	// In a breadth first manner. No rotation will occur.
 	SECTION("adding more items and check height/node count without balancing") {
 		test.insert(50);
 		test.insert(75);
@@ -902,6 +1019,7 @@ TEST_CASE("Testing inserting and balances") {
 		REQUIRE(test.getHeight() == 4);
 	}
 
+	// Test simple right imbalance
 	SECTION("test insert and right balancing") {
 		test.insert(50);
 		test.insert(75);
@@ -913,6 +1031,7 @@ TEST_CASE("Testing inserting and balances") {
 		REQUIRE(*(test.getroot()->right) == 150);
 	}
 
+	// Test simple left imbalance
 	SECTION("test insert and left balancing") {
 		test.insert(150);
 		test.insert(75);
@@ -1097,6 +1216,16 @@ TEST_CASE("Testing inserting and balances") {
 		REQUIRE(*(test.getroot()->left->right) == 32);
 	}
 
+	/*
+		test tree:
+						47
+				20				73
+			13		33		57		90
+		05	   16 27  40  53  65  77  125
+										200
+		However items are constantly placed on left side
+		balance will occur.
+	*/
 	SECTION("Random insertion tests") {
 		for (int num : {
 			5, 13, 16, 20, 27, 33, 40, 47,
