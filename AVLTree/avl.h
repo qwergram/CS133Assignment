@@ -233,7 +233,8 @@ namespace NP_AVL
 	// Called By: rebalance
 	// Calls: getHeight
 	// Parameters: target to check balance of
-	// Returns: positive number if left side heavier, negative number if right side heavier
+	// Returns: positive number if left side heavier, 
+	//			negative number if right side heavier
 	// History Log: https://github.com/qwergram/CS133Assignment/blame/project3/AVLTree/avl.h
 	// Test Plan: https://travis-ci.org/qwergram/CS133Assignment/
 	//--------------------------------------------------------------------
