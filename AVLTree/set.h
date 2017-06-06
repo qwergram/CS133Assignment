@@ -72,12 +72,7 @@ namespace NP_SET
 	template<class T>
 	inline void Set<T>::print(Node<T>* target, ostream & sout) const
 	{
-		if (target != nullptr)
-		{
-			print(target->left, sout);
-			sout << target->value() << "(" << target->getHeight() << ") ";
-			print(target->right, sout);
-		}
+		Bst<T>::print(target, sout);
 	}
 
 	//--------------------------------------------------------------------
@@ -91,37 +86,7 @@ namespace NP_SET
 	template<class T>
 	inline void Set<T>::printXlevel(Node<T>* target, ostream & sout) const
 	{
-		if (target == nullptr)
-			return;
-		const size_t SPACER = 64;
-		const T NO_NODE = static_cast<T>(-1);
-		const int PRINT_MAX = 6;
-		vector<vector<T>> treeVector(target->getHeight());
-
-		for (int i = 0; i < target->getHeight(); i++)
-		{
-			sout << "level " << i + 1 << ": ";
-			if (i < PRINT_MAX)
-			{
-				int size = static_cast<int>(pow(2.0, i));
-				treeVector[i] = vector<T>(size, NO_NODE);
-				setLevel(target, treeVector[i], i);
-				sout << string(SPACER / (2 * size), ' ');
-				for (int j = 0; j < static_cast<int>(treeVector[i].size());
-					j++)
-				{
-					if (treeVector[i][j] != NO_NODE)
-						sout << treeVector[i][j];
-					else
-						sout << ' ';
-					sout << string(SPACER / size - 1, ' ');
-				}
-			}
-			else
-				sout << "  . . .";
-
-			sout << endl;
-		}
+		Bst<T>::printXlevel(target, sout);
 	}
 
 	//--------------------------------------------------------------------
