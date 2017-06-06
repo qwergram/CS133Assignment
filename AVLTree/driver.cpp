@@ -450,6 +450,40 @@ TEST_CASE("deleting with balancing") {
 	// test is currently an empty tree
 	avl<int> test = avl<int>();
 	
+	// This test was provided by Tabitha Roemish
+	// https://gist.github.com/TabithaRoemish/8833264ab6e05dbaf91529e167f9c9b3
+	SECTION("Double Rotation deletion test") {
+		// Tree looks like: http://imgur.com/Nz3lUHU.png
+		test.insert(50);
+		test.insert(30);
+		test.insert(60);
+		test.insert(25);
+		test.insert(80);
+		test.insert(45);
+		test.insert(55);
+		test.insert(48);
+		test.insert(58);
+		test.insert(70);
+		test.insert(90);
+		test.insert(75);
+
+		// After deletion, tree should look like
+		// http://imgur.com/qYwQRIC.png
+		test.popFirstOf(25);
+
+		REQUIRE(*test.getroot() == 60);
+		REQUIRE(*test.getroot()->left == 50);
+		REQUIRE(*test.getroot()->right == 80);
+		REQUIRE(*test.getroot()->right->right == 90);
+		REQUIRE(*test.getroot()->right->left->right == 75);
+		REQUIRE(*test.getroot()->right->left == 70);
+		REQUIRE(*test.getroot()->left->right == 55);
+		REQUIRE(*test.getroot()->left->right->right == 58);
+		REQUIRE(*test.getroot()->left->left == 45);
+		REQUIRE(*test.getroot()->left->left->left == 30);
+		REQUIRE(*test.getroot()->left->left->right == 48);
+	}
+
 	// ensure a simple insert results
 	// in a removed item
 	SECTION("Sanity deletion tests") {
