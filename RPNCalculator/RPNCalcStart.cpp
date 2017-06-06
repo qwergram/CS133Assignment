@@ -131,8 +131,8 @@ namespace PB_CALC
 		binary_prep(d1, d2);
 		if (!m_error)
 		{
-			d1 += d2;
-			m_stack.push_front(d1);
+			d2 += d1;
+			m_stack.push_front(d2);
 		}
 	} 
 
