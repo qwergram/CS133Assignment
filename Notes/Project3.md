@@ -91,6 +91,10 @@ The following files are to turn in:
     <td><code>Project Directory</code></td>
     <td><a href="https://github.com/qwergram/CS133Assignment/tree/project3/AVLTree">Source</a></td>
 </tr>
+<tr>
+    <td>Project Executable</td>
+    <td><a href="https://github.com/qwergram/CS133Assignment/blob/project3/AVLTree/sample.exe?raw=true">Source</a></td>
+</tr>
 </table>
 
 ### Behavior Changes
