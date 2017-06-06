@@ -29,7 +29,7 @@
 //	
 //				CRPNCalc(bool on)
 //				run()
-//				print(ostream& ostr)
+i//				print(ostream& ostr)
 //				parse()
 //				void add() -- 
 //				void bin_prep(double& d1, double& d2) -- 
@@ -39,7 +39,7 @@
 //				void exp() -- 
 //				void getReg(int reg) -- 
 //				void loadProgram() -- 
-//				void mod() -- 
+r//				void mod() -- 
 //				void multiply() -- 
 //				void neg() -- 
 //				void parse() -- 
@@ -49,7 +49,7 @@
 //				void runProgram() -- 
 //				void saveToFile() -- 
 //				void setReg(int reg) -- 
-//				void subtract() -- 
+p//				void subtract() -- 
 //				void unary_prep(double& d) -- 
 	
 //	  related functions:
@@ -81,8 +81,8 @@ namespace PB_CALC
 		do 
 		{
 			system("cls"); //clear the screen
-			print(cout);   //void print(ostream& ostr)
-			input(cin);    //void input(istream& istr)
+			print(cout);   //display calculator
+			input(cin);    //take inputs
 		} while (m_on);
 	} 
 
