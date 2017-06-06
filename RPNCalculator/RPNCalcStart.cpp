@@ -29,7 +29,7 @@
 //	
 //				CRPNCalc(bool on)
 //				run()
-i//				print(ostream& ostr)
+//				print(ostream& ostr)
 //				parse()
 //				void add() -- 
 //				void bin_prep(double& d1, double& d2) -- 
@@ -39,7 +39,7 @@ i//				print(ostream& ostr)
 //				void exp() -- 
 //				void getReg(int reg) -- 
 //				void loadProgram() -- 
-r//				void mod() -- 
+//				void mod() -- 
 //				void multiply() -- 
 //				void neg() -- 
 //				void parse() -- 
@@ -49,7 +49,7 @@ r//				void mod() --
 //				void runProgram() -- 
 //				void saveToFile() -- 
 //				void setReg(int reg) -- 
-p//				void subtract() -- 
+//				void subtract() -- 
 //				void unary_prep(double& d) -- 
 	
 //	  related functions:
@@ -206,7 +206,7 @@ namespace PB_CALC
    {
 	   double d1 = 0;
 	   double d2 = 0;
-	   
+
 	   binary_prep(d1, d2);
 	   if (!m_error)
 	   {
@@ -240,8 +240,8 @@ namespace PB_CALC
    {
 	   double d1 = 0;
 	   double d2 = 0;
+	   
 	   binary_prep(d1, d2);
-
 	   if (!m_error)
 	   {
 		   d1 = fmod(d2, d1);
@@ -257,8 +257,8 @@ namespace PB_CALC
    {
 	   double d1 = 0;
 	   double d2 = 0;
+	   
 	   binary_prep(d1, d2);
-
 	   if (!m_error)
 	   {
 		   d1 *= d2;
@@ -347,9 +347,11 @@ namespace PB_CALC
 // ----------------------------------------------------------------------------
    void CRPNCalc::subtract()
    {
-	   double d1, d2;
+	   double d1 = 0;
+	   double d2 = 0;
+	   
 	   binary_prep(d1, d2);
-	   if (m_error == false)
+	   if (!m_error)
 	   {
 		   double diff = d2 - d1;
 		   m_stack.push_front(diff);
@@ -377,8 +379,7 @@ namespace PB_CALC
 		calc.print(ostr);
 		return ostr;
 	} 
-
-
+	
 // ----------------------------------------------------------------------------
 //	istream's >> defined for CRPNCalc
 // ----------------------------------------------------------------------------
