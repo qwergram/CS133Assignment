@@ -146,7 +146,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="catch.hpp" />
     <ClInclude Include="RPNCalc.h" />
+    <ClInclude Include="RPNTestHelper.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CalcDriver.cpp" />
