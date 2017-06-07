@@ -26,5 +26,8 @@
     <ClCompile Include="RPNCalcStart.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="RPN_UnitTests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

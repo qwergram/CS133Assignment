@@ -151,6 +151,7 @@
   <ItemGroup>
     <ClCompile Include="CalcDriver.cpp" />
     <ClCompile Include="RPNCalcStart.cpp" />
+    <ClCompile Include="RPN_UnitTests.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
