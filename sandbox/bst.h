@@ -1,62 +1,16 @@
 #ifndef BST_H
 #define BST_H
-//-----------------------------------------------------------------------------
-// Title: Binary Search Tree
-// Description: A classic Binary Search Tree
-// Meta: https://www.cs.usfca.edu/~galles/visualization/AVLtree.html
-// Programmer: 
-//		Written by Paul Bladek
-//		Modified by Norton Pengra
-// Date: June 2017
-// Version: 1.10
-// Environment: Intel i7
-//		Software: MS Windows 10 for execution;
-//		Compiles under Microsoft Visual C++.Net 2017
-// Classes:
-//		class Node<T>:
-//			A node containing a value, with two pointers
-//			to a left and right child. Also holds a height
-//			attribute.
-//		
-//		class Bst<T>:
-//	!NEW!	Public Sub Classes:
-//	!NEW!		BFIterator
-//	!NEW!			Constructor(tree) -- creates a BF traversal iterator of given tree
-//	!NEW!			next() -- returns the next node in BF traversal
-//	!NEW!			endOfTree() -- returns True if BFT has reached the end
-//	!NEW!			getLast() -- retrieve the last thing returned by next
-//			Public Methods:
-//				Constructors
-//				getroot() -- used for retrieving root node
-//				operator = overload -- used for reassigning trees
-//				operator += overload -- used for adding trees with syntactic sugars
-//					(can be used to add another T or another Bst<T>)
-//				operator + overload -- used for adding trees with syntactic sugars
-//				isempty() -- returns true of the tree contains no items
-//	!NEW!		contains(T item) -- returns true if item is in tree
-//				insert(T item) -- inserts item into tree
-//				delTree() -- deletes entire tree
-//				print() -- "pretty" prints the tree up to 7 layers
-//				print ... () -- related methods for print
-//				popNode(Node<T> *& t) -- pop the node t from the tree
-//				popLow(Node<T> *& t) -- pop the leftmost child of node t
-//				popHigh(Node<T> *& t) -- pop the rightmost child of node t
-//				getHeight() -- get height of the tree
-//				setHeight() -- recursively set the height attribute of each node.
-//				setLevel -- related method for print
-//				getNumberOfNodes -- get number of nodes in tree
-//				destructor -- calls delTree
-//			Protected Attributes:
-//				Node<T> * root -- the root of the tree
-//				Node<T> ** parentptr -- holding pointer needed by some functions
-//				
-// History Log:
-//		December, 2000
-//		revised April, 2005
-//		revised May, 2008
-//		revised May, 2012
-//		revised June, 2013
-//		revised June, 2017
+//--------------------------------------------------------------------
+// A rudimentary Binary Search Tree program
+// Compiled under MS Visual C++.Net 2005, 2010, 2013
+// allows duplicates
+// by Paul Bladek
+// December, 2000
+// revised April, 2005
+// revised May, 2008
+// revised May, 2012
+// revised June, 2013
+// revised May, 2017
 //--------------------------------------------------------------------
 
 #include <iostream>
@@ -66,24 +20,24 @@
 #include <vector>
 #include <cmath>
 #include <string>
-#include <queue>
 
 using namespace std;
 
 namespace NP_BST
 {
+	// CLASS DEFINITIONS 
+	template<class T>
 	//--------------------------------------------------------------------
 	// BST NODE
 	// REQUIRES Type T be able to convert from int & have < & == defined
 	//--------------------------------------------------------------------
-	template<class T>
-	class Node
+	class node
 	{
 	public:
-		Node(T d = 1) : m_data(d), m_height(1), left(nullptr),
+		node(T d = 1) : m_data(d), m_height(1), left(nullptr),
 			right(nullptr) {}
-		Node(const Node<T>& n); // Copy Constructor
-		Node<T>& operator=(const Node<T>& n);
+		node(const node<T>& n); // Copy Constructor
+		node<T>& operator=(const node<T>& n);
 		T value() const { return m_data; }    // Accessor
 		operator T() const { return m_data; }  // cast to data type
 		void setdata(T d) { m_data = d; }
@@ -93,8 +47,8 @@ namespace NP_BST
 		T m_data;
 		int m_height;
 	public:  // to freely use these
-		Node<T>* left;
-		Node<T>* right;
+		node<T>* left;
+		node<T>* right;
 	};
 
 	//--------------------------------------------------------------------
@@ -102,14 +56,14 @@ namespace NP_BST
 	// throws bad_alloc
 	//--------------------------------------------------------------------
 	template <class T>
-	Node<T>::Node(const Node<T>& n)
+	node<T>::node(const node<T>& n)
 		: m_data(n.m_data), m_height(n.getHeight()), left(nullptr),
 		right(nullptr)
 	{
 		if (n.left != nullptr)
-			left = new Node<T>(*(n.left));
+			left = new node<T>(*(n.left));
 		if (n.right != nullptr)
-			right = new Node<T>(*(n.right));
+			right = new node<T>(*(n.right));
 	}
 
 	//--------------------------------------------------------------------
@@ -117,18 +71,18 @@ namespace NP_BST
 	// throws bad_alloc
 	//--------------------------------------------------------------------
 	template <class T>
-	Node<T>& Node<T>::operator=(const Node<T>& n)  // overloaded =
+	node<T>& node<T>::operator=(const node<T>& n)  // overloaded =
 	{
 		if (this != &n)
 		{
 			m_data = n.m_data;
 			m_height = n.getHeight();
 			if (n.left != nullptr)
-				left = new Node<T>(*(n.left));
+				left = new node<T>(*(n.left));
 			else
 				left = nullptr;
 			if (n.right != nullptr)
-				right = new Node<T>(*(n.right));
+				right = new node<T>(*(n.right));
 			else
 				right = nullptr;
 		}
@@ -140,7 +94,7 @@ namespace NP_BST
 	// recursively sets the Height of the node
 	//--------------------------------------------------------------------
 	template <class T>
-	int Node<T>::setHeight()
+	int node<T>::setHeight()
 	{
 		int lHeight = 0;
 		int rHeight = 0;
@@ -157,72 +111,59 @@ namespace NP_BST
 	// Binary Search Tree -- Basic Implementation
 	//--------------------------------------------------------------------
 	template <class T>
-	class Bst
+	class bst
 	{
 	public:
-		class BFIterator { // NEW CLASS
-		public:
-			BFIterator(Bst<T> & tree) {
-				if (!tree.isempty()) {
-					oldQueue.push(*tree.getroot());
-				}
-			};
-			const Node<T> next();
-			const bool endOfTree() { return oldQueue.empty(); }
-			const Node<T> getLast() { return this->lastPop; }
-		protected:
-			queue<Node<T>> oldQueue = queue<Node<T>>();
-			Node<T> lastPop;
-		};
-
-		Bst() : root(nullptr), parentptr(&root) {}
-		Bst(const Bst<T>& t) : root(nullptr), parentptr(&root)
+		bst() : root(nullptr), parentptr(&root) {}
+		bst(const bst<T>& t) : root(nullptr), parentptr(&root)
 		{
-			if (t.root != nullptr) root = new Node<T>(*(t.root));
+			if (t.root != nullptr) root = new node<T>(*(t.root));
 		}
 
-		Node<T>* &getroot() { return root; }
+		node<T>* &getroot() { return root; }
 
 		bool isempty() const { return (root == nullptr); }
 
-		Bst<T>& operator=(const Bst<T>& t);
-		Bst<T>& operator+=(const Bst<T>& t);
-		Bst<T>& operator+=(const T d) { insert(d, root); return *this; }
-		Bst<T> operator+(const T d) {
-			Bst<T> temp = *this;
+		bst<T>& operator=(const bst<T>& t);
+		bst<T>& operator+=(const bst<T>& t);
+		bst<T>& operator+=(const T d) { insert(d, root); return *this; }
+		bst<T> operator+(const T d) {
+			bst<T> temp = *this;
 			temp.insert(d, temp.root); return temp;
 		}
-		bool contains(const T& item); // NEW
-		void findFirstOf(const T& d, Node<T>* &np, Node<T>* &match);
+		bool contains(const T& item);
+		void findFirstOf(const T& d, node<T>* &np, node<T>* &match);
 		bool insert(T d);
 		void delTree() { delTree(root); }
 		void print(ostream& out)const { print(root, out); }
-		void print(Node<T>* cur, ostream& out) const;
+		void print(node<T>* cur, ostream& out) const;
 		void printXlevel(ostream& out) const { printXlevel(root, out); }
-		void printXlevel(Node<T>* cur, ostream& out) const;
-		T popNode(Node<T>* &cur);
-		T popLow(Node<T>* &cur);
-		T popHigh(Node<T>* &cur);
+		void printXlevel(node<T>* cur, ostream& out) const;
+		void print(node<T>* cur, ostream& out, int level2print) const;
+		T popNode(node<T>* &cur);
+		T popLow(node<T>* &cur);
+		T popHigh(node<T>* &cur);
 		T popFirstOf(const T& d) { return popFirstOf(d, root); }
-		T popFirstOf(const T& d, Node<T>*& np);
+		T popFirstOf(const T& d, node<T>*& np);
 		int getHeight() const
 		{
 			if (isempty()) return 0; return root->getHeight();
 		}
 		void setHeight() { if (root != nullptr) root->setHeight(); }
 
-		void setLevel(Node<T>* cur, vector<T>& levelVector,
+		void setLevel(node<T>* cur, vector<T>& levelVector,
 			int level2print, int position = 0) const;
 		int getNumberOfNodes() const { return getNumberOfNodes(root); }
-		int getNumberOfNodes(Node<T>* np) const;
-		~Bst() { delTree(root); }
-		void delTree(Node<T>* &cur);
+		int getNumberOfNodes(node<T>* np) const;
+		~bst() { delTree(root); }
 	protected:
-		bool insert(T d, Node<T>* &cur);
-		Node<T>* root; // root of this tree
-		Node<T>** parentptr; // holding pointer needed by some functions
+		bool insert(T d, node<T>* &cur);
+		node<T>* root; // root of this tree
+		node<T>** parentptr; // holding pointer needed by some functions
 
-		void addTree(const Node<T>* np); // used by +
+		void addTree(const node<T>* np); // used by +
+	private:
+		void delTree(node<T>* &cur);
 	};
 
 	//--------------------------------------------------------------------
@@ -230,7 +171,7 @@ namespace NP_BST
 	// throws bad_alloc
 	//--------------------------------------------------------------------
 	template <class T>
-	Bst<T>& Bst<T>::operator=(const Bst<T>& t)
+	bst<T>& bst<T>::operator=(const bst<T>& t)
 	{
 		if (this != &t)
 		{
@@ -238,7 +179,7 @@ namespace NP_BST
 				delTree(root);
 			if (!t.isempty())
 			{
-				root = new Node<T>(*(t.root));
+				root = new node<T>(*(t.root));
 			}
 		}
 		return *this;
@@ -249,7 +190,7 @@ namespace NP_BST
 	// throws bad_alloc
 	//--------------------------------------------------------------------
 	template <class T>
-	Bst<T>& Bst<T>::operator+=(const Bst<T>& t)
+	bst<T>& bst<T>::operator+=(const bst<T>& t)
 	{
 		addTree(t.root);
 		return *this;
@@ -259,7 +200,7 @@ namespace NP_BST
 	// recursively adds in the contents of a second tree
 	//--------------------------------------------------------------------
 	template <class T>
-	void Bst<T>::addTree(const Node<T>* np)
+	void bst<T>::addTree(const node<T>* np)
 	{
 		if (np != nullptr)
 		{
@@ -269,20 +210,10 @@ namespace NP_BST
 		}
 	}
 
-	//--------------------------------------------------------------------
-	// Title: BST::contains
-	// Description: checks if an item is in the tree
-	// Called By: AVL and Set methods and driver
-	// Calls: findFirstOf
-	// Parameters: item to find
-	// Returns: True if item exists
-	// History Log: https://github.com/qwergram/CS133Assignment/blame/project3/AVLTree/
-	// Test Plan: https://travis-ci.org/qwergram/CS133Assignment/
-	//--------------------------------------------------------------------
 	template<class T>
-	inline bool Bst<T>::contains(const T & item)
+	inline bool bst<T>::contains(const T & item)
 	{
-		Node<T>* matchptr = nullptr;
+		node<T>* matchptr = nullptr;
 		findFirstOf(item, getroot(), matchptr);
 		return matchptr != nullptr;
 	}
@@ -292,7 +223,7 @@ namespace NP_BST
 	// pre: match must be set to nullptr
 	//--------------------------------------------------------------------
 	template <class T>
-	void Bst<T>::findFirstOf(const T& d, Node<T>* &np, Node<T>* &match)
+	void bst<T>::findFirstOf(const T& d, node<T>* &np, node<T>* &match)
 	{
 		if (match != nullptr)
 			return;
@@ -314,7 +245,7 @@ namespace NP_BST
 	// into the tree
 	//--------------------------------------------------------------------
 	template <class T>
-	bool Bst<T>::insert(T d)
+	bool bst<T>::insert(T d)
 	{
 		return insert(d, root);
 	}
@@ -324,11 +255,11 @@ namespace NP_BST
 	// throws bad_alloc
 	//--------------------------------------------------------------------
 	template <class T>
-	bool Bst<T>::insert(T d, Node<T>* &cur)
+	bool bst<T>::insert(T d, node<T>* &cur)
 	{
 		if (cur == nullptr)
 		{
-			cur = new Node<T>(d);
+			cur = new node<T>(d);
 			if (isempty())
 				root = cur;
 			return true;
@@ -349,7 +280,7 @@ namespace NP_BST
 	// recursively prints out the tree inorder
 	//--------------------------------------------------------------------
 	template <class T>
-	void Bst<T>::print(Node<T>* cur, ostream& out) const
+	void bst<T>::print(node<T>* cur, ostream& out) const
 	{
 		if (cur != nullptr)
 		{
@@ -363,7 +294,7 @@ namespace NP_BST
 	// recursuively sets levelVector to represent the specified level 
 	//------------------------------------------------------------------------
 	template <class T>
-	void Bst<T>::setLevel(Node<T>* cur, vector<T>& levelVector,
+	void bst<T>::setLevel(node<T>* cur, vector<T>& levelVector,
 		int level2print, int position) const
 	{
 		static int currentLevel = -1;
@@ -388,7 +319,7 @@ namespace NP_BST
 	// pre: -1 must be able to be cast to T
 	//------------------------------------------------------------------------
 	template <class T>
-	void Bst<T>::printXlevel(Node<T>* cur, ostream& out) const
+	void bst<T>::printXlevel(node<T>* cur, ostream& out) const
 	{
 		if (cur == nullptr)
 			return;
@@ -427,7 +358,7 @@ namespace NP_BST
 	// recursively deletes out the subtree
 	//--------------------------------------------------------------------
 	template <class T>
-	void Bst<T>::delTree(Node<T>* &cur)
+	void bst<T>::delTree(node<T>* &cur)
 	{
 		if (cur != nullptr)
 		{
@@ -444,7 +375,7 @@ namespace NP_BST
 	// pops a given node
 	//--------------------------------------------------------------------
 	template <class T>
-	T Bst<T>::popNode(Node<T>* &cur)
+	T bst<T>::popNode(node<T>* &cur)
 	{
 		if (cur == nullptr)
 			throw (invalid_argument("Pointer does not point to a node"));
@@ -456,13 +387,13 @@ namespace NP_BST
 		}
 		else if (cur->left == nullptr)
 		{ // only right child
-			Node<T>* temp = cur->right;
+			node<T>* temp = cur->right;
 			delete cur;
 			cur = temp;
 		}
 		else if (cur->right == nullptr)
 		{ // only left child
-			Node<T>* temp = cur->left;
+			node<T>* temp = cur->left;
 			delete cur;
 			cur = temp;
 		}
@@ -479,17 +410,16 @@ namespace NP_BST
 
 	//-------------------------------------------------------------------- 
 	// pops out the leftmost child of cur
-	// throws invalid_argument
 	//--------------------------------------------------------------------
 	template <class T>
-	T Bst<T>::popLow(Node<T>* &cur)
+	T bst<T>::popLow(node<T>* &cur)
 	{
 		if (cur == nullptr)
 			throw (invalid_argument("Pointer does not point to a node"));
 		if (cur->left == nullptr)
 		{
 			T temp = cur->value();
-			Node<T>* temptr = cur->right;
+			node<T>* temptr = cur->right;
 			delete cur;
 			cur = temptr;
 			if (root != nullptr)
@@ -504,14 +434,14 @@ namespace NP_BST
 	// throws invalid_argument
 	//------------------------------------------------------------------------
 	template <class T>
-	T Bst<T>::popHigh(Node<T>* &cur)
+	T bst<T>::popHigh(node<T>* &cur)
 	{
 		if (cur == nullptr)
 			throw(invalid_argument("Pointer does not point to a node"));
 		if (cur->right == nullptr)
 		{
 			T temp = cur->value();
-			Node<T>* temptr = cur->left;
+			node<T>* temptr = cur->left;
 			delete cur;
 			cur = temptr;
 			if (root != nullptr)
@@ -525,9 +455,9 @@ namespace NP_BST
 	// pops first node matching d
 	//--------------------------------------------------------------------
 	template <class T>
-	T Bst<T>::popFirstOf(const T& d, Node<T>*& np)
+	T bst<T>::popFirstOf(const T& d, node<T>*& np)
 	{
-		Node<T>* matchptr = nullptr;
+		node<T>* matchptr = nullptr;
 		findFirstOf(d, np, matchptr);
 		if (*parentptr != nullptr)
 		{
@@ -544,7 +474,7 @@ namespace NP_BST
 	// recursive
 	//--------------------------------------------------------------------
 	template <class T>
-	int Bst<T>::getNumberOfNodes(Node<T>* np) const
+	int bst<T>::getNumberOfNodes(node<T>* np) const
 	{
 		int count = 1;
 		if (np != nullptr)
@@ -560,36 +490,12 @@ namespace NP_BST
 	// Overloaded << for bst<T>
 	//--------------------------------------------------------------------
 	template <class T>
-	ostream& operator<<(ostream& out, Bst<T> tree)
+	ostream& operator<<(ostream& out, bst<T> tree)
 	{
 		tree.print(tree.getroot(), out);
 		return out;
 	}
 
-	//--------------------------------------------------------------------
-	// Title: BFIterator next method
-	// Description: goes to next item in BFT
-	// Called By: Set<T>::intersection
-	// Calls: node::value()
-	// Throws: out_of_range if next() called at end of tree
-	// History Log: https://github.com/qwergram/CS133Assignment/blame/project3/AVLTree/avl.h
-	// Test Plan: https://travis-ci.org/qwergram/CS133Assignment/
-	//--------------------------------------------------------------------
-	template<class T>
-	inline const Node<T> Bst<T>::BFIterator::next() {
-		if (!oldQueue.empty()) {
-			Node<T> lastNode = oldQueue.front();
-			oldQueue.pop();
-			if (lastNode.left != nullptr)
-				oldQueue.push(*lastNode.left);
-			if (lastNode.right != nullptr)
-				oldQueue.push(*lastNode.right);
-			this->lastPop = lastNode;
-			return lastNode;
-		}
-		throw out_of_range("Reached end of tree");
-	}
-
-} // end namespace NP_BST
+} // end namespace PB_BST
 
 #endif
