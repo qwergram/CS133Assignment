@@ -18,12 +18,21 @@
     <ClInclude Include="RPNCalc.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="catch.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RPNTestHelper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CalcDriver.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="RPNCalcStart.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RPN_UnitTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
