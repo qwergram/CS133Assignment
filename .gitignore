@@ -2,6 +2,7 @@
 *.db
 *.opendb
 .vs/
+.vscode/
 Debug/
 ipch/
 *.TMP

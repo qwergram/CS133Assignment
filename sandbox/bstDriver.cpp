@@ -1,7 +1,6 @@
 #include <iostream>
 #include <cstdlib>
 #include "bst.h"
-#include "avl.h"
 using namespace std;
 
 //--------------------------------------------------------------------
@@ -12,14 +11,14 @@ using namespace std;
 // revised April, 2005
 // revised June, 2015
 //--------------------------------------------------------------------
-int main2(void)
+int main(void)
 {
-	using NP_AVL::avl;
-	using NP_BST::Node;
+	using NP_BST::bst;
+	using NP_BST::node;
 	try
 	{
-		avl<char> tree;
-		Node<char>* marker = nullptr;
+		bst<char> tree;
+		node<char>* marker = nullptr;
 		char c;
 		cout << "enter some characters, followed by <enter>.\n";
 		do
@@ -35,7 +34,7 @@ int main2(void)
 
 		tree.printXlevel(cout);
 		//
-		Bst<char> tree2 = tree; // test overloaded =
+		bst<char> tree2 = tree; // test overloaded =
 		tree2 += tree; // test overloaded +
 		cout << "tree 1:" << endl;
 		cout << tree << " : " << tree.getNumberOfNodes()

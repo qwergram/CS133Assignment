@@ -3,9 +3,7 @@ Param(
     [string]$folder
 );
 
-clear;
-
-$code = Get-ChildItem $folder -Recurse | Where-Object { $_.extension -eq ".h" -or $_.extension -eq ".cpp" -or $_.extension -eq ".hpp" }
+$code = Get-ChildItem $folder -Recurse | Where-Object { $_.extension -eq ".h" -or $_.extension -eq ".cpp" }
 
 
 For ($i = 0; $i -lt $code.Length; $i++) {
@@ -16,7 +14,7 @@ For ($i = 0; $i -lt $code.Length; $i++) {
         $line = $reader.ReadLine();
         if ($line -eq $null) { break }
 
-        if ($line.length -ge 80) {
+        if ($line.length -ge 80 -and $line -notmatch "https://") {
             Write-Host -NoNewline $code[$i].FullName "Line" $k "@" $line.Length "|" $line "`n";
         }
     }

@@ -1,0 +1,16 @@
+sudo: false
+language: cpp
+compiler: 
+  - g++
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - g++-4.9
+before_script:
+  - cd ./AVLTree
+script:
+  - g++-4.9 --version
+  - g++-4.9 *.h* *.cpp -std=gnu++0x
+  - ./a.out
