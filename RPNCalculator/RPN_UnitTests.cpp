@@ -3,7 +3,7 @@
 #include "RPNCalc.h"
 #include "RPNTestHelper.h"
 
-using namespace PB_CALC;
+using namespace P4_RPNCALC;
 
 TEST_CASE("Operation Methods")
 {

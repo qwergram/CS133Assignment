@@ -6,7 +6,7 @@
 #include "RPNCalc.h"
 
 
-namespace PB_CALC
+namespace P4_RPNCALC
 {
 
 	class RPNTestHelper
