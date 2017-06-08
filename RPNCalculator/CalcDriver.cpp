@@ -34,11 +34,10 @@ using namespace std;
 //	History Log:
 //			4/205/14  PB  completed version 1.0
 //----------------------------------------------------------------------------
-int main(void)
-{
-	using PB_CALC::CRPNCalc;
+int main(void){
+	using P4_RPNCALC::CRPNCalc;
 	CRPNCalc myCalc;
-	cout << endl << "Press \"enter\" to continue";
+	cout << endl << "Project 4 by Antonio Castelli, <insert name here>, <insert name here>, and <insert name here>";
 	cin.get();
 
 	return EXIT_SUCCESS;
