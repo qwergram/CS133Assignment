@@ -19,8 +19,21 @@ TEST_CASE("Operation Methods")
 		REQUIRE(test.expectedInputOutput("4 +", "10"));
 		REQUIRE(test.expectedInputOutput("-12 +", "-2"));
 		REQUIRE(test.expectedInputOutput("5 +", "3"));
-		REQUIRE(test.expectedInputOutput("3 +", "10"));
+		REQUIRE(test.expectedInputOutput("3 +", "10"));	
 	}
+	
+	SECTION("Method: add() & subtract()")
+	{
+		REQUIRE(test.expectedInputOutput("40 50 + 60 -", "30"));
+		REQUIRE(test.expectedInputOutput("40 50 - 60 +", "50"));
+		REQUIRE(test.expectedInputOutput("40 50 60 + -", "-70"));
+		REQUIRE(test.expectedInputOutput("40 50 60 - +", "30"));
+		REQUIRE(test.expectedInputOutput("-40 -50 + 60 -", "-150"));
+		REQUIRE(test.expectedInputOutput("-40 -50 + -60 -", "-30"));
+		REQUIRE(test.expectedInputOutput("-40 -50 - 60 +", "70"));
+		REQUIRE(test.expectedInputOutput("-40 -50 - -60 +", "-50"));	
+	}
+	
 
 	SECTION("Method: subtract()")
 	{
