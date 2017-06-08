@@ -157,7 +157,7 @@ namespace P4_RPNCALC
 				saveToFile();
 				break;
 			case 'H':
-				//---------------------------------help
+				m_helpOn = !m_helpOn;
 				break;
 			case 'L':
 				loadProgram();
