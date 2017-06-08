@@ -89,7 +89,7 @@
 
 using namespace std;
 
-namespace PB_CALC
+namespace P4_RPNCALC
 {
 
 	const char helpMenu[] = "C clear stack   | CE clear entry  | D rotate down  | F save program to file\n"
@@ -130,6 +130,7 @@ namespace PB_CALC
 		void setReg(int reg);
 		void subtract();
 		void unary_prep(double& d);
+		string getToken();
 
 		// private properties
 		double m_registers[NUMREGS];
