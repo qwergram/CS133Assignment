@@ -347,7 +347,6 @@ namespace P4_RPNCALC
 	void CRPNCalc::loadProgram()
 	{
 		string filename = "";
-		fstream fstr;
 		if (m_buffer.empty())
 		{
 			cout << "Enter a filename:\n";
@@ -356,7 +355,7 @@ namespace P4_RPNCALC
 		}
 		else
 			filename = getToken();
-		fstr = fstream(filename, fstream::in);
+		fstream fstr(filename, fstream::in);
 		if (fstr)
 		{
 			string temp = m_buffer;
