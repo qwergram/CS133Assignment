@@ -9,7 +9,7 @@ addons:
     packages:
       - g++-4.9
 before_script:
-  - cd ./AVLTree
+  - cd ./RPNCalculator
 script:
   - g++-4.9 --version
   - g++-4.9 *.h* *.cpp -std=gnu++0x
