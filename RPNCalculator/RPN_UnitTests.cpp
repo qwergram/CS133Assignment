@@ -17,7 +17,6 @@ TEST_CASE("Operation Methods")
 		REQUIRE(test.expectedInputOutput("c", ""));
 		REQUIRE(test.expectedInputOutput("50 100 + 200", "200"));
 		REQUIRE(test.expectedInputOutput("c", ""));
-		REQUIRE(test.expectedInputOutput("CE", ""));
 		REQUIRE(test.expectedInputOutput("50", "50"));
 		REQUIRE(test.expectedInputOutput("C", ""));
 		REQUIRE(test.expectedInputOutput("50 100 +", "150"));
