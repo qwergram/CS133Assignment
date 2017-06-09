@@ -8,10 +8,21 @@ using namespace P4_RPNCALC;
 TEST_CASE("Operation Methods")
 {
 	RPNTestHelper test;
+	
+	SECTION("Method: clearAll()")
+	{
+		REQUIRE(test.expectedInputOutput("50", "50"));
+		REQUIRE(test.expectedInputOutput("c", ""));
+		REQUIRE(test.expectedInputOutput("50 100 +", "150"));
+		REQUIRE(test.expectedInputOutput("c", ""));
+		REQUIRE(test.expectedInputOutput("50", "50"));
+		REQUIRE(test.expectedInputOutput("C", ""));
+		REQUIRE(test.expectedInputOutput("50 100 +", "150"));
+		REQUIRE(test.expectedInputOutput("C", ""));
+	}
 
 	SECTION("Method: add()")
 	{
-		
 		REQUIRE(test.expectedInputOutput("3 5 +", "8"));
 		REQUIRE(test.expectedInputOutput("2 4 3 +", "7"));
 		REQUIRE(test.expectedInputOutput("c", ""));
