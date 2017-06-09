@@ -136,6 +136,8 @@ TEST_CASE("Operation Methods")
 		REQUIRE(test.expectedInputOutput("-10 3^", "-1000"));
 		REQUIRE(test.expectedInputOutput("0^", "1"));
 		REQUIRE(test.expectedInputOutput("^", "<<error>>"));
+		REQUIRE(test.expectedInputOutput("c", ""));
+		REQUIRE(test.expectedInputOutput("100 100^", "1e+200"));
 	}
 
 	SECTION("Method: neg()")
@@ -148,4 +150,27 @@ TEST_CASE("Operation Methods")
 		REQUIRE(test.expectedInputOutput("600-", "-1000"));
 		REQUIRE(test.expectedInputOutput("-", "<<error>>"));
 	}
+	
+	SECTION("Method: rotateDown()")
+	{
+		REQUIRE(test.expectedInputOutput("100 200", "200"));
+		REQUIRE(test.expectedInputOutput("D", "100"));
+		REQUIRE(test.expectedInputOutput("D", "200"));
+		REQUIRE(test.expectedInputOutput("d", "100"));
+		REQUIRE(test.expectedInputOutput("d", "200"));
+		REQUIRE(test.expectedInputOutput("c", ""));
+		REQUIRE(test.expectedInputOutput("D", "<<error>>"));
+		REQUIRE(test.expectedInputOutput("c", ""));
+		REQUIRE(test.expectedInputOutput("d", "<<error>>"));
+	}
+	
+	SECTION("Method: rotateUp()")
+	{
+		REQUIRE(test.expectedInputOutput("-1000", "-1000"));
+		REQUIRE(test.expectedInputOutput("-1000", "-1000"));
+		REQUIRE(test.expectedInputOutput("-1000", "-1000"));
+		REQUIRE(test.expectedInputOutput("-1000", "-1000"));
+		
+	}
+	
 }
