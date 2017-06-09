@@ -166,11 +166,14 @@ TEST_CASE("Operation Methods")
 	
 	SECTION("Method: rotateUp()")
 	{
-		REQUIRE(test.expectedInputOutput("-1000", "-1000"));
-		REQUIRE(test.expectedInputOutput("-1000", "-1000"));
-		REQUIRE(test.expectedInputOutput("-1000", "-1000"));
-		REQUIRE(test.expectedInputOutput("-1000", "-1000"));
-		
+		REQUIRE(test.expectedInputOutput("300 500", "500"));
+		REQUIRE(test.expectedInputOutput("U", "300"));
+		REQUIRE(test.expectedInputOutput("U", "500"));
+		REQUIRE(test.expectedInputOutput("u", "300"));
+		REQUIRE(test.expectedInputOutput("u", "500"));
+		REQUIRE(test.expectedInputOutput("c", ""));
+		REQUIRE(test.expectedInputOutput("U", "<<error>>"));
+		REQUIRE(test.expectedInputOutput("c", ""));
+		REQUIRE(test.expectedInputOutput("u", "<<error>>"));
 	}
-	
 }
