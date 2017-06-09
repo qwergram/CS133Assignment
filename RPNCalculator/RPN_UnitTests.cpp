@@ -143,12 +143,17 @@ TEST_CASE("Operation Methods")
 	SECTION("Method: neg()")
 	{
 		REQUIRE(test.expectedInputOutput("-1000", "-1000"));
+		REQUIRE(test.expectedInputOutput("M", "1000"));
 		REQUIRE(test.expectedInputOutput("-1000 -1*", "1000"));
+		REQUIRE(test.expectedInputOutput("M", "-1000"));
 		REQUIRE(test.expectedInputOutput("-4/", "-250"));
-		REQUIRE(test.expectedInputOutput("-2*", "500"));
-		REQUIRE(test.expectedInputOutput("-900+", "-400"));
-		REQUIRE(test.expectedInputOutput("600-", "-1000"));
-		REQUIRE(test.expectedInputOutput("-", "<<error>>"));
+		REQUIRE(test.expectedInputOutput("m", "250"));
+		REQUIRE(test.expectedInputOutput("-2*", "-500"));
+		REQUIRE(test.expectedInputOutput("m", "500"));
+		REQUIRE(test.expectedInputOutput("c", ""));
+		REQUIRE(test.expectedInputOutput("m", "<<error>>"));
+		REQUIRE(test.expectedInputOutput("c", ""));
+		REQUIRE(test.expectedInputOutput("M", "<<error>>"));
 	}
 	
 	SECTION("Method: rotateDown()")
