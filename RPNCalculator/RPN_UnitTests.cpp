@@ -49,6 +49,8 @@ TEST_CASE("Operation Methods")
 		REQUIRE(test.expectedInputOutput("-12 +", "-2"));
 		REQUIRE(test.expectedInputOutput("5 +", "3"));
 		REQUIRE(test.expectedInputOutput("3 +", "6"));
+		REQUIRE(test.expectedInputOutput("10 100 +", "110"));
+		REQUIRE(test.expectedInputOutput("10 100+", "110"));
 		REQUIRE(test.expectedInputOutput("+", "<<error>>"));
 	}
 	
@@ -71,6 +73,8 @@ TEST_CASE("Operation Methods")
 		REQUIRE(test.expectedInputOutput("-", "-2"));
 		REQUIRE(test.expectedInputOutput("c", ""));
 		REQUIRE(test.expectedInputOutput("-1 5 -", "-6"));
+		REQUIRE(test.expectedInputOutput("10 100 -", "-90"));
+		REQUIRE(test.expectedInputOutput("10 100-", "-90"));
 		REQUIRE(test.expectedInputOutput("-", "<<error>>"));
 	}
 
@@ -84,6 +88,8 @@ TEST_CASE("Operation Methods")
 		REQUIRE(test.expectedInputOutput("c", ""));
 		REQUIRE(test.expectedInputOutput("-4 -6 *", "24"));
 		REQUIRE(test.expectedInputOutput("-2 *", "-48"));
+		REQUIRE(test.expectedInputOutput("10 100 *", "1000"));
+		REQUIRE(test.expectedInputOutput("10 100*", "1000"));
 	}
 
 	SECTION("Method: divide()")
@@ -95,6 +101,8 @@ TEST_CASE("Operation Methods")
 		REQUIRE(test.expectedInputOutput("9 3 7 /", "0.428571"));
 		REQUIRE(test.expectedInputOutput("-1 /", "-0.428571"));
 		REQUIRE(test.expectedInputOutput("-1 / ", "0.428571"));
+		REQUIRE(test.expectedInputOutput("100 10 /", "10"));
+		REQUIRE(test.expectedInputOutput("100 10/", "10"));
 		REQUIRE(test.expectedInputOutput("/", "<<error>>"));
 	}
 
@@ -103,11 +111,19 @@ TEST_CASE("Operation Methods")
 		REQUIRE(test.expectedInputOutput("16 8 6 %", "2"));
 		REQUIRE(test.expectedInputOutput("%", "0"));
 		REQUIRE(test.expectedInputOutput("c", ""));
-
-		REQUIRE(test.expectedInputOutput("", ""));
-		REQUIRE(test.expectedInputOutput("", ""));
-		REQUIRE(test.expectedInputOutput("", ""));
-		
+		REQUIRE(test.expectedInputOutput("%", "<<error>>"));
+		REQUIRE(test.expectedInputOutput("10 1 %", "0"));
+		REQUIRE(test.expectedInputOutput("10 2 %", "0"));
+		REQUIRE(test.expectedInputOutput("10 3 %", "1"));
+		REQUIRE(test.expectedInputOutput("10 4 %", "2"));
+		REQUIRE(test.expectedInputOutput("10 5 %", "0"));
+		REQUIRE(test.expectedInputOutput("10 6 %", "4"));
+		REQUIRE(test.expectedInputOutput("10 7 %", "3"));
+		REQUIRE(test.expectedInputOutput("10 8 %", "2"));
+		REQUIRE(test.expectedInputOutput("10 9 %", "1"));
+		REQUIRE(test.expectedInputOutput("10 10 %", "0"));
+		REQUIRE(test.expectedInputOutput("100 70 %", "30"));
+		REQUIRE(test.expectedInputOutput("100 70%", "30"));
 	}
 
 	SECTION("Method: exp()")
