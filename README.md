@@ -176,3 +176,4 @@ git push
 - [ ] [Casting](https://github.com/qwergram/CS133Assignment/blob/master/Notes/reinterpretcast.md)
 - [x] [Iterators](https://github.com/qwergram/CS133Assignment/blob/master/Notes/Iterators.md)
 - [ ] [BST](https://github.com/qwergram/CS133Assignment/blob/master/Notes/BSTLecture.md)
+- [x] [The Final](https://github.com/qwergram/CS133Assignment/blob/master/Notes/FinalNotes.md)
