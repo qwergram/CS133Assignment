@@ -128,19 +128,24 @@ TEST_CASE("Operation Methods")
 
 	SECTION("Method: exp()")
 	{
-		REQUIRE(test.expectedInputOutput("", ""));
-		REQUIRE(test.expectedInputOutput("", ""));
-		REQUIRE(test.expectedInputOutput("", ""));
-		REQUIRE(test.expectedInputOutput("", ""));
-		REQUIRE(test.expectedInputOutput("", ""));
+		REQUIRE(test.expectedInputOutput("10 2 ^", "100"));
+		REQUIRE(test.expectedInputOutput("10 2 2 ^", "4"));
+		REQUIRE(test.expectedInputOutput("^", "10000"));
+		REQUIRE(test.expectedInputOutput("-10 2 ^", "100"));
+		REQUIRE(test.expectedInputOutput("-10 3 ^", "-1000"));
+		REQUIRE(test.expectedInputOutput("-10 3^", "-1000"));
+		REQUIRE(test.expectedInputOutput("0^", "1"));
+		REQUIRE(test.expectedInputOutput("^", "<<error>>"));
 	}
 
 	SECTION("Method: neg()")
 	{
-		REQUIRE(test.expectedInputOutput("", ""));
-		REQUIRE(test.expectedInputOutput("", ""));
-		REQUIRE(test.expectedInputOutput("", ""));
-		REQUIRE(test.expectedInputOutput("", ""));
-		REQUIRE(test.expectedInputOutput("", ""));
+		REQUIRE(test.expectedInputOutput("-1000", "-1000"));
+		REQUIRE(test.expectedInputOutput("-1000 -1*", "1000"));
+		REQUIRE(test.expectedInputOutput("-4/", "-250"));
+		REQUIRE(test.expectedInputOutput("-2*", "500"));
+		REQUIRE(test.expectedInputOutput("-900+", "-400"));
+		REQUIRE(test.expectedInputOutput("600-", "-1000"));
+		REQUIRE(test.expectedInputOutput("-", "<<error>>"));
 	}
 }
