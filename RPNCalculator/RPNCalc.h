@@ -108,6 +108,13 @@ namespace P4_RPNCALC
 		void print(ostream& ostr);  // changes m_error on error, so not const
 		void input(istream& istr);
 
+		//testing methods-will be removed for submission
+		string getBuffer() const { return m_buffer; };
+		void setBuffer(string input) { m_buffer = input; };
+		void runParse() { parse(); };
+		double getOutput() { if (!m_stack.empty()) return m_stack.front(); 
+			else throw invalid_argument("empty"); };
+		
 	private:
 		// private methods
 		void add();
