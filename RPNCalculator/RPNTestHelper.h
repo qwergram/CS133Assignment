@@ -8,16 +8,26 @@
 
 namespace P4_RPNCALC
 {
-
 	class RPNTestHelper
 	{
 	public:
-		RPNTestHelper() { this->calc.run(); };
+		RPNTestHelper() : calc(false) {  };
 		bool expectedInputOutput(string input, string output) {
-			istringstream convertString(input);
-			this->calc.input(convertString);
-			stringstream ss;
-			ss << calc;
+			ostringstream ss; 
+			calc.setBuffer(input);
+			while (!calc.getBuffer().empty())
+				calc.runParse();
+			try
+			{
+				ss << calc.getOutput();
+			}
+			catch (invalid_argument & e)
+			{
+				if (input == "c")
+					ss << ""; 
+				else
+					ss << "<<error>>";	
+			}
 			return ss.str() == output;
 		}
 	private:
