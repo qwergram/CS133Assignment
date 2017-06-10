@@ -60,6 +60,8 @@ TEST_CASE("Operation Methods")
 	
 	SECTION("Method: combinations of add() & subtract()")
 	{
+		REQUIRE(test.expectedInputOutput("4.4 5.5 + 60 -", "-50.1"));
+		REQUIRE(test.expectedInputOutput("4.4 5.5 - 60 +", "58.9"));
 		REQUIRE(test.expectedInputOutput("40 50 + 60 -", "30"));
 		REQUIRE(test.expectedInputOutput("40 50 - 60 +", "50"));
 		REQUIRE(test.expectedInputOutput("40 50 60 + -", "-70"));
@@ -94,6 +96,7 @@ TEST_CASE("Operation Methods")
 		REQUIRE(test.expectedInputOutput("-2 *", "-48"));
 		REQUIRE(test.expectedInputOutput("10 100 *", "1000"));
 		REQUIRE(test.expectedInputOutput("10 100*", "1000"));
+		REQUIRE(test.expectedInputOutput("5.5 2.2*", "12.1"));
 	}
 
 	SECTION("Method: divide()")
@@ -185,6 +188,7 @@ TEST_CASE("Operation Methods")
 		REQUIRE(test.expectedInputOutput("c", ""));
 		REQUIRE(test.expectedInputOutput("u", "<<error>>"));
 	}
+	
 	SECTION("Methods: saveToFile(), loadProgram(), recordProgram(), runProgram()")
 	{
 		REQUIRE(test.expectedInputOutput("R", "<<error>>"));
@@ -201,6 +205,21 @@ TEST_CASE("Operation Methods")
 		REQUIRE(test.expectedInputOutput("test1", ""));
 		REQUIRE(test.expectedInputOutput("r", "-10"));	
 		REQUIRE(test.expectedInputOutput("c", ""));
-		
+	}
+	
+	SECTION("Methods: getReg(), setReg()")
+	{
+		REQUIRE(test.expectedInputOutput("s0", "<<error>>"));
+		REQUIRE(test.expectedInputOutput("S1", "<<error>>"));
+		REQUIRE(test.expectedInputOutput("s5", "<<error>>"));
+		REQUIRE(test.expectedInputOutput("G0", "0"));
+		REQUIRE(test.expectedInputOutput("g1", "0"));
+		REQUIRE(test.expectedInputOutput("G5", "0"));
+		REQUIRE(test.expectedInputOutput("1000", "1000"));
+		REQUIRE(test.expectedInputOutput("s5", "1000"));
+		REQUIRE(test.expectedInputOutput("2.5", "2.5"));
+		REQUIRE(test.expectedInputOutput("S0", "2.5"));
+		REQUIRE(test.expectedInputOutput("G5", "1000"));
+		REQUIRE(test.expectedInputOutput("g0", "2.5"));
 	}
 }
