@@ -185,4 +185,22 @@ TEST_CASE("Operation Methods")
 		REQUIRE(test.expectedInputOutput("c", ""));
 		REQUIRE(test.expectedInputOutput("u", "<<error>>"));
 	}
+	SECTION("Methods: saveToFile(), loadProgram(), recordProgram(), runProgram()")
+	{
+		REQUIRE(test.expectedInputOutput("R", "<<error>>"));
+		REQUIRE(test.expectedInputOutput("F", "<<error>>"));
+		REQUIRE(test.expectedInputOutput("p", "0>"));
+		REQUIRE(test.expectedInputOutput("5 10 +", "1>"));
+		REQUIRE(test.expectedInputOutput("20 30 -", "2>"));
+		REQUIRE(test.expectedInputOutput("P", ""));
+		REQUIRE(test.expectedInputOutput("f", "Enter a filename:"));
+		REQUIRE(test.expectedInputOutput("test1", ""));
+		REQUIRE(test.expectedInputOutput("l", "Enter a filename:"));
+		REQUIRE(test.expectedInputOutput("test", "error"));
+		REQUIRE(test.expectedInputOutput("L", "Enter a filename:"));
+		REQUIRE(test.expectedInputOutput("test1", ""));
+		REQUIRE(test.expectedInputOutput("r", "-10"));	
+		REQUIRE(test.expectedInputOutput("c", ""));
+		
+	}
 }
