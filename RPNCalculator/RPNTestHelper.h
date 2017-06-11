@@ -16,7 +16,7 @@ namespace P4_RPNCALC
 			return getOutput(input) == output;
 		}
 
-		string getStackFront(string input) {
+		string getStackOutput(string input) {
 			ostringstream ss;
 			calc.setBuffer(input);
 			while (!calc.getBuffer().empty())
@@ -26,7 +26,7 @@ namespace P4_RPNCALC
 		}
 
 		bool expectedStackOutput(string input, string output) {
-			return getStackFront(input) == output;
+			return getStackOutput(input) == output;
 		}
 
 		string getOutput(string input) {
