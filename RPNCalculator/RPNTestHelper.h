@@ -41,15 +41,15 @@ namespace P4_RPNCALC
 	public:
 		RPNTestHelper() : calc(false) {  };
 		bool expectedOutput(string input, string output) {
-			return getOutput(input) == output;
+			return depInj_getOutput(input) == output;
 		}
 
 		string getStackOutput(string input) {
 			ostringstream ss;
-			calc.setBuffer(input);
+			calc.depInj_setBuffer(input);
 			while (!calc.getBuffer().empty())
-				calc.runParse();
-			ss << calc.getOutput();
+				calc.depInj_runParse();
+			ss << calc.depInj_getOutput();
 			return ss.str();
 		}
 
@@ -57,11 +57,11 @@ namespace P4_RPNCALC
 			return getStackOutput(input) == output;
 		}
 
-		string getOutput(string input) {
+		string depInj_getOutput(string input) {
 			ostringstream ss;
-			calc.setBuffer(input);
+			calc.depInj_setBuffer(input);
 			while (!calc.getBuffer().empty())
-				calc.runParse();
+				calc.depInj_runParse();
 			ss << calc.depInj_lastOutput();
 			return ss.str();
 		}

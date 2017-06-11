@@ -105,8 +105,8 @@ TEST_CASE("Operation Methods")
 		REQUIRE(test.expectedStackOutput("*", "56"));
 		REQUIRE(test.expectedStackOutput("*", "504"));
 		REQUIRE(test.expectedStackOutput("*", "1512"));
-		REQUIRE(test.getOutput("*") == "<<error>>");
-		REQUIRE(test.getOutput("c") == "");
+		REQUIRE(test.expectError("*"));
+		REQUIRE(test.depInj_getOutput("c") == "");
 		REQUIRE(test.expectedStackOutput("-4 -6 *", "24"));
 		REQUIRE(test.expectedStackOutput("-2 *", "-48"));
 		REQUIRE(test.expectedStackOutput("10 100 *", "1000"));
