@@ -62,7 +62,7 @@ namespace P4_RPNCALC
 			calc.setBuffer(input);
 			while (!calc.getBuffer().empty())
 				calc.runParse();
-			ss << calc.lastOutput();
+			ss << calc.depInj_lastOutput();
 			return ss.str();
 		}
 
