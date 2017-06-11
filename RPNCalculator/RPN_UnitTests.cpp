@@ -1,3 +1,4 @@
+//*
 #define CATCH_CONFIG_MAIN 
 #include "catch.hpp"
 #include "RPNCalc.h"
@@ -223,3 +224,4 @@ TEST_CASE("Operation Methods")
 		REQUIRE(test.expectedInputOutput("g0", "2.5"));
 	}
 }
+//*/
