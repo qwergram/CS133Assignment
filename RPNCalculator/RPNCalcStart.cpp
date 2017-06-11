@@ -94,7 +94,7 @@ namespace P4_RPNCALC
 	void CRPNCalc::print(ostream& ostr)
 	{
 		double d = 0.0;
-		ostr << "[RPN Programmable Calculator] by some guys and girls" << endl;
+		ostr << "[RPN Programmable Calculator] by ctongGH, qwergram, TabithaRoemish & AntonioCastelli" << endl;
 		if (m_helpOn)
 			cout << helpMenu;
 		else
