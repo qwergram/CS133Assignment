@@ -40,14 +40,15 @@ TEST_CASE("Operation Methods")
 		REQUIRE(test.expectedStackOutput("50 100 +", "150"));
 		REQUIRE(test.expectedOutput("ce", ""));
 		REQUIRE(test.expectedStackOutput("50 100 + 200", "200"));
-		REQUIRE(test.expectedOutput("ce", "150"));
+		REQUIRE(test.expectedStackOutput("ce", "150"));
 		REQUIRE(test.expectedOutput("ce", ""));
+
 		REQUIRE(test.expectedStackOutput("50", "50"));
 		REQUIRE(test.expectedOutput("CE", ""));
 		REQUIRE(test.expectedStackOutput("50 100 +", "150"));
 		REQUIRE(test.expectedOutput("CE", ""));
-		REQUIRE(test.expectedOutput("50 100 + 200", "200"));
-		REQUIRE(test.expectedOutput("CE", "150"));
+		REQUIRE(test.expectedStackOutput("50 100 + 200", "200"));
+		REQUIRE(test.expectedStackOutput("CE", "150"));
 		REQUIRE(test.expectedOutput("CE", ""));
 	}
 	/*
@@ -230,6 +231,6 @@ TEST_CASE("Operation Methods")
 		REQUIRE(test.expectedInputOutput("G5", "1000"));
 		REQUIRE(test.expectedInputOutput("g0", "2.5"));
 	}
-	//*/
+	// */
 }
 //*/
