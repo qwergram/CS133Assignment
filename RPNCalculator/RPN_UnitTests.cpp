@@ -55,36 +55,38 @@ TEST_CASE("Operation Methods")
 		REQUIRE(test.expectedStackOutput("CE", "150"));
 		REQUIRE(test.expectedOutput("CE", ""));
 	}
-	/*
+
+	
 	SECTION("Method: add()")
 	{
-		REQUIRE(test.expectedInputOutput("3 5 +", "8"));
-		REQUIRE(test.expectedInputOutput("2 4 3 +", "7"));
-		REQUIRE(test.expectedInputOutput("c", ""));
-		REQUIRE(test.expectedInputOutput("3 4 + 6", "6"));
-		REQUIRE(test.expectedInputOutput("4 +", "10"));
-		REQUIRE(test.expectedInputOutput("-12 +", "-2"));
-		REQUIRE(test.expectedInputOutput("5 +", "3"));
-		REQUIRE(test.expectedInputOutput("3 +", "6"));
-		REQUIRE(test.expectedInputOutput("10 100 +", "110"));
-		REQUIRE(test.expectedInputOutput("10 100+", "110"));
-		REQUIRE(test.expectedInputOutput("+", "<<error>>"));
+		REQUIRE(test.expectedStackOutput("3 5+", "8"));
+		REQUIRE(test.expectedStackOutput("2 4 3 +", "7"));
+		REQUIRE(test.expectedOutput("c", ""));
+		REQUIRE(test.expectedStackOutput("3 4 + 6", "6"));
+		REQUIRE(test.expectedStackOutput("4 +", "10"));
+		REQUIRE(test.expectedStackOutput("-12 +", "-2"));
+		REQUIRE(test.expectedStackOutput("5 +", "3"));
+		REQUIRE(test.expectedStackOutput("3 +", "6"));
+		REQUIRE(test.getStackOutput("10 100 +") == "110");
+		REQUIRE(test.getStackOutput("10 100+") == "110");
 	}
+	
 	
 	SECTION("Method: combinations of add() & subtract()")
 	{
-		REQUIRE(test.expectedInputOutput("4.4 5.5 + 60 -", "-50.1"));
-		REQUIRE(test.expectedInputOutput("4.4 5.5 - 60 +", "58.9"));
-		REQUIRE(test.expectedInputOutput("40 50 + 60 -", "30"));
-		REQUIRE(test.expectedInputOutput("40 50 - 60 +", "50"));
-		REQUIRE(test.expectedInputOutput("40 50 60 + -", "-70"));
-		REQUIRE(test.expectedInputOutput("40 50 60 - +", "30"));
-		REQUIRE(test.expectedInputOutput("-40 -50 + 60 -", "-150"));
-		REQUIRE(test.expectedInputOutput("-40 -50 + -60 -", "-30"));
-		REQUIRE(test.expectedInputOutput("-40 -50 - 60 +", "70"));
-		REQUIRE(test.expectedInputOutput("-40 -50 - -60 +", "-50"));	
+		REQUIRE(test.getStackOutput("4.4 5.5 + 60 -") == "-50.1");
+		REQUIRE(test.expectedStackOutput("4.4 5.5 - 60 +", "58.9"));
+		REQUIRE(test.expectedStackOutput("40 50 + 60 -", "30"));
+		REQUIRE(test.expectedStackOutput("40 50 - 60 +", "50"));
+		REQUIRE(test.expectedStackOutput("40 50 60 + -", "-70"));
+		REQUIRE(test.expectedStackOutput("40 50 60 - +", "30"));
+		REQUIRE(test.expectedStackOutput("-40 -50 + 60 -", "-150"));
+		REQUIRE(test.expectedStackOutput("-40 -50 + -60 -", "-30"));
+		REQUIRE(test.expectedStackOutput("-40 -50 - 60 +", "70"));
+		REQUIRE(test.expectedStackOutput("-40 -50 - -60 +", "-50"));	
 	}
 
+	/*
 	SECTION("Method: subtract()")
 	{
 		REQUIRE(test.expectedInputOutput("5 6 -", "-1"));

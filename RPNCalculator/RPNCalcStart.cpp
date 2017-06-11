@@ -115,7 +115,7 @@ namespace P4_RPNCALC
 	void CRPNCalc::print(ostream& ostr)
 	{
 		double d = 0.0;
-		ostr << "[RPN Programmable Calculator] by ctongGH, qwergram, TabithaRoemish & AntonioCastelli" << endl;
+		ostr << "[RPN Programmable Calculator] by @ctongGH, @qwergram, @TabithaRoemish & @AntonioCastelli" << endl;
 		if (m_helpOn)
 			cout << helpMenu;
 		else
@@ -765,6 +765,7 @@ namespace P4_RPNCALC
 	{
 		string::iterator it1 = m_buffer.begin();
 		string::iterator it2;
+		// skip over all white space
 		if (!m_buffer.empty())
 			while (iswspace(*it1))
 			{
@@ -772,10 +773,13 @@ namespace P4_RPNCALC
 				if (it1 == m_buffer.end())
 					break;
 			}
+		// process string
+		bool isNumeric = isdigit(*it1) || *it1 == '.';
+		bool isNegative = *it1 == '-';
 		if (it1 != m_buffer.end())
 		{
 			string::iterator it2 = it1;
-			while (!iswspace(*it2))
+			while (!iswspace(*it2) && (isNumeric == bool(isdigit(*it2)) || *it2 == '.' || isNegative))
 			{
 				it2++;
 				if (it2 == m_buffer.end())
