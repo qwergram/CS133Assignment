@@ -21,7 +21,7 @@ namespace P4_RPNCALC
 			calc.setBuffer(input);
 			while (!calc.getBuffer().empty())
 				calc.runParse();
-			ss << calc.getOutput();
+			ss << calc.lastOutput();
 			return ss.str();
 		}
 
