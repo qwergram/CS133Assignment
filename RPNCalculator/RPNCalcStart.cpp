@@ -102,13 +102,14 @@ namespace P4_RPNCALC
 		cout << line;
 		if (!m_stack.empty())
 		{
-			d = m_stack.front();
-			ostr << d;
+			this->m_lastOutput = to_string(m_stack.front());
+			ostr << m_stack.front();
 		}
 		ostr << endl << endl;
 		if (m_error)
 		{
-			ostr << "<<error>>" << endl;
+			this->m_lastOutput = "<<error>>";
+			ostr << this->m_lastOutput << endl;
 			m_error = false;
 		}
 	}

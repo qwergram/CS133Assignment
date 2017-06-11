@@ -1,6 +1,8 @@
+
 //--------------------------------------------------
 //  file: RPN+UnitTests.cpp
 //-------------------------------------------------
+
 #define CATCH_CONFIG_MAIN 
 #include "catch.hpp"
 #include "RPNCalc.h"
@@ -12,40 +14,48 @@ TEST_CASE("Operation Methods")
 {
 	RPNTestHelper test;
 	
+	SECTION("Sanity Tests") {
+		for (int n = 0; n < 100; n++) {
+			REQUIRE(test.expectedStackOutput(to_string(n), to_string(n)));
+		}
+	}
+
 	SECTION("Method: clearAll()")
 	{
-		REQUIRE(test.expectedInputOutput("50", "50"));
-		REQUIRE(test.expectedInputOutput("c", ""));
-		REQUIRE(test.expectedInputOutput("50 100 +", "150"));
-		REQUIRE(test.expectedInputOutput("c", ""));
-		REQUIRE(test.expectedInputOutput("50 100 + 200", "200"));
-		REQUIRE(test.expectedInputOutput("c", ""));
-		REQUIRE(test.expectedInputOutput("50", "50"));
-		REQUIRE(test.expectedInputOutput("C", ""));
-		REQUIRE(test.expectedInputOutput("50 100 +", "150"));
-		REQUIRE(test.expectedInputOutput("C", ""));
-		REQUIRE(test.expectedInputOutput("50 100 + 200", "200"));
-		REQUIRE(test.expectedInputOutput("C", ""));
+		REQUIRE(test.expectedStackOutput("50", "50"));
+		REQUIRE(test.expectedOutput("c", ""));
+		REQUIRE(test.expectedStackOutput("50 100 +", "150"));
+		REQUIRE(test.expectedOutput("c", ""));
+		REQUIRE(test.expectedStackOutput("50 100 + 200", "200"));
+		REQUIRE(test.expectedOutput("c", ""));
+		REQUIRE(test.expectedStackOutput("50", "50"));
+		REQUIRE(test.expectedOutput("C", ""));
+		REQUIRE(test.expectedStackOutput("50 100 +", "150"));
+		REQUIRE(test.expectedOutput("C", ""));
+		REQUIRE(test.expectedStackOutput("50 100 + 200", "200"));
+		REQUIRE(test.expectedOutput("C", ""));
 	}
+	
 	
 	SECTION("Method: clearEntry()")
 	{
-		REQUIRE(test.expectedInputOutput("50", "50"));
-		REQUIRE(test.expectedInputOutput("ce", ""));
-		REQUIRE(test.expectedInputOutput("50 100 +", "150"));
-		REQUIRE(test.expectedInputOutput("ce", ""));
-		REQUIRE(test.expectedInputOutput("50 100 + 200", "200"));
-		REQUIRE(test.expectedInputOutput("ce", "150"));
-		REQUIRE(test.expectedInputOutput("ce", ""));
-		REQUIRE(test.expectedInputOutput("50", "50"));
-		REQUIRE(test.expectedInputOutput("CE", ""));
-		REQUIRE(test.expectedInputOutput("50 100 +", "150"));
-		REQUIRE(test.expectedInputOutput("CE", ""));
-		REQUIRE(test.expectedInputOutput("50 100 + 200", "200"));
-		REQUIRE(test.expectedInputOutput("CE", "150"));
-		REQUIRE(test.expectedInputOutput("CE", ""));
-	}
+		REQUIRE(test.expectedStackOutput("50", "50"));
+		REQUIRE(test.expectedOutput("ce", ""));
+		REQUIRE(test.expectedStackOutput("50 100 +", "150"));
+		REQUIRE(test.expectedOutput("ce", ""));
+		REQUIRE(test.expectedStackOutput("50 100 + 200", "200"));
+		REQUIRE(test.expectedStackOutput("ce", "150"));
+		REQUIRE(test.expectedOutput("ce", ""));
 
+		REQUIRE(test.expectedStackOutput("50", "50"));
+		REQUIRE(test.expectedOutput("CE", ""));
+		REQUIRE(test.expectedStackOutput("50 100 +", "150"));
+		REQUIRE(test.expectedOutput("CE", ""));
+		REQUIRE(test.expectedStackOutput("50 100 + 200", "200"));
+		REQUIRE(test.expectedStackOutput("CE", "150"));
+		REQUIRE(test.expectedOutput("CE", ""));
+	}
+	/*
 	SECTION("Method: add()")
 	{
 		REQUIRE(test.expectedInputOutput("3 5 +", "8"));
@@ -199,12 +209,12 @@ TEST_CASE("Operation Methods")
 		REQUIRE(test.expectedInputOutput("p", "0>"));
 		REQUIRE(test.expectedInputOutput("5 10 +", "1>"));
 		REQUIRE(test.expectedInputOutput("20 30 -", "2>"));
-		REQUIRE(test.expectedInputOutput("P", ""));
-		REQUIRE(test.expectedInputOutput("f", "Enter a filename:"));
+		//REQUIRE(test.expectedInputOutput("P", ""));
+		//REQUIRE(test.expectedInputOutput("f", "Enter a filename:"));
 		REQUIRE(test.expectedInputOutput("test1", ""));
-		REQUIRE(test.expectedInputOutput("l", "Enter a filename:"));
+		//REQUIRE(test.expectedInputOutput("l", "Enter a filename:"));
 		REQUIRE(test.expectedInputOutput("test", "error"));
-		REQUIRE(test.expectedInputOutput("L", "Enter a filename:"));
+		//REQUIRE(test.expectedInputOutput("L", "Enter a filename:"));
 		REQUIRE(test.expectedInputOutput("test1", ""));
 		REQUIRE(test.expectedInputOutput("r", "-10"));	
 		REQUIRE(test.expectedInputOutput("c", ""));
@@ -225,4 +235,6 @@ TEST_CASE("Operation Methods")
 		REQUIRE(test.expectedInputOutput("G5", "1000"));
 		REQUIRE(test.expectedInputOutput("g0", "2.5"));
 	}
+	// */
 }
+//*/
