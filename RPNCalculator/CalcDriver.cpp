@@ -37,8 +37,6 @@ using namespace std;
 int main(void){
 	using P4_RPNCALC::CRPNCalc;
 	CRPNCalc myCalc;
-	cout << endl << "Project 4 by Team Antonio Castelli (mascot), and some others";
-	cin.get();
 
 	return EXIT_SUCCESS;
 }
