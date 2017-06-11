@@ -6,15 +6,16 @@
 //
 //    Description:	This file contains the function definitions for CRPNCalc
 //
-//    Programmer:		
+//    Programmer:		Tabitha Roemish, Cecilia Tong, Norton Pengra, Antonio Castelli -
+//		see github link for individual contributions
 //   
-//    Date:             
+//    Date:             June 2017
 // 
 //    Version:          1.0
 //  
 //    Environment:	Intel Xeon PC 
-//                  	Software:   MS Windows 7 for execution; 
-//                  	Compiles under Microsoft Visual C++.Net 2010
+//                  	Software:   MS Windows 10; 
+//                  	Compiles under Microsoft Visual C++.Net 2015
 // 
 //	  class CRPNCalc:
 //
@@ -57,13 +58,21 @@
 //    				istream &operator >>(istream &istr, CRPNCalc &calc)
 //
 //    History Log:
-//                           
+//                 https://github.com/qwergram/CS133Assignment/pull/7          
 // ----------------------------------------------------------------------------	
 namespace P4_RPNCALC
 {
-	// ----------------------------------------------------------------------------
-	//	constructor
-	// ----------------------------------------------------------------------------
+	
+	//--------------------------------------------------------------------
+	// Title: CRPNCalc constructor
+	// Description: constructs RPN calculator instance
+	// Called By: main(), testHelper constructor
+	// Calls: run()
+	// Parameters: bool on - this runs the program if true.
+	// Returns: none
+	// History Log: https://github.com/qwergram/CS133Assignment/blame/Tabitha/RPNCalculator/RPNCalcStart.cpp
+	//--------------------------------------------------------------------
+	
 	CRPNCalc::CRPNCalc(bool on) : m_on(on), m_error(false), m_helpOn(true),
 		m_programRunning(false)
 	{
@@ -72,10 +81,16 @@ namespace P4_RPNCALC
 		if (m_on)
 			run();
 	}
-
-	// ----------------------------------------------------------------------------
-	//	starts the calculator running
-	// ----------------------------------------------------------------------------
+	//--------------------------------------------------------------------
+	// Title: CRPNCalc::run()
+	// Description: starts the calculator running
+	// Called By: CRPNCalc constructor
+	// Calls: parse(), input(), print()
+	// Parameters: none
+	// Returns: none
+	// History Log: https://github.com/qwergram/CS133Assignment/blame/Tabitha/RPNCalculator/RPNCalcStart.cpp
+	//--------------------------------------------------------------------
+	
 	void CRPNCalc::run()
 	{
 		while (m_on)
@@ -87,10 +102,16 @@ namespace P4_RPNCALC
 				parse();
 		}
 	}
-
-	// ----------------------------------------------------------------------------
-	//	prints out calculator screen
-	// ----------------------------------------------------------------------------
+	//--------------------------------------------------------------------
+	// Title: void CRPNCalc::print(ostream& ostr)
+	// Description: prints out calculator screen
+	// Called By: operator <<
+	// Calls:  operator <<, STl - empty(), front()
+	// Parameters: ostream& ostr - outstream reference
+	// Returns: none
+	// History Log: https://github.com/qwergram/CS133Assignment/blame/Tabitha/RPNCalculator/RPNCalcStart.cpp
+	//--------------------------------------------------------------------
+	
 	void CRPNCalc::print(ostream& ostr)
 	{
 		double d = 0.0;
@@ -113,10 +134,16 @@ namespace P4_RPNCALC
 			m_error = false;
 		}
 	}
+	//--------------------------------------------------------------------
+	// Title: void CRPNCalc::parse()
+	// Description: parses the next command from m_instrStream
+	// Called By: input(), run(), runProgram(), runParse()-(for testing)
+	// Calls: all CRPNCalc methods
+	// Parameters: none
+	// Returns: none
+	// History Log: https://github.com/qwergram/CS133Assignment/blame/Tabitha/RPNCalculator/RPNCalcStart.cpp
+	//--------------------------------------------------------------------
 
-	// ----------------------------------------------------------------------------
-	//	parses the next command from m_instrStream
-	// ----------------------------------------------------------------------------
 	void CRPNCalc::parse()
 	{
 		string token = getToken();
@@ -203,11 +230,17 @@ namespace P4_RPNCALC
 			}
 		}
 	}
-
-	// ----------------------------------------------------------------------------
-	//	if possible, pops top 2 elements from the stack, adds them
+	//--------------------------------------------------------------------
+	// Title: void CRPNCalc::add()
+	// Description: if possible, pops top 2 elements from the stack, adds them
 	//	  and pushes the result onto the stack
-	// ----------------------------------------------------------------------------	
+	// Called By: main(), testhelper
+	// Calls: STL -push_front()
+	// Parameters: none
+	// Returns: none
+	// History Log: https://github.com/qwergram/CS133Assignment/blame/Tabitha/RPNCalculator/RPNCalcStart.cpp
+	// Test Plan: https://github.com/qwergram/CS133Assignment/blob/f8b7430439e292dfaae703a3405134965d68bfa1/RPNCalculator/RPN_UnitTests.cpp
+	//--------------------------------------------------------------------
 	void CRPNCalc::add()
 	{
 		double num1 = 0.0;
@@ -216,11 +249,17 @@ namespace P4_RPNCALC
 		if (!m_error)
 			m_stack.push_front(num1 + num2);
 	}
-
-	// ----------------------------------------------------------------------------
-	//	if possible, pops top 2 elements from the stack, subtracts them
+	//--------------------------------------------------------------------
+	// Title: void CRPNCalc::subtract()
+	// Description: if possible, pops top 2 elements from the stack, subtracts them
 	//	  and pushes the result onto the stack
-	// ----------------------------------------------------------------------------
+	// Called By: main(), testhelper
+	// Calls: STL -push_front()
+	// Parameters: none
+	// Returns: none
+	// History Log: https://github.com/qwergram/CS133Assignment/blame/Tabitha/RPNCalculator/RPNCalcStart.cpp
+	// Test Plan: https://github.com/qwergram/CS133Assignment/blob/f8b7430439e292dfaae703a3405134965d68bfa1/RPNCalculator/RPN_UnitTests.cpp
+	//--------------------------------------------------------------------
 	void CRPNCalc::subtract()
 	{
 		double num1 = 0.0;
@@ -229,11 +268,17 @@ namespace P4_RPNCALC
 		if (!m_error)
 			m_stack.push_front(num1 - num2);
 	}
-
-	// ----------------------------------------------------------------------------
-	//	if possible, pops top 2 elements from the stack, multiplies them
+	//--------------------------------------------------------------------
+	// Title: void CRPNCalc::multiply()
+	// Description: if possible, pops top 2 elements from the stack, multiplies them
 	//	  and pushes the result onto the stack
-	// ----------------------------------------------------------------------------
+	// Called By: main(), testhelper
+	// Calls: STL -push_front()
+	// Parameters: none
+	// Returns: none
+	// History Log: https://github.com/qwergram/CS133Assignment/blame/Tabitha/RPNCalculator/RPNCalcStart.cpp
+	// Test Plan: https://github.com/qwergram/CS133Assignment/blob/f8b7430439e292dfaae703a3405134965d68bfa1/RPNCalculator/RPN_UnitTests.cpp
+	//--------------------------------------------------------------------
 	void CRPNCalc::multiply()
 	{
 		double num1 = 0.0;
@@ -242,10 +287,19 @@ namespace P4_RPNCALC
 		if (!m_error)
 			m_stack.push_front(num1 * num2);
 	}
-
-	// ----------------------------------------------------------------------------
-	//	if possible, pops top 2 elements from the stack, divides them
+	//--------------------------------------------------------------------
+	// Title: void CRPNCalc::divide()
+	// Description: if possible, pops top 2 elements from the stack, divides them
 	//	  and pushes the result onto the stack
+	// Called By: main(), testhelper
+	// Calls: STL -push_front()
+	// Parameters: none
+	// Returns: none
+	// History Log: https://github.com/qwergram/CS133Assignment/blame/Tabitha/RPNCalculator/RPNCalcStart.cpp
+	// Test Plan: https://github.com/qwergram/CS133Assignment/blob/f8b7430439e292dfaae703a3405134965d68bfa1/RPNCalculator/RPN_UnitTests.cpp
+	//--------------------------------------------------------------------
+	// ----------------------------------------------------------------------------
+	//	
 	// ----------------------------------------------------------------------------
 	void CRPNCalc::divide()
 	{
@@ -255,12 +309,19 @@ namespace P4_RPNCALC
 		if (!m_error)
 			m_stack.push_front(num1 / num2);
 	}
-
-	// ----------------------------------------------------------------------------
-	//	if possible, pops top 2 elements from the stack,
+	//--------------------------------------------------------------------
+	// Title: void CRPNCalc::exp()
+	// Description: if possible, pops top 2 elements from the stack,
 	//	  raises one element to the other power
 	//	  and pushes the result onto the stack
-	// ----------------------------------------------------------------------------
+	// Called By: main(), testhelper
+	// Calls: STL -push_front()
+	// Parameters: none
+	// Returns: none
+	// History Log: https://github.com/qwergram/CS133Assignment/blame/Tabitha/RPNCalculator/RPNCalcStart.cpp
+	// Test Plan: https://github.com/qwergram/CS133Assignment/blob/f8b7430439e292dfaae703a3405134965d68bfa1/RPNCalculator/RPN_UnitTests.cpp
+	//--------------------------------------------------------------------
+
 	void CRPNCalc::exp()
 	{
 		double num1 = 0.0;
@@ -269,11 +330,17 @@ namespace P4_RPNCALC
 		if (!m_error)
 			m_stack.push_front(pow(num1, num2));
 	}
-
-	// ----------------------------------------------------------------------------
-	//	if possible, pops top 2 elements from the stack, mods them
+	//--------------------------------------------------------------------
+	// Title: void CRPNCalc::mod()
+	// Description: if possible, pops top 2 elements from the stack, mods them
 	//	  and pushes the result onto the stack
-	// ----------------------------------------------------------------------------
+	// Called By: main(), testhelper
+	// Calls: STL -push_front()
+	// Parameters: none
+	// Returns: none 
+	// History Log: https://github.com/qwergram/CS133Assignment/blame/Tabitha/RPNCalculator/RPNCalcStart.cpp
+	// Test Plan: https://github.com/qwergram/CS133Assignment/blob/f8b7430439e292dfaae703a3405134965d68bfa1/RPNCalculator/RPN_UnitTests.cpp
+	//--------------------------------------------------------------------
 	void CRPNCalc::mod()
 	{
 		double num1 = 0.0;
@@ -282,11 +349,18 @@ namespace P4_RPNCALC
 		if (!m_error)
 			m_stack.push_front(fmod(num1, num2));
 	}
-
-	// ----------------------------------------------------------------------------
-	//	sets the args to the popped values from the stack, if possible
+	//--------------------------------------------------------------------
+	// Title: void CRPNCalc::binary_prep(double& d1, double& d2)
+	// Description: sets the args to the popped values from the stack, if possible
 	//	  set error state otherwise
-	// ----------------------------------------------------------------------------
+	// Called By: main(), testhelper
+	// Calls: STL -push_front(), pop_front();
+	// Parameters: double& d1, double& d2 - values from the stack
+	// Returns: none 
+	// History Log: https://github.com/qwergram/CS133Assignment/blame/Tabitha/RPNCalculator/RPNCalcStart.cpp
+	// Test Plan: https://github.com/qwergram/CS133Assignment/blob/f8b7430439e292dfaae703a3405134965d68bfa1/RPNCalculator/RPN_UnitTests.cpp
+	//--------------------------------------------------------------------
+
 
 	void CRPNCalc::binary_prep(double& d1, double& d2)
 	{
@@ -300,11 +374,18 @@ namespace P4_RPNCALC
 			m_stack.pop_front();
 		}
 	}
-
-	// ----------------------------------------------------------------------------
-	//	sets the arg to the popped value from the stack, if possible
+	//--------------------------------------------------------------------
+	// Title: void CRPNCalc::unary_prep(double& d)
+	// Description: sets the arg to the popped value from the stack, if possible
 	//	  sets error state otherwise
-	// ----------------------------------------------------------------------------
+	// Called By: main(), testhelper
+	// Calls: STL -push_front(), pop_front();
+	// Parameters: double& d1 - value from the stack
+	// Returns: none 
+	// History Log: https://github.com/qwergram/CS133Assignment/blame/Tabitha/RPNCalculator/RPNCalcStart.cpp
+	// Test Plan: https://github.com/qwergram/CS133Assignment/blob/f8b7430439e292dfaae703a3405134965d68bfa1/RPNCalculator/RPN_UnitTests.cpp
+	//--------------------------------------------------------------------
+
 	void CRPNCalc::unary_prep(double& d)
 	{
 		if (m_stack.empty())
@@ -315,36 +396,63 @@ namespace P4_RPNCALC
 			m_stack.pop_front();
 		}
 	}
-
-	// ----------------------------------------------------------------------------
-	//	removes the top element from the stack
-	// ----------------------------------------------------------------------------
+	//--------------------------------------------------------------------
+	// Title: void CRPNCalc::clearEntry()
+	// Description: removes the top element from the stack
+	// Called By: main(), testhelper
+	// Calls: unary_prep()
+	// Parameters: none
+	// Returns: none
+	// History Log: https://github.com/qwergram/CS133Assignment/blame/Tabitha/RPNCalculator/RPNCalcStart.cpp
+	// Test Plan: https://github.com/qwergram/CS133Assignment/blob/f8b7430439e292dfaae703a3405134965d68bfa1/RPNCalculator/RPN_UnitTests.cpp
+	//--------------------------------------------------------------------
 	void CRPNCalc::clearEntry()
 	{
 		double temp = 0.0;
 		unary_prep(temp);
 	}
 
-	// ----------------------------------------------------------------------------
-	//	empties the stack
-	// ----------------------------------------------------------------------------
+	//--------------------------------------------------------------------
+	// Title: void CRPNCalc::clearAll()
+	// Description: empties the stack
+	// Called By: main(), testhelper
+	// Calls: STL -pop_front(), empty()
+	// Parameters: none
+	// Returns: none
+	// History Log: https://github.com/qwergram/CS133Assignment/blame/Tabitha/RPNCalculator/RPNCalcStart.cpp
+	// Test Plan: https://github.com/qwergram/CS133Assignment/blob/f8b7430439e292dfaae703a3405134965d68bfa1/RPNCalculator/RPN_UnitTests.cpp
+	//--------------------------------------------------------------------
 	void CRPNCalc::clearAll()
 	{
 		while (!m_stack.empty())
 			m_stack.pop_front();
 	}
 
-	// ----------------------------------------------------------------------------
-	//	pushes the given register's value onto the stack
-	// ----------------------------------------------------------------------------
+	//--------------------------------------------------------------------
+	// Title: void CRPNCalc::getReg(int reg)
+	// Description: pushes the given register's value onto the stack
+	// Called By: main(), testhelper
+	// Calls: STL -push_front()
+	// Parameters: int reg - register number
+	// Returns: none
+	// History Log: https://github.com/qwergram/CS133Assignment/blame/Tabitha/RPNCalculator/RPNCalcStart.cpp
+	// Test Plan: https://github.com/qwergram/CS133Assignment/blob/f8b7430439e292dfaae703a3405134965d68bfa1/RPNCalculator/RPN_UnitTests.cpp
+	//--------------------------------------------------------------------
 	void CRPNCalc::getReg(int reg)
 	{
 		m_stack.push_front(m_registers[reg]);
 	}
 
-	// ----------------------------------------------------------------------------
-	//	retrieves the filename from the user and loads it into m_program
-	// ----------------------------------------------------------------------------
+	//--------------------------------------------------------------------
+	// Title: void CRPNCalc::loadProgram()
+	// Description: retrieves the filename from the user and loads it into m_program
+	// Called By: main()
+	// Calls: STL - push_back(), ignore(), clear(), close();
+	// Parameters: none
+	// Returns: none
+	// History Log: https://github.com/qwergram/CS133Assignment/blame/Tabitha/RPNCalculator/RPNCalcStart.cpp
+	// Test Plan: https://github.com/qwergram/CS133Assignment/blob/f8b7430439e292dfaae703a3405134965d68bfa1/RPNCalculator/RPN_UnitTests.cpp
+	//--------------------------------------------------------------------
 	void CRPNCalc::loadProgram()
 	{
 		string filename = "";
@@ -376,10 +484,15 @@ namespace P4_RPNCALC
 			m_error = true;
 		fstr.close();
 	}
-
-	// ----------------------------------------------------------------------------
-	//	asks the user for a filename and saves m_program to that file
-	// ----------------------------------------------------------------------------
+	//--------------------------------------------------------------------
+	// Title: void CRPNCalc::saveToFile()
+	// Description: asks the user for a filename and saves m_program to that file
+	// Called By: main()
+	// Calls: STL - .empty(), .close(), .end(), begin();
+	// Parameters: none
+	// Returns: none
+	// History Log: https://github.com/qwergram/CS133Assignment/blame/Tabitha/RPNCalculator/RPNCalcStart.cpp
+	//--------------------------------------------------------------------
 	void CRPNCalc::saveToFile()
 	{
 		if (this->m_program.empty()) {
@@ -408,10 +521,16 @@ namespace P4_RPNCALC
 			fstr.close();
 		}
 	}
-
-	// ----------------------------------------------------------------------------
-	//	takes command-line input and loads it into m_program 
-	// ----------------------------------------------------------------------------
+	//--------------------------------------------------------------------
+	// Title: void CRPNCalc::recordProgram()
+	// Description: takes command-line input and loads it into m_program 
+	// Called By: main()
+	// Calls: STL - toupper(), getline(), push_back(), front(), empty()
+	// Parameters: none
+	// Returns: none
+	// History Log: https://github.com/qwergram/CS133Assignment/blame/Tabitha/RPNCalculator/RPNCalcStart.cpp
+	// Test Plan: https://github.com/qwergram/CS133Assignment/blob/f8b7430439e292dfaae703a3405134965d68bfa1/RPNCalculator/RPN_UnitTests.cpp
+	//--------------------------------------------------------------------
 	void CRPNCalc::recordProgram()
 	{
 		string token = "hello world";
@@ -473,10 +592,16 @@ namespace P4_RPNCALC
 			}
 		}
 	}
-
-	// ----------------------------------------------------------------------------
-	//	resets the top element of the stack to it's negative
-	// ----------------------------------------------------------------------------
+	//--------------------------------------------------------------------
+	// Title: void CRPNCalc::neg()
+	// Description: 	resets the top element of the stack to it's negative
+	// Called By: main(), testhelper
+	// Calls: STL - push_front()
+	// Parameters: none
+	// Returns: none
+	// History Log: https://github.com/qwergram/CS133Assignment/blame/Tabitha/RPNCalculator/RPNCalcStart.cpp
+	// Test Plan: https://github.com/qwergram/CS133Assignment/blob/f8b7430439e292dfaae703a3405134965d68bfa1/RPNCalculator/RPN_UnitTests.cpp
+	//--------------------------------------------------------------------
 	void CRPNCalc::neg()
 	{
 		double num = 0.0;
@@ -484,9 +609,16 @@ namespace P4_RPNCALC
 		m_stack.push_front(-num);
 	}
 
-	// ----------------------------------------------------------------------------
-	//	removes the bottom of the stack and adds it to the top
-	// ----------------------------------------------------------------------------
+	//--------------------------------------------------------------------
+	// Title: void CRPNCalc::rotateDown()
+	// Description: removes the bottom of the stack and adds it to the top
+	// Called By: main(), testhelper
+	// Calls: STL - empty(), back(), push_front()
+	// Parameters: none
+	// Returns: none
+	// History Log: https://github.com/qwergram/CS133Assignment/blame/Tabitha/RPNCalculator/RPNCalcStart.cpp
+	// Test Plan: https://github.com/qwergram/CS133Assignment/blob/f8b7430439e292dfaae703a3405134965d68bfa1/RPNCalculator/RPN_UnitTests.cpp
+	//--------------------------------------------------------------------
 	void CRPNCalc::rotateDown()
 	{
 		if (!m_stack.empty())
@@ -497,9 +629,16 @@ namespace P4_RPNCALC
 		}
 	}
 
-	// ----------------------------------------------------------------------------
-	//	removes the top of the stack and adds it to the bottom
-	// ----------------------------------------------------------------------------
+	//--------------------------------------------------------------------
+	// Title: void CRPNCalc::rotateUp()
+	// Description: removes the top of the stack and adds it to the bottom
+	// Called By: main(), testhelper
+	// Calls: STL - front(), empty(), push_back()
+	// Parameters: none
+	// Returns: none
+	// History Log: https://github.com/qwergram/CS133Assignment/blame/Tabitha/RPNCalculator/RPNCalcStart.cpp
+	// Test Plan: https://github.com/qwergram/CS133Assignment/blob/f8b7430439e292dfaae703a3405134965d68bfa1/RPNCalculator/RPN_UnitTests.cpp
+	//--------------------------------------------------------------------
 	void CRPNCalc::rotateUp()
 	{
 		if (!m_stack.empty())
@@ -510,9 +649,16 @@ namespace P4_RPNCALC
 		}
 	}
 
-	// ----------------------------------------------------------------------------
-	//	runs the program in m_program 
-	// ----------------------------------------------------------------------------
+	//--------------------------------------------------------------------
+	// Title: void CRPNCalc::runProgram()
+	// Description: runs the program in m_program 
+	// Called By: parse()
+	// Calls: parse(), STL - empty(), begin(), end()
+	// Parameters: none
+	// Returns: none
+	// History Log: https://github.com/qwergram/CS133Assignment/blame/Tabitha/RPNCalculator/RPNCalcStart.cpp
+	// Test Plan: https://github.com/qwergram/CS133Assignment/blob/f8b7430439e292dfaae703a3405134965d68bfa1/RPNCalculator/RPN_UnitTests.cpp
+	//--------------------------------------------------------------------
 	void CRPNCalc::runProgram()
 	{
 		if (this->m_program.empty()) {
@@ -530,10 +676,17 @@ namespace P4_RPNCALC
 		}
 	}
 
-	// ----------------------------------------------------------------------------
-	//	gets the value from the top of the stack
+	//--------------------------------------------------------------------
+	// Title: void CRPNCalc::setReg(int reg)
+	// Description: gets the value from the top of the stack
 	//	  and places it into the given register
-	// ----------------------------------------------------------------------------
+	// Called By: parse()
+	// Calls: unary_prep()
+	// Parameters: int reg - registry number
+	// Returns: none
+	// History Log: https://github.com/qwergram/CS133Assignment/blame/Tabitha/RPNCalculator/RPNCalcStart.cpp
+	// Test Plan: https://github.com/qwergram/CS133Assignment/blob/f8b7430439e292dfaae703a3405134965d68bfa1/RPNCalculator/RPN_UnitTests.cpp
+	//--------------------------------------------------------------------
 	void CRPNCalc::setReg(int reg)
 	{
 		if (reg < 0 || reg > 9)
@@ -546,9 +699,16 @@ namespace P4_RPNCALC
 		}
 	}
 
-	// ----------------------------------------------------------------------------
-	//	inputs a line from the given stream
-	// ----------------------------------------------------------------------------
+	//--------------------------------------------------------------------
+	// Title: void CRPNCalc::input(istream &istr)
+	// Description: 	inputs a line from the given stream
+	// Called By: run(), operator>>
+	// Calls: parse(), STL - getline()
+	// Parameters: istream & istr, in stream reference
+	// Returns: none
+	// History Log: https://github.com/qwergram/CS133Assignment/blame/Tabitha/RPNCalculator/RPNCalcStart.cpp
+	// Test Plan: https://github.com/qwergram/CS133Assignment/blob/f8b7430439e292dfaae703a3405134965d68bfa1/RPNCalculator/RPN_UnitTests.cpp
+	//--------------------------------------------------------------------
 	void CRPNCalc::input(istream &istr)
 	{
 		getline(istr, m_buffer);
@@ -556,6 +716,16 @@ namespace P4_RPNCALC
 		parse();
 	}
 
+	//--------------------------------------------------------------------
+	// Title: ostream &operator <<(ostream &ostr, CRPNCalc &calc)
+	// Description: ostream's << defined for CRPNCalc
+	// Called By: --
+	// Calls: print()
+	// Parameters: ostream& ostr, CRPNCalc & calc - outstream and calculator object to print
+	// Returns: ostream&
+	// History Log: https://github.com/qwergram/CS133Assignment/blame/Tabitha/RPNCalculator/RPNCalcStart.cpp
+	// Test Plan: https://github.com/qwergram/CS133Assignment/blob/f8b7430439e292dfaae703a3405134965d68bfa1/RPNCalculator/RPN_UnitTests.cpp
+	//--------------------------------------------------------------------
 	// ----------------------------------------------------------------------------
 	//	ostream's << defined for CRPNCalc
 	// ----------------------------------------------------------------------------
@@ -565,16 +735,32 @@ namespace P4_RPNCALC
 		return ostr;
 	}
 
-
-	// ----------------------------------------------------------------------------
-	//	istream's >> defined for CRPNCalc
-	// ----------------------------------------------------------------------------
+	//--------------------------------------------------------------------
+	// Title: istream &operator >> (istream &istr, CRPNCalc &calc)
+	// Description: istream's >> defined for CRPNCalc
+	// Called By: --
+	// Calls: input()
+	// Parameters: istream& ostr, CRPNCalc & calc - istream and calculator object to input
+	// Returns: istream&
+	// History Log: https://github.com/qwergram/CS133Assignment/blame/Tabitha/RPNCalculator/RPNCalcStart.cpp
+	// Test Plan: https://github.com/qwergram/CS133Assignment/blob/f8b7430439e292dfaae703a3405134965d68bfa1/RPNCalculator/RPN_UnitTests.cpp
+	//--------------------------------------------------------------------
 	istream &operator >> (istream &istr, CRPNCalc &calc)
 	{
 		calc.input(istr);
 		return istr;
 	}
 
+	//--------------------------------------------------------------------
+	// Title: string CRPNCalc::getToken()
+	// Description: gets first character of buffer
+	// Called By: parse(), loadprogram(), savetofile(), recordprogram()
+	// Calls: STL - begin(), end(), iswspace()
+	// Parameters: none
+	// Returns: string
+	// History Log: https://github.com/qwergram/CS133Assignment/blame/Tabitha/RPNCalculator/RPNCalcStart.cpp
+	// Test Plan: https://github.com/qwergram/CS133Assignment/blob/f8b7430439e292dfaae703a3405134965d68bfa1/RPNCalculator/RPN_UnitTests.cpp
+	//--------------------------------------------------------------------
 	string CRPNCalc::getToken()
 	{
 		string::iterator it1 = m_buffer.begin();
