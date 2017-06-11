@@ -103,7 +103,7 @@ namespace P4_RPNCALC
 		if (!m_stack.empty())
 		{
 			this->m_lastOutput = to_string(m_stack.front());
-			ostr << this->m_lastOutput;
+			ostr << m_stack.front();
 		}
 		ostr << endl << endl;
 		if (m_error)
