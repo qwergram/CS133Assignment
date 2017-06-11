@@ -115,7 +115,11 @@ namespace P4_RPNCALC
 		void runParse() { parse(); };
 		double getOutput() { if (!m_stack.empty()) return m_stack.front(); 
 			else throw invalid_argument("empty stack"); };
-		string lastOutput() { return this->m_lastOutput; }
+		string depInj_lastOutput() 
+		{
+			if (m_error) { m_error = false; return "<<error>>"; }
+			else { return this->m_lastOutput; }
+		}
 
 	private:
 		// private methods
