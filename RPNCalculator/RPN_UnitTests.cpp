@@ -55,7 +55,7 @@ TEST_CASE("Operation Methods")
 	
 	SECTION("Method: add()")
 	{
-		REQUIRE(test.expectedStackOutput("3 5 +", "8"));
+		REQUIRE(test.expectedStackOutput("3 5+", "8"));
 		REQUIRE(test.expectedStackOutput("2 4 3 +", "7"));
 		REQUIRE(test.expectedOutput("c", ""));
 		REQUIRE(test.expectedStackOutput("3 4 + 6", "6"));
