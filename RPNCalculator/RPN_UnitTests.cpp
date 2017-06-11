@@ -134,27 +134,28 @@ TEST_CASE("Operation Methods")
 		REQUIRE(test.expectError("/"));
 	}
 
-	/*
+	
 	SECTION("Method: mod()") 
 	{
-		REQUIRE(test.expectedInputOutput("16 8 6 %", "2"));
-		REQUIRE(test.expectedInputOutput("%", "0"));
-		REQUIRE(test.expectedInputOutput("c", ""));
-		REQUIRE(test.expectedInputOutput("%", "<<error>>"));
-		REQUIRE(test.expectedInputOutput("10 1 %", "0"));
-		REQUIRE(test.expectedInputOutput("10 2 %", "0"));
-		REQUIRE(test.expectedInputOutput("10 3 %", "1"));
-		REQUIRE(test.expectedInputOutput("10 4 %", "2"));
-		REQUIRE(test.expectedInputOutput("10 5 %", "0"));
-		REQUIRE(test.expectedInputOutput("10 6 %", "4"));
-		REQUIRE(test.expectedInputOutput("10 7 %", "3"));
-		REQUIRE(test.expectedInputOutput("10 8 %", "2"));
-		REQUIRE(test.expectedInputOutput("10 9 %", "1"));
-		REQUIRE(test.expectedInputOutput("10 10 %", "0"));
-		REQUIRE(test.expectedInputOutput("100 70 %", "30"));
-		REQUIRE(test.expectedInputOutput("100 70%", "30"));
+		REQUIRE(test.expectedStackOutput("16 8 6 %", "2"));
+		REQUIRE(test.expectedStackOutput("%", "0"));
+		REQUIRE(test.expectedOutput("c", ""));
+		REQUIRE(test.expectError("%"));
+		REQUIRE(test.expectedStackOutput("10 1 %", "0"));
+		REQUIRE(test.expectedStackOutput("10 2 %", "0"));
+		REQUIRE(test.expectedStackOutput("10 3 %", "1"));
+		REQUIRE(test.expectedStackOutput("10 4 %", "2"));
+		REQUIRE(test.expectedStackOutput("10 5 %", "0"));
+		REQUIRE(test.expectedStackOutput("10 6 %", "4"));
+		REQUIRE(test.expectedStackOutput("10 7 %", "3"));
+		REQUIRE(test.expectedStackOutput("10 8 %", "2"));
+		REQUIRE(test.expectedStackOutput("10 9 %", "1"));
+		REQUIRE(test.expectedStackOutput("10 10 %", "0"));
+		REQUIRE(test.expectedStackOutput("100 70 %", "30"));
+		REQUIRE(test.expectedStackOutput("100 70%", "30"));
 	}
 
+	/*
 	SECTION("Method: exp()")
 	{
 		REQUIRE(test.expectedInputOutput("10 2 ^", "100"));
