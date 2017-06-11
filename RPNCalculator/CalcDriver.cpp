@@ -36,7 +36,7 @@ using namespace std;
 //----------------------------------------------------------------------------
 
 int main2(void) {
-// int main(void) {
+//int main(void) {
 	using P4_RPNCALC::CRPNCalc;
 	CRPNCalc myCalc;
 
