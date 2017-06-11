@@ -106,7 +106,7 @@ TEST_CASE("Operation Methods")
 		REQUIRE(test.expectedStackOutput("*", "504"));
 		REQUIRE(test.expectedStackOutput("*", "1512"));
 		REQUIRE(test.expectError("*"));
-		REQUIRE(test.depInj_getOutput("c") == "");
+		REQUIRE(test.getOutput("c") == "");
 		REQUIRE(test.expectedStackOutput("-4 -6 *", "24"));
 		REQUIRE(test.expectedStackOutput("-2 *", "-48"));
 		REQUIRE(test.expectedStackOutput("10 100 *", "1000"));
@@ -114,21 +114,27 @@ TEST_CASE("Operation Methods")
 		REQUIRE(test.expectedStackOutput("5.5 2.2*", "12.1"));
 	}
 
-	/*
+	
 	SECTION("Method: divide()")
 	{
-		REQUIRE(test.expectedInputOutput("16 4 2 /", "2"));
-		REQUIRE(test.expectedInputOutput("/", "8"));
-		REQUIRE(test.expectedInputOutput("c", ""));
-		REQUIRE(test.expectedInputOutput("2 5 /", "0.4"));
-		REQUIRE(test.expectedInputOutput("9 3 7 /", "0.428571"));
-		REQUIRE(test.expectedInputOutput("-1 /", "-0.428571"));
-		REQUIRE(test.expectedInputOutput("-1 / ", "0.428571"));
-		REQUIRE(test.expectedInputOutput("100 10 /", "10"));
-		REQUIRE(test.expectedInputOutput("100 10/", "10"));
-		REQUIRE(test.expectedInputOutput("/", "<<error>>"));
+		REQUIRE(test.expectedStackOutput("16 4 2 /", "2"));
+		REQUIRE(test.expectedStackOutput("/", "8"));
+		REQUIRE(test.expectedOutput("c", ""));
+		REQUIRE(test.expectedStackOutput("2 5 /", "0.4"));
+		REQUIRE(test.expectedStackOutput("9 3 7 /", "0.428571"));
+		REQUIRE(test.expectedStackOutput("-1 /", "-0.428571"));
+		REQUIRE(test.expectedStackOutput("-1 / ", "0.428571"));
+		REQUIRE(test.expectedStackOutput("100 10 /", "10"));
+		REQUIRE(test.expectedStackOutput("100 10/", "10"));
+		REQUIRE(test.expectedStackOutput("/", "1"));
+		REQUIRE(test.expectedStackOutput("/", "0.428571"));
+		REQUIRE(test.expectedStackOutput("/", "21"));
+		REQUIRE(test.expectedStackOutput("/", "0.0190476"));
+		REQUIRE(test.expectedStackOutput("/", "0.0190476"));
+		REQUIRE(test.expectError("/"));
 	}
 
+	/*
 	SECTION("Method: mod()") 
 	{
 		REQUIRE(test.expectedInputOutput("16 8 6 %", "2"));
