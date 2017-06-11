@@ -16,6 +16,19 @@ namespace P4_RPNCALC
 			return getOutput(input) == output;
 		}
 
+		string getStackFront(string input) {
+			ostringstream ss;
+			calc.setBuffer(input);
+			while (!calc.getBuffer().empty())
+				calc.runParse();
+			ss << calc.getOutput();
+			return ss.str();
+		}
+
+		bool expectedStackOutput(string input, string output) {
+			return getStackFront(input) == output;
+		}
+
 		string getOutput(string input) {
 			ostringstream ss;
 			calc.setBuffer(input);
@@ -29,9 +42,6 @@ namespace P4_RPNCALC
 			return expectedOutput(input, "<<error>>");
 		}
 
-		bool expectedOutput(int input, int output) {
-			return expectedOutput(to_string(input), to_string(output));
-		}
 	private:
 		CRPNCalc calc;
 	};
