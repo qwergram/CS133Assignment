@@ -113,7 +113,7 @@ namespace P4_RPNCALC
 		void setBuffer(string input) { m_buffer = input; };
 		void runParse() { parse(); };
 		double getOutput() { if (!m_stack.empty()) return m_stack.front(); 
-			else throw invalid_argument("empty"); };
+			else throw invalid_argument("empty stack"); };
 		
 	private:
 		// private methods
