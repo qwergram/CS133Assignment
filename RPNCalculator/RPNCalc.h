@@ -114,7 +114,8 @@ namespace P4_RPNCALC
 		void runParse() { parse(); };
 		double getOutput() { if (!m_stack.empty()) return m_stack.front(); 
 			else throw invalid_argument("empty stack"); };
-		
+		string lastOutput() { return this->m_lastOutput; }
+
 	private:
 		// private methods
 		void add();
@@ -149,6 +150,7 @@ namespace P4_RPNCALC
 		bool m_helpOn;
 		bool m_on;
 		bool m_programRunning;
+		string m_lastOutput;
 	};
 
 	ostream &operator <<(ostream &ostr, CRPNCalc &calc);
