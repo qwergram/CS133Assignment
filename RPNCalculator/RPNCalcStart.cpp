@@ -461,7 +461,7 @@ namespace P4_RPNCALC
 					break;
 				case 'G':
 				case 'S':
-					if (token.back() > 47 && token.back() < 58)
+					if (token.back() > 47 && token.back() < 48 + NUMREGS)
 					{
 						m_program.push_back(token);
 						break;
