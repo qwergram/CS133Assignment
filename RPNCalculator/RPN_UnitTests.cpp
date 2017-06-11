@@ -12,24 +12,24 @@ TEST_CASE("Operation Methods")
 	
 	SECTION("Sanity Tests") {
 		for (int n = 0; n < 100; n++) {
-			REQUIRE(test.expectedOutput(n, n));
+			REQUIRE(test.expectedStackOutput(to_string(n), to_string(n)));
 		}
 	}
 
 	SECTION("Method: clearAll()")
 	{
-		REQUIRE(test.expectedOutput("50", "50"));
+		REQUIRE(test.expectedStackOutput("50", "50"));
 		REQUIRE(test.expectedOutput("c", ""));
-		REQUIRE(test.expectedOutput("50 100 +", "150"));
+		REQUIRE(test.expectedStackOutput("50 100 +", "150"));
 		REQUIRE(test.expectedOutput("c", ""));
-		REQUIRE(test.expectedOutput("50 100 + 200", "200"));
+		REQUIRE(test.expectedStackOutput("50 100 + 200", "200"));
 		REQUIRE(test.expectedOutput("c", ""));
-		REQUIRE(test.expectedOutput("50", "50"));
+		REQUIRE(test.expectedStackOutput("50", "50"));
 		REQUIRE(test.expectedOutput("C", ""));
-		REQUIRE(test.expectedOutput("50 100 +", "150"));
+		REQUIRE(test.expectedStackOutput("50 100 +", "150"));
 		REQUIRE(test.expectedOutput("C", ""));
-		REQUIRE(test.expectedOutput("50 100 + 200", "200"));
-		REQUIRE(test.getOutput("C") == "");
+		REQUIRE(test.expectedStackOutput("50 100 + 200", "200"));
+		REQUIRE(test.expectedOutput("C", ""));
 	}
 	
 	/*
