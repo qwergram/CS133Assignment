@@ -588,12 +588,12 @@ namespace P4_RPNCALC
 					break;
 			}
 		// process string
-		bool isNumeric = isdigit(*it1);
+		bool isNumeric = isdigit(*it1) || *it1 == '.';
 		bool isNegative = *it1 == '-';
 		if (it1 != m_buffer.end())
 		{
 			string::iterator it2 = it1;
-			while (!iswspace(*it2) && (isNumeric == bool(isdigit(*it2)) || isNegative))
+			while (!iswspace(*it2) && (isNumeric == bool(isdigit(*it2)) || *it2 == '.' || isNegative))
 			{
 				it2++;
 				if (it2 == m_buffer.end())
