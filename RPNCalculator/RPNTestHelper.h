@@ -13,22 +13,20 @@ namespace P4_RPNCALC
 	public:
 		RPNTestHelper() : calc(false) {  };
 		bool expectedOutput(string input, string output) {
-			ostringstream ss; 
+			return getOutput(input) == output;
+		}
+
+		string getOutput(string input) {
+			ostringstream ss;
 			calc.setBuffer(input);
 			while (!calc.getBuffer().empty())
 				calc.runParse();
-			try
-			{
-				ss << calc.getOutput();
-			}
-			catch (invalid_argument)
-			{
-				if (input == "c")
-					ss << ""; 
-				else
-					ss << "<<error>>";	
-			}
-			return ss.str() == output;
+			ss << calc.getOutput();
+			return ss.str();
+		}
+
+		bool expectError(string input) {
+			return expectedOutput(input, "<<error>>");
 		}
 
 		bool expectedOutput(int input, int output) {
