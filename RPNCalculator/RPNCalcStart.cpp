@@ -349,7 +349,7 @@ namespace P4_RPNCALC
 		string filename = "";
 		if (m_buffer.empty())
 		{
-			cout << "Enter a filename:\n";
+			cout << "Enter File Name of Saved Program:\n";
 			cin >> filename;
 			cin.ignore(FILENAME_MAX, '\n');
 		}
