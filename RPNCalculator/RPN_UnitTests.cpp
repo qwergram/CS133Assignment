@@ -29,7 +29,7 @@ TEST_CASE("Operation Methods")
 		REQUIRE(test.expectedOutput("50 100 +", "150"));
 		REQUIRE(test.expectedOutput("C", ""));
 		REQUIRE(test.expectedOutput("50 100 + 200", "200"));
-		REQUIRE(test.expectedOutput("C", ""));
+		REQUIRE(test.getOutput("C") == "");
 	}
 	
 	/*
@@ -230,6 +230,6 @@ TEST_CASE("Operation Methods")
 		REQUIRE(test.expectedInputOutput("G5", "1000"));
 		REQUIRE(test.expectedInputOutput("g0", "2.5"));
 	}
-	*/
+	//*/
 }
 //*/
