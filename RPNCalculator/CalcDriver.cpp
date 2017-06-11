@@ -34,7 +34,9 @@ using namespace std;
 //	History Log:
 //			4/205/14  PB  completed version 1.0
 //----------------------------------------------------------------------------
-int main(void){
+
+int main2(void) {
+// int main(void) {
 	using P4_RPNCALC::CRPNCalc;
 	CRPNCalc myCalc;
 
