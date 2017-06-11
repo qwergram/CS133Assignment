@@ -1,4 +1,3 @@
-
 //--------------------------------------------------
 //  file: RPN+UnitTests.cpp
 //-------------------------------------------------
@@ -86,19 +85,20 @@ TEST_CASE("Operation Methods")
 		REQUIRE(test.expectedStackOutput("-40 -50 - -60 +", "-50"));	
 	}
 
-	/*
+	
 	SECTION("Method: subtract()")
 	{
-		REQUIRE(test.expectedInputOutput("5 6 -", "-1"));
-		REQUIRE(test.expectedInputOutput("3 9 4 -", "5"));
-		REQUIRE(test.expectedInputOutput("-", "-2"));
-		REQUIRE(test.expectedInputOutput("c", ""));
-		REQUIRE(test.expectedInputOutput("-1 5 -", "-6"));
-		REQUIRE(test.expectedInputOutput("10 100 -", "-90"));
-		REQUIRE(test.expectedInputOutput("10 100-", "-90"));
-		REQUIRE(test.expectedInputOutput("-", "<<error>>"));
+		REQUIRE(test.expectedStackOutput("5 6 -", "-1"));
+		REQUIRE(test.expectedStackOutput("3 9 4 -", "5"));
+		REQUIRE(test.expectedStackOutput("-", "-2"));
+		REQUIRE(test.expectedOutput("c", ""));
+		REQUIRE(test.expectedStackOutput("-1 5 -", "-6"));
+		REQUIRE(test.expectedStackOutput("10 100 -", "-90"));
+		REQUIRE(test.expectedStackOutput("10 100-", "-90"));
+		REQUIRE(test.expectedStackOutput("-", "0"));
 	}
 
+	/*
 	SECTION("Method: multiply()")
 	{
 		REQUIRE(test.expectedInputOutput("3 9 7 2 4 *", "8"));
