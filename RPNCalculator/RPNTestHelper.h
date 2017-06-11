@@ -21,7 +21,7 @@ namespace P4_RPNCALC
 			{
 				ss << calc.getOutput();
 			}
-			catch (invalid_argument & e)
+			catch (invalid_argument)
 			{
 				if (input == "c")
 					ss << ""; 
