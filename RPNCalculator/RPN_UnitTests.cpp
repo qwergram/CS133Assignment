@@ -32,25 +32,25 @@ TEST_CASE("Operation Methods")
 		REQUIRE(test.expectedOutput("C", ""));
 	}
 	
-	/*
+	
 	SECTION("Method: clearEntry()")
 	{
-		REQUIRE(test.expectedInputOutput("50", "50"));
-		REQUIRE(test.expectedInputOutput("ce", ""));
-		REQUIRE(test.expectedInputOutput("50 100 +", "150"));
-		REQUIRE(test.expectedInputOutput("ce", ""));
-		REQUIRE(test.expectedInputOutput("50 100 + 200", "200"));
-		REQUIRE(test.expectedInputOutput("ce", "150"));
-		REQUIRE(test.expectedInputOutput("ce", ""));
-		REQUIRE(test.expectedInputOutput("50", "50"));
-		REQUIRE(test.expectedInputOutput("CE", ""));
-		REQUIRE(test.expectedInputOutput("50 100 +", "150"));
-		REQUIRE(test.expectedInputOutput("CE", ""));
-		REQUIRE(test.expectedInputOutput("50 100 + 200", "200"));
-		REQUIRE(test.expectedInputOutput("CE", "150"));
-		REQUIRE(test.expectedInputOutput("CE", ""));
+		REQUIRE(test.expectedStackOutput("50", "50"));
+		REQUIRE(test.expectedOutput("ce", ""));
+		REQUIRE(test.expectedStackOutput("50 100 +", "150"));
+		REQUIRE(test.expectedOutput("ce", ""));
+		REQUIRE(test.expectedStackOutput("50 100 + 200", "200"));
+		REQUIRE(test.expectedOutput("ce", "150"));
+		REQUIRE(test.expectedOutput("ce", ""));
+		REQUIRE(test.expectedStackOutput("50", "50"));
+		REQUIRE(test.expectedOutput("CE", ""));
+		REQUIRE(test.expectedStackOutput("50 100 +", "150"));
+		REQUIRE(test.expectedOutput("CE", ""));
+		REQUIRE(test.expectedOutput("50 100 + 200", "200"));
+		REQUIRE(test.expectedOutput("CE", "150"));
+		REQUIRE(test.expectedOutput("CE", ""));
 	}
-
+	/*
 	SECTION("Method: add()")
 	{
 		REQUIRE(test.expectedInputOutput("3 5 +", "8"));
