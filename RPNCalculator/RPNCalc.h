@@ -28,7 +28,7 @@
 //   
 //    Date:		5/3/11
 // 
-//    Version:		1.03
+//    Version:		1.03-1
 //  
 //    Environment:
 //       Hardware: Intel Xeon PC
@@ -85,6 +85,7 @@
 //	5/27/05	PB  minor modifications 1.01
 //	5/3/11	PB  minor modifications 1.02
 //	6/3/12  PB  minor modifications 1.03
+//	6/11/2017 TR testhelper methods 1.03-1
 // ----------------------------------------------------------------------------
 
 using namespace std;
