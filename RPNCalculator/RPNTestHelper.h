@@ -12,7 +12,7 @@ namespace P4_RPNCALC
 	{
 	public:
 		RPNTestHelper() : calc(false) {  };
-		bool expectedInputOutput(string input, string output) {
+		bool expectedOutput(string input, string output) {
 			ostringstream ss; 
 			calc.setBuffer(input);
 			while (!calc.getBuffer().empty())
@@ -29,6 +29,10 @@ namespace P4_RPNCALC
 					ss << "<<error>>";	
 			}
 			return ss.str() == output;
+		}
+
+		bool expectedOutput(int input, int output) {
+			return expectedOutput(to_string(input), to_string(output));
 		}
 	private:
 		CRPNCalc calc;
