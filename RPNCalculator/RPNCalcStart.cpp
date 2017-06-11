@@ -381,26 +381,31 @@ namespace P4_RPNCALC
 	// ----------------------------------------------------------------------------
 	void CRPNCalc::saveToFile()
 	{
-		string filename = "";
-		fstream fstr;
-		if (m_buffer.empty())
-		{
-			cout << "Enter a filename:\n";
-			cin >> filename;
-			cin.ignore(FILENAME_MAX, '\n');
-		}
-		else
-			filename = getToken();
-		fstr = fstream(filename, fstream::out);
-		if (fstr)
-		{
-			list<string>::iterator it = m_program.begin();
-			while (it != m_program.end())
-				fstr << *it++ << endl;
-		}
-		else
+		if (this->m_program.empty()) {
 			m_error = true;
-		fstr.close();
+		}
+		else {
+			string filename = "";
+			fstream fstr;
+			if (m_buffer.empty())
+			{
+				cout << "Enter a filename:\n";
+				cin >> filename;
+				cin.ignore(FILENAME_MAX, '\n');
+			}
+			else
+				filename = getToken();
+			fstr = fstream(filename, fstream::out);
+			if (fstr)
+			{
+				list<string>::iterator it = m_program.begin();
+				while (it != m_program.end())
+					fstr << *it++ << endl;
+			}
+			else
+				m_error = true;
+			fstr.close();
+		}
 	}
 
 	// ----------------------------------------------------------------------------
@@ -509,14 +514,19 @@ namespace P4_RPNCALC
 	// ----------------------------------------------------------------------------
 	void CRPNCalc::runProgram()
 	{
-		list<string>::iterator it = m_program.begin();
-		string temp = m_buffer;
-		while (it != m_program.end())
-		{
-			m_buffer = *it++;
-			parse();
+		if (this->m_program.empty()) {
+			m_error = true;
 		}
-		m_buffer = temp;
+		else {
+			list<string>::iterator it = m_program.begin();
+			string temp = m_buffer;
+			while (it != m_program.end())
+			{
+				m_buffer = *it++;
+				parse();
+			}
+			m_buffer = temp;
+		}
 	}
 
 	// ----------------------------------------------------------------------------
