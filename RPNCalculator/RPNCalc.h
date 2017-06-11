@@ -113,7 +113,7 @@ namespace P4_RPNCALC
 		string getBuffer() const { return m_buffer; };
 		void depInj_setBuffer(string input) { m_buffer = input; };
 		void depInj_runParse() { parse(); };
-		double depInj_getOutput() { if (!m_stack.empty()) return m_stack.front(); 
+		double getOutput() { if (!m_stack.empty()) return m_stack.front(); 
 			else throw invalid_argument("empty stack"); };
 		string depInj_lastOutput() 
 		{
