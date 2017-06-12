@@ -1,5 +1,86 @@
 # Group Project: "RPN Programmable Calculator"
 
+# Members
+
+<table>
+<tr>
+<th>Member</th>
+<th>Duties</th>
+</tr>
+<tr>
+<td>Tabitha Roemish</td>
+<td>QA Development &amp; Documentation Lead</td>
+</tr>
+<tr>
+<td>Cecilia Tong</td>
+<td>QA Development Lead</td>
+</tr>
+<tr>
+<td>Antonio Castelli</td>
+<td>Team Mascot, Lead Developer</td>
+</tr>
+<tr>
+<td>Norton Pengra</td>
+<td>Testing, Project Scaffolding, House Cleaning</td>
+</tr>
+</table>
+
+# Files
+
+<table>
+<tr>
+    <th>File Name</th>
+    <th>Source</th>
+</tr>
+<tr>
+    <td><code>CalcDriver.cpp</code></td>
+    <td><a href="https://github.com/qwergram/CS133Assignment/blob/Tabitha/RPNCalculator/CalcDriver.cpp">Source</a></td>
+</tr>
+<tr>
+    <td><code>RPNCalc.h</code></td>
+    <td><a href="https://github.com/qwergram/CS133Assignment/blob/Tabitha/RPNCalculator/RPNCalc.h">Source</a></td>
+</tr>
+<tr>
+    <td><code>RPNCalcStart.cpp</code></td>
+    <td><a href="https://github.com/qwergram/CS133Assignment/blob/Tabitha/RPNCalculator/RPNCalcStart.cpp">Source</a></td>
+</tr>
+<tr>
+    <td><code>catch.hpp</code> [Testing Framework]</td>
+    <td><a href="https://github.com/qwergram/CS133Assignment/blob/Tabitha/RPNCalculator/catch.hpp">Source</a></td>
+</tr>
+<tr>
+    <td><code>RPN_UnitTests.cpp</code></td>
+    <td><a href="https://github.com/qwergram/CS133Assignment/blob/Tabitha/RPNCalculator/RPN_UnitTests.cpp">Source</a></td>
+</tr>
+<tr>
+    <td><code>RPNTestHelper.h</code></td>
+    <td><a href="https://github.com/qwergram/CS133Assignment/blob/Tabitha/RPNCalculator/RPNTestHelper.h">Source</a></td>
+</tr>
+<tr>
+    <td><code>Project Directory</code></td>
+    <td><a href="https://github.com/qwergram/CS133Assignment/tree/Tabitha/RPNCalculator">Source</a></td>
+</tr>
+<tr>
+    <td>Project Executable</td>
+    <td><a href="#">Source</a></td>
+</tr>
+<tr>
+    <td>Standard Deviation Script</td>
+    <td><a href="#">Source</a></td>
+</tr>
+</table>
+
+# Testing
+
+[![Build Status](https://travis-ci.org/qwergram/CS133Assignment.svg?branch=Tabitha)](https://travis-ci.org/qwergram/CS133Assignment)
+[![Build status](https://ci.appveyor.com/api/projects/status/o3eopf6bs2o12t3c?svg=true)](https://ci.appveyor.com/project/qwergram/cs133assignment)
+
+- [Pull Request](https://github.com/qwergram/CS133Assignment/pull/7)
+- [Travis Test Results](https://travis-ci.org/qwergram/CS133Assignment/)
+- [App Veyor Test Results](https://ci.appveyor.com/project/qwergram/cs133assignment)
+
+# Instructions
+
 *Stolen from [Paul Bladek](http://faculty.edcc.edu//paul.bladek/CS133/p4.htm) of EDCC*
 
 RPN stands for ["Reverse Polish Notation."](http://www.hpmuseum.org/rpn.htm)  
@@ -72,5 +153,3 @@ Standard deviation is defined as the square root of the variance of a set of dat
 (as a quick test, if the data are `[5 | 7 | 3 | 6 | 6 | 2 | 5]`, the standard deviation should be `1.772810520855837`).
 **Include this saved program file with your project.**
 
-# Testing
-*more to come*
