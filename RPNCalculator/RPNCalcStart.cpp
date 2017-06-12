@@ -220,7 +220,7 @@ namespace P4_RPNCALC
 					m_error = true;
 				break;
 			case 'S':
-				if (token.back() > 47 && token.back() < 48 + NUMREGS)
+				if (token.back() > int('0') && token.back() < int('0') + NUMREGS)
 					setReg(token.back() - 48);
 				else
 					m_error = true;
@@ -606,7 +606,8 @@ namespace P4_RPNCALC
 	{
 		double num = 0.0;
 		unary_prep(num);
-		m_stack.push_front(-num);
+		if (!m_error)
+			m_stack.push_front(-num);
 	}
 
 	//--------------------------------------------------------------------
@@ -627,6 +628,9 @@ namespace P4_RPNCALC
 			m_stack.pop_back();
 			m_stack.push_front(temp);
 		}
+		else
+			m_error = true;
+		
 	}
 
 	//--------------------------------------------------------------------
@@ -647,6 +651,8 @@ namespace P4_RPNCALC
 			m_stack.pop_front();
 			m_stack.push_back(temp);
 		}
+		else
+			m_error = true;
 	}
 
 	//--------------------------------------------------------------------
@@ -774,13 +780,14 @@ namespace P4_RPNCALC
 					break;
 			}
 		// process string
-		bool isNumeric = isdigit(*it1) || *it1 == '.';
 		bool isNegative = *it1 == '-';
+		bool isNumeric = isdigit(*it1) || *it1 == '.' || isNegative;
 		if (it1 != m_buffer.end())
 		{
 			string::iterator it2 = it1;
-			while (!iswspace(*it2) && (isNumeric == bool(isdigit(*it2)) || *it2 == '.' || isNegative))
-			{
+			while (!iswspace(*it2) && ((
+				isNumeric == bool(isdigit(*it2)) || isNumeric == (*it2 == '.' || (*it2 == '-' && isNegative))) || (isNegative && bool(isdigit(*it2)))
+			)) {
 				it2++;
 				if (it2 == m_buffer.end())
 					break;

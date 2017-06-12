@@ -111,11 +111,15 @@ namespace P4_RPNCALC
 
 		//testing methods-will be removed for submission
 		string getBuffer() const { return m_buffer; };
-		void setBuffer(string input) { m_buffer = input; };
-		void runParse() { parse(); };
+		void depInj_setBuffer(string input) { m_buffer = input; };
+		void depInj_runParse() { parse(); };
 		double getOutput() { if (!m_stack.empty()) return m_stack.front(); 
 			else throw invalid_argument("empty stack"); };
-		string lastOutput() { return this->m_lastOutput; }
+		string depInj_lastOutput() 
+		{
+			if (m_error) { m_error = false; return "<<error>>"; }
+			else { return this->m_lastOutput; }
+		}
 
 	private:
 		// private methods

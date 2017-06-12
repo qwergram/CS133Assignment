@@ -28,7 +28,7 @@
 //					takes string input and output and returns true if 
 //					output matches calculator output
 //
-//			PPrivate:
+//			Private:
 //				CRPNCalc calc;
 //				
 // History Log:
@@ -46,9 +46,9 @@ namespace P4_RPNCALC
 
 		string getStackOutput(string input) {
 			ostringstream ss;
-			calc.setBuffer(input);
+			calc.depInj_setBuffer(input);
 			while (!calc.getBuffer().empty())
-				calc.runParse();
+				calc.depInj_runParse();
 			ss << calc.getOutput();
 			return ss.str();
 		}
@@ -59,10 +59,10 @@ namespace P4_RPNCALC
 
 		string getOutput(string input) {
 			ostringstream ss;
-			calc.setBuffer(input);
+			calc.depInj_setBuffer(input);
 			while (!calc.getBuffer().empty())
-				calc.runParse();
-			ss << calc.lastOutput();
+				calc.depInj_runParse();
+			ss << calc.depInj_lastOutput();
 			return ss.str();
 		}
 

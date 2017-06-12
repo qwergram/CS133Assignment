@@ -1,6 +1,5 @@
-
 //--------------------------------------------------
-//  file: RPN+UnitTests.cpp
+//  file: RPN_UnitTests.cpp
 //-------------------------------------------------
 
 #define CATCH_CONFIG_MAIN 
@@ -14,12 +13,14 @@ TEST_CASE("Operation Methods")
 {
 	RPNTestHelper test;
 	
+	// Assert the last thing pushed is the last thing on the stack
 	SECTION("Sanity Tests") {
 		for (int n = 0; n < 100; n++) {
 			REQUIRE(test.expectedStackOutput(to_string(n), to_string(n)));
 		}
 	}
 
+	// assert clearing works, no matter what is punched in
 	SECTION("Method: clearAll()")
 	{
 		REQUIRE(test.expectedStackOutput("50", "50"));
@@ -36,7 +37,7 @@ TEST_CASE("Operation Methods")
 		REQUIRE(test.expectedOutput("C", ""));
 	}
 	
-	
+	// assert entry clearing works, no matter what is punched in
 	SECTION("Method: clearEntry()")
 	{
 		REQUIRE(test.expectedStackOutput("50", "50"));
@@ -56,7 +57,7 @@ TEST_CASE("Operation Methods")
 		REQUIRE(test.expectedOutput("CE", ""));
 	}
 
-	
+	// assert addition works w/ or without spaces
 	SECTION("Method: add()")
 	{
 		REQUIRE(test.expectedStackOutput("3 5+", "8"));
@@ -71,7 +72,7 @@ TEST_CASE("Operation Methods")
 		REQUIRE(test.getStackOutput("10 100+") == "110");
 	}
 	
-	
+	// assert subtraction/addition combinations works w/ or without spaces
 	SECTION("Method: combinations of add() & subtract()")
 	{
 		REQUIRE(test.getStackOutput("4.4 5.5 + 60 -") == "-50.1");
@@ -86,124 +87,149 @@ TEST_CASE("Operation Methods")
 		REQUIRE(test.expectedStackOutput("-40 -50 - -60 +", "-50"));	
 	}
 
-	/*
+	// assert subtaction works w/ or without spaces
+	// and ensure it doesn't conflict with negative numbers
 	SECTION("Method: subtract()")
 	{
-		REQUIRE(test.expectedInputOutput("5 6 -", "-1"));
-		REQUIRE(test.expectedInputOutput("3 9 4 -", "5"));
-		REQUIRE(test.expectedInputOutput("-", "-2"));
-		REQUIRE(test.expectedInputOutput("c", ""));
-		REQUIRE(test.expectedInputOutput("-1 5 -", "-6"));
-		REQUIRE(test.expectedInputOutput("10 100 -", "-90"));
-		REQUIRE(test.expectedInputOutput("10 100-", "-90"));
-		REQUIRE(test.expectedInputOutput("-", "<<error>>"));
+		REQUIRE(test.expectedStackOutput("5 6 -", "-1"));
+		REQUIRE(test.expectedStackOutput("3 9 4 -", "5"));
+		REQUIRE(test.expectedStackOutput("-", "-2"));
+		REQUIRE(test.expectedOutput("c", ""));
+		REQUIRE(test.expectedStackOutput("-1 5 -", "-6"));
+		REQUIRE(test.expectedStackOutput("10 100 -", "-90"));
+		REQUIRE(test.expectedStackOutput("10 100-", "-90"));
+		REQUIRE(test.expectedStackOutput("-", "0"));
 	}
 
+	// assert multiplication works w/ or without spaces
+	// espeicially with negative numbers
 	SECTION("Method: multiply()")
 	{
-		REQUIRE(test.expectedInputOutput("3 9 7 2 4 *", "8"));
-		REQUIRE(test.expectedInputOutput("*", "56"));
-		REQUIRE(test.expectedInputOutput("*", "504"));
-		REQUIRE(test.expectedInputOutput("*", "1512"));
-		REQUIRE(test.expectedInputOutput("*", "<<error>>"));
-		REQUIRE(test.expectedInputOutput("c", ""));
-		REQUIRE(test.expectedInputOutput("-4 -6 *", "24"));
-		REQUIRE(test.expectedInputOutput("-2 *", "-48"));
-		REQUIRE(test.expectedInputOutput("10 100 *", "1000"));
-		REQUIRE(test.expectedInputOutput("10 100*", "1000"));
-		REQUIRE(test.expectedInputOutput("5.5 2.2*", "12.1"));
+		REQUIRE(test.expectedStackOutput("3 9 7 2 4 *", "8"));
+		REQUIRE(test.expectedStackOutput("*", "56"));
+		REQUIRE(test.expectedStackOutput("*", "504"));
+		REQUIRE(test.expectedStackOutput("*", "1512"));
+		REQUIRE(test.expectError("*"));
+		REQUIRE(test.getOutput("c") == "");
+		REQUIRE(test.expectedStackOutput("-4 -6 *", "24"));
+		REQUIRE(test.expectedStackOutput("-2 *", "-48"));
+		REQUIRE(test.expectedStackOutput("10 100 *", "1000"));
+		REQUIRE(test.expectedStackOutput("10 100*", "1000"));
+		REQUIRE(test.expectedStackOutput("5.5 2.2*", "12.1"));
 	}
 
+	// assert division works w/ or without spaces
+	// espeicially with negative numbers
 	SECTION("Method: divide()")
 	{
-		REQUIRE(test.expectedInputOutput("16 4 2 /", "2"));
-		REQUIRE(test.expectedInputOutput("/", "8"));
-		REQUIRE(test.expectedInputOutput("c", ""));
-		REQUIRE(test.expectedInputOutput("2 5 /", "0.4"));
-		REQUIRE(test.expectedInputOutput("9 3 7 /", "0.428571"));
-		REQUIRE(test.expectedInputOutput("-1 /", "-0.428571"));
-		REQUIRE(test.expectedInputOutput("-1 / ", "0.428571"));
-		REQUIRE(test.expectedInputOutput("100 10 /", "10"));
-		REQUIRE(test.expectedInputOutput("100 10/", "10"));
-		REQUIRE(test.expectedInputOutput("/", "<<error>>"));
+		REQUIRE(test.expectedStackOutput("16 4 2 /", "2"));
+		REQUIRE(test.expectedStackOutput("/", "8"));
+		REQUIRE(test.expectedOutput("c", ""));
+		REQUIRE(test.expectedStackOutput("2 5 /", "0.4"));
+		REQUIRE(test.expectedStackOutput("9 3 7 /", "0.428571"));
+		REQUIRE(test.expectedStackOutput("-1 /", "-0.428571"));
+		REQUIRE(test.expectedStackOutput("-1 / ", "0.428571"));
+		REQUIRE(test.expectedStackOutput("100 10 /", "10"));
+		REQUIRE(test.expectedStackOutput("100 10/", "10"));
+		REQUIRE(test.expectedStackOutput("/", "1"));
+		REQUIRE(test.expectedStackOutput("/", "0.428571"));
+		REQUIRE(test.expectedStackOutput("/", "21"));
+		REQUIRE(test.expectedStackOutput("/", "0.0190476"));
+		REQUIRE(test.expectedStackOutput("/", "0.0190476"));
+		REQUIRE(test.expectError("/"));
 	}
 
+	// assert modulo operations works w/ or without spaces
 	SECTION("Method: mod()") 
 	{
-		REQUIRE(test.expectedInputOutput("16 8 6 %", "2"));
-		REQUIRE(test.expectedInputOutput("%", "0"));
-		REQUIRE(test.expectedInputOutput("c", ""));
-		REQUIRE(test.expectedInputOutput("%", "<<error>>"));
-		REQUIRE(test.expectedInputOutput("10 1 %", "0"));
-		REQUIRE(test.expectedInputOutput("10 2 %", "0"));
-		REQUIRE(test.expectedInputOutput("10 3 %", "1"));
-		REQUIRE(test.expectedInputOutput("10 4 %", "2"));
-		REQUIRE(test.expectedInputOutput("10 5 %", "0"));
-		REQUIRE(test.expectedInputOutput("10 6 %", "4"));
-		REQUIRE(test.expectedInputOutput("10 7 %", "3"));
-		REQUIRE(test.expectedInputOutput("10 8 %", "2"));
-		REQUIRE(test.expectedInputOutput("10 9 %", "1"));
-		REQUIRE(test.expectedInputOutput("10 10 %", "0"));
-		REQUIRE(test.expectedInputOutput("100 70 %", "30"));
-		REQUIRE(test.expectedInputOutput("100 70%", "30"));
+		REQUIRE(test.expectedStackOutput("16 8 6 %", "2"));
+		REQUIRE(test.expectedStackOutput("%", "0"));
+		REQUIRE(test.expectedOutput("c", ""));
+		REQUIRE(test.expectError("%"));
+		REQUIRE(test.expectedStackOutput("10 1 %", "0"));
+		REQUIRE(test.expectedStackOutput("10 2 %", "0"));
+		REQUIRE(test.expectedStackOutput("10 3 %", "1"));
+		REQUIRE(test.expectedStackOutput("10 4 %", "2"));
+		REQUIRE(test.expectedStackOutput("10 5 %", "0"));
+		REQUIRE(test.expectedStackOutput("10 6 %", "4"));
+		REQUIRE(test.expectedStackOutput("10 7 %", "3"));
+		REQUIRE(test.expectedStackOutput("10 8 %", "2"));
+		REQUIRE(test.expectedStackOutput("10 9 %", "1"));
+		REQUIRE(test.expectedStackOutput("10 10 %", "0"));
+		REQUIRE(test.expectedStackOutput("100 70 %", "30"));
+		REQUIRE(test.expectedStackOutput("100 70%", "30"));
 	}
 
+	// assert exponents operations works w/ or without spaces
+	// including with negative numbers as the exponent or base
 	SECTION("Method: exp()")
 	{
-		REQUIRE(test.expectedInputOutput("10 2 ^", "100"));
-		REQUIRE(test.expectedInputOutput("10 2 2 ^", "4"));
-		REQUIRE(test.expectedInputOutput("^", "10000"));
-		REQUIRE(test.expectedInputOutput("-10 2 ^", "100"));
-		REQUIRE(test.expectedInputOutput("-10 3 ^", "-1000"));
-		REQUIRE(test.expectedInputOutput("-10 3^", "-1000"));
-		REQUIRE(test.expectedInputOutput("0^", "1"));
-		REQUIRE(test.expectedInputOutput("^", "<<error>>"));
-		REQUIRE(test.expectedInputOutput("c", ""));
-		REQUIRE(test.expectedInputOutput("100 100^", "1e+200"));
+		REQUIRE(test.expectedStackOutput("10 2 ^", "100"));
+		REQUIRE(test.expectedStackOutput("10 2 2 ^", "4"));
+		REQUIRE(test.expectedStackOutput("^", "10000"));
+		REQUIRE(test.expectedStackOutput("-10 2 ^", "100"));
+		REQUIRE(test.expectedStackOutput("-10 3 ^", "-1000"));
+		REQUIRE(test.expectedStackOutput("-10 3^", "-1000"));
+		REQUIRE(test.expectedStackOutput("0^", "1"));
+		REQUIRE(test.expectedStackOutput("^", "-1000"));
+		REQUIRE(test.expectedStackOutput("^", "0"));
+		REQUIRE(test.expectedStackOutput("^", "1"));
+		REQUIRE(test.expectedStackOutput("^", "100"));
+		REQUIRE(test.expectError("^"));
+		REQUIRE(test.expectedOutput("c", ""));
+		REQUIRE(test.expectError("^"));
+		REQUIRE(test.expectedStackOutput("10 -1 ^", "0.1"));
+		REQUIRE(test.expectedOutput("c", ""));
+		REQUIRE(test.expectedStackOutput("100 100^", "1e+200"));
 	}
 
+	// assert negations operations works w/ or without spaces
 	SECTION("Method: neg()")
 	{
-		REQUIRE(test.expectedInputOutput("-1000", "-1000"));
-		REQUIRE(test.expectedInputOutput("M", "1000"));
-		REQUIRE(test.expectedInputOutput("-1000 -1*", "1000"));
-		REQUIRE(test.expectedInputOutput("M", "-1000"));
-		REQUIRE(test.expectedInputOutput("-4/", "-250"));
-		REQUIRE(test.expectedInputOutput("m", "250"));
-		REQUIRE(test.expectedInputOutput("-2*", "-500"));
-		REQUIRE(test.expectedInputOutput("m", "500"));
-		REQUIRE(test.expectedInputOutput("c", ""));
-		REQUIRE(test.expectedInputOutput("m", "<<error>>"));
-		REQUIRE(test.expectedInputOutput("c", ""));
-		REQUIRE(test.expectedInputOutput("M", "<<error>>"));
+		REQUIRE(test.expectedStackOutput("-1000", "-1000"));
+		REQUIRE(test.expectedStackOutput("M", "1000"));
+		REQUIRE(test.getStackOutput("-1000 -1*") == "1000");
+		REQUIRE(test.expectedStackOutput("M", "-1000"));
+		REQUIRE(test.expectedStackOutput("-4/", "250"));
+		REQUIRE(test.expectedStackOutput("m", "-250"));
+		REQUIRE(test.expectedStackOutput("-2*", "500"));
+		REQUIRE(test.expectedStackOutput("m", "-500"));
+		REQUIRE(test.expectedOutput("c", ""));
+		REQUIRE(test.expectError("m"));
+		REQUIRE(test.expectError("M"));
 	}
-	
+
+	// assert rotations work
 	SECTION("Method: rotateDown()")
 	{
-		REQUIRE(test.expectedInputOutput("100 200", "200"));
-		REQUIRE(test.expectedInputOutput("D", "100"));
-		REQUIRE(test.expectedInputOutput("D", "200"));
-		REQUIRE(test.expectedInputOutput("d", "100"));
-		REQUIRE(test.expectedInputOutput("d", "200"));
-		REQUIRE(test.expectedInputOutput("c", ""));
-		REQUIRE(test.expectedInputOutput("D", "<<error>>"));
-		REQUIRE(test.expectedInputOutput("c", ""));
-		REQUIRE(test.expectedInputOutput("d", "<<error>>"));
+		REQUIRE(test.expectedStackOutput("100 200", "200"));
+		REQUIRE(test.expectedStackOutput("D", "100"));
+		REQUIRE(test.expectedStackOutput("D", "200"));
+		REQUIRE(test.expectedStackOutput("d", "100"));
+		REQUIRE(test.expectedStackOutput("d", "200"));
+		REQUIRE(test.expectedOutput("c", ""));
+		REQUIRE(test.expectError("D"));
+		REQUIRE(test.expectError("d"));
 	}
 	
+	// assert rotations work
 	SECTION("Method: rotateUp()")
 	{
-		REQUIRE(test.expectedInputOutput("300 500", "500"));
-		REQUIRE(test.expectedInputOutput("U", "300"));
-		REQUIRE(test.expectedInputOutput("U", "500"));
-		REQUIRE(test.expectedInputOutput("u", "300"));
-		REQUIRE(test.expectedInputOutput("u", "500"));
-		REQUIRE(test.expectedInputOutput("c", ""));
-		REQUIRE(test.expectedInputOutput("U", "<<error>>"));
-		REQUIRE(test.expectedInputOutput("c", ""));
-		REQUIRE(test.expectedInputOutput("u", "<<error>>"));
+		REQUIRE(test.expectedStackOutput("300 500", "500"));
+		REQUIRE(test.expectedStackOutput("U", "300"));
+		REQUIRE(test.expectedStackOutput("U", "500"));
+		REQUIRE(test.expectedStackOutput("u", "300"));
+		REQUIRE(test.expectedStackOutput("u", "500"));
+		REQUIRE(test.expectedOutput("c", ""));
+		REQUIRE(test.expectError("U"));
+		REQUIRE(test.expectError("u"));
 	}
 	
+	// Without time to write dependency injection, the following tests
+	// have been conducted manually. See following link:
+	// https://github.com/qwergram/CS133Assignment/blob/Tabitha/Notes/project4.md#testing
+
+	/*
 	SECTION("Methods: saveToFile(), loadProgram(), recordProgram(), runProgram()")
 	{
 		REQUIRE(test.expectedInputOutput("R", "<<error>>"));
