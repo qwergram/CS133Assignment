@@ -203,7 +203,7 @@ namespace P4_RPNCALC
 				rotateUp();
 				break;
 			case 'X':
-				m_on = false;;
+				m_on = false;
 				break;
 			case 'C':
 				if (token.size() == 1)
@@ -778,10 +778,10 @@ namespace P4_RPNCALC
 					break;
 			}
 		// process string
-		bool isNegative = *it1 == '-';
-		bool isNumeric = isdigit(*it1) || *it1 == '.' || isNegative;
 		if (it1 != m_buffer.end())
 		{
+			bool isNegative = *it1 == '-';
+			bool isNumeric = isdigit(*it1) || *it1 == '.' || isNegative;
 			string::iterator it2 = it1;
 			while (!iswspace(*it2) && ((
 				isNumeric == bool(isdigit(*it2)) || isNumeric == (*it2 == '.' || (*it2 == '-' && isNegative))) || (isNegative && bool(isdigit(*it2)))
