@@ -239,7 +239,7 @@ namespace P4_RPNCALC
 	// Parameters: none
 	// Returns: none
 	// History Log: https://github.com/qwergram/CS133Assignment/blame/Tabitha/RPNCalculator/RPNCalcStart.cpp
-	// Test Plan: https://github.com/qwergram/CS133Assignment/blob/f8b7430439e292dfaae703a3405134965d68bfa1/RPNCalculator/RPN_UnitTests.cpp
+	// Test Plan:  https://travis-ci.org/qwergram/CS133Assignment
 	//--------------------------------------------------------------------
 	void CRPNCalc::add()
 	{
@@ -258,7 +258,7 @@ namespace P4_RPNCALC
 	// Parameters: none
 	// Returns: none
 	// History Log: https://github.com/qwergram/CS133Assignment/blame/Tabitha/RPNCalculator/RPNCalcStart.cpp
-	// Test Plan: https://github.com/qwergram/CS133Assignment/blob/f8b7430439e292dfaae703a3405134965d68bfa1/RPNCalculator/RPN_UnitTests.cpp
+	// Test Plan:  https://travis-ci.org/qwergram/CS133Assignment
 	//--------------------------------------------------------------------
 	void CRPNCalc::subtract()
 	{
@@ -277,7 +277,7 @@ namespace P4_RPNCALC
 	// Parameters: none
 	// Returns: none
 	// History Log: https://github.com/qwergram/CS133Assignment/blame/Tabitha/RPNCalculator/RPNCalcStart.cpp
-	// Test Plan: https://github.com/qwergram/CS133Assignment/blob/f8b7430439e292dfaae703a3405134965d68bfa1/RPNCalculator/RPN_UnitTests.cpp
+	// Test Plan:  https://travis-ci.org/qwergram/CS133Assignment
 	//--------------------------------------------------------------------
 	void CRPNCalc::multiply()
 	{
@@ -296,7 +296,7 @@ namespace P4_RPNCALC
 	// Parameters: none
 	// Returns: none
 	// History Log: https://github.com/qwergram/CS133Assignment/blame/Tabitha/RPNCalculator/RPNCalcStart.cpp
-	// Test Plan: https://github.com/qwergram/CS133Assignment/blob/f8b7430439e292dfaae703a3405134965d68bfa1/RPNCalculator/RPN_UnitTests.cpp
+	// Test Plan:  https://travis-ci.org/qwergram/CS133Assignment
 	//--------------------------------------------------------------------
 	// ----------------------------------------------------------------------------
 	//	
@@ -319,7 +319,7 @@ namespace P4_RPNCALC
 	// Parameters: none
 	// Returns: none
 	// History Log: https://github.com/qwergram/CS133Assignment/blame/Tabitha/RPNCalculator/RPNCalcStart.cpp
-	// Test Plan: https://github.com/qwergram/CS133Assignment/blob/f8b7430439e292dfaae703a3405134965d68bfa1/RPNCalculator/RPN_UnitTests.cpp
+	// Test Plan:  https://travis-ci.org/qwergram/CS133Assignment
 	//--------------------------------------------------------------------
 
 	void CRPNCalc::exp()
@@ -339,7 +339,7 @@ namespace P4_RPNCALC
 	// Parameters: none
 	// Returns: none 
 	// History Log: https://github.com/qwergram/CS133Assignment/blame/Tabitha/RPNCalculator/RPNCalcStart.cpp
-	// Test Plan: https://github.com/qwergram/CS133Assignment/blob/f8b7430439e292dfaae703a3405134965d68bfa1/RPNCalculator/RPN_UnitTests.cpp
+	// Test Plan:  https://travis-ci.org/qwergram/CS133Assignment
 	//--------------------------------------------------------------------
 	void CRPNCalc::mod()
 	{
@@ -358,7 +358,7 @@ namespace P4_RPNCALC
 	// Parameters: double& d1, double& d2 - values from the stack
 	// Returns: none 
 	// History Log: https://github.com/qwergram/CS133Assignment/blame/Tabitha/RPNCalculator/RPNCalcStart.cpp
-	// Test Plan: https://github.com/qwergram/CS133Assignment/blob/f8b7430439e292dfaae703a3405134965d68bfa1/RPNCalculator/RPN_UnitTests.cpp
+	// Test Plan: https://travis-ci.org/qwergram/CS133Assignment
 	//--------------------------------------------------------------------
 
 
@@ -383,7 +383,7 @@ namespace P4_RPNCALC
 	// Parameters: double& d1 - value from the stack
 	// Returns: none 
 	// History Log: https://github.com/qwergram/CS133Assignment/blame/Tabitha/RPNCalculator/RPNCalcStart.cpp
-	// Test Plan: https://github.com/qwergram/CS133Assignment/blob/f8b7430439e292dfaae703a3405134965d68bfa1/RPNCalculator/RPN_UnitTests.cpp
+	// Test Plan: https://travis-ci.org/qwergram/CS133Assignment
 	//--------------------------------------------------------------------
 
 	void CRPNCalc::unary_prep(double& d)
@@ -404,7 +404,7 @@ namespace P4_RPNCALC
 	// Parameters: none
 	// Returns: none
 	// History Log: https://github.com/qwergram/CS133Assignment/blame/Tabitha/RPNCalculator/RPNCalcStart.cpp
-	// Test Plan: https://github.com/qwergram/CS133Assignment/blob/f8b7430439e292dfaae703a3405134965d68bfa1/RPNCalculator/RPN_UnitTests.cpp
+	// Test Plan: https://travis-ci.org/qwergram/CS133Assignment
 	//--------------------------------------------------------------------
 	void CRPNCalc::clearEntry()
 	{
@@ -420,7 +420,7 @@ namespace P4_RPNCALC
 	// Parameters: none
 	// Returns: none
 	// History Log: https://github.com/qwergram/CS133Assignment/blame/Tabitha/RPNCalculator/RPNCalcStart.cpp
-	// Test Plan: https://github.com/qwergram/CS133Assignment/blob/f8b7430439e292dfaae703a3405134965d68bfa1/RPNCalculator/RPN_UnitTests.cpp
+	// Test Plan: https://travis-ci.org/qwergram/CS133Assignment
 	//--------------------------------------------------------------------
 	void CRPNCalc::clearAll()
 	{
@@ -436,7 +436,7 @@ namespace P4_RPNCALC
 	// Parameters: int reg - register number
 	// Returns: none
 	// History Log: https://github.com/qwergram/CS133Assignment/blame/Tabitha/RPNCalculator/RPNCalcStart.cpp
-	// Test Plan: https://github.com/qwergram/CS133Assignment/blob/f8b7430439e292dfaae703a3405134965d68bfa1/RPNCalculator/RPN_UnitTests.cpp
+	// Test Plan: https://travis-ci.org/qwergram/CS133Assignment
 	//--------------------------------------------------------------------
 	void CRPNCalc::getReg(int reg)
 	{
@@ -451,7 +451,7 @@ namespace P4_RPNCALC
 	// Parameters: none
 	// Returns: none
 	// History Log: https://github.com/qwergram/CS133Assignment/blame/Tabitha/RPNCalculator/RPNCalcStart.cpp
-	// Test Plan: https://github.com/qwergram/CS133Assignment/blob/f8b7430439e292dfaae703a3405134965d68bfa1/RPNCalculator/RPN_UnitTests.cpp
+	// Test Plan: https://travis-ci.org/qwergram/CS133Assignment
 	//--------------------------------------------------------------------
 	void CRPNCalc::loadProgram()
 	{
@@ -529,7 +529,7 @@ namespace P4_RPNCALC
 	// Parameters: none
 	// Returns: none
 	// History Log: https://github.com/qwergram/CS133Assignment/blame/Tabitha/RPNCalculator/RPNCalcStart.cpp
-	// Test Plan: https://github.com/qwergram/CS133Assignment/blob/f8b7430439e292dfaae703a3405134965d68bfa1/RPNCalculator/RPN_UnitTests.cpp
+	// Test Plan: https://travis-ci.org/qwergram/CS133Assignment
 	//--------------------------------------------------------------------
 	void CRPNCalc::recordProgram()
 	{
@@ -600,7 +600,7 @@ namespace P4_RPNCALC
 	// Parameters: none
 	// Returns: none
 	// History Log: https://github.com/qwergram/CS133Assignment/blame/Tabitha/RPNCalculator/RPNCalcStart.cpp
-	// Test Plan: https://github.com/qwergram/CS133Assignment/blob/f8b7430439e292dfaae703a3405134965d68bfa1/RPNCalculator/RPN_UnitTests.cpp
+	// Test Plan: https://travis-ci.org/qwergram/CS133Assignment
 	//--------------------------------------------------------------------
 	void CRPNCalc::neg()
 	{
@@ -618,7 +618,7 @@ namespace P4_RPNCALC
 	// Parameters: none
 	// Returns: none
 	// History Log: https://github.com/qwergram/CS133Assignment/blame/Tabitha/RPNCalculator/RPNCalcStart.cpp
-	// Test Plan: https://github.com/qwergram/CS133Assignment/blob/f8b7430439e292dfaae703a3405134965d68bfa1/RPNCalculator/RPN_UnitTests.cpp
+	// Test Plan: https://travis-ci.org/qwergram/CS133Assignment
 	//--------------------------------------------------------------------
 	void CRPNCalc::rotateDown()
 	{
@@ -641,7 +641,7 @@ namespace P4_RPNCALC
 	// Parameters: none
 	// Returns: none
 	// History Log: https://github.com/qwergram/CS133Assignment/blame/Tabitha/RPNCalculator/RPNCalcStart.cpp
-	// Test Plan: https://github.com/qwergram/CS133Assignment/blob/f8b7430439e292dfaae703a3405134965d68bfa1/RPNCalculator/RPN_UnitTests.cpp
+	// Test Plan: https://travis-ci.org/qwergram/CS133Assignment
 	//--------------------------------------------------------------------
 	void CRPNCalc::rotateUp()
 	{
@@ -663,7 +663,7 @@ namespace P4_RPNCALC
 	// Parameters: none
 	// Returns: none
 	// History Log: https://github.com/qwergram/CS133Assignment/blame/Tabitha/RPNCalculator/RPNCalcStart.cpp
-	// Test Plan: https://github.com/qwergram/CS133Assignment/blob/f8b7430439e292dfaae703a3405134965d68bfa1/RPNCalculator/RPN_UnitTests.cpp
+	// Test Plan: https://travis-ci.org/qwergram/CS133Assignment
 	//--------------------------------------------------------------------
 	void CRPNCalc::runProgram()
 	{
@@ -691,7 +691,7 @@ namespace P4_RPNCALC
 	// Parameters: int reg - registry number
 	// Returns: none
 	// History Log: https://github.com/qwergram/CS133Assignment/blame/Tabitha/RPNCalculator/RPNCalcStart.cpp
-	// Test Plan: https://github.com/qwergram/CS133Assignment/blob/f8b7430439e292dfaae703a3405134965d68bfa1/RPNCalculator/RPN_UnitTests.cpp
+	// Test Plan: https://travis-ci.org/qwergram/CS133Assignment
 	//--------------------------------------------------------------------
 	void CRPNCalc::setReg(int reg)
 	{
@@ -713,7 +713,7 @@ namespace P4_RPNCALC
 	// Parameters: istream & istr, in stream reference
 	// Returns: none
 	// History Log: https://github.com/qwergram/CS133Assignment/blame/Tabitha/RPNCalculator/RPNCalcStart.cpp
-	// Test Plan: https://github.com/qwergram/CS133Assignment/blob/f8b7430439e292dfaae703a3405134965d68bfa1/RPNCalculator/RPN_UnitTests.cpp
+	// Test Plan: https://travis-ci.org/qwergram/CS133Assignment
 	//--------------------------------------------------------------------
 	void CRPNCalc::input(istream &istr)
 	{
@@ -730,7 +730,7 @@ namespace P4_RPNCALC
 	// Parameters: ostream& ostr, CRPNCalc & calc - outstream and calculator object to print
 	// Returns: ostream&
 	// History Log: https://github.com/qwergram/CS133Assignment/blame/Tabitha/RPNCalculator/RPNCalcStart.cpp
-	// Test Plan: https://github.com/qwergram/CS133Assignment/blob/f8b7430439e292dfaae703a3405134965d68bfa1/RPNCalculator/RPN_UnitTests.cpp
+	// Test Plan: https://travis-ci.org/qwergram/CS133Assignment
 	//--------------------------------------------------------------------
 	// ----------------------------------------------------------------------------
 	//	ostream's << defined for CRPNCalc
@@ -749,7 +749,7 @@ namespace P4_RPNCALC
 	// Parameters: istream& ostr, CRPNCalc & calc - istream and calculator object to input
 	// Returns: istream&
 	// History Log: https://github.com/qwergram/CS133Assignment/blame/Tabitha/RPNCalculator/RPNCalcStart.cpp
-	// Test Plan: https://github.com/qwergram/CS133Assignment/blob/f8b7430439e292dfaae703a3405134965d68bfa1/RPNCalculator/RPN_UnitTests.cpp
+	// Test Plan: https://travis-ci.org/qwergram/CS133Assignment
 	//--------------------------------------------------------------------
 	istream &operator >> (istream &istr, CRPNCalc &calc)
 	{
@@ -765,7 +765,7 @@ namespace P4_RPNCALC
 	// Parameters: none
 	// Returns: string
 	// History Log: https://github.com/qwergram/CS133Assignment/blame/Tabitha/RPNCalculator/RPNCalcStart.cpp
-	// Test Plan: https://github.com/qwergram/CS133Assignment/blob/f8b7430439e292dfaae703a3405134965d68bfa1/RPNCalculator/RPN_UnitTests.cpp
+	// Test Plan: https://travis-ci.org/qwergram/CS133Assignment
 	//--------------------------------------------------------------------
 	string CRPNCalc::getToken()
 	{
