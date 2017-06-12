@@ -79,6 +79,10 @@
 - [Travis Test Results](https://travis-ci.org/qwergram/CS133Assignment/)
 - [App Veyor Test Results](https://ci.appveyor.com/project/qwergram/cs133assignment)
 
+# $10: Spot the bug
+
+![](http://imgur.com/a8JgMuy.png)
+
 # Instructions
 
 *Stolen from [Paul Bladek](http://faculty.edcc.edu//paul.bladek/CS133/p4.htm) of EDCC*
