@@ -287,7 +287,8 @@ namespace P4_RPNCALC
 		if (!m_error)
 			m_stack.push_front(num1 * num2);
 	}
-	//--------------------------------------------------------------------
+	
+	// --------------------------------------------------------------------
 	// Title: void CRPNCalc::divide()
 	// Description: if possible, pops top 2 elements from the stack, divides them
 	//	  and pushes the result onto the stack
@@ -298,9 +299,6 @@ namespace P4_RPNCALC
 	// History Log: https://github.com/qwergram/CS133Assignment/blame/Tabitha/RPNCalculator/RPNCalcStart.cpp
 	// Test Plan:  https://travis-ci.org/qwergram/CS133Assignment
 	//--------------------------------------------------------------------
-	// ----------------------------------------------------------------------------
-	//	
-	// ----------------------------------------------------------------------------
 	void CRPNCalc::divide()
 	{
 		double num1 = 0.0;
