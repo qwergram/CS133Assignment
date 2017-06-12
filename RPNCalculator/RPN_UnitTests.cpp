@@ -1,6 +1,5 @@
-
 //--------------------------------------------------
-//  file: RPN+UnitTests.cpp
+//  file: RPN_UnitTests.cpp
 //-------------------------------------------------
 
 #define CATCH_CONFIG_MAIN 
@@ -14,12 +13,14 @@ TEST_CASE("Operation Methods")
 {
 	RPNTestHelper test;
 	
+	// Assert the last thing pushed is the last thing on the stack
 	SECTION("Sanity Tests") {
 		for (int n = 0; n < 100; n++) {
 			REQUIRE(test.expectedStackOutput(to_string(n), to_string(n)));
 		}
 	}
 
+	// assert clearing works, no matter what is punched in
 	SECTION("Method: clearAll()")
 	{
 		REQUIRE(test.expectedStackOutput("50", "50"));
@@ -36,7 +37,7 @@ TEST_CASE("Operation Methods")
 		REQUIRE(test.expectedOutput("C", ""));
 	}
 	
-	
+	// assert entry clearing works, no matter what is punched in
 	SECTION("Method: clearEntry()")
 	{
 		REQUIRE(test.expectedStackOutput("50", "50"));
@@ -56,7 +57,7 @@ TEST_CASE("Operation Methods")
 		REQUIRE(test.expectedOutput("CE", ""));
 	}
 
-	
+	// assert addition works w/ or without spaces
 	SECTION("Method: add()")
 	{
 		REQUIRE(test.expectedStackOutput("3 5+", "8"));
@@ -71,7 +72,7 @@ TEST_CASE("Operation Methods")
 		REQUIRE(test.getStackOutput("10 100+") == "110");
 	}
 	
-	
+	// assert subtraction/addition combinations works w/ or without spaces
 	SECTION("Method: combinations of add() & subtract()")
 	{
 		REQUIRE(test.getStackOutput("4.4 5.5 + 60 -") == "-50.1");
@@ -86,7 +87,8 @@ TEST_CASE("Operation Methods")
 		REQUIRE(test.expectedStackOutput("-40 -50 - -60 +", "-50"));	
 	}
 
-	
+	// assert subtaction works w/ or without spaces
+	// and ensure it doesn't conflict with negative numbers
 	SECTION("Method: subtract()")
 	{
 		REQUIRE(test.expectedStackOutput("5 6 -", "-1"));
@@ -99,7 +101,8 @@ TEST_CASE("Operation Methods")
 		REQUIRE(test.expectedStackOutput("-", "0"));
 	}
 
-	
+	// assert multiplication works w/ or without spaces
+	// espeicially with negative numbers
 	SECTION("Method: multiply()")
 	{
 		REQUIRE(test.expectedStackOutput("3 9 7 2 4 *", "8"));
@@ -115,7 +118,8 @@ TEST_CASE("Operation Methods")
 		REQUIRE(test.expectedStackOutput("5.5 2.2*", "12.1"));
 	}
 
-	
+	// assert division works w/ or without spaces
+	// espeicially with negative numbers
 	SECTION("Method: divide()")
 	{
 		REQUIRE(test.expectedStackOutput("16 4 2 /", "2"));
@@ -135,7 +139,7 @@ TEST_CASE("Operation Methods")
 		REQUIRE(test.expectError("/"));
 	}
 
-	
+	// assert modulo operations works w/ or without spaces
 	SECTION("Method: mod()") 
 	{
 		REQUIRE(test.expectedStackOutput("16 8 6 %", "2"));
@@ -156,7 +160,8 @@ TEST_CASE("Operation Methods")
 		REQUIRE(test.expectedStackOutput("100 70%", "30"));
 	}
 
-	
+	// assert exponents operations works w/ or without spaces
+	// including with negative numbers as the exponent or base
 	SECTION("Method: exp()")
 	{
 		REQUIRE(test.expectedStackOutput("10 2 ^", "100"));
@@ -173,10 +178,12 @@ TEST_CASE("Operation Methods")
 		REQUIRE(test.expectError("^"));
 		REQUIRE(test.expectedOutput("c", ""));
 		REQUIRE(test.expectError("^"));
+		REQUIRE(test.expectedStackOutput("10 -1 ^", "0.1"));
+		REQUIRE(test.expectedOutput("c", ""));
 		REQUIRE(test.expectedStackOutput("100 100^", "1e+200"));
 	}
 
-	
+	// assert negations operations works w/ or without spaces
 	SECTION("Method: neg()")
 	{
 		REQUIRE(test.expectedStackOutput("-1000", "-1000"));
@@ -192,7 +199,7 @@ TEST_CASE("Operation Methods")
 		REQUIRE(test.expectError("M"));
 	}
 
-	
+	// assert rotations work
 	SECTION("Method: rotateDown()")
 	{
 		REQUIRE(test.expectedStackOutput("100 200", "200"));
@@ -205,7 +212,7 @@ TEST_CASE("Operation Methods")
 		REQUIRE(test.expectError("d"));
 	}
 	
-	
+	// assert rotations work
 	SECTION("Method: rotateUp()")
 	{
 		REQUIRE(test.expectedStackOutput("300 500", "500"));
@@ -218,6 +225,10 @@ TEST_CASE("Operation Methods")
 		REQUIRE(test.expectError("u"));
 	}
 	
+	// Without time to write dependency injection, the following tests
+	// have been conducted manually. See following link:
+	// https://github.com/qwergram/CS133Assignment/blob/Tabitha/Notes/project4.md#testing
+
 	/*
 	SECTION("Methods: saveToFile(), loadProgram(), recordProgram(), runProgram()")
 	{

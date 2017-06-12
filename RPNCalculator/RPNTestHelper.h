@@ -28,7 +28,7 @@
 //					takes string input and output and returns true if 
 //					output matches calculator output
 //
-//			PPrivate:
+//			Private:
 //				CRPNCalc calc;
 //				
 // History Log:
