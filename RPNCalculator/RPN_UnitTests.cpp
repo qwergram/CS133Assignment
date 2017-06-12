@@ -205,20 +205,20 @@ TEST_CASE("Operation Methods")
 		REQUIRE(test.expectError("d"));
 	}
 	
-	/*
+	
 	SECTION("Method: rotateUp()")
 	{
-		REQUIRE(test.expectedInputOutput("300 500", "500"));
-		REQUIRE(test.expectedInputOutput("U", "300"));
-		REQUIRE(test.expectedInputOutput("U", "500"));
-		REQUIRE(test.expectedInputOutput("u", "300"));
-		REQUIRE(test.expectedInputOutput("u", "500"));
-		REQUIRE(test.expectedInputOutput("c", ""));
-		REQUIRE(test.expectedInputOutput("U", "<<error>>"));
-		REQUIRE(test.expectedInputOutput("c", ""));
-		REQUIRE(test.expectedInputOutput("u", "<<error>>"));
+		REQUIRE(test.expectedStackOutput("300 500", "500"));
+		REQUIRE(test.expectedStackOutput("U", "300"));
+		REQUIRE(test.expectedStackOutput("U", "500"));
+		REQUIRE(test.expectedStackOutput("u", "300"));
+		REQUIRE(test.expectedStackOutput("u", "500"));
+		REQUIRE(test.expectedOutput("c", ""));
+		REQUIRE(test.expectError("U"));
+		REQUIRE(test.expectError("u"));
 	}
 	
+	/*
 	SECTION("Methods: saveToFile(), loadProgram(), recordProgram(), runProgram()")
 	{
 		REQUIRE(test.expectedInputOutput("R", "<<error>>"));
