@@ -536,9 +536,10 @@ namespace P4_RPNCALC
 		unsigned macro_size = 0;
 		while (!(token.size() == 1 && toupper(token.front() == 'P')))
 		{
-			if (m_buffer.empty())
+			if (m_buffer.empty()) {
 				cout << macro_size++ << "> ";
 				getline(cin, m_buffer);
+			}
 			string token = getToken();
 			if (token.empty())
 				continue;
