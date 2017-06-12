@@ -79,6 +79,11 @@
 - [Travis Test Results](https://travis-ci.org/qwergram/CS133Assignment/)
 - [App Veyor Test Results](https://ci.appveyor.com/project/qwergram/cs133assignment)
 
+The additional test script can be found here:
+[Standard Deviation](https://github.com/qwergram/CS133Assignment/raw/Tabitha/RPNCalculator/Standard_Deviation.txt)
+This script tests the read/write properties of the registry, reading, writing and loading of scripts and some basic
+operations already covered in the automated tests.
+
 # $10: Spot the bug
 
 ![](http://imgur.com/a8JgMuy.png)
