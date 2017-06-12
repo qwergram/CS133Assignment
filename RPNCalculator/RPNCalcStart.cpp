@@ -214,13 +214,13 @@ namespace P4_RPNCALC
 					m_error = true;
 				break;
 			case 'G':
-				if (token.back() > 47 && token.back() < 48 + NUMREGS)
+				if (token.back() >= '0' && token.back() < '0' + NUMREGS)
 					getReg(token.back() - 48);
 				else
 					m_error = true;
 				break;
 			case 'S':
-				if (token.back() > int('0') && token.back() < int('0') + NUMREGS)
+				if (token.back() >= '0' && token.back() < '0' + NUMREGS)
 					setReg(token.back() - 48);
 				else
 					m_error = true;
