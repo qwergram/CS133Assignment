@@ -37,7 +37,7 @@ using namespace std;
 //		6/11/2017 - https://github.com/qwergram/CS133Assignment/blame/Tabitha/RPNCalculator/RPNCalcStart.cpp
 //----------------------------------------------------------------------------
 
-int main(void) {
+int main2(void) {
 	using P4_RPNCALC::CRPNCalc;
 	CRPNCalc myCalc;
 
