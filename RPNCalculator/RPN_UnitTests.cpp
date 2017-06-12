@@ -1,3 +1,4 @@
+
 //--------------------------------------------------
 //  file: RPN+UnitTests.cpp
 //-------------------------------------------------
@@ -175,23 +176,23 @@ TEST_CASE("Operation Methods")
 		REQUIRE(test.expectedStackOutput("100 100^", "1e+200"));
 	}
 
-	/*
+	
 	SECTION("Method: neg()")
 	{
-		REQUIRE(test.expectedInputOutput("-1000", "-1000"));
-		REQUIRE(test.expectedInputOutput("M", "1000"));
-		REQUIRE(test.expectedInputOutput("-1000 -1*", "1000"));
-		REQUIRE(test.expectedInputOutput("M", "-1000"));
-		REQUIRE(test.expectedInputOutput("-4/", "-250"));
-		REQUIRE(test.expectedInputOutput("m", "250"));
-		REQUIRE(test.expectedInputOutput("-2*", "-500"));
-		REQUIRE(test.expectedInputOutput("m", "500"));
-		REQUIRE(test.expectedInputOutput("c", ""));
-		REQUIRE(test.expectedInputOutput("m", "<<error>>"));
-		REQUIRE(test.expectedInputOutput("c", ""));
-		REQUIRE(test.expectedInputOutput("M", "<<error>>"));
+		REQUIRE(test.expectedStackOutput("-1000", "-1000"));
+		REQUIRE(test.expectedStackOutput("M", "1000"));
+		REQUIRE(test.getStackOutput("-1000 -1*") == "1000");
+		REQUIRE(test.expectedStackOutput("M", "-1000"));
+		REQUIRE(test.expectedStackOutput("-4/", "250"));
+		REQUIRE(test.expectedStackOutput("m", "-250"));
+		REQUIRE(test.expectedStackOutput("-2*", "500"));
+		REQUIRE(test.expectedStackOutput("m", "-500"));
+		REQUIRE(test.expectedOutput("c", ""));
+		REQUIRE(test.expectError("m"));
+		REQUIRE(test.expectError("M"));
 	}
-	
+
+	/*
 	SECTION("Method: rotateDown()")
 	{
 		REQUIRE(test.expectedInputOutput("100 200", "200"));
