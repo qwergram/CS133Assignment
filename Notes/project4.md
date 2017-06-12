@@ -66,7 +66,7 @@
 </tr>
 <tr>
     <td>Standard Deviation Script</td>
-    <td><a href="#">Source</a></td>
+    <td><a href="https://gist.github.com/TabithaRoemish/9232cd06eba71567605d61a317cc691b">Source</a></td>
 </tr>
 </table>
 
