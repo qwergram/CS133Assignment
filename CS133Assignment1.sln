@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AVLTree", "AVLTree\AVLTree.vcxproj", "{8EF438BA-6718-495C-AF5F-288B9EB89462}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RPNCalculator", "RPNCalculator\RPNCalculator.vcxproj", "{385F86E4-0BE4-42EF-892E-6FD99D4D0147}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,14 +13,14 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{8EF438BA-6718-495C-AF5F-288B9EB89462}.Debug|x64.ActiveCfg = Debug|x64
-		{8EF438BA-6718-495C-AF5F-288B9EB89462}.Debug|x64.Build.0 = Debug|x64
-		{8EF438BA-6718-495C-AF5F-288B9EB89462}.Debug|x86.ActiveCfg = Debug|Win32
-		{8EF438BA-6718-495C-AF5F-288B9EB89462}.Debug|x86.Build.0 = Debug|Win32
-		{8EF438BA-6718-495C-AF5F-288B9EB89462}.Release|x64.ActiveCfg = Release|x64
-		{8EF438BA-6718-495C-AF5F-288B9EB89462}.Release|x64.Build.0 = Release|x64
-		{8EF438BA-6718-495C-AF5F-288B9EB89462}.Release|x86.ActiveCfg = Release|Win32
-		{8EF438BA-6718-495C-AF5F-288B9EB89462}.Release|x86.Build.0 = Release|Win32
+		{385F86E4-0BE4-42EF-892E-6FD99D4D0147}.Debug|x64.ActiveCfg = Debug|x64
+		{385F86E4-0BE4-42EF-892E-6FD99D4D0147}.Debug|x64.Build.0 = Debug|x64
+		{385F86E4-0BE4-42EF-892E-6FD99D4D0147}.Debug|x86.ActiveCfg = Debug|Win32
+		{385F86E4-0BE4-42EF-892E-6FD99D4D0147}.Debug|x86.Build.0 = Debug|Win32
+		{385F86E4-0BE4-42EF-892E-6FD99D4D0147}.Release|x64.ActiveCfg = Release|x64
+		{385F86E4-0BE4-42EF-892E-6FD99D4D0147}.Release|x64.Build.0 = Release|x64
+		{385F86E4-0BE4-42EF-892E-6FD99D4D0147}.Release|x86.ActiveCfg = Release|Win32
+		{385F86E4-0BE4-42EF-892E-6FD99D4D0147}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

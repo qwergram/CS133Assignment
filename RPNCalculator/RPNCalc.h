@@ -28,7 +28,7 @@
 //   
 //    Date:		5/3/11
 // 
-//    Version:		1.03
+//    Version:		1.03-1
 //  
 //    Environment:
 //       Hardware: Intel Xeon PC
@@ -85,11 +85,12 @@
 //	5/27/05	PB  minor modifications 1.01
 //	5/3/11	PB  minor modifications 1.02
 //	6/3/12  PB  minor modifications 1.03
+//	6/11/2017 TR testhelper methods 1.03-1
 // ----------------------------------------------------------------------------
 
 using namespace std;
 
-namespace PB_CALC
+namespace P4_RPNCALC
 {
 
 	const char helpMenu[] = "C clear stack   | CE clear entry  | D rotate down  | F save program to file\n"
@@ -107,6 +108,18 @@ namespace PB_CALC
 		void run();
 		void print(ostream& ostr);  // changes m_error on error, so not const
 		void input(istream& istr);
+
+		//testing methods-will be removed for submission
+		string getBuffer() const { return m_buffer; };
+		void depInj_setBuffer(string input) { m_buffer = input; };
+		void depInj_runParse() { parse(); };
+		double getOutput() { if (!m_stack.empty()) return m_stack.front(); 
+			else throw invalid_argument("empty stack"); };
+		string depInj_lastOutput() 
+		{
+			if (m_error) { m_error = false; return "<<error>>"; }
+			else { return this->m_lastOutput; }
+		}
 
 	private:
 		// private methods
@@ -130,6 +143,7 @@ namespace PB_CALC
 		void setReg(int reg);
 		void subtract();
 		void unary_prep(double& d);
+		string getToken();
 
 		// private properties
 		double m_registers[NUMREGS];
@@ -141,6 +155,7 @@ namespace PB_CALC
 		bool m_helpOn;
 		bool m_on;
 		bool m_programRunning;
+		string m_lastOutput;
 	};
 
 	ostream &operator <<(ostream &ostr, CRPNCalc &calc);

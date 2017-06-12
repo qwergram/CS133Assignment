@@ -7,10 +7,10 @@ addons:
     sources:
       - ubuntu-toolchain-r-test
     packages:
-      - g++-4.9
+      - g++-5
 before_script:
-  - cd ./AVLTree
+  - cd ./RPNCalculator
 script:
-  - g++-4.9 --version
-  - g++-4.9 *.h* *.cpp -std=gnu++0x
+  - g++-5 --version
+  - g++-5 *.h* *.cpp -std=gnu++0x
   - ./a.out
