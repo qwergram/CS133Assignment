@@ -215,13 +215,13 @@ namespace P4_RPNCALC
 				break;
 			case 'G':
 				if (token.back() >= '0' && token.back() < '0' + NUMREGS)
-					getReg(token.back() - 48);
+					getReg(token.back() - '0');
 				else
 					m_error = true;
 				break;
 			case 'S':
 				if (token.back() >= '0' && token.back() < '0' + NUMREGS)
-					setReg(token.back() - 48);
+					setReg(token.back() - '0');
 				else
 					m_error = true;
 				break;
@@ -581,7 +581,7 @@ namespace P4_RPNCALC
 					break;
 				case 'G':
 				case 'S':
-					if (token.back() > 47 && token.back() < 48 + NUMREGS)
+					if (token.back() >= '0' && token.back() < '0' + NUMREGS)
 					{
 						m_program.push_back(token);
 						break;
