@@ -9,7 +9,7 @@
 </tr>
 <tr>
 <td>Tabitha Roemish</td>
-<td>QA Development &amp; Documentation Lead</td>
+<td>QA Development, RPN Programmer Tester &amp; Documentation Lead</td>
 </tr>
 <tr>
 <td>Cecilia Tong</td>
