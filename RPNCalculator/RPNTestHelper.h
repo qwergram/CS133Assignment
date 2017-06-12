@@ -24,10 +24,23 @@
 //		class RPNTestHelper:
 //			 
 //			Public Methods Inline:
-//				bool expectedInputOutput(string input, string output) -
+//				bool expectedOutput(string input, string output) -
 //					takes string input and output and returns true if 
-//					output matches calculator output
-//
+//					output of last command matches calculator output
+//				string getStackOutput(string input)
+//					returns string containing the output of the item
+//					on the top of the RPNCalc stack.
+//				bool expectedStackOutput(string input, string output)				
+//					returns true if the first item of the stack is
+//					equal to the output plan parameter. check is done
+//					after input operation is completed.
+//				string getOutput(string input)
+//					returns the string representation of the first
+//					item on the stack. Operation occurs after the
+//					input operation.
+//				bool expectError(string input)
+//					return true if the input parameter returns
+//					"<<error>>" and false otherwise.
 //			Private:
 //				CRPNCalc calc;
 //				
@@ -44,27 +57,13 @@ namespace P4_RPNCALC
 			return getOutput(input) == output;
 		}
 
-		string getStackOutput(string input) {
-			ostringstream ss;
-			calc.depInj_setBuffer(input);
-			while (!calc.getBuffer().empty())
-				calc.depInj_runParse();
-			ss << calc.getOutput();
-			return ss.str();
-		}
+		string getStackOutput(string input);
 
 		bool expectedStackOutput(string input, string output) {
 			return getStackOutput(input) == output;
 		}
 
-		string getOutput(string input) {
-			ostringstream ss;
-			calc.depInj_setBuffer(input);
-			while (!calc.getBuffer().empty())
-				calc.depInj_runParse();
-			ss << calc.depInj_lastOutput();
-			return ss.str();
-		}
+		string getOutput(string input);
 
 		bool expectError(string input) {
 			return expectedOutput(input, "<<error>>");
@@ -73,10 +72,51 @@ namespace P4_RPNCALC
 	private:
 		CRPNCalc calc;
 	};
-
 }
 
+//--------------------------------------------------------------------
+// Title:		getStackOutput
+// Description: returns the string representation of the first
+//				item on the stack. Operation occurs after the
+//				input operation.
+// Called By:	testing units
+// Calls:		calc dependency injection
+// Parameters:	input command
+// Returns:		string representation of last output from command
+//				from the stack.
+// History Log: https://github.com/qwergram/CS133Assignment/blame/Tabitha/RPNCalculator/RPNTestHelper.cpp
+// Test Plan: https://travis-ci.org/qwergram/CS133Assignment/
+//--------------------------------------------------------------------
+inline string P4_RPNCALC::RPNTestHelper::getStackOutput(string input) {
+	ostringstream ss;
+	calc.depInj_setBuffer(input);
+	while (!calc.getBuffer().empty())
+		calc.depInj_runParse();
+	ss << calc.getOutput();
+	return ss.str();
+}
 
+//--------------------------------------------------------------------
+// Title:		getOutput
+// Description: returns the string representation of the last
+//				operation. Operation occurs after the
+//				input operation.
+// Called By:	testing units
+// Calls:		calc dependency injection
+// Parameters:	input command
+// Returns:		string representation of last output from command
+//				not from the stack.
+// History Log: https://github.com/qwergram/CS133Assignment/blame/Tabitha/RPNCalculator/RPNTestHelper.cpp
+// Test Plan: https://travis-ci.org/qwergram/CS133Assignment/
+//--------------------------------------------------------------------
+inline string P4_RPNCALC::RPNTestHelper::getOutput(string input) {
+	ostringstream ss;
+	calc.depInj_setBuffer(input);
+	while (!calc.getBuffer().empty())
+		calc.depInj_runParse();
+	ss << calc.depInj_lastOutput();
+	return ss.str();
+}
 
 
 #endif
