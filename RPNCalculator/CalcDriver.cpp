@@ -18,8 +18,9 @@ using namespace std;
 //				which creates and starts a calculator
 //
 //	Programmer:	Paul Bladek
+//		Revised by: Norton Pengra, Antonio Castelli, Cecilia Tong, Tabitha Roemish
 //   
-//	Date:		5/20/14
+//	Date:		June 2017
 // 
 //	Version:	1.0
 //  
@@ -33,9 +34,10 @@ using namespace std;
 //
 //	History Log:
 //			4/205/14  PB  completed version 1.0
+//		6/11/2017 - https://github.com/qwergram/CS133Assignment/blame/Tabitha/RPNCalculator/RPNCalcStart.cpp
 //----------------------------------------------------------------------------
 
-int main2(void) {
+int main(void) {
 	using P4_RPNCALC::CRPNCalc;
 	CRPNCalc myCalc;
 
