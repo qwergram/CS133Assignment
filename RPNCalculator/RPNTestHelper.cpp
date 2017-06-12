@@ -17,13 +17,15 @@
 //--------------------------------------------------------------------
 
 //--------------------------------------------------------------------
-// Title: getStackOutput
-// Description: 
-// Called By: 
-// Calls: 
-// Parameters: 
-// Returns: 
-// Throws:
+// Title:		getStackOutput
+// Description: returns the string representation of the first
+//				item on the stack. Operation occurs after the
+//				input operation.
+// Called By:	testing units
+// Calls:		calc dependency injection
+// Parameters:	input command
+// Returns:		string representation of last output from command
+//				from the stack.
 // History Log: https://github.com/qwergram/CS133Assignment/blame/Tabitha/RPNCalculator/RPNTestHelper.cpp
 // Test Plan: https://travis-ci.org/qwergram/CS133Assignment/
 //--------------------------------------------------------------------
@@ -37,13 +39,15 @@ inline string P4_RPNCALC::RPNTestHelper::getStackOutput(string input) {
 }
 
 //--------------------------------------------------------------------
-// Title: getOutput
-// Description: 
-// Called By: 
-// Calls: 
-// Parameters: 
-// Returns: 
-// Throws:
+// Title:		getOutput
+// Description: returns the string representation of the last
+//				operation. Operation occurs after the
+//				input operation.
+// Called By:	testing units
+// Calls:		calc dependency injection
+// Parameters:	input command
+// Returns:		string representation of last output from command
+//				not from the stack.
 // History Log: https://github.com/qwergram/CS133Assignment/blame/Tabitha/RPNCalculator/RPNTestHelper.cpp
 // Test Plan: https://travis-ci.org/qwergram/CS133Assignment/
 //--------------------------------------------------------------------
