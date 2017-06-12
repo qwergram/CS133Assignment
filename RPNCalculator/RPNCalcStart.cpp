@@ -628,6 +628,9 @@ namespace P4_RPNCALC
 			m_stack.pop_back();
 			m_stack.push_front(temp);
 		}
+		else
+			m_error = true;
+		
 	}
 
 	//--------------------------------------------------------------------
@@ -648,6 +651,8 @@ namespace P4_RPNCALC
 			m_stack.pop_front();
 			m_stack.push_back(temp);
 		}
+		else
+			m_error = true;
 	}
 
 	//--------------------------------------------------------------------
