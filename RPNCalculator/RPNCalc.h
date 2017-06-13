@@ -96,8 +96,8 @@ namespace P4_RPNCALC
 
 	const char helpMenu[] = 
 		"C clear stack   | CE clear entry  | D rotate down   | F save program to file\n"
-		"G0-G9 get reg n | H help on/off   | L load program  | M +/- | P program on/off\n"
-		"R run program   | S0-S9 set reg n | U rotate up     | X exit\n"
+		"G0-G9 get reg n | H help on/off   | L load program  | M +/-  | P program on/off\n"
+		"R run program   | S0-S9 set reg n | U rotate up     | X exit | Y Heapify Stack\n"
 		"W sort stack    | Q show stack    | >/< +/- 1 stack | T swap stack/reg\n";
 
 	const char line[] = "____________________________________________________________________________\n";
@@ -152,6 +152,7 @@ namespace P4_RPNCALC
 		void showStack();
 		void swapStackReg();
 		void transformStack(short direction);
+		void heapifyStack();
 
 		// private properties
 		double m_registers[NUMREGS];

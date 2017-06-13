@@ -242,6 +242,9 @@ namespace P4_RPNCALC
 			case 'T':
 				this->swapStackReg();
 				break;
+			case 'Y':
+				this->heapifyStack();
+				break;
 			default:
 				m_error = true;
 			}
@@ -591,6 +594,7 @@ namespace P4_RPNCALC
 				case '>':
 				case '<':
 				case 'T':
+				case 'Y':
 					m_program.push_back(token);
 					break;
 				case 'C':
@@ -859,5 +863,8 @@ namespace P4_RPNCALC
 	void CRPNCalc::transformStack(short direction)
 	{
 		transform(m_stack.begin(), m_stack.end(), m_stack.begin(), [&](double i) -> double { return i + direction; });
+	}
+	void CRPNCalc::heapifyStack()
+	{
 	}
 }
