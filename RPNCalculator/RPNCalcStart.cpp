@@ -233,6 +233,15 @@ namespace P4_RPNCALC
 			case 'W':
 				this->sortStack();
 				break;
+			case '>':
+				this->transformStack(1);
+				break;
+			case '<':
+				this->transformStack(-1);
+				break;
+			case 'T':
+				this->swapStackReg();
+				break;
 			default:
 				m_error = true;
 			}
