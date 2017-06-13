@@ -152,7 +152,7 @@ namespace P4_RPNCALC
 		void showStack();
 		void swapStackReg();
 		void transformStack(short direction);
-		void heapifyStack();
+		void heapifyStack(int i=-1);
 
 		// private properties
 		double m_registers[NUMREGS];

@@ -864,7 +864,26 @@ namespace P4_RPNCALC
 	{
 		transform(m_stack.begin(), m_stack.end(), m_stack.begin(), [&](double i) -> double { return i + direction; });
 	}
-	void CRPNCalc::heapifyStack()
+	void CRPNCalc::heapifyStack(int i)
 	{
+		// max heap
+		if (m_stack.empty()) {
+			m_error = true;
+		}
+		else if (i > 1 && i < m_stack.size()) {
+			int parent = i / 2;
+			int sibling = (i % 2) ? i - 1 : i + 1;
+			int larger = (m_stack[sibling] > m_stack[i]) ? sibling : i;
+			if (m_stack[parent] < m_stack[larger])
+				swap(m_stack[parent], m_stack[larger]);
+			heapifyStack(i - 1);
+		} else if (i == 0) {
+			// .. pass ..
+		} else if (i == -1) {
+			m_stack.push_front(0);
+			this->heapifyStack(m_stack.size() - 1);
+			m_stack.pop_front();
+			this->showStack();
+		}
 	}
 }
