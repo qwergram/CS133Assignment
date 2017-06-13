@@ -118,8 +118,6 @@ namespace P4_RPNCALC
 		ostr << "[RPN Programmable Calculator] by @ctongGH, @qwergram, @TabithaRoemish & @AntonioCastelli" << endl;
 		if (m_helpOn)
 			cout << helpMenu;
-		else
-			cout << endl << endl << endl;
 		cout << line;
 		if (!m_stack.empty())
 		{
