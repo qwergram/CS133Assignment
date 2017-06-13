@@ -588,6 +588,9 @@ namespace P4_RPNCALC
 				case 'U':
 				case 'X':
 				case 'W':
+				case '>':
+				case '<':
+				case 'T':
 					m_program.push_back(token);
 					break;
 				case 'C':
