@@ -146,15 +146,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="catch.hpp" />
     <ClInclude Include="RPNCalc.h" />
-    <ClInclude Include="RPNTestHelper.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CalcDriver.cpp" />
     <ClCompile Include="RPNCalcStart.cpp" />
     <ClCompile Include="RPNTestHelper.cpp" />
-    <ClCompile Include="RPN_UnitTests.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
