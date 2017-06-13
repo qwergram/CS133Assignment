@@ -846,10 +846,12 @@ namespace P4_RPNCALC
 	void CRPNCalc::swapStackReg()
 	{
 		if (m_stack.size() <= 10) {
-			auto temp = vector<double>();
+			auto temp = vector<double>(10);
 			copy(m_stack.begin(), m_stack.end(), temp.begin());
-			copy(m_registers, m_registers+10, m_stack.begin());
-			copy(temp.begin(), temp.end(), m_stack.begin());
+			copy(begin(m_registers), begin(m_registers) + m_stack.size(), m_stack.begin());
+			//copy(temp.begin(), temp.begin() + m_stack.size(), begin(m_registers)); // C4996
+			for (int i = 0; i < m_stack.size(); i++)
+				m_registers[i] = temp[i];
 		} else {
 			m_error = true;
 		}
