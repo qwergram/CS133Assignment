@@ -149,6 +149,8 @@ namespace P4_RPNCALC
 
 		void sortStack();
 		void showStack();
+		void swapStackReg();
+		void transformStack(short direction);
 
 		// private properties
 		double m_registers[NUMREGS];
