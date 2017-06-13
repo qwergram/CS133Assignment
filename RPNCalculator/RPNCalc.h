@@ -95,7 +95,8 @@ namespace P4_RPNCALC
 
 	const char helpMenu[] = "C clear stack   | CE clear entry  | D rotate down  | F save program to file\n"
 		"G0-G9 get reg n | H help on/off   | L load program | M +/- | P program on/off\n"
-		"R run program   | S0-S9 set reg n | U rotate up    | X exit\n";
+		"R run program   | S0-S9 set reg n | U rotate up    | X exit\n"
+		"S sort stack\n";
 
 	const char line[] = "____________________________________________________________________________\n";
 
@@ -144,6 +145,8 @@ namespace P4_RPNCALC
 		void subtract();
 		void unary_prep(double& d);
 		string getToken();
+
+		void sortStack();
 
 		// private properties
 		double m_registers[NUMREGS];
