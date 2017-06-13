@@ -839,7 +839,7 @@ namespace P4_RPNCALC
 	{
 		stringstream stream;
 		stream << '[';
-		for_each(m_stack.begin(), m_stack.end(), [&](const int i) { stream << '(' << i << ")>"; });
+		for_each(m_stack.begin(), m_stack.end(), [&](const double i) { stream << '(' << i << ")>"; });
 		stream << ']';
 		m_commandOutput = stream.str();
 	}
@@ -858,5 +858,6 @@ namespace P4_RPNCALC
 	}
 	void CRPNCalc::transformStack(short direction)
 	{
+		transform(m_stack.begin(), m_stack.end(), m_stack.begin(), [&](double i) -> double { return i + direction; });
 	}
 }
