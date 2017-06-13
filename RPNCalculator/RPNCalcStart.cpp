@@ -117,9 +117,13 @@ namespace P4_RPNCALC
 		double d = 0.0;
 		ostr << "[RPN Programmable Calculator] by @ctongGH, @qwergram, @TabithaRoemish & @AntonioCastelli" << endl;
 		if (m_helpOn)
-			cout << helpMenu;
-		cout << line;
-		if (!m_stack.empty())
+			ostr << helpMenu;
+		ostr << line;
+		if (!m_commandOutput.empty()) {
+			ostr << m_commandOutput;
+			m_commandOutput = "";
+		} 
+		else if (!m_stack.empty())
 		{
 			this->m_lastOutput = to_string(m_stack.front());
 			ostr << m_stack.front();
@@ -810,12 +814,21 @@ namespace P4_RPNCALC
 	}
 	void CRPNCalc::sortStack()
 	{
-		if (m_stack.begin() != m_stack.end())
-			std::sort(m_stack.begin(), m_stack.end());
+		auto compare = [](const int &a, const int &b) { return a > b; };
+		if (m_stack.begin() != m_stack.end()) {
+			std::sort(m_stack.begin(), m_stack.end(), compare);
+			showStack();
+		}
 		else
 			m_error = true;
 	}
+
 	void CRPNCalc::showStack()
 	{
+		stringstream stream;
+		stream << '[';
+		for_each(m_stack.begin(), m_stack.end(), [&](const int i) { stream << '(' << i << ")>"; });
+		stream << ']';
+		m_commandOutput = stream.str();
 	}
 }
