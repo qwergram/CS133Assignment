@@ -223,6 +223,12 @@ namespace P4_RPNCALC
 				else
 					m_error = true;
 				break;
+			case 'Q':
+				this->showStack();
+				break;
+			case 'W':
+				this->sortStack();
+				break;
 			default:
 				m_error = true;
 			}
@@ -801,5 +807,15 @@ namespace P4_RPNCALC
 			return returnVal;
 		}
 		return "";
+	}
+	void CRPNCalc::sortStack()
+	{
+		if (m_stack.begin() != m_stack.end())
+			std::sort(m_stack.begin(), m_stack.end());
+		else
+			m_error = true;
+	}
+	void CRPNCalc::showStack()
+	{
 	}
 }
