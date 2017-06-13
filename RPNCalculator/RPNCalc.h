@@ -160,6 +160,7 @@ namespace P4_RPNCALC
 		bool m_helpOn;
 		bool m_on;
 		bool m_programRunning;
+		string m_commandOutput;
 		string m_lastOutput;
 	};
 
