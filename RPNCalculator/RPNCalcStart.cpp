@@ -828,7 +828,7 @@ namespace P4_RPNCALC
 	void CRPNCalc::sortStack()
 	{
 		if (m_stack.begin() != m_stack.end()) {
-			std::sort(m_stack.begin(), m_stack.end(), [](const int &a, const int &b) { return a > b; });
+			std::sort(m_stack.begin(), m_stack.end(), [](const int &a, const int &b) -> bool { return a > b; });
 			showStack();
 		}
 		else
@@ -845,6 +845,16 @@ namespace P4_RPNCALC
 	}
 	void CRPNCalc::swapStackReg()
 	{
-
+		if (m_stack.size() <= 10) {
+			auto temp = vector<double>();
+			copy(m_stack.begin(), m_stack.end(), temp.begin());
+			copy(m_registers, m_registers+10, m_stack.begin());
+			copy(temp.begin(), temp.end(), m_stack.begin());
+		} else {
+			m_error = true;
+		}
+	}
+	void CRPNCalc::transformStack(short direction)
+	{
 	}
 }

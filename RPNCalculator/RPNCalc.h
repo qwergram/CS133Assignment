@@ -18,6 +18,7 @@
 #include <new>
 #include <sstream>
 #include <stack>
+#include <vector>
 //----------------------------------------------------------------------------
 //
 //    Title:		RPNCalc Class
